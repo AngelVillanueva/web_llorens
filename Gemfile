@@ -24,6 +24,11 @@ end
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.13.1'
+  ### GUARD
+  gem 'guard-rspec', '~> 2.3.0'
+  gem 'guard-cucumber', '~> 1.2.2'
+  gem 'growl', '1.0.3'
+  gem 'rb-fsevent', '~> 0.9.1', require: false
 end
 
 group :development do
@@ -40,4 +45,6 @@ group :test do
   gem 'cucumber-rails', '1.3.1', require: false
   gem 'database_cleaner', '0.9.1'
   gem 'factory_girl_rails', '4.2.1'
+  ### GUARD WITH ZEUS
+  gem 'zeus', '~> 0.13.3' # this is not really needed, but fails if not present
 end

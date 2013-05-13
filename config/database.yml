@@ -17,7 +17,6 @@ development:
   encoding: unicode
   database: web_llorens_development
   pool: 5
-  username: web_llorens
   password:
 
   # Connect on a TCP socket. Omitted by default since the client uses a
@@ -43,7 +42,13 @@ test:
   encoding: unicode
   database: web_llorens_test
   pool: 5
-  username: web_llorens
+  password:
+
+staging:
+  adapter: postgresql
+  encoding: unicode
+  database: web_llorens_staging
+  pool: 5
   password:
 
 production:
@@ -51,5 +56,4 @@ production:
   encoding: unicode
   database: web_llorens_production
   pool: 5
-  username: web_llorens
   password:

@@ -1,38 +1,42 @@
 source 'https://rubygems.org'
 
+ruby '1.9.3'
 gem 'rails', '3.2.13'
+gem 'pg', '~> 0.15'
+gem 'bootstrap-sass', '~> 2.3.1.0'
+gem 'jquery-rails', '~> 2.1'
+gem 'simple_form', '~> 2.1' # add gem 'country_select' if needed
+gem 'prawn_rails' # pdf creation
+gem 'pdf-reader' # pdf reading
+# Devise
+gem 'devise', '~> 2.2.4'
+# Rails_Admin
+gem 'rails_admin', '~> 0.4.3'
+# CanCan
+gem 'cancan', '~> 1.6.1'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-
-gem 'pg'
-
-
-# Gems used only for assets and not required
-# in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platforms => :ruby
-
-  gem 'uglifier', '>= 1.0.3'
+  gem 'sass-rails',   '~> 3.2'
+  gem 'coffee-rails', '~> 3.2.2'
+  gem 'uglifier', '~> 2.1.0'
 end
 
-gem 'jquery-rails'
+group :development, :test do
+  gem 'rspec-rails', '~> 2.13.1'
+end
 
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+group :development do
+  gem 'annotate', '2.5.0'
+  gem 'awesome_print', '1.1.0' # cool console object output
+  gem 'better_errors', '0.8.0' # cool error info pages in development. Trace last error also by navigating to 0.0.0.0:3000/__better_errors
+  gem 'binding_of_caller', '0.7.1' # cool error info pages in development
+  gem 'meta_request', '0.2.1' # rails_panel chrome extension.
+  gem 'sextant', '0.2.3' # Navigate to 0.0.0.0:3000/rails/routes to see routes in the browser
+end
 
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'debugger'
+group :test do
+  gem 'capybara', '~> 2.1.0'
+  gem 'cucumber-rails', '1.3.1', require: false
+  gem 'database_cleaner', '0.9.1'
+  gem 'factory_girl_rails', '4.2.1'
+end

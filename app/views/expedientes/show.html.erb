@@ -31,5 +31,8 @@
   <%= expediente.dias_tramite %>
 </p>
 <p>
-  Enlace a pdf
+  <%= expediente.matriculacion %>
+</p>
+<p>
+  <%= link_to expediente.identificador, documentation_path(expediente.identificador, format: 'pdf') %>
 </p>

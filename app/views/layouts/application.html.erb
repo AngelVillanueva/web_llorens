@@ -7,6 +7,7 @@
 </head>
 <body>
   <div class="container">
+    <header><%= link_to t("Brandname"), root_path %></header>
     <%= yield %>
   </div>
   <% unless Rails.env.production? %>

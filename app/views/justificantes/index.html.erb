@@ -1,6 +1,6 @@
 <h1>Listing justificantes</h1>
 
-<table>
+<table class="table table-condensed table-striped table-bordered">
   <tr>
     <th>Identificador</th>
     <th>Matricula</th>
@@ -33,13 +33,13 @@
     <td><%= justificante.fecha_sale_trafico %></td>
     <td><%= justificante.dias_tramite %></td>
     <td><%= justificante.matriculacion %></td>
-    <td><%= link_to 'Show', justificante %></td>
-    <td><%= link_to 'Edit', edit_justificante_path(justificante) %></td>
-    <td><%= link_to 'Destroy', justificante, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to t('Ver'), justificante %></td>
+    <td><%= link_to t('Editar'), edit_justificante_path(justificante) %></td>
+    <td><%= link_to t('Borrar'), justificante, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Justificante', new_justificante_path %>
+<%= link_to t('Nuevo Justificante'), new_justificante_path %>

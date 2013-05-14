@@ -20,5 +20,4 @@
 #
 
 class Expediente < ActiveRecord::Base
-  attr_accessible :identificador, :bastidor, :comprador, :dias_tramite, :fecha_alta, :fecha_entra_trafico, :fecha_sale_trafico, :marca, :matricula, :matriculacion, :modelo, :vendedor
 end

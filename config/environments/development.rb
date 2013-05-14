@@ -34,4 +34,7 @@ WebLlorens::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  # Raises an error on unpermitted attributes assignment
+  config.action_controller.action_on_unpermitted_parameters = :raise
 end

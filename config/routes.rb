@@ -5,6 +5,7 @@ WebLlorens::Application.routes.draw do
   resources :informe_traficos
 
   resources :justificantes
+  match 'justificantes/documentation/:id' => 'justificantes#pdf', as: :documentation_justificante
   
   resources :expedientes
   match 'expedientes/documentation/:id' => 'expedientes#pdf', as: :documentation

@@ -1,5 +1,7 @@
 <h1>Listing justificantes</h1>
 
+<div><%= link_to t('Nuevo Justificante'), new_justificante_path %></div>
+
 <table class="table table-condensed table-striped table-bordered">
   <tr>
     <th>Identificador</th>
@@ -14,13 +16,13 @@
     <th>Fecha sale trafico</th>
     <th>Dias tramite</th>
     <th>Matriculacion</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>Finalizado</th>
+    <th>Documentos</th>
+    <th>Acciones</th>
   </tr>
 
 <% @justificantes.each do |justificante| %>
-  <tr>
+  <tr class="<%= justificante.status? && '' || "error" %>">
     <td><%= justificante.identificador %></td>
     <td><%= justificante.matricula %></td>
     <td><%= justificante.bastidor %></td>
@@ -33,13 +35,19 @@
     <td><%= justificante.fecha_sale_trafico %></td>
     <td><%= justificante.dias_tramite %></td>
     <td><%= justificante.matriculacion %></td>
-    <td><%= link_to t('Ver'), justificante %></td>
-    <td><%= link_to t('Editar'), edit_justificante_path(justificante) %></td>
-    <td><%= link_to t('Borrar'), justificante, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= justificante.status %></td>
+    <td>
+        <% if justificante.status? %>
+            <%= link_to justificante.identificador, documentation_justificante_path(justificante.identificador, format: 'pdf') %>
+        <% else %>
+            <%= t("pendiente") %>
+        <% end %>
+    </td>
+    <td><%= link_to t('Ver'), justificante %>
+    <%= link_to t('Editar'), edit_justificante_path(justificante) %>
+    <%= link_to t('Borrar'), justificante, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
-
-<%= link_to t('Nuevo Justificante'), new_justificante_path %>

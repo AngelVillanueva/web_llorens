@@ -81,12 +81,17 @@ class JustificantesController < ApplicationController
     end
   end
 
+
+  def pdf
+    @documento = Justificante.where( identificador: params[:id] ).first
+  end
+
   private
 
     # Use this method to whitelist the permissible parameters. Example:
     # params.require(:person).permit(:name, :age)
     # Also, you can specialize this method with per-user checking of permissible attributes.
     def justificante_params
-      params.require(:justificante).permit(:bastidor, :comprador, :dias_tramite, :fecha_alta, :fecha_entra_trafico, :fecha_sale_trafico, :identificador, :marca, :matricula, :matriculacion, :modelo, :vendedor)
+      params.require(:justificante).permit(:bastidor, :comprador, :dias_tramite, :fecha_alta, :fecha_entra_trafico, :fecha_sale_trafico, :identificador, :marca, :matricula, :matriculacion, :modelo, :vendedor, :status)
     end
 end

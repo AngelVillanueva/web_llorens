@@ -3,5 +3,5 @@ Given(/^I am a User$/) do
 end
 
 Given(/^I am a User with some Expedientes$/) do
-  Expediente.create
+  Expediente.create(identificador: "IM-test")
 end

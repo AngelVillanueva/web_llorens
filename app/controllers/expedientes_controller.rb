@@ -1,4 +1,5 @@
 class ExpedientesController < ApplicationController
+  expose(:documento) { Expediente.where( identificador: params[:id] ).first }
   expose(:expedientes)
   expose(:expediente, attributes: :expediente_params)
 
@@ -8,6 +9,10 @@ class ExpedientesController < ApplicationController
     else
       render :new
     end
+  end
+
+  def pdf
+    documento 
   end
 
   private

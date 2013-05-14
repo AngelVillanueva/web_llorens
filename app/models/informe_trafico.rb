@@ -1,3 +1,3 @@
 class InformeTrafico < ActiveRecord::Base
-  attr_accessible :fecha_solicitud, :matricula, :solicitante
+  attr_accessible :fecha_solicitud, :matricula, :solicitante, :status
 end

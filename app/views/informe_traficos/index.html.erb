@@ -1,27 +1,33 @@
 <h1>Listing informe_traficos</h1>
 
+<div><%= link_to 'New Informe trafico', new_informe_trafico_path %></div>
+
 <table class="table table-bordered table-striped table-condensed">
   <tr>
     <th>Matricula</th>
     <th>Solicitante</th>
     <th>Fecha solicitud</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>Finalizado</th>
+    <th>Documentos</th>
+    <th>Acciones</th>
   </tr>
 
 <% @informe_traficos.each do |informe_trafico| %>
-  <tr>
+  <tr class="<%= informe_trafico.status? && '' || 'error' %>">
     <td><%= informe_trafico.matricula %></td>
     <td><%= informe_trafico.solicitante %></td>
     <td><%= informe_trafico.fecha_solicitud %></td>
-    <td><%= link_to 'Show', informe_trafico %></td>
-    <td><%= link_to 'Edit', edit_informe_trafico_path(informe_trafico) %></td>
-    <td><%= link_to 'Destroy', informe_trafico, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= informe_trafico.status? && t("Sí") || 'En curso' %></td>
+    <td>
+      <% if informe_trafico.status? %>
+        <%= link_to informe_trafico.matricula, documentation_informe_path(informe_trafico.matricula, format: 'pdf') %>
+      <% else %>
+        <%= t("pendiente") %>
+      <% end %>
+    </td>
+    <td><%= link_to t('Ver'), informe_trafico %> |
+    <%= link_to t('Editar'), edit_informe_trafico_path(informe_trafico) %> |
+    <%= link_to t('Borrar'), informe_trafico, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
-
-<br />
-
-<%= link_to 'New Informe trafico', new_informe_trafico_path %>

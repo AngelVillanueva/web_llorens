@@ -81,12 +81,16 @@ class InformeTraficosController < ApplicationController
     end
   end
 
+  def pdf
+    @documento = InformeTrafico.where( matricula: params[:id] ).first
+  end
+
   private
 
     # Use this method to whitelist the permissible parameters. Example:
     # params.require(:person).permit(:name, :age)
     # Also, you can specialize this method with per-user checking of permissible attributes.
     def informe_trafico_params
-      params.require(:informe_trafico).permit(:fecha_solicitud, :matricula, :solicitante)
+      params.require(:informe_trafico).permit(:fecha_solicitud, :matricula, :solicitante, :status)
     end
 end

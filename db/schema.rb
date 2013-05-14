@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130514205635) do
+ActiveRecord::Schema.define(:version => 20130514212947) do
 
   create_table "expedientes", :force => true do |t|
     t.string   "identificador"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(:version => 20130514205635) do
     t.date     "fecha_solicitud"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.boolean  "status"
   end
 
   create_table "justificantes", :force => true do |t|

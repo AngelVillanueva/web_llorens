@@ -57,7 +57,7 @@
           <%= expediente.dias_tramite %>
         </td>
         <td>
-          <%= expediente.matriculacion %>
+          <%= expediente.matriculacion? && "Nueva" || "Transferencia" %>
         </td>
         <td>
           <%= link_to expediente.identificador, documentation_path(expediente.identificador, format: 'pdf') %>

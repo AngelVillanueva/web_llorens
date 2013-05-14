@@ -44,7 +44,7 @@ class JustificantesController < ApplicationController
 
     respond_to do |format|
       if @justificante.save
-        format.html { redirect_to @justificante, notice: 'Justificante was successfully created.' }
+        format.html { redirect_to justificantes_path, notice: 'Justificante was successfully created.' }
         format.json { render json: @justificante, status: :created, location: @justificante }
       else
         format.html { render action: "new" }
@@ -60,7 +60,7 @@ class JustificantesController < ApplicationController
 
     respond_to do |format|
       if @justificante.update_attributes(justificante_params)
-        format.html { redirect_to @justificante, notice: 'Justificante was successfully updated.' }
+        format.html { redirect_to justificantes_path, notice: 'Justificante was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

@@ -44,7 +44,7 @@ class InformeTraficosController < ApplicationController
 
     respond_to do |format|
       if @informe_trafico.save
-        format.html { redirect_to @informe_trafico, notice: 'Informe trafico was successfully created.' }
+        format.html { redirect_to informe_traficos_path, notice: 'Informe trafico was successfully created.' }
         format.json { render json: @informe_trafico, status: :created, location: @informe_trafico }
       else
         format.html { render action: "new" }
@@ -60,7 +60,7 @@ class InformeTraficosController < ApplicationController
 
     respond_to do |format|
       if @informe_trafico.update_attributes(informe_trafico_params)
-        format.html { redirect_to @informe_trafico, notice: 'Informe trafico was successfully updated.' }
+        format.html { redirect_to informe_traficos_path, notice: 'Informe trafico was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

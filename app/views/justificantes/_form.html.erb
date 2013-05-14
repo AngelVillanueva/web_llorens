@@ -5,15 +5,15 @@
     <%= f.input :identificador %>
     <%= f.input :matricula %>
     <%= f.input :bastidor %>
-    <%= f.input :comprador %>
-    <%= f.input :vendedor %>
+    <%= f.input :comprador, as: 'string' %>
+    <%= f.input :vendedor, as: 'string' %>
     <%= f.input :marca %>
     <%= f.input :modelo %>
     <%= f.input :fecha_alta %>
     <%= f.input :fecha_entra_trafico %>
     <%= f.input :fecha_sale_trafico %>
     <%= f.input :dias_tramite %>
-    <%= f.input :matriculacion %>
+    <%= f.input :matriculacion, label: "¿Nueva matriculación?" %>
     <%= f.input :status, label: t("Subir PDF") %>
   </div>
 

@@ -34,8 +34,8 @@
     <td><%= justificante.fecha_entra_trafico %></td>
     <td><%= justificante.fecha_sale_trafico %></td>
     <td><%= justificante.dias_tramite %></td>
-    <td><%= justificante.matriculacion %></td>
-    <td><%= justificante.status %></td>
+    <td><%= justificante.matriculacion? && t("Nueva") || t("Transferencia") %></td>
+    <td><%= justificante.status? && t("Sí") || t("En curso") %></td>
     <td>
         <% if justificante.status? %>
             <%= link_to justificante.identificador, documentation_justificante_path(justificante.identificador, format: 'pdf') %>

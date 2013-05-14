@@ -1,0 +1,34 @@
+/** STYLING THE DEBUG INFO (from github.com) **/
+#debug { display: none; }
+a.debug { color: #888; margin-left: 50px; position: relative; }
+a.debug:focus, a.debug:hover { text-decoration: none; }
+a.debug b {
+  display: block;
+  position: absolute;
+  top: 60%;
+  left: 140%;
+  margin-top: -5px;
+  margin-left: -6px;
+  width: 13px;
+  height: 10px;
+  background: image-url('dev/shortcodes-sprite.png') no-repeat -58px -2px;
+}
+a.debug b.clicked {
+  background-position: -58px -14px;
+}
+.debug_dump {
+  clear: both;
+  margin: 15px 0;
+  padding: 6px 10px;
+  border-radius: 3px;
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  word-wrap: break-word;
+  width: 95%;
+  margin: 15px auto;
+}
+#debug a { display: block; color: blueviolet; float: left; margin-bottom: 20px; padding: 10px 10px 0 0;}

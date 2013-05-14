@@ -10,5 +10,5 @@
  *
  *= require_self
  *= require frontend_base
- *= require_tree .
+ *= require development.css.scss
  */

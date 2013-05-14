@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130514190327) do
+ActiveRecord::Schema.define(:version => 20130514191405) do
 
   create_table "expedientes", :force => true do |t|
     t.string   "identificador"
@@ -28,6 +28,14 @@ ActiveRecord::Schema.define(:version => 20130514190327) do
     t.boolean  "matriculacion"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
+  end
+
+  create_table "informe_traficos", :force => true do |t|
+    t.string   "matricula"
+    t.text     "solicitante"
+    t.date     "fecha_solicitud"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "justificantes", :force => true do |t|

@@ -1,7 +1,8 @@
 WebLlorens::Application.routes.draw do
 
-  resources :informe_traficos
+  root to: 'static_pages#home'
 
+  resources :informe_traficos
 
   resources :justificantes
   

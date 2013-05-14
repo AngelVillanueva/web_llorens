@@ -3,6 +3,8 @@ source 'https://rubygems.org'
 ruby '1.9.3'
 gem 'rails', '3.2.13'
 gem 'pg', '~> 0.15'
+gem 'thin', '~> 1.5.1'
+gem 'decent_exposure', '~> 2.1.0'
 gem 'bootstrap-sass', '~> 2.3.1.0'
 gem 'jquery-rails', '~> 2.1'
 gem 'simple_form', '~> 2.1' # add gem 'country_select' if needed

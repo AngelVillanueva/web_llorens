@@ -3,24 +3,24 @@
 <head>
   <title><%= full_title( yield :title ) %></title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
-
-<% unless Rails.env.production? %>
-  <div>
-    <a href="#" class="debug">debug<b></b></a>
-    <div id="debug">
-      <a href="http://0.0.0.0:3000/rails/routes" target="_blank" class="debug">Routes</a>
-      <a href="http://0.0.0.0:3000/__better_errors" target="_blank" class="debug">Better errors</a>
-      <div><%= debug(params) %></div>
-      <div><%= debug(cookies) %></div>
-    </div>
+  <div class="container">
+    <%= yield %>
   </div>
-<% end %>
+  <% unless Rails.env.production? %>
+    <div>
+      <a href="#" class="debug">debug<b></b></a>
+      <div id="debug">
+        <a href="http://0.0.0.0:3000/rails/routes" target="_blank" class="debug">Routes</a>
+        <a href="http://0.0.0.0:3000/__better_errors" target="_blank" class="debug">Better errors</a>
+        <div><%= debug(params) %></div>
+        <div><%= debug(cookies) %></div>
+      </div>
+    </div>
+  <% end %>
 
+  <%= javascript_include_tag "application" %>
 </body>
 </html>

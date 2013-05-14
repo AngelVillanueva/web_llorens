@@ -1,0 +1,22 @@
+<% provide :title, t("Listado de Expedientes") %>
+
+<h1><%= t("Expedientes") %></h1>
+
+<% expedientes.each do |expediente| %>
+  
+  <% end %>
+<table>
+<% expedientes.each do |expediente| %>
+    <tr class="<%= cycle('list_item_odd','list_item_even') %>">
+      <td>
+        <% expediente.identificador %>
+      </td>
+      <td class="list_actions">
+        <%= link_to t("Ver"), expediente %>
+        <%= link_to t("Editar"), edit_expediente_path(expediente) %>
+        <%= link_to t("Borrar"), expediente, confirm: 'seguro?', method: :delete %>
+      </td>
+    </tr>
+  <% end %>
+  </table>
+</div>

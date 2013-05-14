@@ -197,3 +197,7 @@ es:
   activerecord:
     errors:
       <<: *errors
+  Brandname: "Gestoría Llorens"
+  Expedientes: "Expedientes"
+  Listado de Expedientes: "Listado de Expedientes"
+  confimar_borrado: "¿Está seguro?"

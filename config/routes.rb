@@ -1,6 +1,11 @@
 WebLlorens::Application.routes.draw do
 
   resources :expedientes
+  namespace :api do
+    namespace :v1 do
+      resources :expedientes
+    end
+  end
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

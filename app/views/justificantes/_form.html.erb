@@ -1,0 +1,22 @@
+<%= simple_form_for(@justificante) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :identificador %>
+    <%= f.input :matricula %>
+    <%= f.input :bastidor %>
+    <%= f.input :comprador %>
+    <%= f.input :vendedor %>
+    <%= f.input :marca %>
+    <%= f.input :modelo %>
+    <%= f.input :fecha_alta %>
+    <%= f.input :fecha_entra_trafico %>
+    <%= f.input :fecha_sale_trafico %>
+    <%= f.input :dias_tramite %>
+    <%= f.input :matriculacion %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

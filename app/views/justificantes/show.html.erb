@@ -1,0 +1,65 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Identificador:</b>
+  <%= @justificante.identificador %>
+</p>
+
+<p>
+  <b>Matricula:</b>
+  <%= @justificante.matricula %>
+</p>
+
+<p>
+  <b>Bastidor:</b>
+  <%= @justificante.bastidor %>
+</p>
+
+<p>
+  <b>Comprador:</b>
+  <%= @justificante.comprador %>
+</p>
+
+<p>
+  <b>Vendedor:</b>
+  <%= @justificante.vendedor %>
+</p>
+
+<p>
+  <b>Marca:</b>
+  <%= @justificante.marca %>
+</p>
+
+<p>
+  <b>Modelo:</b>
+  <%= @justificante.modelo %>
+</p>
+
+<p>
+  <b>Fecha alta:</b>
+  <%= @justificante.fecha_alta %>
+</p>
+
+<p>
+  <b>Fecha entra trafico:</b>
+  <%= @justificante.fecha_entra_trafico %>
+</p>
+
+<p>
+  <b>Fecha sale trafico:</b>
+  <%= @justificante.fecha_sale_trafico %>
+</p>
+
+<p>
+  <b>Dias tramite:</b>
+  <%= @justificante.dias_tramite %>
+</p>
+
+<p>
+  <b>Matriculacion:</b>
+  <%= @justificante.matriculacion %>
+</p>
+
+
+<%= link_to 'Edit', edit_justificante_path(@justificante) %> |
+<%= link_to 'Back', justificantes_path %>

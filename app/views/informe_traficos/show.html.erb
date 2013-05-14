@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Matricula:</b>
+  <%= @informe_trafico.matricula %>
+</p>
+
+<p>
+  <b>Solicitante:</b>
+  <%= @informe_trafico.solicitante %>
+</p>
+
+<p>
+  <b>Fecha solicitud:</b>
+  <%= @informe_trafico.fecha_solicitud %>
+</p>
+
+
+<%= link_to 'Edit', edit_informe_trafico_path(@informe_trafico) %> |
+<%= link_to 'Back', informe_traficos_path %>

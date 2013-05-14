@@ -1,0 +1,27 @@
+<h1>Listing informe_traficos</h1>
+
+<table>
+  <tr>
+    <th>Matricula</th>
+    <th>Solicitante</th>
+    <th>Fecha solicitud</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @informe_traficos.each do |informe_trafico| %>
+  <tr>
+    <td><%= informe_trafico.matricula %></td>
+    <td><%= informe_trafico.solicitante %></td>
+    <td><%= informe_trafico.fecha_solicitud %></td>
+    <td><%= link_to 'Show', informe_trafico %></td>
+    <td><%= link_to 'Edit', edit_informe_trafico_path(informe_trafico) %></td>
+    <td><%= link_to 'Destroy', informe_trafico, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Informe trafico', new_informe_trafico_path %>

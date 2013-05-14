@@ -1,0 +1,45 @@
+<h1>Listing justificantes</h1>
+
+<table>
+  <tr>
+    <th>Identificador</th>
+    <th>Matricula</th>
+    <th>Bastidor</th>
+    <th>Comprador</th>
+    <th>Vendedor</th>
+    <th>Marca</th>
+    <th>Modelo</th>
+    <th>Fecha alta</th>
+    <th>Fecha entra trafico</th>
+    <th>Fecha sale trafico</th>
+    <th>Dias tramite</th>
+    <th>Matriculacion</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @justificantes.each do |justificante| %>
+  <tr>
+    <td><%= justificante.identificador %></td>
+    <td><%= justificante.matricula %></td>
+    <td><%= justificante.bastidor %></td>
+    <td><%= justificante.comprador %></td>
+    <td><%= justificante.vendedor %></td>
+    <td><%= justificante.marca %></td>
+    <td><%= justificante.modelo %></td>
+    <td><%= justificante.fecha_alta %></td>
+    <td><%= justificante.fecha_entra_trafico %></td>
+    <td><%= justificante.fecha_sale_trafico %></td>
+    <td><%= justificante.dias_tramite %></td>
+    <td><%= justificante.matriculacion %></td>
+    <td><%= link_to 'Show', justificante %></td>
+    <td><%= link_to 'Edit', edit_justificante_path(justificante) %></td>
+    <td><%= link_to 'Destroy', justificante, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Justificante', new_justificante_path %>

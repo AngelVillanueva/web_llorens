@@ -10,6 +10,9 @@
  *
  *= require_self
  *= require frontend_base
+ *= require dataTables/jquery.dataTables.bootstrap
+ *= require dataTables/extras/TableTools
+ *= require dataTables/extras/TableTools_JUI
  *= require custom
  *= require development
  */

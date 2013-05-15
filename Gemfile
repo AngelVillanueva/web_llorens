@@ -11,6 +11,7 @@ gem 'simple_form', '~> 2.1' # add gem 'country_select' if needed
 gem 'prawn_rails' # pdf creation
 gem 'Ascii85', '~> 1.0.1' # or pdf-reader will fail
 gem 'pdf-reader' # pdf reading
+gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-rails.git' # DataTables
 # Devise
 gem 'devise', '~> 2.2.4'
 # Rails_Admin

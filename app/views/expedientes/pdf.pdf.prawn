@@ -1,4 +1,4 @@
-template_pdf = "#{Rails.root}/app/assets/pdfs/#{documento.identificador}.pdf"
+template_pdf = "#{Rails.root}/app/assets/pdfs/expedientes/#{documento.identificador}.pdf"
 page = 2
 final_page = PDF::Reader.new(template_pdf).page_count + 1
 

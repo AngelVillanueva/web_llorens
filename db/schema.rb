@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130522164416) do
+ActiveRecord::Schema.define(:version => 20130522182936) do
 
   create_table "expedientes", :force => true do |t|
     t.string   "identificador"
@@ -41,20 +41,20 @@ ActiveRecord::Schema.define(:version => 20130522164416) do
 
   create_table "justificantes", :force => true do |t|
     t.string   "identificador"
+    t.string   "nif_comprador"
+    t.string   "nombre_razon_social"
+    t.string   "primer_apellido"
+    t.string   "segundo_apellido"
+    t.string   "provincia"
+    t.string   "municipio"
+    t.text     "direccion"
     t.string   "matricula"
     t.string   "bastidor"
-    t.text     "comprador"
-    t.text     "vendedor"
     t.string   "marca"
     t.string   "modelo"
-    t.date     "fecha_alta"
-    t.date     "fecha_entra_trafico"
-    t.date     "fecha_sale_trafico"
-    t.integer  "dias_tramite"
-    t.boolean  "matriculacion"
+    t.integer  "usuario_id"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
-    t.boolean  "status"
   end
 
   create_table "organizacions", :force => true do |t|

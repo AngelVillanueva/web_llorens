@@ -34,6 +34,7 @@ describe Usuario do
     it { should respond_to :organizacion }
     it { should respond_to :email }
     it { should respond_to :password }
+    it { should respond_to :justificantes }
     it { should be_valid }
   end
 end

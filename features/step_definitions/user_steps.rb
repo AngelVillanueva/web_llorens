@@ -5,6 +5,10 @@ Given(/^I am a User$/) do
   # do nothing
 end
 
+Given(/^I am a registered User$/) do
+  login_as( usuario, scope: :usuario )
+end
+
 Given(/^I am a registered User with some Expedientes$/) do
   usuario = FactoryGirl.create(:usuario)
   login_as(usuario, :scope => :usuario)

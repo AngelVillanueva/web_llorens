@@ -1,0 +1,16 @@
+<%= simple_form_for justificante, html: { class: 'form-horizontal' } do |f| %>
+  <%= f.input :identificador %>
+  <%= f.input :usuario_id %>
+  <%= f.input :nif_comprador %>
+  <%= f.input :nombre_razon_social %>
+  <%= f.input :primer_apellido %>
+  <%= f.input :segundo_apellido %>
+  <%= f.input :provincia %>
+  <%= f.input :municipio %>
+  <%= f.input :direccion %>
+  <%= f.input :matricula %>
+  <%= f.input :bastidor %>
+  <%= f.input :marca %>
+  <%= f.input :modelo %>
+  <%= f.button :submit %>
+<% end %>

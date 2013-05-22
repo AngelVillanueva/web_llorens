@@ -12,11 +12,11 @@
 #  modelo              :string(255)
 #  fecha_alta          :date
 #  fecha_entra_trafico :date
-#  fecha_sale_trafico  :date
-#  dias_tramite        :integer
+#  fecha_facturacion   :date
 #  matriculacion       :boolean
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
+#  observaciones       :text
 #
 
 require 'spec_helper'

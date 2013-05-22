@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130514212947) do
+ActiveRecord::Schema.define(:version => 20130522113614) do
 
   create_table "expedientes", :force => true do |t|
     t.string   "identificador"
@@ -23,11 +23,11 @@ ActiveRecord::Schema.define(:version => 20130514212947) do
     t.string   "modelo"
     t.date     "fecha_alta"
     t.date     "fecha_entra_trafico"
-    t.date     "fecha_sale_trafico"
-    t.integer  "dias_tramite"
+    t.date     "fecha_facturacion"
     t.boolean  "matriculacion"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
+    t.text     "observaciones"
   end
 
   create_table "informe_traficos", :force => true do |t|

@@ -12,12 +12,20 @@
 #  modelo              :string(255)
 #  fecha_alta          :date
 #  fecha_entra_trafico :date
-#  fecha_sale_trafico  :date
-#  dias_tramite        :integer
+#  fecha_facturacion   :date
 #  matriculacion       :boolean
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
+#  observaciones       :text
 #
 
 class Expediente < ActiveRecord::Base
+
+  def fecha_sale_trafico
+    fecha_facturacion
+  end
+
+  def dias_tramite
+    (fecha_sale_trafico - fecha_alta).to_i
+  end
 end

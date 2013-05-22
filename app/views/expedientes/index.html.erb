@@ -31,8 +31,8 @@
       <th><%= t("Fecha presentación Tráfico") %></th>
       <th><%= t("Fecha salida Tráfico") %></th>
       <th><%= t("Días trámite") %></th>
-      <th><%= t("Nueva matriculación") %></th>
       <th><%= t("Documentos") %></th>
+      <th><%= t("Observaciones") %></th>
     </tr>
   </thead>
   <tbody>
@@ -71,10 +71,10 @@
           <%= expediente.dias_tramite %>
         </td>
         <td>
-          <%= expediente.matriculacion? && "Nueva" || "Transferencia" %>
+          <%= link_to expediente.identificador, documentation_path(expediente.identificador, format: 'pdf') %>
         </td>
         <td>
-          <%= link_to expediente.identificador, documentation_path(expediente.identificador, format: 'pdf') %>
+          <%= expediente.observaciones %>
         </td>
       </tr>
     <% end %>

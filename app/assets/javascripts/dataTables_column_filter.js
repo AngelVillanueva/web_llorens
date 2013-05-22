@@ -112,7 +112,7 @@
                 search_init = '';
             }
 
-            var input = $('<input type="text" class="' + search_init + sCSSClass + '" value="' + inputvalue + '"/>');
+            var input = $('<input type="text" class="' + search_init + sCSSClass + '" placeholder="' + inputvalue + '"/>');
             if (iMaxLenght != undefined && iMaxLenght != -1) {
                 input.attr('maxlength', iMaxLenght);
             }
@@ -168,7 +168,7 @@
             input.blur(function () {
                 if (this.value == "") {
                     $(this).addClass("search_init");
-                    this.value = asInitVals[index];
+                    //this.value = asInitVals[index]; // not needed using placeholder attribute
                 }
             });
         }

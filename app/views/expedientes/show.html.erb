@@ -1,38 +1,23 @@
-<% provide :title, t( "Expediente n", n: expediente.identificador ) %>
+<% provide :title, t( "Expediente para", n: expediente.matricula ) %>
 
-<h1><%= expediente.identificador %></h1>
+<p><%= link_to "Volver al listado", expedientes_path %></p>
 
-<p><%= expediente.matricula %></p>
-<p>
-  <%= expediente.bastidor %>
-</p>
-<p>
-  <%= expediente.comprador %>
-</p>
-<p>
-  <%= expediente.vendedor %>
-</p>
-<p>
-  <%= expediente.marca %>
-</p>
-<p>
-  <%= expediente.modelo %>
-</p>
-<p>
-  <%= expediente.fecha_alta %>
-</p>
-<p>
-  <%= expediente.fecha_entra_trafico %>
-</p>
-<p>
-  <%= expediente.fecha_sale_trafico %>
-</p>
-<p>
-  <%= expediente.dias_tramite %>
-</p>
-<p>
-  <%= expediente.matriculacion %>
-</p>
-<p>
-  <%= link_to expediente.identificador, documentation_path(expediente.identificador, format: 'pdf') %>
-</p>
+<div class="with_pdf">
+  <h1>Expediente para <%= expediente.matricula %></h1>
+  <table class="table-condensed table-hover table-bordered">
+    <tbody>
+      <tr><td>Matrícula</td><td><%= expediente.matricula %></td></tr>
+      <tr><td>Comprador</td><td><%= expediente.comprador %></td></tr>
+      <tr><td>Vendedor</td><td><%= expediente.vendedor %></td></tr>
+      <tr><td>Marca</td><td><%= expediente.marca %></td></tr>
+      <tr><td>Modelo</td><td><%= expediente.modelo %></td></tr>
+      <tr><td>Fecha de alta</td><td><%= l expediente.fecha_alta %></td></tr>
+      <tr><td>Fecha de entrada en tráfico</td><td><%= l expediente.fecha_entra_trafico %></td></tr>
+      <tr><td>Días de trámite</td><td><%= expediente.dias_tramite %></td></tr>
+      <tr><td>Observaciones</td><td><%= expediente.observaciones %></td></tr>
+      <tr><td>Documentación</td><td><%= link_to "Ampliar PDF", documentation_path(expediente.identificador, format: 'pdf') %></td></tr>
+    </tbody>
+  </table>
+
+  <iframe class="pdf" src="<%= documentation_path(expediente.identificador, format: 'pdf')%>">
+</div>

@@ -5,7 +5,6 @@
 <table class="table table-condensed table-bordered table-striped top_filtered">
   <thead>
     <tr class="filter">
-      <th><%= t("Expediente") %></th>
       <th><%= t("Matrícula") %></th>
       <th><%= t("Bastidor") %></th>
       <th><%= t("Comprador") %></th>
@@ -20,7 +19,6 @@
       <th></th>
     </tr>
     <tr>
-      <th><%= t("Expediente") %></th>
       <th><%= t("Matrícula") %></th>
       <th><%= t("Bastidor") %></th>
       <th><%= t("Comprador") %></th>
@@ -39,10 +37,7 @@
   <% expedientes.each do |expediente| %>
       <tr class="">
         <td>
-          <%= link_to expediente.identificador, expediente %>
-        </td>
-        <td>
-          <%= expediente.matricula %>
+          <%= link_to expediente.matricula, expediente %>
         </td>
         <td class="large">
           <%= expediente.bastidor %>
@@ -71,7 +66,7 @@
           <%= expediente.dias_tramite %>
         </td>
         <td>
-          <%= link_to expediente.identificador, documentation_path(expediente.identificador, format: 'pdf') %>
+          <%= link_to "Ver PDF", documentation_path(expediente.identificador, format: 'pdf') %>
         </td>
         <td>
           <%= expediente.observaciones %>

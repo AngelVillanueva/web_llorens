@@ -202,5 +202,6 @@ es:
   Listado de Expedientes: "Listado de Expedientes"
   confimar_borrado: "¿Está seguro?"
   Expediente n: "Expediente número %{n}"
+  Expediente para: "Expediente para %{n}"
   Crear nuevo Expediente: "Crear nuevo Expediente"
   Nuevo expediente: "Nuevo expediente"

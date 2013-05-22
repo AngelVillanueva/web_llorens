@@ -292,6 +292,7 @@ DEPENDENCIES
   guard-rspec (~> 2.3.0)
   jquery-datatables-rails!
   jquery-rails (~> 2.1)
+  jquery-ui-rails
   meta_request (= 0.2.1)
   pdf-reader
   pg (~> 0.15)

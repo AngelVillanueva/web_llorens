@@ -7,6 +7,7 @@ gem 'strong_parameters', '~> 0.2.1'
 gem 'decent_exposure', '~> 2.1.0'
 gem 'bootstrap-sass', '~> 2.3.1.0'
 gem 'jquery-rails', '~> 2.1'
+gem 'jquery-ui-rails'
 gem 'simple_form', '~> 2.1' # add gem 'country_select' if needed
 gem 'prawn_rails' # pdf creation
 gem 'Ascii85', '~> 1.0.1' # or pdf-reader will fail

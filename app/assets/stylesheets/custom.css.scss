@@ -1,6 +1,21 @@
 table {
   margin: 20px 0;
 }
+table.top_filtered {
+  border-top: none;
+}
+table input, table select {
+  width: 80px;
+}
+tr.filter th {
+  padding-bottom: 20px;
+}
+tr.filter, .filter th {
+  border: none;
+}
+td.large {
+  font-size: 8px;
+}
 
 header {
   padding: 20px;

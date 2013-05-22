@@ -2,8 +2,23 @@
 
 <h1><%= t("Expedientes") %></h1>
 
-<table class="table table-condensed table-bordered table-striped">
+<table class="table table-condensed table-bordered table-striped top_filtered">
   <thead>
+    <tr class="filter">
+      <th><%= t("Expediente") %></th>
+      <th><%= t("Matrícula") %></th>
+      <th><%= t("Bastidor") %></th>
+      <th><%= t("Comprador") %></th>
+      <th><%= t("Vendedor") %></th>
+      <th><%= t("Marca") %></th>
+      <th><%= t("Modelo") %></th>
+      <th><%= t("Fecha de alta") %></th>
+      <th><%= t("Fecha presentación Tráfico") %></th>
+      <th><%= t("Fecha salida Tráfico") %></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
     <tr>
       <th><%= t("Expediente") %></th>
       <th><%= t("Matrícula") %></th>
@@ -18,19 +33,18 @@
       <th><%= t("Días trámite") %></th>
       <th><%= t("Nueva matriculación") %></th>
       <th><%= t("Documentos") %></th>
-      <th><%= t("Opciones") %></th>
     </tr>
   </thead>
   <tbody>
   <% expedientes.each do |expediente| %>
       <tr class="">
         <td>
-          <%= expediente.identificador %>
+          <%= link_to expediente.identificador, expediente %>
         </td>
         <td>
           <%= expediente.matricula %>
         </td>
-        <td>
+        <td class="large">
           <%= expediente.bastidor %>
         </td>
         <td>
@@ -46,12 +60,12 @@
           <%= expediente.modelo %>
         </td>
         <td>
-          <%= expediente.fecha_alta %>
+          <%= l expediente.fecha_alta %>
         </td><td>
-          <%= expediente.fecha_entra_trafico %>
+          <%= l expediente.fecha_entra_trafico %>
         </td>
         <td>
-          <%= expediente.fecha_sale_trafico %>
+          <%= l expediente.fecha_sale_trafico %>
         </td>
         <td>
           <%= expediente.dias_tramite %>
@@ -61,10 +75,6 @@
         </td>
         <td>
           <%= link_to expediente.identificador, documentation_path(expediente.identificador, format: 'pdf') %>
-        </td>
-        <td class="list_actions">
-          <%= link_to t("Ver"), expediente %>
-          <!--<%= link_to t("Borrar"), expediente, confirm: t("confimar_borrado"), method: :delete %>-->
         </td>
       </tr>
     <% end %>

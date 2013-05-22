@@ -77,7 +77,6 @@ $(document).ready ->
       { type: "text" },
       { type: "text" },
       { type: "text" },
-      { type: "text" },
       { type: "select" },
       { type: "select" },
       { type: "date-range" },

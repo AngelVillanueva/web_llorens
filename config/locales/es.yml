@@ -197,6 +197,11 @@ es:
   activerecord:
     errors:
       <<: *errors
+  Sign in: "Acceder"
+  Sign up: "Registrarse"
+  Password: "Contraseña"
+  Remember me: "Recordarme"
+  Forgot your password?: "¿Olvidaste tu contraseña"
   Brandname: "Gestoría Llorens"
   Expedientes: "Expedientes"
   Listado de Expedientes: "Listado de Expedientes"

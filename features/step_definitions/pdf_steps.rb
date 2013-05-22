@@ -1,5 +1,5 @@
 When(/^I follow a PDF link$/) do
-  click_link "IM-test"
+  click_link "Ver PDF"
 end
 
 Then (/^I should (not )?see a PDF document$/) do |negation|

@@ -11,8 +11,8 @@
       <tr><td>Vendedor</td><td><%= expediente.vendedor %></td></tr>
       <tr><td>Marca</td><td><%= expediente.marca %></td></tr>
       <tr><td>Modelo</td><td><%= expediente.modelo %></td></tr>
-      <tr><td>Fecha de alta</td><td><%= l expediente.fecha_alta %></td></tr>
-      <tr><td>Fecha de entrada en tráfico</td><td><%= l expediente.fecha_entra_trafico %></td></tr>
+      <tr><td>Fecha de alta</td><td><%= l expediente.fecha_alta unless expediente.fecha_alta.nil? %></td></tr>
+      <tr><td>Fecha de entrada en tráfico</td><td><%= l expediente.fecha_entra_trafico unless expediente.fecha_entra_trafico.nil? %></td></tr>
       <tr><td>Días de trámite</td><td><%= expediente.dias_tramite %></td></tr>
       <tr><td>Observaciones</td><td><%= expediente.observaciones %></td></tr>
       <tr><td>Documentación</td><td><%= link_to "Ampliar PDF", documentation_path(expediente.identificador, format: 'pdf') %></td></tr>

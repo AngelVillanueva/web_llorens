@@ -3,6 +3,10 @@ table {
 }
 table.top_filtered {
   border-top: none;
+  border-right: none;
+}
+table.top_filtered td, table.top_filtered thead tr:last-child th:last-child {
+  border-right: 1px solid #ddd;
 }
 table input, table select {
   width: 80px;

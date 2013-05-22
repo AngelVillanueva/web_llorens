@@ -1,0 +1,78 @@
+<% provide :title, t("Listado de Justificantes") %>
+
+<h1><%= t("Justificantes") %></h1>
+
+<table class="table table-condensed table-bordered table-striped top_filtered justificantes">
+  <thead>
+    <tr class="filter">
+      <th><%= t("Matrícula") %></th>
+      <th><%= t("Bastidor") %></th>
+      <th><%= t("NIF Comprador") %></th>
+      <th><%= t("Nombre o Razón social") %></th>
+      <th><%= t("Primer apellido") %></th>
+      <th><%= t("Segundo apellido") %></th>
+      <th><%= t("Municipio") %></th>
+      <th><%= t("Provincia") %></th>
+      <th><%= t("Dirección") %></th>
+      <th><%= t("Marca") %></th>
+      <th><%= t("Modelo") %></th>
+      <th></th>
+    </tr>
+    <tr>
+      <th><%= t("Matrícula") %></th>
+      <th><%= t("Bastidor") %></th>
+      <th><%= t("NIF Comprador") %></th>
+      <th><%= t("Nombre o Razón social") %></th>
+      <th><%= t("Primer apellido") %></th>
+      <th><%= t("Segundo apellido") %></th>
+      <th><%= t("Municipio") %></th>
+      <th><%= t("Provincia") %></th>
+      <th><%= t("Dirección") %></th>
+      <th><%= t("Marca") %></th>
+      <th><%= t("Modelo") %></th>
+      <th><%= t("Documentos") %></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% justificantes.each do |justificante| %>
+      <tr class="">
+        <td>
+          <%= link_to justificante.matricula, justificante %>
+        </td>
+        <td class="large">
+          <%= justificante.bastidor %>
+        </td>
+        <td>
+          <%= justificante.nif_comprador %>
+        </td>
+        <td>
+          <%= justificante.nombre_razon_social %>
+        </td>
+         <td>
+          <%= justificante.primer_apellido %>
+        </td>
+         <td>
+          <%= justificante.segundo_apellido %>
+        </td>
+         <td>
+          <%= justificante.municipio %>
+        </td>
+         <td>
+          <%= justificante.provincia %>
+        </td>
+         <td>
+          <%= justificante.direccion %>
+        </td>
+        <td>
+          <%= justificante.marca %>
+        </td>
+        <td>
+          <%= justificante.modelo %>
+        </td>
+        <td>
+          <%= link_to "Ver PDF", '#' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

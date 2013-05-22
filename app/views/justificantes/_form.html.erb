@@ -1,16 +1,17 @@
+<p><%= t("Persona solicitante: ")%><%= "#{current_usuario.nombre}" %></p>
 <%= simple_form_for justificante, html: { class: 'form-horizontal' } do |f| %>
   <%= f.input :identificador %>
-  <%= f.input :usuario_id %>
+  <%= f.input :usuario_id, as: :hidden, input_html: { value: current_usuario.id } %>
   <%= f.input :nif_comprador %>
-  <%= f.input :nombre_razon_social %>
+  <%= f.input :nombre_razon_social, label: t("Nombre o Razón Social") %>
   <%= f.input :primer_apellido %>
   <%= f.input :segundo_apellido %>
   <%= f.input :provincia %>
   <%= f.input :municipio %>
-  <%= f.input :direccion %>
+  <%= f.input :direccion, input_html: { rows: "5" } %>
   <%= f.input :matricula %>
   <%= f.input :bastidor %>
   <%= f.input :marca %>
   <%= f.input :modelo %>
-  <%= f.button :submit %>
+  <%= f.button :submit, value: "Generar Justificante" %>
 <% end %>

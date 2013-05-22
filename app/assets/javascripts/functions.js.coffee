@@ -46,7 +46,7 @@ $(document).ready ->
     yearSuffix: ''};
   $.datepicker.setDefaults($.datepicker.regional['es']);
 
-  $('.table').dataTable( {
+  $('.expedientes').dataTable( {
     "sDom": "<'row'<'span6'T><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
     "sPaginationType": "bootstrap",
     "oLanguage": {
@@ -85,6 +85,48 @@ $(document).ready ->
       null,
       null,
       null,
+      null
+      ]
+  }
+  );
+  $('.justificantes').dataTable( {
+    "sDom": "<'row'<'span6'T><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+    "sPaginationType": "bootstrap",
+    "oLanguage": {
+        "sSearch": "Buscar en la tabla",
+        "sLengthMenu": "Mostrar _MENU_ entradas por página",
+        "sZeroRecords": "Lo siento, no hay resultados",
+        "sInfo": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
+        "sInfoEmpty": "Mostrando 0 a 0 de 0 entradas",
+        "sInfoFiltered": "(filtrado de _MAX_ total entradas)"
+    },
+    "oTableTools": {
+      "aButtons": [
+        {
+          "sExtends":    "xls",
+          "sButtonText": "Exportar a Excel",
+          "sFileName": "Justificantes_Llorens.xls",
+          "mColumns": [0,1,2,3,4,5,6,7,8,9,10,11,12],
+          "sCharSet": "utf16le"
+        }
+
+      ]
+    }
+  } ).columnFilter( {
+    sPlaceHolder: "head:before",
+    sRangeFormat: "De {from} a {to}",
+    aoColumns: [
+      { type: "text" },
+      { type: "text" },
+      { type: "text" },
+      { type: "text" },
+      { type: "text" },
+      { type: "text" },
+      { type: "text" },
+      { type: "select" },
+      { type: "text" },
+      { type: "select" },
+      { type: "select" },
       null
       ]
   }

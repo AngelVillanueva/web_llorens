@@ -17,9 +17,9 @@ class ExpedientesController < ApplicationController
 
   private
   def expediente_params
-    params
-      .require( :expediente )
-      .permit( :identificador, :matricula )
+    # params
+    #   .require( :expediente )
+    #   .permit( :identificador, :matricula )
   end
 
 end

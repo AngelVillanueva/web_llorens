@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130522113614) do
+ActiveRecord::Schema.define(:version => 20130522152127) do
 
   create_table "expedientes", :force => true do |t|
     t.string   "identificador"
@@ -56,5 +56,28 @@ ActiveRecord::Schema.define(:version => 20130522113614) do
     t.datetime "updated_at",          :null => false
     t.boolean  "status"
   end
+
+  create_table "usuarios", :force => true do |t|
+    t.string   "email",                      :default => "", :null => false
+    t.string   "encrypted_password",         :default => "", :null => false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",              :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
+    t.string   "nombre"
+    t.string   "apellidos"
+    t.string   "organizacion"
+    t.string   "identificador_organizacion"
+  end
+
+  add_index "usuarios", ["email"], :name => "index_usuarios_on_email", :unique => true
+  add_index "usuarios", ["identificador_organizacion"], :name => "index_usuarios_on_identificador_organizacion"
+  add_index "usuarios", ["reset_password_token"], :name => "index_usuarios_on_reset_password_token", :unique => true
 
 end

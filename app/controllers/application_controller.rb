@@ -3,4 +3,6 @@ class ApplicationController < ActionController::Base
   decent_configuration do
     strategy DecentExposure::StrongParametersStrategy
   end
+
+  before_filter :authenticate_usuario!
 end

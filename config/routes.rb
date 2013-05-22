@@ -1,5 +1,7 @@
 WebLlorens::Application.routes.draw do
 
+  devise_for :usuarios
+
   root to: 'static_pages#home'
 
   resources :informe_traficos

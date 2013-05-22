@@ -8,6 +8,7 @@
 <body>
   <div class="container">
     <header><%= link_to t("Brandname"), root_path %></header>
+    <div class="row"><%= render 'shared/flash', flash: flash %></div>
     <%= yield %>
   </div>
   <% unless Rails.env.production? %>

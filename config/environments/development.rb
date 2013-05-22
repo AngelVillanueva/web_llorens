@@ -35,6 +35,9 @@ WebLlorens::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 
-  # Raises an error on unpermitted attributes assignment
+  # Raises an error on unpermitted attributes assignment (strong_parameters)
   config.action_controller.action_on_unpermitted_parameters = :raise
+
+  # Devise reco for default_url
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 end

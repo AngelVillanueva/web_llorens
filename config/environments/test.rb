@@ -37,4 +37,7 @@ WebLlorens::Application.configure do
 
   # Raises an error on unpermitted attributes assignment
   config.action_controller.action_on_unpermitted_parameters = :raise
+
+  # Devise reco for default_url
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 end

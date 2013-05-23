@@ -197,12 +197,16 @@ es:
   activerecord:
     errors:
       <<: *errors
+  unauthorized:
+    manage:
+      all: "No estás autorizado a acceder a esa página"
   Sign in: "Acceder"
   Sign up: "Registrarse"
   Sign out: "Salir"
   Password: "Contraseña"
   Remember me: "Recordarme"
   Forgot your password?: "¿Olvidaste tu contraseña"
+  Hola: "Hola, %{usuario}"
   Brandname: "Llorens Online"
   Expedientes: "Expedientes"
   Justificantes: "Justificantes"
@@ -219,4 +223,5 @@ es:
   solo_5_minutos: "Sólo tardamos 5 minutos"
   Crear nuevo Justificante Profesional: "Crear nuevo Justificante Profesional"
   Editar Justificante Profesional: "Editar Justificante Profesional"
+  El Justificante fue borrado correctamente: "El Justificante fue borrado correctamente"
   PDF actual: "PDF actual: %{pdf}"

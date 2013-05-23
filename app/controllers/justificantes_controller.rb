@@ -1,6 +1,8 @@
 class JustificantesController < ApplicationController
-  expose( :justificantes )
+  load_and_authorize_resource except: [:new, :create]
+  expose( :justificantes ) { current_usuario.organizacion.justificantes }
   expose( :justificante, attributes: :justificante_params )
+
 
   def create
     if justificante.save
@@ -25,6 +27,11 @@ class JustificantesController < ApplicationController
       flash[:error] = "Se ha producido un error editando el justificante"
       render :edit
     end
+  end
+
+  def destroy
+    justificante.destroy
+    redirect_to justificantes_path, notice: I18n.t("El Justificante fue borrado correctamente")
   end
 
   private

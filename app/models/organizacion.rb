@@ -11,5 +11,8 @@
 
 class Organizacion < ActiveRecord::Base
   has_many :usuarios
-  #attr_accessible :identificador, :nombre
+  
+  def justificantes
+    Justificante.where(usuario_id: usuario_ids)
+  end
 end

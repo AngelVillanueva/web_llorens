@@ -199,6 +199,7 @@ es:
       <<: *errors
   Sign in: "Acceder"
   Sign up: "Registrarse"
+  Sign out: "Salir"
   Password: "Contraseña"
   Remember me: "Recordarme"
   Forgot your password?: "¿Olvidaste tu contraseña"

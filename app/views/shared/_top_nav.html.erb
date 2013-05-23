@@ -1,0 +1,7 @@
+<ul class="top_nav">
+  <% if current_usuario %>
+    <%= link_to t("Sign out"), destroy_usuario_session_path, method: "delete" %>
+  <% else %>
+    <%= link_to t("Sign in"), new_usuario_session_path %>
+  <% end %>
+</ul>

@@ -1,5 +1,7 @@
 <% provide :title, t("Crear nuevo Justificante Profesional") %>
 
-<h1><%= t("Nuevo justificante") %></h1>
+<h1><%= t("Nuevo justificante") %><span><%= t("solo_5_minutos") %></span></h1>
+
+<p><%= link_to t("Volver al listado"), justificantes_path %></p>
 
 <%= render 'form' %>

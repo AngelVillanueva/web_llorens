@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130522182936) do
+ActiveRecord::Schema.define(:version => 20130523004827) do
 
   create_table "expedientes", :force => true do |t|
     t.string   "identificador"
@@ -55,6 +55,10 @@ ActiveRecord::Schema.define(:version => 20130522182936) do
     t.integer  "usuario_id"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
+    t.string   "pdf_file_name"
+    t.string   "pdf_content_type"
+    t.integer  "pdf_file_size"
+    t.datetime "pdf_updated_at"
   end
 
   create_table "organizacions", :force => true do |t|

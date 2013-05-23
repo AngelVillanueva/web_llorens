@@ -1,5 +1,5 @@
-<p><%= t("Persona solicitante: ")%><%= "#{current_usuario.nombre}" %></p>
-<%= simple_form_for justificante, html: { class: 'form-horizontal' } do |f| %>
+<p><%= t("Persona solicitante: ")%><%= "#{current_usuario.nombre} #{current_usuario.apellidos}" %></p>
+<%= simple_form_for justificante, html: { class: 'form-horizontal', multipart: true } do |f| %>
   <%= f.input :identificador %>
   <%= f.input :usuario_id, as: :hidden, input_html: { value: current_usuario.id } %>
   <%= f.input :nif_comprador %>
@@ -13,5 +13,9 @@
   <%= f.input :bastidor %>
   <%= f.input :marca %>
   <%= f.input :modelo %>
+  <div>
+    <%= t("PDF actual", pdf: justificante.pdf_file_name) unless justificante.pdf_file_name.nil? %>
+  </div>
+  <div><%= f.file_field :pdf %></div>
   <%= f.button :submit, value: "Generar Justificante" %>
 <% end %>

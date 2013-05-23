@@ -10,5 +10,6 @@ describe InformeTrafico do
     it { should respond_to :pdf }
     it { should respond_to :usuario }
     it { should respond_to :organizacion }
+    it { should respond_to :solicitante }
   end
 end

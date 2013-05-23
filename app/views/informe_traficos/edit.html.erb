@@ -1,6 +1,7 @@
-<h1>Editing informe_trafico</h1>
+<% provide :title, t("Editar Informe Trafico") %>
+
+<h1><%= t("Editar informe") %></h1>
+
+<p><%= link_to t("Volver al listado"), informe_traficos_path %></p>
 
 <%= render 'form' %>
-
-<%= link_to 'Show', @informe_trafico %> |
-<%= link_to 'Back', informe_traficos_path %>

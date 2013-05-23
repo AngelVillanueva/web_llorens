@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130523034903) do
+ActiveRecord::Schema.define(:version => 20130523042612) do
 
   create_table "expedientes", :force => true do |t|
     t.string   "identificador"
@@ -32,7 +32,6 @@ ActiveRecord::Schema.define(:version => 20130523034903) do
 
   create_table "informe_traficos", :force => true do |t|
     t.string   "matricula"
-    t.date     "fecha_solicitud"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
     t.integer  "usuario_id"
@@ -40,6 +39,7 @@ ActiveRecord::Schema.define(:version => 20130523034903) do
     t.string   "pdf_content_type"
     t.integer  "pdf_file_size"
     t.datetime "pdf_updated_at"
+    t.string   "identificador"
   end
 
   add_index "informe_traficos", ["usuario_id"], :name => "index_informe_traficos_on_usuario_id"

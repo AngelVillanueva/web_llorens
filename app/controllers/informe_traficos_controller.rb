@@ -1,89 +1,38 @@
 class InformeTraficosController < ApplicationController
-  # GET /informe_traficos
-  # GET /informe_traficos.json
-  def index
-    @informe_traficos = InformeTrafico.all
+  expose( :informe_traficos ) { current_usuario.informe_traficos }
+  expose( :informe_trafico, attributes: :informe_trafico_params )
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @informe_traficos }
-    end
-  end
-
-  # GET /informe_traficos/1
-  # GET /informe_traficos/1.json
-  def show
-    @informe_trafico = InformeTrafico.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @informe_trafico }
-    end
-  end
-
-  # GET /informe_traficos/new
-  # GET /informe_traficos/new.json
-  def new
-    @informe_trafico = InformeTrafico.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @informe_trafico }
-    end
-  end
-
-  # GET /informe_traficos/1/edit
-  def edit
-    @informe_trafico = InformeTrafico.find(params[:id])
-  end
-
-  # POST /informe_traficos
-  # POST /informe_traficos.json
   def create
-    @informe_trafico = InformeTrafico.new(informe_trafico_params)
-
-    respond_to do |format|
-      if @informe_trafico.save
-        format.html { redirect_to informe_traficos_path, notice: 'Informe trafico was successfully created.' }
-        format.json { render json: @informe_trafico, status: :created, location: @informe_trafico }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @informe_trafico.errors, status: :unprocessable_entity }
-      end
+    if informe_trafico.save
+      flash[:success] = "Nuevo informe creado correctamente"
+      redirect_to(informe_traficos_path)
+    else
+      flash[:error] = "Se ha producido un error creando el informe"
+      render :new
     end
   end
 
-  # PATCH/PUT /informe_traficos/1
-  # PATCH/PUT /informe_traficos/1.json
   def update
-    @informe_trafico = InformeTrafico.find(params[:id])
-
-    respond_to do |format|
-      if @informe_trafico.update_attributes(informe_trafico_params)
-        format.html { redirect_to informe_traficos_path, notice: 'Informe trafico was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @informe_trafico.errors, status: :unprocessable_entity }
+    if informe_trafico.update_attributes!(informe_trafico_params)
+      # el identificador se hace coincidir con el nombre del pdf si se ha incluido
+      unless informe_trafico.pdf_file_name.nil?
+        informe_trafico.identificador = informe_trafico.pdf_file_name.gsub(".pdf", "")
+        informe_trafico.save!
       end
+      flash[:success] = "El informe se ha editado correctamente"
+      redirect_to(informe_traficos_path)
+    else
+      flash[:error] = "Se ha producido un error editando el informe"
+      render :edit
     end
   end
 
-  # DELETE /informe_traficos/1
-  # DELETE /informe_traficos/1.json
   def destroy
-    @informe_trafico = InformeTrafico.find(params[:id])
-    @informe_trafico.destroy
-
-    respond_to do |format|
-      format.html { redirect_to informe_traficos_url }
-      format.json { head :no_content }
-    end
+    informe_trafico.destroy
+    redirect_to informe_traficos_path, notice: I18n.t("El Informe fue borrado correctamente")
   end
+  
 
-  def pdf
-    @documento = InformeTrafico.where( matricula: params[:id] ).first
-  end
 
   private
 
@@ -91,6 +40,10 @@ class InformeTraficosController < ApplicationController
     # params.require(:person).permit(:name, :age)
     # Also, you can specialize this method with per-user checking of permissible attributes.
     def informe_trafico_params
-      params.require(:informe_trafico).permit(:fecha_solicitud, :matricula, :solicitante, :status)
+      if current_usuario
+        params
+        .require(:informe_trafico)
+        .permit!
+      end
     end
 end

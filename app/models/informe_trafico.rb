@@ -18,4 +18,10 @@ class InformeTrafico < ActiveRecord::Base
   def organizacion
     usuario.organizacion
   end
+  def solicitante
+    "#{usuario.nombre} #{usuario.apellidos}"
+  end
+  def fecha_solicitud
+    created_at.to_date
+  end
 end

@@ -1,5 +1,7 @@
-<h1>New informe_trafico</h1>
+<% provide :title, t("Crear nuevo Informe de Trafico") %>
+
+<h1><%= t("Nuevo informe") %><span><%= t("solo_5_minutos") %></span></h1>
+
+<p><%= link_to t("Volver al listado"), informe_traficos_path %></p>
 
 <%= render 'form' %>
-
-<%= link_to 'Back', informe_traficos_path %>

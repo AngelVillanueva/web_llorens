@@ -1,20 +1,28 @@
-<p id="notice"><%= notice %></p>
+<% provide :title, t( "Informe para", n: informe_trafico.matricula ) %>
 
-<p>
-  <b>Matricula:</b>
-  <%= @informe_trafico.matricula %>
-</p>
+<p><%= link_to "Volver al listado", informe_traficos_path %></p>
 
-<p>
-  <b>Solicitante:</b>
-  <%= @informe_trafico.solicitante %>
-</p>
+<div class="with_pdf">
+  <h1>Informe para <%= informe_trafico.matricula %></h1>
+  <table class="table-condensed table-hover table-bordered">
+    <tbody>
+      <tr><td>Matrícula</td><td><%= informe_trafico.matricula %></td></tr>
+      <tr><td>Solicitante</td><td><%= informe_trafico.solicitante %></td></tr>
+      <tr><td>Fecha solicitud</td><td><%= l informe_trafico.fecha_solicitud unless informe_trafico.fecha_solicitud.nil? %></td></tr>
+      <tr>
+        <td>Documentación</td>
+        <td>
+          <% if informe_trafico.pdf_file_name.nil? %>
+            <%= t("pendiente") %>
+          <% else %>
+            <%= link_to "Ampliar PDF", informe_trafico.pdf.url %>
+          <% end %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
-<p>
-  <b>Fecha solicitud:</b>
-  <%= @informe_trafico.fecha_solicitud %>
-</p>
-
-
-<%= link_to 'Edit', edit_informe_trafico_path(@informe_trafico) %> |
-<%= link_to 'Back', informe_traficos_path %>
+  <% unless informe_trafico.pdf_file_name.nil? %>
+    <iframe class="pdf" src="<%= informe_trafico.pdf.url %>">
+  <% end %>
+</div>

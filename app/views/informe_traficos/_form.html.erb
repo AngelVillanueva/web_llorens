@@ -1,11 +1,13 @@
-<%= simple_form_for(@informe_trafico) do |f| %>
+<p><%= t("Persona solicitante: ")%><%= informe_trafico.solicitante %></p>
+
+<%= simple_form_for(informe_trafico) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
     <%= f.input :matricula %>
-    <%= f.input :solicitante, as: 'string' %>
-    <%= f.input :fecha_solicitud %>
-    <%= f.input :status, label: t("Subir PDF") %>
+    <%= f.input :usuario_id, as: :hidden %>
+    <%= t("PDF actual", pdf: informe_trafico.pdf_file_name) unless informe_trafico.pdf_file_name.nil? %>
+    <%= f.file_field :pdf %>
   </div>
 
   <div class="form-actions">

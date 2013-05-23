@@ -1,6 +1,7 @@
 When(/^I submit all the information for a new Expediente$/) do
   visit new_expediente_path
   fill_in "Identificador", with: "IM1"
+  fill_in "Organization", with: Usuario.last.organizacion_id
   click_button "Crear Expediente"
 end
 

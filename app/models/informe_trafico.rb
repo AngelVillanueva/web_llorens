@@ -12,5 +12,10 @@
 #
 
 class InformeTrafico < ActiveRecord::Base
-  attr_accessible :fecha_solicitud, :matricula, :solicitante, :status
+  has_attached_file :pdf
+  belongs_to :usuario
+
+  def organizacion
+    usuario.organizacion
+  end
 end

@@ -13,10 +13,10 @@
 #  fecha_alta          :date
 #  fecha_entra_trafico :date
 #  fecha_facturacion   :date
-#  matriculacion       :boolean
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #  observaciones       :text
+#  organization_id     :integer
 #
 
 class Expediente < ActiveRecord::Base

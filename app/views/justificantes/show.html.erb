@@ -1,0 +1,25 @@
+<% provide :title, t( "Justificante profesional para", n: justificante.matricula ) %>
+
+<p><%= link_to "Volver al listado", justificantes_path %></p>
+
+<div class="with_pdf">
+  <h1>Justificante para <%= justificante.matricula %></h1>
+  <table class="table-condensed table-hover table-bordered">
+    <tbody>
+      <tr><td>Matrícula</td><td><%= justificante.matricula %></td></tr>
+      <tr><td>Bastidor</td><td><%= justificante.bastidor %></td></tr>
+      <tr><td>NIF Comprador</td><td><%= justificante.nif_comprador %></td></tr>
+      <tr><td>Nombre o Razón Social</td><td><%= justificante.nombre_razon_social %></td></tr>
+      <tr><td>Primer apellido</td><td><%= justificante.primer_apellido %></td></tr>
+      <tr><td>Segundo apellido</td><td><%= justificante.segundo_apellido %></td></tr>
+      <tr><td>Municipio</td><td><%= justificante.municipio %></td></tr>
+      <tr><td>Provincia</td><td><%= justificante.provincia %></td></tr>
+      <tr><td>Dirección</td><td><%= justificante.direccion %></td></tr>
+      <tr><td>Marca</td><td><%= justificante.marca %></td></tr>
+      <tr><td>Modelo</td><td><%= justificante.modelo %></td></tr>
+      <tr><td>Documentación</td><td><%= link_to "Ampliar PDF", justificante.pdf.url %></td></tr>
+    </tbody>
+  </table>
+
+  <iframe class="pdf" src="<%= justificante.pdf.url %>">
+</div>

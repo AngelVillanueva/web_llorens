@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(:version => 20130523042612) do
     t.integer  "usuario_id"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
+    t.string   "pdf"
     t.string   "pdf_file_name"
     t.string   "pdf_content_type"
     t.integer  "pdf_file_size"

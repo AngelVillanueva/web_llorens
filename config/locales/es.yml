@@ -218,6 +218,7 @@ es:
   Expediente n: "Expediente número %{n}"
   Expediente para: "Expediente para %{n}"
   Informe para: "Informe para %{n}"
+  Justificante profesional para: "Justificante Profesional para %{n}"
   Crear nuevo Expediente: "Crear nuevo Expediente"
   Nuevo expediente: "Nuevo expediente"
   Nuevo justificante: "Nuevo justificante"

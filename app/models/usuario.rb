@@ -32,4 +32,8 @@ class Usuario < ActiveRecord::Base
   # attr_accessible :title, :body
   belongs_to :organizacion
   has_many :justificantes
+
+  def expedientes
+    Expediente.where(organization_id: organizacion_id)
+  end
 end

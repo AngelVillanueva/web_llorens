@@ -20,6 +20,7 @@
 #
 
 class Expediente < ActiveRecord::Base
+  belongs_to :organizacion
 
   def fecha_sale_trafico
     fecha_facturacion

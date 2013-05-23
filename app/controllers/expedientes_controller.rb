@@ -1,7 +1,7 @@
 class ExpedientesController < ApplicationController
-  expose(:documento) { Expediente.where( identificador: params[:id] ).first }
-  expose(:expedientes)
-  expose(:expediente, attributes: :expediente_params)
+  expose( :documento ) { Expediente.where( identificador: params[:id] ).first }
+  expose( :expedientes ) { current_usuario.expedientes }
+  expose( :expediente, attributes: :expediente_params )
 
   def create
     if expediente.save

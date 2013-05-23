@@ -35,9 +35,11 @@ describe Expediente do
     it { should respond_to :modelo }
     it { should respond_to :fecha_alta }
     it { should respond_to :fecha_entra_trafico }
+    it { should respond_to :fecha_facturacion }
     it { should respond_to :fecha_sale_trafico }
     it { should respond_to :identificador }
-    it { should respond_to :matriculacion }
+    it { should respond_to :dias_tramite }
+    it { should respond_to :organizacion }
 
     it { should be_valid }
   end

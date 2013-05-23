@@ -19,6 +19,7 @@ describe Organizacion do
     it { should respond_to :nombre }
     it { should respond_to :identificador}
     it { should respond_to :usuarios }
+    it { should respond_to :expedientes }
     it { should respond_to :justificantes }
     it { should be_valid }
   end

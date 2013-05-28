@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130528120721) do
+ActiveRecord::Schema.define(:version => 20130528121529) do
 
   create_table "expedientes", :force => true do |t|
     t.string   "identificador"
@@ -29,6 +29,8 @@ ActiveRecord::Schema.define(:version => 20130528120721) do
     t.text     "observaciones"
     t.integer  "organizacion_id"
   end
+
+  add_index "expedientes", ["organizacion_id"], :name => "index_expedientes_on_organizacion_id"
 
   create_table "informe_traficos", :force => true do |t|
     t.string   "matricula"
@@ -66,6 +68,8 @@ ActiveRecord::Schema.define(:version => 20130528120721) do
     t.datetime "pdf_updated_at"
   end
 
+  add_index "justificantes", ["usuario_id"], :name => "index_justificantes_on_usuario_id"
+
   create_table "organizacions", :force => true do |t|
     t.string   "nombre"
     t.string   "identificador"
@@ -92,6 +96,7 @@ ActiveRecord::Schema.define(:version => 20130528120721) do
   end
 
   add_index "usuarios", ["email"], :name => "index_usuarios_on_email", :unique => true
+  add_index "usuarios", ["organizacion_id"], :name => "index_usuarios_on_organizacion_id"
   add_index "usuarios", ["reset_password_token"], :name => "index_usuarios_on_reset_password_token", :unique => true
 
 end

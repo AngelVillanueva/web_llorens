@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130528150029) do
+ActiveRecord::Schema.define(:version => 20130528150655) do
 
   create_table "expedientes", :force => true do |t|
     t.string   "identificador"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(:version => 20130528150029) do
     t.datetime "pdf_updated_at"
     t.string   "identificador"
     t.integer  "organizacion_id"
+    t.string   "solicitante"
   end
 
   add_index "informes", ["organizacion_id"], :name => "index_informes_on_organizacion_id"
@@ -67,6 +68,8 @@ ActiveRecord::Schema.define(:version => 20130528150029) do
     t.integer  "pdf_file_size"
     t.datetime "pdf_updated_at"
     t.integer  "organizacion_id"
+    t.datetime "hora_solicitud"
+    t.datetime "hora_entrega"
   end
 
   add_index "justificantes", ["organizacion_id"], :name => "index_justificantes_on_organizacion_id"

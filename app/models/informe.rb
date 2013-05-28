@@ -15,9 +15,6 @@ class Informe < ActiveRecord::Base
   has_attached_file :pdf
   belongs_to :organizacion
 
-  def solicitante
-    "#{usuario.nombre} #{usuario.apellidos}"
-  end
   def fecha_solicitud
     created_at.to_date
   end

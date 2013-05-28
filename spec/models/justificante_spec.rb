@@ -43,6 +43,8 @@ describe Justificante do
     it { should respond_to :bastidor }
     it { should respond_to :marca }
     it { should respond_to :modelo }
+    it { should respond_to :hora_solicitud }
+    it { should respond_to :hora_entrega }
     it { should respond_to :pdf }
     it { should respond_to :organizacion }
   end

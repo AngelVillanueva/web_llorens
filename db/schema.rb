@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130528140403) do
+ActiveRecord::Schema.define(:version => 20130528144434) do
 
   create_table "expedientes", :force => true do |t|
     t.string   "identificador"
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(:version => 20130528140403) do
 
   add_index "expedientes", ["organizacion_id"], :name => "index_expedientes_on_organizacion_id"
 
-  create_table "informe_traficos", :force => true do |t|
+  create_table "informes", :force => true do |t|
     t.string   "matricula"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(:version => 20130528140403) do
     t.string   "identificador"
   end
 
-  add_index "informe_traficos", ["usuario_id"], :name => "index_informe_traficos_on_usuario_id"
+  add_index "informes", ["usuario_id"], :name => "index_informe_traficos_on_usuario_id"
 
   create_table "justificantes", :force => true do |t|
     t.string   "identificador"
@@ -71,11 +71,12 @@ ActiveRecord::Schema.define(:version => 20130528140403) do
 
   add_index "justificantes", ["usuario_id"], :name => "index_justificantes_on_usuario_id"
 
-  create_table "organizacions", :force => true do |t|
+  create_table "organizaciones", :force => true do |t|
     t.string   "nombre"
     t.string   "identificador"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+    t.string   "cif"
   end
 
   create_table "usuarios", :force => true do |t|

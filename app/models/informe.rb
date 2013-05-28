@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: informe_traficos
+# Table name: informes
 #
 #  id              :integer          not null, primary key
 #  matricula       :string(255)
@@ -11,7 +11,7 @@
 #  status          :boolean
 #
 
-class InformeTrafico < ActiveRecord::Base
+class Informe < ActiveRecord::Base
   has_attached_file :pdf
   belongs_to :usuario
 

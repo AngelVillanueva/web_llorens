@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe InformeTrafico do
-  let( :informe ) { InformeTrafico.new }
+describe Informe do
+  let( :informe ) { Informe.new }
   describe "as a Model" do
     subject { informe }
 

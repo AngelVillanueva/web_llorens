@@ -5,7 +5,7 @@ class Ability
     if usuario
         can :manage, Expediente
         can :manage, Justificante, usuario_id: usuario.organizacion.usuario_ids
-        can :manage, InformeTrafico, usuario_id: usuario.organizacion.usuario_ids
+        can :manage, Informe, usuario_id: usuario.organizacion.usuario_ids
     end
     # Define abilities for the passed in user here. For example:
     #

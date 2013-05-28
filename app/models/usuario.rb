@@ -32,7 +32,7 @@ class Usuario < ActiveRecord::Base
   # attr_accessible :title, :body
   belongs_to :organizacion
   has_many :justificantes
-  has_many :informe_traficos
+  has_many :informes
 
   def expedientes
     Expediente.where(organizacion_id: organizacion_id)

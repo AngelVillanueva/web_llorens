@@ -16,11 +16,13 @@ describe Organizacion do
     let(:organizacion) { Organizacion.new }
     subject { organizacion }
 
+    it { should respond_to :cif }
     it { should respond_to :nombre }
     it { should respond_to :identificador}
     it { should respond_to :usuarios }
     it { should respond_to :expedientes }
     it { should respond_to :justificantes }
+    it { should respond_to :informes }
     it { should be_valid }
   end
 end

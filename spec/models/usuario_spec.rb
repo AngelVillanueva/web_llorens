@@ -36,7 +36,7 @@ describe Usuario do
     it { should respond_to :password }
     it { should respond_to :expedientes }
     it { should respond_to :justificantes }
-    it { should respond_to :informe_traficos }
+    it { should respond_to :informes }
     it { should be_valid }
   end
 end

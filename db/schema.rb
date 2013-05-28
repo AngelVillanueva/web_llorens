@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130523042612) do
+ActiveRecord::Schema.define(:version => 20130528120721) do
 
   create_table "expedientes", :force => true do |t|
     t.string   "identificador"
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(:version => 20130523042612) do
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
     t.text     "observaciones"
-    t.integer  "organization_id"
+    t.integer  "organizacion_id"
   end
 
   create_table "informe_traficos", :force => true do |t|
@@ -60,7 +60,6 @@ ActiveRecord::Schema.define(:version => 20130523042612) do
     t.integer  "usuario_id"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
-    t.string   "pdf"
     t.string   "pdf_file_name"
     t.string   "pdf_content_type"
     t.integer  "pdf_file_size"

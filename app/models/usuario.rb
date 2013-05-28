@@ -35,6 +35,6 @@ class Usuario < ActiveRecord::Base
   has_many :informe_traficos
 
   def expedientes
-    Expediente.where(organization_id: organizacion_id)
+    Expediente.where(organizacion_id: organizacion_id)
   end
 end

@@ -13,3 +13,23 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+# Espresso
+*.esproj
+/llorens_app.esproj
+/llorens_app.esproj/*
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Zeus
+*.zeus.sock
+
+# Ignore other unneeded files.
+doc/
+*.swp
+*~
+.project
+.DS_Store
+.idea

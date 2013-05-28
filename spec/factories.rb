@@ -2,6 +2,7 @@ FactoryGirl.define do
   factory :organizacion do
     nombre "Sinapse Consulting SL"
     identificador "SIN"
+    cif "00000000T"
   end
 
   factory :usuario do

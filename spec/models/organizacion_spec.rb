@@ -13,10 +13,10 @@
 require 'spec_helper'
 
 describe Organizacion do
+  let(:organizacion) { FactoryGirl.create(:organizacion) }
+  subject { organizacion }
+  
   describe "as a Model" do
-    let(:organizacion) { Organizacion.new }
-    subject { organizacion }
-
     it { should respond_to :cif }
     it { should respond_to :nombre }
     it { should respond_to :identificador}
@@ -25,5 +25,23 @@ describe Organizacion do
     it { should respond_to :justificantes }
     it { should respond_to :informes }
     it { should be_valid }
+  end
+  describe "with mandatory field nombre" do
+    before do
+      organizacion.nombre = nil
+    end
+    it { should_not be_valid }
+  end
+  describe "with mandatory field identificador" do
+    before do
+      organizacion.identificador = nil
+    end
+    it { should_not be_valid }
+  end
+  describe "with mandatory field cif" do
+    before do
+      organizacion.cif = nil
+    end
+    it { should_not be_valid }
   end
 end

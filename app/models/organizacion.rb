@@ -15,5 +15,7 @@ class Organizacion < ActiveRecord::Base
   has_many :expedientes
   has_many :justificantes
   has_many :informes
+
+  validates :nombre, :identificador, :cif, presence: true
   
 end

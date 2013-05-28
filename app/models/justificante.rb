@@ -15,13 +15,15 @@
 #  bastidor            :string(255)
 #  marca               :string(255)
 #  modelo              :string(255)
-#  usuario_id          :integer
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #  pdf_file_name       :string(255)
 #  pdf_content_type    :string(255)
 #  pdf_file_size       :integer
 #  pdf_updated_at      :datetime
+#  organizacion_id     :integer
+#  hora_solicitud      :datetime
+#  hora_entrega        :datetime
 #
 
 class Justificante < ActiveRecord::Base

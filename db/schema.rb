@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130528150655) do
+ActiveRecord::Schema.define(:version => 20130528150948) do
 
   create_table "expedientes", :force => true do |t|
     t.string   "identificador"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(:version => 20130528150655) do
     t.string   "type"
   end
 
+  add_index "expedientes", ["id", "type"], :name => "index_expedientes_on_id_and_type"
   add_index "expedientes", ["organizacion_id"], :name => "index_expedientes_on_organizacion_id"
 
   create_table "informes", :force => true do |t|

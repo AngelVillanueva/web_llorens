@@ -16,7 +16,8 @@
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #  observaciones       :text
-#  organization_id     :integer
+#  organizacion_id     :integer
+#  type                :string(255)
 #
 
 require 'spec_helper'

@@ -12,5 +12,5 @@ end
 Given(/^I am a registered User with some Expedientes$/) do
   login_as(usuario, :scope => :usuario)
   organizacion = Usuario.last.organizacion_id
-  Expediente.create(identificador: "IM-test", matricula: "Test matricula", organization_id: organizacion)
+  Expediente.create(identificador: "IM-test", matricula: "Test matricula", organizacion_id: organizacion)
 end

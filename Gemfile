@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 ### BASIC FOUNDATION
 ruby '1.9.3'
 gem 'rails', '3.2.13'
+gem 'thin', '1.5.1'
 gem 'pg', '~> 0.15'
 gem 'strong_parameters', '~> 0.2.1'
 gem 'decent_exposure', '~> 2.1.0'
@@ -38,6 +39,11 @@ group :development do
   gem 'binding_of_caller', '0.7.1' # cool error info pages in development
   gem 'meta_request', '0.2.1' # rails_panel chrome extension.
   gem 'sextant', '0.2.3' # Navigate to 0.0.0.0:3000/rails/routes to see routes in the browser
+  gem 'quiet_assets', '~> 1.0.2' # Get rid of loading assets info in development log
+  gem 'ruby_gntp', '~> 0.3.4' # Growl with Bullet
+  gem 'bullet', '~> 4.6.0' # Advise on n+1 queries
+  gem 'lol_dba', '~> 1.5.0' # Advise on missing indexes
+  #gem 'railroady' # SVG generator for models and associations
 end
 
 group :test do
@@ -46,6 +52,7 @@ group :test do
   gem 'cucumber-rails', '1.3.1', require: false
   gem 'database_cleaner', '0.9.1'
   gem 'factory_girl_rails', '4.2.1'
+  gem 'launchy', '~> 2.3.0' # method save_and_open_page for capybara
   ### GUARD
   gem 'guard-rspec', '~> 2.3.0'
   gem 'guard-cucumber', '~> 1.2.2'

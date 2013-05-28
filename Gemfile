@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+### BASIC FOUNDATION
 ruby '1.9.3'
 gem 'rails', '3.2.13'
 gem 'pg', '~> 0.15'
@@ -7,33 +8,27 @@ gem 'strong_parameters', '~> 0.2.1'
 gem 'decent_exposure', '~> 2.1.0'
 gem 'bootstrap-sass', '~> 2.3.1.0'
 gem 'jquery-rails', '~> 2.1'
-gem 'jquery-ui-rails'
+gem 'jquery-ui-rails', '~> 3.0.1'
 gem 'simple_form', '~> 2.1' # add gem 'country_select' if needed
-gem 'prawn_rails' # pdf creation
+### PDF MANAGEMENT
+gem 'prawn_rails', '~> 0.0.11' # pdf creation
 gem 'Ascii85', '~> 1.0.1' # or pdf-reader will fail
-gem 'pdf-reader' # pdf reading
+gem 'pdf-reader', '~> 1.3.3' # pdf reading
 gem 'paperclip', '~> 3.0' # file attachment
-gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-rails.git' # DataTables
+### USER & PERMISSIONS MANAGEMENT
 # Devise
 gem 'devise', '~> 2.2.4'
 # Rails_Admin
 gem 'rails_admin', '~> 0.4.3'
 # CanCan
 gem 'cancan', '~> 1.6.1'
+### OTHER
+gem 'jquery-datatables-rails', '1.11.2', git: 'git://github.com/rweng/jquery-datatables-rails.git' # DataTables
 
 group :assets do
   gem 'sass-rails',   '~> 3.2'
   gem 'coffee-rails', '~> 3.2.2'
   gem 'uglifier', '~> 2.1.0'
-end
-
-group :development, :test do
-  gem 'rspec-rails', '~> 2.13.1'
-  ### GUARD
-  gem 'guard-rspec', '~> 2.3.0'
-  gem 'guard-cucumber', '~> 1.2.2'
-  gem 'growl', '1.0.3'
-  gem 'rb-fsevent', '~> 0.9.1', require: false
 end
 
 group :development do
@@ -46,10 +41,16 @@ group :development do
 end
 
 group :test do
+  gem 'rspec-rails', '~> 2.13.1'
   gem 'capybara', '~> 2.1.0'
   gem 'cucumber-rails', '1.3.1', require: false
   gem 'database_cleaner', '0.9.1'
   gem 'factory_girl_rails', '4.2.1'
+  ### GUARD
+  gem 'guard-rspec', '~> 2.3.0'
+  gem 'guard-cucumber', '~> 1.2.2'
+  gem 'growl', '1.0.3'
+  gem 'rb-fsevent', '~> 0.9.1', require: false
   ### GUARD WITH ZEUS
   gem 'zeus', '~> 0.13.3' # this is not really needed, but fails if not present
 end

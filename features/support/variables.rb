@@ -1,3 +1,3 @@
 def usuario
-  usuario ||= FactoryGirl.create(:usuario)
+  usuario ||= FactoryGirl.create( :usuario )
 end

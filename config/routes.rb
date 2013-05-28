@@ -12,6 +12,8 @@ WebLlorens::Application.routes.draw do
   
   resources :expedientes
   match 'expedientes/documentation/:id' => 'expedientes#pdf', as: :documentation
+  resources :matriculaciones, :controller => "expedientes", :type => "Matriculacion"
+  resources :transferencias, :controller => "expedientes", :type => "Transferencia"
   
   namespace :api do
     namespace :v1 do

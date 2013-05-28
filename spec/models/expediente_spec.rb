@@ -43,4 +43,7 @@ describe Expediente do
 
     it { should be_valid }
   end
+  describe "with two types" do
+    it { should respond_to :type }
+  end
 end

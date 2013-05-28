@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130528121529) do
+ActiveRecord::Schema.define(:version => 20130528140403) do
 
   create_table "expedientes", :force => true do |t|
     t.string   "identificador"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(:version => 20130528121529) do
     t.datetime "updated_at",          :null => false
     t.text     "observaciones"
     t.integer  "organizacion_id"
+    t.string   "type"
   end
 
   add_index "expedientes", ["organizacion_id"], :name => "index_expedientes_on_organizacion_id"

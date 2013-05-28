@@ -10,6 +10,8 @@ end
 private
 def create_path controller, action
   case action
+    when "home"
+      send "root_path"
     when "index"
       send "#{controller.singularize.downcase.pluralize}_path"
   end

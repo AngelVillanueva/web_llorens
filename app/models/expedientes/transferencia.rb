@@ -1,0 +1,2 @@
+class Transferencia < Expediente
+end

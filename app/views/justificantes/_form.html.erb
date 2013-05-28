@@ -2,7 +2,7 @@
 <%= simple_form_for justificante, html: { class: 'form-horizontal', multipart: true } do |f| %>
   <%= f.error_notification %>
   <%= f.input :identificador %>
-  <%= f.input :usuario_id, as: :hidden, input_html: { value: current_usuario.id } %>
+  <%= f.input :organizacion_id, as: :hidden, input_html: { value: current_usuario.organizacion.id } %>
   <%= f.input :nif_comprador %>
   <%= f.input :nombre_razon_social, label: t("Nombre o Razón Social") %>
   <%= f.input :primer_apellido %>

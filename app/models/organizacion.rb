@@ -12,8 +12,7 @@
 class Organizacion < ActiveRecord::Base
   has_many :usuarios
   has_many :expedientes
+  has_many :justificantes
+  has_many :informes
   
-  def justificantes
-    Justificante.where(usuario_id: usuario_ids)
-  end
 end

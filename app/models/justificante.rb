@@ -25,8 +25,8 @@
 #
 
 class Justificante < ActiveRecord::Base
-  belongs_to :usuario
+  belongs_to :organizacion
   has_attached_file :pdf
 
-  validates :nif_comprador, :usuario_id, presence: true
+  validates :nif_comprador, :organizacion_id, presence: true
 end

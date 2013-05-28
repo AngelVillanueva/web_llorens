@@ -44,6 +44,6 @@ describe Justificante do
     it { should respond_to :marca }
     it { should respond_to :modelo }
     it { should respond_to :pdf }
-    it { should respond_to :usuario }
+    it { should respond_to :organizacion }
   end
 end

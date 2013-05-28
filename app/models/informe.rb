@@ -13,11 +13,8 @@
 
 class Informe < ActiveRecord::Base
   has_attached_file :pdf
-  belongs_to :usuario
+  belongs_to :organizacion
 
-  def organizacion
-    usuario.organizacion
-  end
   def solicitante
     "#{usuario.nombre} #{usuario.apellidos}"
   end

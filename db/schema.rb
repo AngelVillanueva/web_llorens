@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130528144434) do
+ActiveRecord::Schema.define(:version => 20130528150029) do
 
   create_table "expedientes", :force => true do |t|
     t.string   "identificador"
@@ -37,15 +37,15 @@ ActiveRecord::Schema.define(:version => 20130528144434) do
     t.string   "matricula"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
-    t.integer  "usuario_id"
     t.string   "pdf_file_name"
     t.string   "pdf_content_type"
     t.integer  "pdf_file_size"
     t.datetime "pdf_updated_at"
     t.string   "identificador"
+    t.integer  "organizacion_id"
   end
 
-  add_index "informes", ["usuario_id"], :name => "index_informe_traficos_on_usuario_id"
+  add_index "informes", ["organizacion_id"], :name => "index_informes_on_organizacion_id"
 
   create_table "justificantes", :force => true do |t|
     t.string   "identificador"
@@ -60,16 +60,16 @@ ActiveRecord::Schema.define(:version => 20130528144434) do
     t.string   "bastidor"
     t.string   "marca"
     t.string   "modelo"
-    t.integer  "usuario_id"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
     t.string   "pdf_file_name"
     t.string   "pdf_content_type"
     t.integer  "pdf_file_size"
     t.datetime "pdf_updated_at"
+    t.integer  "organizacion_id"
   end
 
-  add_index "justificantes", ["usuario_id"], :name => "index_justificantes_on_usuario_id"
+  add_index "justificantes", ["organizacion_id"], :name => "index_justificantes_on_organizacion_id"
 
   create_table "organizaciones", :force => true do |t|
     t.string   "nombre"

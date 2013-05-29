@@ -340,7 +340,7 @@ DEPENDENCIES
   ruby_gntp (~> 0.3.4)
   sass-rails (~> 3.2)
   sextant (= 0.2.3)
-  shoulda-matchers
+  shoulda-matchers (~> 2.1.0)
   simple_form (~> 2.1)
   strong_parameters (~> 0.2.1)
   thin (= 1.5.1)

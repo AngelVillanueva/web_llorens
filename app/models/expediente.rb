@@ -23,6 +23,8 @@
 class Expediente < ActiveRecord::Base
   belongs_to :organizacion
 
+  validates :identificador, :matricula, :bastidor, :comprador, :vendedor, :marca, :modelo, :fecha_alta, :fecha_entra_trafico, :fecha_facturacion, :organizacion_id, :type, presence: true
+
   def fecha_sale_trafico
     fecha_facturacion
   end

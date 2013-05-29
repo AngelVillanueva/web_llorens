@@ -66,7 +66,7 @@
           <%= expediente.dias_tramite %>
         </td>
         <td>
-          <%= link_to "Ver PDF", documentation_path(expediente.identificador, format: 'pdf') %>
+          <%= link_to "Ver PDF", expediente_path(expediente, format: 'pdf') %>
         </td>
         <td>
           <%= expediente.observaciones %>

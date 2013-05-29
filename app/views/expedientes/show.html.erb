@@ -15,9 +15,9 @@
       <tr><td>Fecha de entrada en tráfico</td><td><%= l expediente.fecha_entra_trafico unless expediente.fecha_entra_trafico.nil? %></td></tr>
       <tr><td>Días de trámite</td><td><%= expediente.dias_tramite %></td></tr>
       <tr><td>Observaciones</td><td><%= expediente.observaciones %></td></tr>
-      <tr><td>Documentación</td><td><%= link_to "Ampliar PDF", documentation_path(expediente.identificador, format: 'pdf') %></td></tr>
+      <tr><td>Documentación</td><td><%= link_to "Ampliar PDF", expediente_path(expediente, format: 'pdf') %></td></tr>
     </tbody>
   </table>
 
-  <iframe class="pdf" src="<%= documentation_path(expediente.identificador, format: 'pdf')%>">
+  <iframe class="pdf" src="<%= expediente_path(expediente, format: 'pdf')%>">
 </div>

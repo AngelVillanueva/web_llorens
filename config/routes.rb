@@ -11,7 +11,6 @@ WebLlorens::Application.routes.draw do
   match 'justificantes/documentation/:id' => 'justificantes#pdf', as: :documentation_justificante
   
   resources :expedientes
-  match 'expedientes/documentation/:id' => 'expedientes#pdf', as: :documentation
   resources :matriculaciones, :controller => "expedientes", :type => "Matriculacion"
   resources :transferencias, :controller => "expedientes", :type => "Transferencia"
   

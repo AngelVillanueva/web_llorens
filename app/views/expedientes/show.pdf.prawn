@@ -1,4 +1,4 @@
-template_pdf = "#{Rails.root}/app/assets/pdfs/expedientes/#{documento.identificador}.pdf"
+template_pdf = "#{Rails.root}/app/assets/pdfs/expedientes/#{expediente.identificador}.pdf"
 page = 2
 final_page = PDF::Reader.new(template_pdf).page_count + 1
 
@@ -8,5 +8,5 @@ prawn_document( skip_page_creation: true ) do |pdf|
     page += 1
   end
   pdf.text "Just testing the following:"
-  pdf.text "This is the PDF for the item #{documento.identificador}"
+  pdf.text "This is the PDF for the item #{expediente.identificador}"
 end

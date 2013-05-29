@@ -12,5 +12,11 @@ FactoryGirl.define do
     password "foobarfoo"
     password_confirmation "foobarfoo"
     organizacion
-  end 
+  end
+
+  factory :expediente do
+    identificador "IM-test"
+    matricula "Test matricula"
+    organizacion
+  end
 end

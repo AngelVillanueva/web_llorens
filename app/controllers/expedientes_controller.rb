@@ -1,6 +1,7 @@
 class ExpedientesController < ApplicationController
+  load_and_authorize_resource
   expose( :documento ) { Expediente.where( identificador: params[:id] ).first }
-  expose( :expedientes ) { current_usuario.expedientes }
+  expose( :expedientes ) { Expediente.accessible_by( current_ability ) }
   expose( :expediente, attributes: :expediente_params )
 
   def create

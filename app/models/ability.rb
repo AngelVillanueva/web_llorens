@@ -3,7 +3,7 @@ class Ability
 
   def initialize(usuario)
     if usuario
-        can :manage, Expediente
+        can :manage, Expediente, organizacion_id: usuario.organizacion_id
         can :manage, Justificante, usuario_id: usuario.organizacion.usuario_ids
         can :manage, Informe, usuario_id: usuario.organizacion.usuario_ids
     end

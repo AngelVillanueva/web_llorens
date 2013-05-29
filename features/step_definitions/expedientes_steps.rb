@@ -10,6 +10,13 @@ When(/^I submit all the information for a new Expediente$/) do
   click_button "Crear Expediente"
 end
 
+When(/^I access the page for the first Expediente$/) do
+  visit expediente_path Expediente.first
+end
+When(/^I access the page for the second Expediente$/) do
+  visit expediente_path Expediente.find_by_matricula("Other matricula")
+end
+
 Then(/^I should see a list of the Expedientes$/) do
   page.should have_title("Listado de Expedientes")
   expedientes = Expediente.all.each do |expediente|
@@ -22,6 +29,15 @@ Then(/^a new Expediente should be created$/) do
 end
 
 Then(/^I should just see the list of my Expedientes$/) do
-  page.should have_content "IM-test"
-  page.should_not have_content "Other-test"
+  page.should have_content "Test matricula"
+  page.should_not have_content "Other matricula"
+end
+
+Then(/^I should (not )?see a detail of that Expediente$/) do |negation|
+  if negation
+    page.should have_css( '.alert-alert' )
+  else
+    page.should have_css( 'h1', "Expediente para #{Expediente.first.matricula}" )
+    page.should have_selector( 'iframe.pdf' )
+  end
 end

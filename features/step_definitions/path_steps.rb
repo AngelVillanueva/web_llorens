@@ -1,8 +1,10 @@
 When(/^I (access|visit) (a|an|the) (.*?) (.*?) page$/) do |verb, article, controller, action|
-  #the_path = create_path controller, action
-  #visit the_path
   visit create_path( controller, action )
-  #visit expediente_path(Expediente.last)
+end
+
+Then(/^I should be redirected to the homepage$/) do
+  current_path.should eql( root_path )
+  page.should have_css( '.alert-alert' )
 end
 
 Then(/^show me the page$/) do
@@ -16,6 +18,6 @@ def create_path controller, action
     when "home"
       send "root_path"
     when "index"
-      send "#{parameter.pluralize}_path"
+      send "#{ parameter.pluralize }_path"
   end
 end

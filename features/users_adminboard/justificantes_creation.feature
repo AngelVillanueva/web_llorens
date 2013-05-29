@@ -3,6 +3,10 @@ Feature: Justificantes creation
   In order to have all my Justificantes in one place
   I should be able to add a new Justificante
 
+After do
+  Warden.test_reset! 
+end
+
   Scenario: try to create a new Justificante missing data
     Given I am a registered User
     When I submit not all the needed information for a new Justificante

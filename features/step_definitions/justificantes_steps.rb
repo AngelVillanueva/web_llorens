@@ -11,8 +11,8 @@ end
 
 Then(/^a new Justificante should (not )?be created$/) do |negation|
   if negation
-    Justificante.all.count.should == 0
+    Justificante.all.count.should eql( 0 )
   else
-    Justificante.all.count.should == 1
+    Justificante.all.count.should eql( 1 )
   end
 end

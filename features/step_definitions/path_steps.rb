@@ -13,7 +13,7 @@ end
 
 private
 def create_path controller, action
-  parameter = controller.singularize.parameterize
+  parameter = controller.pluralize.singularize.parameterize
   case action
     when "home"
       send "root_path"

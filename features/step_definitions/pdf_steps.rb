@@ -1,5 +1,5 @@
 When(/^I follow a PDF link$/) do
-  click_link "Ver PDF"
+  first('tbody tr').click_link "Ver PDF"
 end
 
 When(/^I visit the Expediente PDF page for an Expediente of another Organizacion$/) do

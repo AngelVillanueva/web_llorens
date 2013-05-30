@@ -1,6 +1,6 @@
 Given(/^there are more Expedientes from other Organizaciones$/) do
   other_organizacion = Organizacion.create( nombre: "Other O", identificador: "OOO", cif: "00000000T" )
-  other_expediente = Expediente.create( identificador: "Other-test", matricula: "Other matricula", organizacion: other_organizacion )
+  other_expediente = FactoryGirl.create( :matriculacion, matricula: "Other matricula", organizacion: other_organizacion )
 end
 
 When(/^I submit all the information for a new Expediente$/) do
@@ -11,10 +11,10 @@ When(/^I submit all the information for a new Expediente$/) do
 end
 
 When(/^I access the page for the first Expediente$/) do
-  visit expediente_path Expediente.first
+  visit matriculacion_path Expediente.first
 end
 When(/^I access the page for the second Expediente$/) do
-  visit expediente_path Expediente.find_by_matricula( "Other matricula" )
+  visit matriculacion_path Expediente.find_by_matricula( "Other matricula" )
 end
 
 Then(/^I should see a list of the Expedientes$/) do

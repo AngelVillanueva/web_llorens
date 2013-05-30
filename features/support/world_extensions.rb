@@ -5,8 +5,11 @@ module KnowstheDomain
   def usuario
     usuario ||= FactoryGirl.create( :usuario, organizacion: organizacion )
   end
-  def expediente
-    @expediente || FactoryGirl.create( :expediente, organizacion: organizacion )
+  def matriculacion
+    @matriculacion || FactoryGirl.create( :matriculacion, organizacion: organizacion )
+  end
+  def transferencia
+    @transferencia || FactoryGirl.create( :transferencia, organizacion: organizacion )
   end
 end
 

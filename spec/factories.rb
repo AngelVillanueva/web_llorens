@@ -14,19 +14,33 @@ FactoryGirl.define do
     organizacion
   end
 
-  factory :matriculacion do
+  factory :matriculacion, class: 'Matriculacion' do
     identificador "IM-test"
-    matricula "Test matricula"
-    bastidor "ABC123"
-    comprador "Pedrito Compratodo"
-    vendedor "Justin Vendemas"
+    matricula "Test matriculacion"
+    bastidor "ABC123M"
+    comprador "Pedrito M. Compratodo"
+    vendedor "Justin M. Vendemas"
     marca "BMV"
-    modelo "serie 5"
+    modelo "serie M"
     fecha_alta 3.days.ago.to_date
     fecha_entra_trafico 2.days.ago.to_date
     fecha_facturacion 1.day.ago.to_date
     observaciones "Por favor, recoger"
     organizacion
-    type "matriculacion"
+  end
+
+  factory :transferencia, class: 'Transferencia' do
+    identificador "IT-test"
+    matricula "Test transferencia"
+    bastidor "ABC123"
+    comprador "Pedrito T. Compratodo"
+    vendedor "Justin T. Vendemas"
+    marca "BMV"
+    modelo "serie T"
+    fecha_alta 3.days.ago.to_date
+    fecha_entra_trafico 2.days.ago.to_date
+    fecha_facturacion 1.day.ago.to_date
+    observaciones "Por favor, llevatelo"
+    organizacion
   end
 end

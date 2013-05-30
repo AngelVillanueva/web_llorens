@@ -15,5 +15,6 @@
 # end
 ActiveSupport::Inflector.inflections do |inflect|
  inflect.irregular 'matriculacion', 'matriculaciones'
+ inflect.irregular 'transferencia', 'transferencias'
  inflect.irregular 'organizacion', 'organizaciones'
 end

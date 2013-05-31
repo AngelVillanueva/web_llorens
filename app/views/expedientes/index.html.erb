@@ -1,4 +1,4 @@
-<% provide :title, t("Listado de Expedientes") %>
+<% provide :title, t("Listado de Expedientes", type: expediente.type.pluralize) %>
 
 <h1><%= t("Expedientes") %></h1>
 
@@ -65,9 +65,7 @@
         <td>
           <%= expediente.dias_tramite %>
         </td>
-        <td>
-          <%= link_to "Ver PDF", expediente.class, format: 'pdf' %>
-        </td>
+        <td><%= link_to "Ver PDF", pdf_path(expediente) %></td>
         <td>
           <%= expediente.observaciones %>
         </td>

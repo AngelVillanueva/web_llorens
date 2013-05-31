@@ -9,4 +9,13 @@ module ApplicationHelper
        "#{page_title} | #{base_title}"                 # String interpolation
      end
    end
+
+  # Returns the pdf route for a given expediente
+  def pdf_path(expediente)
+    if expediente.type == "Transferencia"
+      transferencia_path(expediente, format: :pdf)
+    else
+      matriculacion_path(expediente, format: :pdf)
+    end
+  end
 end

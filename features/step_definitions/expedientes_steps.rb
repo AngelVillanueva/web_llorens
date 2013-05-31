@@ -24,6 +24,20 @@ Then(/^I should see a list of the Expedientes$/) do
   end
 end
 
+Then(/^I should see a list of the Matriculaciones$/) do
+  page.should have_title( "Listado de Matriculaciones" )
+  matriculaciones = Matriculacion.all.each do |matriculacion|
+    page.should have_selector( 'td', text: matriculacion.matricula )
+  end
+end
+
+Then(/^I should see a list of the Transferencias$/) do
+  page.should have_title( "Listado de Transferencias" )
+  transferencias = Transferencia.all.each do |transferencia|
+    page.should have_selector( 'td', text: transferencia.matricula )
+  end
+end
+
 Then(/^a new Expediente should be created$/) do
   Expediente.count.should eql( 1 )
 end

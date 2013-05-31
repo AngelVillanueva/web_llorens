@@ -9,7 +9,8 @@ end
 
 Scenario: Generating the PDF
   Given I am a registered User with some Expedientes
-    And I visit the Expediente index page
+    And I visit the Matriculacion index page
+    Then show me the page
   When I follow a PDF link
   Then I should see a PDF document
     And the PDF should be the one for the related Item

@@ -216,7 +216,7 @@ es:
   Transferencia(VO): "Transferencias y bajas (VO)"
   Solicitud Justificantes: "Solicitud de Justificantes"
   Solicitud Informes: "Solicitud de Informes"
-  Listado de Expedientes: "Listado de Expedientes"
+  Listado de Expedientes: "Listado de %{type}"
   Listado de Justificantes: "Listado de Justificantes"
   Listado de Informes: "Listado de Informes"
   confimar_borrado: "¿Está seguro?"

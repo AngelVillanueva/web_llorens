@@ -1,4 +1,5 @@
 class Api::V1::ExpedientesController < ApplicationController
+  skip_before_filter :authenticate_usuario!
   respond_to :json
   expose(:expediente)
 
@@ -7,7 +8,7 @@ class Api::V1::ExpedientesController < ApplicationController
     if expediente.save
       respond_with(expediente)
     else
-      respond_with(render json: expediente.errors, status: :unprocessable_entity)
+      render json: expediente.errors, status: :unprocessable_entity
     end
   end
 
@@ -15,6 +16,6 @@ class Api::V1::ExpedientesController < ApplicationController
   def expediente_params
     params
       .require(:expediente)
-      .permit(:identificador)
+      .permit(:identificador, :matricula, :bastidor, :comprador, :vendedor, :marca, :modelo, :fecha_alta, :fecha_entra_trafico, :fecha_facturacion, :organizacion_id, :type)
   end
 end

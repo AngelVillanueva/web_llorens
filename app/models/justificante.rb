@@ -30,5 +30,15 @@ class Justificante < ActiveRecord::Base
   belongs_to :organizacion
   has_attached_file :pdf
 
-  validates :nif_comprador, :organizacion_id, presence: true
+  before_validation :assign_hora_solicitud, on: :create
+
+  validates :identificador, :nif_comprador, :nombre_razon_social, :primer_apellido, :segundo_apellido, :provincia, :municipio, :direccion, :matricula, :bastidor, :marca, :modelo, :hora_solicitud, :organizacion_id, presence: true
+
+  protected
+  def assign_hora_solicitud
+    self.hora_solicitud = Time.now
+  end
+  def assign_hora_entrega
+    self.hora_entrega = Time.now
+  end
 end

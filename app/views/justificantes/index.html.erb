@@ -6,6 +6,7 @@
 <table class="table table-condensed table-bordered table-striped top_filtered justificantes">
   <thead>
     <tr class="filter">
+      <th><%= t("Organización") %></th>
       <th><%= t("Matrícula") %></th>
       <th><%= t("Bastidor") %></th>
       <th><%= t("NIF Comprador") %></th>
@@ -21,6 +22,7 @@
       <th></th>
     </tr>
     <tr>
+      <th><%= t("Organización") %></th>
       <th><%= t("Matrícula") %></th>
       <th><%= t("Bastidor") %></th>
       <th><%= t("NIF Comprador") %></th>
@@ -42,6 +44,7 @@
         <td>
           <%= link_to justificante.matricula, justificante %>
         </td>
+        <td><%= justificante.organizacion.identificador %>
         <td class="large">
           <%= justificante.bastidor %>
         </td>

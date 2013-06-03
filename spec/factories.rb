@@ -43,4 +43,19 @@ FactoryGirl.define do
     observaciones "Por favor, llevatelo"
     organizacion
   end
+  factory :justificante do
+    identificador "J-test"
+    nif_comprador "00000000T"
+    nombre_razon_social "John E."
+    primer_apellido "Cessitounj"
+    segundo_apellido "Ustificante"
+    provincia "Barcelona"
+    municipio "Molins de Rei"
+    direccion "Rambla Josep Maria Jujol, 15, 4-4"
+    matricula "Test justificante"
+    bastidor "ABC123"
+    marca "BMV"
+    modelo "serie J"
+    organizacion
+  end
 end

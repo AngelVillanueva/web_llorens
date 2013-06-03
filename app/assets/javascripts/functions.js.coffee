@@ -125,8 +125,8 @@ $(document).ready ->
       { type: "text" },
       { type: "select" },
       { type: "text" },
-      { type: "select" },
-      { type: "select" },
+      { type: "date-range" },
+      { type: "date-range" },
       null
       ]
   }
@@ -148,7 +148,7 @@ $(document).ready ->
           "sExtends":    "xls",
           "sButtonText": "Exportar a Excel",
           "sFileName": "Informes_Llorens.xls",
-          "mColumns": [0,1,2,3],
+          "mColumns": [0,1,2,3,4],
           "sCharSet": "utf16le"
         }
 
@@ -158,6 +158,7 @@ $(document).ready ->
     sPlaceHolder: "head:before",
     sRangeFormat: "De {from} a {to}",
     aoColumns: [
+      { type: "select" },
       { type: "text" },
       { type: "text" },
       { type: "date-range" },

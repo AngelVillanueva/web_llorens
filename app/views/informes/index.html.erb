@@ -6,8 +6,8 @@
   
   <thead>
     <tr class="filter">
-      <th>Matricula</th>
       <th>Organización</th>
+      <th>Matrícula</th>
       <th>Solicitante</th>
       <th>Fecha solicitud</th>
       <th>Finalizado</th>
@@ -15,8 +15,8 @@
       <th></th>
     </tr>
     <tr>
-      <th>Matricula</th>
       <th>Organización</th>
+      <th>Matrícula</th>
       <th>Solicitante</th>
       <th>Fecha solicitud</th>
       <th>Finalizado</th>
@@ -27,8 +27,8 @@
   <tbody>
 <% informes.each do |informe| %>
   <tr class="<%= informe.pdf_file_name.nil? && 'error' || '' %>">
-    <td><%= informe.matricula %></td>
     <td><%= informe.organizacion.identificador %></td>
+    <td><%= informe.matricula %></td>
     <td><%= informe.solicitante %></td>
     <td><%= l informe.created_at, format: "%d/%m/%Y" %></td>
     <td><%= informe.pdf_file_name.nil? && t("En curso") || t('Si') %></td>

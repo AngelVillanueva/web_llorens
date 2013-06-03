@@ -31,14 +31,18 @@ class Justificante < ActiveRecord::Base
   has_attached_file :pdf
 
   before_validation :assign_hora_solicitud, on: :create
+  before_update :assign_hora_entrega, if: :first_time_pdf?
 
   validates :identificador, :nif_comprador, :nombre_razon_social, :primer_apellido, :segundo_apellido, :provincia, :municipio, :direccion, :matricula, :bastidor, :marca, :modelo, :hora_solicitud, :organizacion_id, presence: true
 
-  protected
+  #protected
   def assign_hora_solicitud
     self.hora_solicitud = Time.now
   end
   def assign_hora_entrega
     self.hora_entrega = Time.now
+  end
+  def first_time_pdf?
+    pdf_file_name_was.nil? && !pdf_file_name.nil?
   end
 end

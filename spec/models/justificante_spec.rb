@@ -69,7 +69,27 @@ describe Justificante do
       should validate_presence_of :organizacion_id
     end
   end
-  describe "with auto assigned hora_entrega field" do
+  describe "with auto assigned hora_solicitud field" do
     its( :hora_solicitud ) { should_not be_nil }
+  end
+  describe "with auto assigned hora_entrega the first time a PDF is set" do
+    before do
+      justificante.update_attributes({ pdf_file_name: "my_pdf.pdf" })
+    end
+    its( :hora_entrega ) { should_not be_nil }
+  end
+  describe "with no modified hora_entrega when a different field thant PDF is updated" do
+    before do
+      justificante.update_attributes({ marca: "BMW" })
+    end
+    its( :hora_entrega ) { should be_nil }
+  end
+  describe "with no modified hora_entrega when a PDF already exists" do
+    before do
+      justificante.update_attributes({ pdf_file_name: "my_pdf.pdf" })
+    end
+    it "should not change" do
+      expect{ justificante.update_attributes( { pdf_file_name: "o.pdf" } ) }.to_not change{ justificante }
+    end
   end
 end

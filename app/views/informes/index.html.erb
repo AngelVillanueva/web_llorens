@@ -25,12 +25,12 @@
     </tr>
   </thead>
   <tbody>
-<% informes.each do |informe_trafico| %>
-  <tr class="<%= informe_trafico.pdf_file_name.nil? && 'error' || '' %>">
+<% informes.each do |informe| %>
+  <tr class="<%= informe.pdf_file_name.nil? && 'error' || '' %>">
     <td><%= informe.matricula %></td>
     <td><%= informe.organizacion.identificador %></td>
     <td><%= informe.solicitante %></td>
-    <td><%= l informe.fecha_solicitud unless informe.fecha_solicitud.nil? %></td>
+    <td><%= l informe.created_at, format: "%d/%m/%Y" %></td>
     <td><%= informe.pdf_file_name.nil? && t("En curso") || t('Si') %></td>
     <td>
       <% unless informe.pdf_file_name.nil? %>
@@ -40,7 +40,7 @@
       <% end %>
     </td>
     <td><%= link_to t('Ver'), informe %> |
-    <%= link_to t('Editar'), edit_informe_path(informe_trafico) %> |
+    <%= link_to t('Editar'), edit_informe_path(informe) %> |
     <%= link_to t('Borrar'), informe, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>

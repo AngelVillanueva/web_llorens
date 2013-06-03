@@ -1,11 +1,10 @@
-<p><%= t("Persona solicitante: ")%><%= informe.solicitante %></p>
-
 <%= simple_form_for(informe) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
     <%= f.input :matricula %>
-    <%= f.input :usuario_id, as: :hidden %>
+    <%= f.input :solicitante %>
+    <%= f.input :organizacion_id, as: :hidden, input_html: { value: current_usuario.organizacion_id } %>
     <%= t("PDF actual", pdf: informe.pdf_file_name) unless informe.pdf_file_name.nil? %>
     <%= f.file_field :pdf %>
   </div>

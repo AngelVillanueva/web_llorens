@@ -4,11 +4,8 @@ WebLlorens::Application.routes.draw do
 
   root to: 'static_pages#home'
 
-  resources :informe_traficos
-  match 'informe_traficos/documentation/:id' => 'informe_traficos#pdf', as: :documentation_informe
-
+  resources :informes
   resources :justificantes
-  match 'justificantes/documentation/:id' => 'justificantes#pdf', as: :documentation_justificante
   
   resources :expedientes
   resources :matriculaciones, :controller => "expedientes", :type => "Matriculacion"

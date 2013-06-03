@@ -23,6 +23,7 @@ describe Api::V1::ExpedientesController do
   end
   describe "when more than one is sent together" do
     it "should return successful response" do
+      pending
       request.accept = "application/json"
       json = { format: 'json', expediente: mock_expediente( Transferencia ) }
       post :create, json

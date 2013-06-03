@@ -70,5 +70,6 @@ describe Justificante do
     end
   end
   describe "with auto assigned hora_entrega field" do
+    its( :hora_solicitud ) { should_not be_nil }
   end
 end

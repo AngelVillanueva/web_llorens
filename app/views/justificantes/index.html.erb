@@ -13,11 +13,10 @@
       <th><%= t("Nombre o Razón social") %></th>
       <th><%= t("Primer apellido") %></th>
       <th><%= t("Segundo apellido") %></th>
-      <th><%= t("Municipio") %></th>
-      <th><%= t("Provincia") %></th>
-      <th><%= t("Dirección") %></th>
       <th><%= t("Marca") %></th>
       <th><%= t("Modelo") %></th>
+      <th><%= t("Hora solicitud") %></th>
+      <th><%= t("Hora entrega") %></th>
       <th></th>
       <th></th>
     </tr>
@@ -29,11 +28,10 @@
       <th><%= t("Nombre o Razón social") %></th>
       <th><%= t("Primer apellido") %></th>
       <th><%= t("Segundo apellido") %></th>
-      <th><%= t("Municipio") %></th>
-      <th><%= t("Provincia") %></th>
-      <th><%= t("Dirección") %></th>
       <th><%= t("Marca") %></th>
       <th><%= t("Modelo") %></th>
+      <th><%= t("Hora solicitud") %></th>
+      <th><%= t("Hora entrega") %></th>
       <th><%= t("Documentos") %></th>
       <th><%= t("Acciones") %></th>
     </tr>
@@ -60,20 +58,17 @@
          <td>
           <%= justificante.segundo_apellido %>
         </td>
-         <td>
-          <%= justificante.municipio %>
-        </td>
-         <td>
-          <%= justificante.provincia %>
-        </td>
-         <td>
-          <%= justificante.direccion %>
-        </td>
         <td>
           <%= justificante.marca %>
         </td>
         <td>
           <%= justificante.modelo %>
+        </td>
+        <td>
+          <%= l justificante.hora_solicitud, format: "%d/%m %H:%M" unless justificante.hora_solicitud.nil? %>
+        </td>
+        <td>
+          <%= l justificante.hora_entrega, format: "%d/%m %H:%M" unless justificante.hora_entrega.nil? %>
         </td>
         <td>
           <%= link_to "Ver PDF", justificante.pdf.url unless justificante.pdf_file_name.nil? %>

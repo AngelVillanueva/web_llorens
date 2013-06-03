@@ -7,7 +7,7 @@
 </head>
 <body>
   <div class="container">
-    <header><%= link_to t("Brandname"), root_path %></header>
+    <header><p><%= link_to t("Brandname"), root_path %></p><p><%= current_usuario.organizacion.nombre %></p></header>
     <div class="row"><%= render 'shared/top_nav', flash: flash %></div>
     <div class="row"><%= render 'shared/flash', flash: flash %></div>
     <%= yield %>

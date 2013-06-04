@@ -19,4 +19,4 @@ Scenario: Users can just access PDFs from their Organizaciones
   Given I am a registered User
   When I visit the Expediente PDF page for an Expediente of another Organizacion 
   Then I should not see a PDF document
-      And I should be redirected to the homepage
+      And I should be redirected to the online homepage

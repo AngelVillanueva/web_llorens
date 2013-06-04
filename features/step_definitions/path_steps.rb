@@ -7,6 +7,11 @@ Then(/^I should be redirected to the homepage$/) do
   page.should have_css( '.alert-alert' )
 end
 
+Then(/^I should be redirected to the online homepage$/) do
+  current_path.should eql( online_root_path )
+  page.should have_css( '.alert-alert' )
+end
+
 Then(/^show me the page$/) do
   save_and_open_page
 end

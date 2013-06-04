@@ -1,6 +1,6 @@
 <% provide :title, t( "Expediente para", n: expediente.matricula ) %>
 
-<p><%= link_to "Volver al listado", expedientes_path %></p>
+<p><%= link_to "Volver al listado", these_expedientes_path(expediente) %></p>
 
 <div class="with_pdf">
   <h1>Expediente para <%= expediente.matricula %></h1>

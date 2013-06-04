@@ -1,6 +1,6 @@
 <h1><%= t("Listado de Informes de Trafico") %></h1>
 
-<div><%= link_to 'Nuevo Informe', new_informe_path %></div>
+<div><%= link_to 'Nuevo Informe', new_online_informe_path %></div>
 
 <table class="table table-bordered table-striped table-condensed informe_traficos top_filtered">
   
@@ -39,9 +39,9 @@
         <%= t("pendiente") %>
       <% end %>
     </td>
-    <td><%= link_to t('Ver'), informe %> |
-    <%= link_to t('Editar'), edit_informe_path(informe) %> |
-    <%= link_to t('Borrar'), informe, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to t('Ver'), online_informe_path(informe) %> |
+    <%= link_to t('Editar'), edit_online_informe_path(informe) %> |
+    <%= link_to t('Borrar'), online_informe_path(informe), method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
   </tbody>

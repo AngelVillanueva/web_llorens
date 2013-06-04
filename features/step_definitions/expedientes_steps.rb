@@ -11,10 +11,10 @@ When(/^I submit all the information for a new Expediente$/) do
 end
 
 When(/^I access the page for the first Expediente$/) do
-  visit matriculacion_path Expediente.first
+  visit online_matriculacion_path Expediente.first
 end
 When(/^I access the page for the second Expediente$/) do
-  visit matriculacion_path Expediente.find_by_matricula( "Other matricula" )
+  visit online_matriculacion_path Expediente.find_by_matricula( "Other matricula" )
 end
 
 Then(/^I should see a list of the Expedientes$/) do

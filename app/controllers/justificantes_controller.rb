@@ -7,7 +7,7 @@ class JustificantesController < ApplicationController
   def create
     if justificante.save
       flash[:success] = "Nuevo justificante creado correctamente"
-      redirect_to(justificantes_path)
+      redirect_to(online_justificantes_path)
     else
       flash[:error] = "Se ha producido un error creando el justificante"
       render :new
@@ -22,7 +22,7 @@ class JustificantesController < ApplicationController
         justificante.save!
       end
       flash[:success] = "El justificante se ha editado correctamente"
-      redirect_to(justificantes_path)
+      redirect_to(online_justificantes_path)
     else
       flash[:error] = "Se ha producido un error editando el justificante"
       render :edit
@@ -31,7 +31,7 @@ class JustificantesController < ApplicationController
 
   def destroy
     justificante.destroy
-    redirect_to justificantes_path, notice: I18n.t("El Justificante fue borrado correctamente")
+    redirect_to online_justificantes_path, notice: I18n.t("El Justificante fue borrado correctamente")
   end
 
   private

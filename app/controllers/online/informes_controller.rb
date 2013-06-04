@@ -1,11 +1,11 @@
-class InformesController < ApplicationController
+class Online::InformesController < ApplicationController
   expose( :informes ) { current_usuario.organizacion.informes }
   expose( :informe, attributes: :informe_params )
 
   def create
     if informe.save
       flash[:success] = "Nuevo informe creado correctamente"
-      redirect_to(informes_path)
+      redirect_to(online_informes_path)
     else
       flash[:error] = "Se ha producido un error creando el informe"
       render :new
@@ -20,7 +20,7 @@ class InformesController < ApplicationController
         informe.save!
       end
       flash[:success] = "El informe se ha editado correctamente"
-      redirect_to(informes_path)
+      redirect_to(online_informes_path)
     else
       flash[:error] = "Se ha producido un error editando el informe"
       render :edit
@@ -29,7 +29,7 @@ class InformesController < ApplicationController
 
   def destroy
     informe.destroy
-    redirect_to informes_path, notice: I18n.t("El Informe fue borrado correctamente")
+    redirect_to online_informes_path, notice: I18n.t("El Informe fue borrado correctamente")
   end
   
 

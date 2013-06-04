@@ -18,6 +18,6 @@ def create_path controller, action
     when "home"
       send "root_path"
     when "index"
-      send "#{ parameter.pluralize }_path"
+      send "online_#{ parameter.pluralize }_path"
   end
 end

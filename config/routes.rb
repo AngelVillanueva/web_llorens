@@ -4,13 +4,14 @@ WebLlorens::Application.routes.draw do
 
   root to: 'static_pages#home'
 
-  resources :informes
+  namespace :online do
+    resources :informes
   resources :justificantes
   
   resources :expedientes
   resources :matriculaciones, :controller => "expedientes", :type => "Matriculacion"
   resources :transferencias, :controller => "expedientes", :type => "Transferencia"
-  
+  end
   namespace :api do
     namespace :v1 do
       resources :expedientes

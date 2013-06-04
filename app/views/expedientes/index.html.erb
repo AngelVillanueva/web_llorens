@@ -37,7 +37,7 @@
   <% expedientes.each do |expediente| %>
       <tr class="">
         <td>
-          <%= link_to expediente.matricula, expediente %>
+          <%= link_to expediente.matricula, this_expediente_path(expediente) %>
         </td>
         <td class="large">
           <%= expediente.bastidor %>

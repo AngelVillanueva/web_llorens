@@ -1,5 +1,5 @@
 When(/^I submit all the information for a new Justificante$/) do
-  visit new_justificante_path
+  visit new_online_justificante_path
   fill_in "Identificador", with: "AAA"
   fill_in "Nif comprador", with: "00000000T"
   fill_in "justificante_nombre_razon_social", with: "AAA"
@@ -16,7 +16,7 @@ When(/^I submit all the information for a new Justificante$/) do
 end
 
 When(/^I submit not all the needed information for a new Justificante$/) do
-  visit new_justificante_path
+  visit new_online_justificante_path
   click_button "Generar Justificante"
 end
 

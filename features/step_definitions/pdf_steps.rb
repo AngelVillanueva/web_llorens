@@ -4,7 +4,7 @@ end
 
 When(/^I visit the Expediente PDF page for an Expediente of another Organizacion$/) do
   step "there are more Expedientes from other Organizaciones"
-  visit expediente_path Expediente.last, format: 'pdf'
+  visit online_matriculacion_path Expediente.last, format: 'pdf'
 end
 
 Then (/^I should (not )?see a PDF document$/) do |negation|

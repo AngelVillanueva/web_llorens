@@ -7,7 +7,7 @@ class Api::V1::ExpedientesController < ApplicationController
   def create
     expediente = expediente_type.new(expediente_params)
     if expediente.save
-      respond_with(expediente)
+      render json: expediente
     else
       render json: expediente.errors, status: :unprocessable_entity
     end

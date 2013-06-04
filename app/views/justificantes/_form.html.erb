@@ -1,5 +1,5 @@
 <p><%= t("Persona solicitante: ")%><%= "#{current_usuario.nombre} #{current_usuario.apellidos}" %></p>
-<%= simple_form_for justificante, html: { class: 'form-horizontal', multipart: true } do |f| %>
+<%= simple_form_for [:online, justificante], html: { class: 'form-horizontal', multipart: true } do |f| %>
   <%= f.error_notification %>
   <%= f.input :identificador %>
   <%= f.input :organizacion_id, as: :hidden, input_html: { value: current_usuario.organizacion.id } %>

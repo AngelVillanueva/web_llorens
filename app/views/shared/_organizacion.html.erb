@@ -1,1 +1,1 @@
-<p><%= current_usuario.organizacion.nombre if current_usuario %></p>
+<p><%= current_usuario.organizacion.nombre if in_online? && current_usuario %></p>

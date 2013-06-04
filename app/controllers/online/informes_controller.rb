@@ -1,4 +1,4 @@
-class Online::InformesController < ApplicationController
+class Online::InformesController < OnlineController
   expose( :informes ) { current_usuario.organizacion.informes }
   expose( :informe, attributes: :informe_params )
 

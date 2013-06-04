@@ -4,12 +4,16 @@ class ApplicationController < ActionController::Base
     strategy DecentExposure::StrongParametersStrategy
   end
 
-  before_filter :authenticate_usuario!
+  def after_sign_in_path_for(resource_or_scope)
+   online_root_path
+  end
 
-  def current_ability
-    @current_ability ||= Ability.new(current_usuario)
-  end
-  rescue_from CanCan::AccessDenied do |exception|
-    redirect_to root_url, :alert => exception.message
-  end
+  # before_filter :authenticate_usuario!
+
+  # def current_ability
+  #   @current_ability ||= Ability.new(current_usuario)
+  # end
+  # rescue_from CanCan::AccessDenied do |exception|
+  #   redirect_to root_url, :alert => exception.message
+  # end
 end

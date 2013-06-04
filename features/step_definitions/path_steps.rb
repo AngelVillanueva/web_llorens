@@ -16,7 +16,11 @@ def create_path controller, action
   parameter = controller.pluralize.singularize.parameterize
   case action
     when "home"
-      send "root_path"
+      if controller == "application"
+        send "online_root_path"
+      else
+        send "root_path"
+      end
     when "index"
       send "online_#{ parameter.pluralize }_path"
   end

@@ -1,4 +1,4 @@
-class Online::JustificantesController < ApplicationController
+class Online::JustificantesController < OnlineController
   load_and_authorize_resource except: [:new, :create]
   expose( :justificantes ) { current_usuario.organizacion.justificantes }
   expose( :justificante, attributes: :justificante_params )

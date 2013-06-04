@@ -1,6 +1,6 @@
 <% provide :title, t("Listado de Expedientes", type: expediente.type.pluralize) %>
 
-<h1><%= t("Expedientes") %></h1>
+<%= section_header expediente.type.pluralize %>
 
 <table class="table table-condensed table-bordered table-striped top_filtered expedientes">
   <thead>

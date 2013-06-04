@@ -39,4 +39,16 @@ module ApplicationHelper
       online_matriculaciones_path
     end
   end
+
+  # Section header helper
+  def section_header header_text
+    content_tag 'h2', class: 'section_header' do
+      # content_tag 'hr', class: 'left visible-desktop'
+      # "<span>#{header_text}</span>"
+      # content_tag 'hr', class: 'right visible-desktop'
+      concat content_tag( 'hr', '', class: 'left visible-desktop' )
+      concat content_tag( 'span', header_text )
+      concat content_tag( 'hr', '', class: 'right visible-desktop' )
+    end
+  end
 end

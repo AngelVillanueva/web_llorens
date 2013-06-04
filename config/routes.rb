@@ -3,6 +3,7 @@ WebLlorens::Application.routes.draw do
   devise_for :usuarios
 
   root to: 'web_pages#home'
+  match '/contacto' => 'web_pages#contact', as: :contact
 
   namespace :online do
     root to: 'static_pages#home'

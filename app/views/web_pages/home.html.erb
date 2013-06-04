@@ -1,3 +1,53 @@
+<div id="hero">
+    <div class="container">
+        <!-- starts carousel -->
+        <div class="row animated fadeInDown">
+            <div class="span12">
+                <div id="myCarousel" class="carousel slide">
+                    <!-- carousel items -->
+                    <div class="carousel-inner">
+                        <!-- slide -->
+                        <div class="active item slide1">
+                            <div class="row">
+                                <div class="span6">
+                                    <img src="http://lorempixel.com/g/570/348/transport" alt="slide1" />
+                                </div>
+                                <div class="span4">
+                                    <h1>
+                                        Desde 19xx al servicio de nuestros clientes
+                                    </h1>
+                                    <p>
+                                        Asesoramos con rigurosidad en la información y resultados eficaces, permanentemente al día de los cambios normativos y administrativos.
+                                    </p>
+                                    <%= link_to "Contáctenos", contact_path, class: 'btn btn-success btn-large' %>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- slide -->
+                        <div class="item slide2">
+                            <div class="row">
+                                <div class="span4 animated fadeInUpBig">
+                                    <h1>Acceso desde cualquier dispositivo</h1>
+                                    <p>
+                                        Nuestros clientes pueden consultar y solicitar trámites desde su ordenador, móvil o tablet. Aumentar su productividad es nuestro objetivo.
+                                    </p>
+                                    <%= link_to "Área de Cliente", online_root_path, class: 'btn btn-success btn-large' %>
+                                </div>
+                                <div class="span6 animated fadeInDownBig">
+                                    <%= image_tag('theme/slide2.png', alt: 'slide2') %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Carousel nav -->
+                    <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+                    <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div id="intro">
     <div class="container">
         <h1>Measure is a beautiful Wrapbootstrap theme for 

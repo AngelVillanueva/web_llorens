@@ -24,7 +24,7 @@
                     <li><a href="pricing.html">Modelos</a></li>
                 </ul>
             </li>
-            <li><a href="#" class="scroller" data-section="#footer">Contacto</a></li>
+            <li><%= link_to "Contacto", contact_path %></li>
             <% if current_usuario %>
                 <li><%= link_to t("Area usuarios"), online_root_path, class: 'root' %></li>
                 <li>

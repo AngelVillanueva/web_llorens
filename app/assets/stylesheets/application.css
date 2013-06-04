@@ -11,6 +11,7 @@
  *= require_self
  *= require jquery.ui.datepicker
  *= require frontend_base
+ *= require frontend_theme
  *= require dataTables/jquery.dataTables.bootstrap
  *= require dataTables/extras/TableTools
  *= require dataTables/extras/TableTools_JUI

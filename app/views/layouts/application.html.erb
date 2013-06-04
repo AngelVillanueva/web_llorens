@@ -1,20 +1,21 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title><%= full_title( yield :title ) %></title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= render 'shared/fonts' %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-  <a href="#" class="scrolltop"><span>up</span></a>
-  <%= render 'shared/nav' %>
-  <div class="container">
-    <header><p><%= link_to t("Brandname"), root_path %></p><p><%= current_usuario.organizacion.nombre unless current_usuario.nil? %></p></header>
-    <div class="row"><%= render 'shared/flash', flash: flash %></div>
-    <%= yield %>
-  </div>
-  <% unless Rails.env.production? %>
+<html lang="<%= I18n.locale %>">
+  <head>
+    <title><%= full_title( yield :title ) %></title>
+    <meta http-equiv="Content-Language" content="es" />
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= render 'shared/fonts' %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <a href="#" class="scrolltop"><span>up</span></a>
+    <%= render 'shared/nav' %>
+    <div class="container">
+      <div class="row"><%= render 'shared/flash', flash: flash %></div>
+      <%= render 'shared/organizacion' %>
+      <%= yield %>
+    </div>
+    
+    <% unless Rails.env.production? %>
     <div>
       <a href="#" class="debug">debug<b></b></a>
       <div id="debug">
@@ -25,7 +26,6 @@
       </div>
     </div>
   <% end %>
-
   <%= javascript_include_tag "application" %>
-</body>
+  </body>
 </html>

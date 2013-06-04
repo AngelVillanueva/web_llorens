@@ -200,7 +200,7 @@ es:
   unauthorized:
     manage:
       all: "No estás autorizado a acceder a esa página"
-  Sign in: "Acceder"
+  Sign in: "Acceso Usuarios"
   Sign up: "Registrarse"
   Sign out: "Salir"
   Password: "Contraseña"

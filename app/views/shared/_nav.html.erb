@@ -26,6 +26,7 @@
             </li>
             <li><a href="#" class="scroller" data-section="#footer">Contacto</a></li>
             <% if current_usuario %>
+                <li><%= link_to t("Area usuarios"), online_root_path, class: 'root' %></li>
                 <li>
                     <%= link_to t("Sign out"),
                           destroy_usuario_session_path, method: "delete",

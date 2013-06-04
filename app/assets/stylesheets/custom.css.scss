@@ -74,3 +74,30 @@ h1 span {
 .row ul { margin: 0; }
 .navbar .nav > li > a.root { color: #08c; }
 h3.organizacion { color: #282f39; text-align: right; }
+//sign in form
+#box_login .box .social a.face_login span.text {
+  font-size: 2em;
+  line-height: 1.2em;
+  margin: 0;
+  width: 100%;
+  text-align: center;
+}
+@media (max-width: 480px) {
+  #box_login .box .social a.face_login span.text {
+    line-height: 1.1em;
+  }
+}
+#box_login .box .form input[type="email"] {
+border-color: #DBDBDB #EAEAEA #EAEAEA #DBDBDB;
+border-left: 1px solid #DBDBDB;
+border-style: solid;
+border-width: 1px;
+font-size: 16px;
+height: 30px;
+margin-bottom: 16px;
+width: 95%;
+}
+#box_login .box .form .remember .right a {
+  color: #0088cc;
+}
+// end of sign in form

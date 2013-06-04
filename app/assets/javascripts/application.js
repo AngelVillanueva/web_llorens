@@ -12,10 +12,12 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap
 //= require jquery.ui.datepicker
 //= require dataTables/jquery.dataTables
 //= require dataTables/jquery.dataTables.bootstrap
 //= require dataTables/extras/TableTools
 //= require ZeroClipboard
 //= require dataTables_column_filter
+//= require theme/theme
 //= require functions

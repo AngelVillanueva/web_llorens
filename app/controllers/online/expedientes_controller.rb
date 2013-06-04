@@ -1,4 +1,4 @@
-class ExpedientesController < ApplicationController
+class Online::ExpedientesController < ApplicationController
   load_and_authorize_resource
   #expose( :expedientes ) { Expediente.accessible_by( current_ability ) }
   expose( :expedientes ) { expediente_type.scoped.accessible_by( current_ability ) }

@@ -8,6 +8,7 @@
 </head>
 <body>
   <a href="#" class="scrolltop"><span>up</span></a>
+  <%= render 'shared/nav' %>
   <div class="container">
     <header><p><%= link_to t("Brandname"), root_path %></p><p><%= current_usuario.organizacion.nombre unless current_usuario.nil? %></p></header>
     <div class="row"><%= render 'shared/top_nav', flash: flash %></div>

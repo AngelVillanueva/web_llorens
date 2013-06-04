@@ -1,8 +1,41 @@
 <% provide :title, t("Welcome") %>
 
-<ul>
-  <li><%= link_to t("Matriculacion(VN)"), online_matriculaciones_path %></li>
-  <li><%= link_to t("Transferencia(VO)"), online_transferencias_path %></li>
-  <li><%= link_to t("Solicitud Justificantes"), online_justificantes_path %></li>
-  <li><%= link_to t("Solicitud Informes"), online_informes_path %></li>
-</ul>
+<div class="about_page">
+  <h2 class="section_header">
+    <hr class="left visible-desktop">
+    <span>Seleccione una opción</span>
+    <hr class="right visible-desktop">
+  </h2>
+  <div class="row">
+    <ul>
+    <li class="span3 teammate">
+      <%= image_tag('theme/about.png') %>
+      <h5><%= link_to t("Matriculacion(VN)"), online_matriculaciones_path %></h5>
+      <p>Vehículo nuevo</p>
+      <hr>
+      <p class="description">Consulte los expedientes de Matriculación de Vehículos Nuevos</p>
+    </li>
+    <li class="span3 teammate">
+      <%= image_tag('theme/about.png') %>
+      <h5><%= link_to t("Transferencia(VO)"), online_transferencias_path %></h5>
+      <p>Vehículo de Ocasión</p>
+      <hr>
+      <p class="description">Consulte los expedientes de Matriculación de Vehículos de Ocasión</p>
+    </li>
+    <li class="span3 teammate">
+      <%= image_tag('theme/about.png') %>
+      <h5><%= link_to t("Solicitud Justificantes"), online_justificantes_path %></h5>
+      <p>Descargue su Justificante</p>
+      <hr>
+      <p class="description">Solicite un Justificante y descárguelo en formato PDF</p>
+    </li>
+    <li class="span3 teammate">
+      <%= image_tag('theme/about.png') %>
+      <h5><%= link_to t("Solicitud Informes"), online_informes_path %></h5>
+      <p>Descargue su Informe de Tráfico</p>
+      <hr>
+      <p class="description">Solicite un Informe de Tráfico y descárguelo en formato PDF</p>
+    </li>
+    </ul>
+  </div>
+</div>

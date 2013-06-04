@@ -10,6 +10,11 @@ module ApplicationHelper
      end
    end
 
+  # Checks if whithin the Online namespace
+  def in_online?
+    controller.class.name.split("::").first=="Online"
+  end
+
   # Returns the pdf route for a given expediente
   def pdf_path(expediente)
     if expediente.type == "Transferencia"

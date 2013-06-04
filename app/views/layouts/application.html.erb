@@ -12,7 +12,7 @@
     <div class="container">
       <div class="row"><%= render 'shared/flash', flash: flash %></div>
       <div class="row"><%= render 'shared/organizacion' %></div>
-      <%= yield %>
+      <div class="row"><%= yield %></div>
     </div>
     
     <% unless Rails.env.production? %>

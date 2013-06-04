@@ -1,75 +1,8 @@
 <% provide :title, t("Listado de Expedientes", type: expediente.type.pluralize) %>
 
-<%= section_header expediente.type.pluralize %>
-
-<table class="table table-condensed table-bordered table-striped top_filtered expedientes">
-  <thead>
-    <tr class="filter">
-      <th><%= t("Matrícula") %></th>
-      <th><%= t("Bastidor") %></th>
-      <th><%= t("Comprador") %></th>
-      <th><%= t("Vendedor") %></th>
-      <th><%= t("Marca") %></th>
-      <th><%= t("Modelo") %></th>
-      <th><%= t("Fecha de alta") %></th>
-      <th><%= t("Fecha presentación Tráfico") %></th>
-      <th><%= t("Fecha salida Tráfico") %></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-    <tr>
-      <th><%= t("Matrícula") %></th>
-      <th><%= t("Bastidor") %></th>
-      <th><%= t("Comprador") %></th>
-      <th><%= t("Vendedor") %></th>
-      <th><%= t("Marca") %></th>
-      <th><%= t("Modelo") %></th>
-      <th><%= t("Fecha de alta") %></th>
-      <th><%= t("Fecha presentación Tráfico") %></th>
-      <th><%= t("Fecha salida Tráfico") %></th>
-      <th><%= t("Días trámite") %></th>
-      <th><%= t("Documentos") %></th>
-      <th><%= t("Observaciones") %></th>
-    </tr>
-  </thead>
-  <tbody>
-  <% expedientes.each do |expediente| %>
-      <tr class="">
-        <td>
-          <%= link_to expediente.matricula, this_expediente_path(expediente) %>
-        </td>
-        <td class="large">
-          <%= expediente.bastidor %>
-        </td>
-        <td>
-          <%= expediente.comprador %>
-        </td>
-        <td>
-          <%= expediente.vendedor %>
-        </td>
-        <td>
-          <%= expediente.marca %>
-        </td>
-        <td>
-          <%= expediente.modelo %>
-        </td>
-        <td>
-          <%= l expediente.fecha_alta unless expediente.fecha_alta.nil? %>
-        </td><td>
-          <%= l expediente.fecha_entra_trafico unless expediente.fecha_entra_trafico.nil? %>
-        </td>
-        <td>
-          <%= l expediente.fecha_sale_trafico unless expediente.fecha_sale_trafico.nil? %>
-        </td>
-        <td>
-          <%= expediente.dias_tramite %>
-        </td>
-        <td><%= link_to "Ver PDF", pdf_path(expediente) %></td>
-        <td>
-          <%= expediente.observaciones %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="about_page">
+  <%= section_header expediente.type.pluralize %>
+  <div class="row">
+    <%= render 'table_index', expedientes: expedientes %>
+  </div>
+</div>

@@ -16,9 +16,18 @@
         <div class="row"><%= yield %></div>
       <% end %>
     </div>
-      <% if current_page? root_path %>
-        <div class="row"><%= yield %></div>
-      <% end %>
+    <% if current_page? root_path %>
+      <div class="row"><%= yield %></div>
+    <% end %>
+    <div id="footer" class="coming-soon">
+      <div class="container">
+          <div class="row">
+              <div class="span2 offset5">
+                  <p>2012 - Measure Template</p>
+              </div>
+          </div>
+      </div>
+    </div>
     
     <% unless Rails.env.production? %>
     <div>

@@ -23,10 +23,9 @@ describe Api::V1::ExpedientesController do
   end
   describe "when more than one is sent together" do
     it "should return successful response" do
-      pending
       request.accept = "application/json"
-      json = { format: 'json', expediente: mock_expediente( Transferencia ) }
-      post :create, json
+      json = { format: 'json', expedientes: mock_expedientes }
+      post :create_batch, json
       response.should be_success
       Expediente.count.should eql 2
       Matriculacion.count.should eql 1
@@ -52,4 +51,14 @@ private
     expediente[:organizacion_id] = 1
     expediente[:observaciones] = "AAA"
     expediente
+  end
+  def mock_expedientes
+    expedientes = []
+    matriculacion = {}
+    transferencia = {}   
+    matriculacion["expediente"] = mock_expediente(Matriculacion)
+    transferencia["expediente"] = mock_expediente(Transferencia)
+    expedientes << matriculacion
+    expedientes << transferencia
+    expedientes
   end

@@ -1,4 +1,4 @@
-class CreateJustificantes < ActiveRecord::Migration
+class CreateJustificantesScaffold < ActiveRecord::Migration
   def change
     create_table :justificantes do |t|
       t.string :identificador

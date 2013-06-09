@@ -194,7 +194,7 @@
 	margin-right: 20px;
 }
 #contact i.contact {
-	/*background: image-url('theme/contact_icons.png') no-repeat 0 0;*/
+	background: image-url('theme/contact_icons.png') no-repeat 0 0;
 	width: 34px;
 	height: 34px;
 	display: inline-block;

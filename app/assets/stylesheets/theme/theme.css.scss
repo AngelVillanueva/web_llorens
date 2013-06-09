@@ -4,7 +4,7 @@ html {
 body {
 	position: relative;
 	padding-top: 69px;
-	background: #DDDCE2 image-url('theme/content_bg.jpg') repeat left top;
+	background: #DDDCE2 image_url('theme/content_bg.jpg') repeat left top;
 	-webkit-font-smoothing: antialiased;
 	font-size: 14px;
 	font-family: 'Lato', sans-serif !important;
@@ -141,7 +141,7 @@ input[type="color"]:focus,
     filter: none;
     padding: 7px 0 8px 0;
     /*background: none repeat scroll 0 0 #242b35;*/
-    background: image-url("theme/nav_bg.jpg") 0 0 repeat;
+    background: image_url("theme/nav_bg.jpg") 0 0 repeat;
 }
 .navbar .brand {
     font-size: 26px;
@@ -358,14 +358,14 @@ input[type="color"]:focus,
 	position: relative;	
 }
 #pricing .price_wrapper.regular .header {
-	background: image-url('theme/chart1.png') 0 0 no-repeat;
+	background: image_url('theme/chart1.png') 0 0 no-repeat;
 }
 #pricing .price_wrapper.pro {
 	width: 331px;
 	margin: 0 auto;
 }
 #pricing .price_wrapper.pro .header {
-	background: image-url('theme/chart2.png') 0 0 no-repeat;
+	background: image_url('theme/chart2.png') 0 0 no-repeat;
 }
 #pricing .price_wrapper section .btn {
 	left: 35%;
@@ -463,7 +463,7 @@ input[type="color"]:focus,
 
 /* footer section */
 #footer {
-	background: image-url("theme/footer_bg.jpg") 0 0 repeat;
+	background: image_url("theme/footer_bg.jpg") 0 0 repeat;
 	min-height: 300px;
 	margin-top: 100px;
 	color: #fff;
@@ -728,10 +728,10 @@ input[type="color"]:focus,
 		top: -10px;
 	}
 	#pricing .price_wrapper.regular .header {
-		background: image-url('theme/chart1_small.png') 0 0 no-repeat;
+		background: image_url('theme/chart1_small.png') 0 0 no-repeat;
 	}
 	#pricing .price_wrapper.pro .header {
-		background: image-url('theme/chart2_small.png') 0 0 no-repeat;
+		background: image_url('theme/chart2_small.png') 0 0 no-repeat;
 	}
 	#testimonials .phrases_wrapper {
 		padding-left: 0px;
@@ -847,7 +847,7 @@ input[type="color"]:focus,
 .i_shuffle, 
 .i_twitter, 
 .i_youtube{
-	background: image-url('theme/icons.png') no-repeat;
+	background: image_url('theme/icons.png') no-repeat;
 	display: inline-block;
 }
 .i_bars{
@@ -904,7 +904,7 @@ input[type="color"]:focus,
 /* Social icons
 -------------------------------------------------- */
 i.social {
-	background: image-url('theme/social_icons.png') no-repeat 0 0;
+	background: image_url('theme/social_icons.png') no-repeat 0 0;
 	width: 33px;
 	height: 33px;
 	display: inline-block;

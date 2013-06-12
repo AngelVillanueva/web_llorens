@@ -7,11 +7,11 @@
     <table class="row pull-right table table-condensed table-bordered table-striped top_filtered justificantes">
   <thead>
     <tr class="filter">
-      <th><%= t("Organización") %></th>
-      <th><%= t("Matrícula") %></th>
+      <th><%= t("Organizacion") %></th>
+      <th><%= t("Matricula") %></th>
       <th><%= t("Bastidor") %></th>
       <th><%= t("NIF Comprador") %></th>
-      <th><%= t("Nombre o Razón social") %></th>
+      <th><%= t("Nombre o razon") %></th>
       <th><%= t("Primer apellido") %></th>
       <th><%= t("Segundo apellido") %></th>
       <th><%= t("Marca") %></th>
@@ -22,19 +22,18 @@
       <th></th>
     </tr>
     <tr>
-      <th><%= t("Organización") %></th>
-      <th><%= t("Matrícula") %></th>
+      <th><%= t("Organizacion") %></th>
+      <th><%= t("Matricula") %></th>
       <th><%= t("Bastidor") %></th>
       <th><%= t("NIF Comprador") %></th>
-      <th><%= t("Nombre o Razón social") %></th>
+      <th><%= t("Nombre o razon") %></th>
       <th><%= t("Primer apellido") %></th>
       <th><%= t("Segundo apellido") %></th>
       <th><%= t("Marca") %></th>
       <th><%= t("Modelo") %></th>
       <th><%= t("Hora solicitud") %></th>
       <th><%= t("Hora entrega") %></th>
-      <th><%= t("Documentos") %></th>
-      <th><%= t("Acciones") %></th>
+      <th colspan="2"></th>
     </tr>
   </thead>
   <tbody>
@@ -71,12 +70,17 @@
         <td>
           <%= l justificante.hora_entrega, format: "%d/%m %H:%M" unless justificante.hora_entrega.nil? %>
         </td>
-        <td>
-          <%= link_to "Ver PDF", justificante.pdf.url unless justificante.pdf_file_name.nil? %>
+        <td class="icon">
+          <% unless justificante.pdf_file_name.nil? %>
+            <%= link_to justificante.pdf.url, title: "PDF" do %>
+              <i class="icon icon-file"></i>
+            <% end %>
+          <% end %>
         </td>
-        <td>
-          <%= link_to t('Editar'), edit_online_justificante_path(justificante) %> |
-          <%= link_to t('Borrar'), online_justificante_path(justificante), method: :delete, data: { confirm: 'Are you sure?' } %>
+        <td class="icon">
+          <%= link_to edit_online_justificante_path(justificante), title: "Editar" do %>
+              <i class="icon icon-edit"></i>
+            <% end %>
         </td>
       </tr>
     <% end %>

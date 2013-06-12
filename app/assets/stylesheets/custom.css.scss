@@ -76,6 +76,14 @@ thead tr:not(.filter) {
 td.large {
   font-size: 8px;
 }
+td.icon {
+  min-width: 50px;
+}
+@media (min-width: 480px) {
+  td.icon .icon:hover {
+    font-size: 20px;
+  }
+}
 
 header {
   padding: 20px;

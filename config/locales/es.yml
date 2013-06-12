@@ -235,6 +235,8 @@ es:
   Editar Informe Trafico: "Editar Informe de Tráfico"
   El Justificante fue borrado correctamente: "El Justificante fue borrado correctamente"
   PDF actual: "PDF actual: %{pdf}"
+  Acciones: "Acciones"
+  Documentos: "Documentos"
   Matricula: "Matrícula"
   Bastidor: "Bastidor"
   Comprador: "Comprador"
@@ -248,6 +250,12 @@ es:
   Documentos: "Documentos"
   Observaciones: "Observaciones"
   volver inicio: "o volver al inicio"
-
+  Organizacion: "Organización"
+  NIF Comprador: "NIF"
+  Primer apellido: "Primer apellido"
+  Segundo apellido: "Segundo apellido"
+  Nombre o razon: "Nombre o Razón Social"
+  Hora solicitud: "Hora solicitud"
+  Hora entrega: "Hora entrega"
 
 

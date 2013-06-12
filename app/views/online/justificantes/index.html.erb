@@ -2,7 +2,7 @@
 
 <div class="about_page">
   <%= section_header t("Justificantes") %>
-  <div class="row"><%= link_to t("Nuevo justificante"), new_online_justificante_path %></div>
+  <div class="row pull-right"><%= link_to t("Nuevo justificante"), new_online_justificante_path, class: 'btn btn-primary new_record' %></div>
   <div class="row">
     <table class="row pull-right table table-condensed table-bordered table-striped top_filtered justificantes">
   <thead>

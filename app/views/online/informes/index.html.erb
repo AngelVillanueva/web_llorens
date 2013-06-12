@@ -2,7 +2,9 @@
 
 <div class="about_page">
   <%= section_header t("Informes de trafico") %>
-  <div class="row"><%= link_to 'Nuevo Informe', new_online_informe_path %></div>
+  <div class="row pull-right">
+    <%= link_to 'Nuevo Informe', new_online_informe_path, class: 'btn btn-primary new_record' %>
+  </div>
   <div class="row">
     <table class="row pull-right table table-bordered table-striped table-condensed informe_traficos top_filtered">
   

@@ -1,21 +1,72 @@
+.table-wrapper {
+  padding: 10px;
+background: white;
+border: 1px solid #d9d9d9;
+border-radius: 20px;
+box-shadow: 0 0 5px 2px #e8e8e8;
+}
 table {
   margin: 20px 0;
 }
+.table tbody td {
+  text-align: center;
+}
 table.top_filtered {
-  border-top: none;
-  border-right: none;
+  // border-top: none;
+  // border-right: none;
+  -webkit-box-shadow: 0 0 5px 2px #e8e8e8;
+  -moz-box-shadow: 0 0 5px 2px #e8e8e8;
+  box-shadow: 0 0 5px 2px #e8e8e8; 
 }
 table.top_filtered td, table.top_filtered thead tr:last-child th:last-child {
-  border-right: 1px solid #ddd;
+  // border-right: 1px solid #ddd;
 }
-table input, table select {
-  width: 80px;
+table input[type='text'], table select, .dataTables_wrapper input[type='text'] {
+  height: 30px;
+  width: 90%;
 }
+.dataTables_wrapper label {
+  text-align: right;
+}
+.dataTables_wrapper .row-fluid {
+  margin-top: 20px;
+}
+table ::-webkit-input-placeholder { /* WebKit browsers */
+    color:    #ddd;
+}
+table :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    #ddd;
+}
+table ::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    #ddd;
+}
+table :-ms-input-placeholder { /* Internet Explorer 10+ */
+    color:    #ddd;
+}
+
 tr.filter th {
   padding-bottom: 20px;
+  vertical-align: middle;
+}
+tr:not(.filter) th {
+  padding: 20px;
+  border-bottom: 3px solid #87cefa;
 }
 tr.filter, .filter th {
-  border: none;
+  // border: none;
+}
+thead tr:not(.filter) {
+  // color: #fafafa;
+  // background: #6393c1; /* Old browsers */
+  // background: -moz-linear-gradient(top,  #6393c1 0%, #0088cc 100%); /* FF3.6+ */
+  // background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#6393c1), color-stop(100%,#0088cc)); /* Chrome,Safari4+ */
+  // background: -webkit-linear-gradient(top,  #6393c1 0%,#0088cc 100%); /* Chrome10+,Safari5.1+ */
+  // background: -o-linear-gradient(top,  #6393c1 0%,#0088cc 100%); /* Opera 11.10+ */
+  // background: -ms-linear-gradient(top,  #6393c1 0%,#0088cc 100%); /* IE10+ */
+  // background: linear-gradient(to bottom,  #6393c1 0%,#0088cc 100%); /* W3C */
+  // filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6393c1', endColorstr='#0088cc',GradientType=0 ); /* IE6-9 */
+  background: white;
+  color: #333;
 }
 td.large {
   font-size: 8px;
@@ -71,6 +122,13 @@ h1 span {
 
 
 /** THEME **/
+textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="date"]:focus, input[type="month"]:focus, input[type="time"]:focus, input[type="week"]:focus, input[type="number"]:focus, input[type="email"]:focus, input[type="url"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="color"]:focus, .uneditable-input:focus {
+border-color: #08c;
+outline: 0;
+-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #0088cc;
+-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #0088cc;
+box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #0088cc;
+}
 .row ul { margin: 0; }
 .navbar .nav > li > a.root { color: #08c; }
 h3.organizacion { color: #282f39; text-align: right; }
@@ -125,6 +183,10 @@ width: 95%;
     border: 2px solid #bbb;
     margin-top: -10px;
     margin-bottom: 20px;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
     &:hover {
       background-color: #0088cc;
       color: white;

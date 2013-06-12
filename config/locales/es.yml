@@ -235,3 +235,18 @@ es:
   Editar Informe Trafico: "Editar Informe de Tráfico"
   El Justificante fue borrado correctamente: "El Justificante fue borrado correctamente"
   PDF actual: "PDF actual: %{pdf}"
+  Matricula: "Matrícula"
+  Bastidor: "Bastidor"
+  Comprador: "Comprador"
+  Vendedor: "Vendedor"
+  Marca: "Marca"
+  Modelo: "Modelo"
+  Alta: "Alta"
+  Presentacion_f: "Entrada"
+  Salida_f: "Salida"
+  Tramite_d: "Días trámite"
+  Documentos: "Documentos"
+  Observaciones: "Observaciones"
+
+
+

@@ -1,7 +1,7 @@
-<table class="table table-condensed table-bordered table-striped top_filtered expedientes <%= expediente_type? expediente, 'matriculacion' %>">
+<table class="row pull-right table table-condensed table-bordered table-striped top_filtered expedientes <%= expediente_type? expediente, 'matriculacion' %>">
   <thead>
     <tr class="filter">
-      <th><%= t("Matrícula") %></th>
+      <th><%= t("Matricula") %></th>
       <% if expediente_type? expediente, 'matriculacion' %>
         <th><%= t("Bastidor") %></th>
       <% end %>
@@ -11,15 +11,15 @@
         <th><%= t("Marca") %></th>
       <% end %>
       <th><%= t("Modelo") %></th>
-      <th><%= t("Fecha de alta") %></th>
-      <th><%= t("Fecha presentación Tráfico") %></th>
-      <th><%= t("Fecha salida Tráfico") %></th>
+      <th><%= t("Alta") %></th>
+      <th><%= t("Presentacion_t") %></th>
+      <th><%= t("Salida_t") %></th>
       <th></th>
       <th></th>
       <th></th>
     </tr>
     <tr>
-      <th><%= t("Matrícula") %></th>
+      <th><%= t("Matricula") %></th>
       <% if expediente_type? expediente, 'matriculacion' %>
         <th><%= t("Bastidor") %></th>
       <% end %>
@@ -29,10 +29,10 @@
         <th><%= t("Marca") %></th>
       <% end %>
       <th><%= t("Modelo") %></th>
-      <th><%= t("Fecha de alta") %></th>
-      <th><%= t("Fecha presentación Tráfico") %></th>
-      <th><%= t("Fecha salida Tráfico") %></th>
-      <th><%= t("Días trámite") %></th>
+      <th><%= t("Alta") %></th>
+      <th><%= t("Presentacion_f") %></th>
+      <th><%= t("Salida_f") %></th>
+      <th><%= t("Tramite_d") %></th>
       <th><%= t("Documentos") %></th>
       <th><%= t("Observaciones") %></th>
     </tr>

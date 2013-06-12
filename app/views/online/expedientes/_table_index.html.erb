@@ -18,7 +18,7 @@
       <th></th>
       <th></th>
     </tr>
-    <tr>
+    <tr class="titles">
       <th><%= t("Matricula") %></th>
       <% if expediente_type? expediente, 'matriculacion' %>
         <th><%= t("Bastidor") %></th>
@@ -73,7 +73,12 @@
         <td>
           <%= expediente.dias_tramite %>
         </td>
-        <td><%= link_to "Ver PDF", pdf_path(expediente) %></td>
+        <td class="icon">
+          <%= link_to pdf_path(expediente) do %>
+            <span><%= "Ver PDF" %></span>
+            <i class="icon icon-file"></i>
+          <% end %>
+        </td>
         <td>
           <%= expediente.observaciones %>
         </td>

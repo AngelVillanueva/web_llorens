@@ -1,0 +1,55 @@
+<div id="myCarousel" class="carousel slide">
+    <!-- carousel items -->
+    <div class="carousel-inner">
+        <!-- slide -->
+        <div class="active item slide1">
+            <div class="row">
+                <div class="span6">
+                    <%= image_tag('theme/coche_blanco_llorens.jpg', alt: 'slide1') %>
+                </div>
+                <div class="span4">
+                    <h1>
+                        Desde 1978 al servicio de nuestros clientes
+                    </h1>
+                    <p>
+                        Asesoramos con rigurosidad en la información y resultados eficaces, permanentemente al día de los cambios normativos y administrativos.
+                    </p>
+                    <%= link_to "Contáctenos", contact_path, class: 'btn btn-success btn-large' %>
+                </div>
+            </div>
+        </div>
+        <!-- slide -->
+        <div class="item slide2">
+            <div class="row">
+                <div class="span4 animated fadeInUpBig">
+                    <h1>Un equipo diverso y motivado</h1>
+                    <p>
+                        Estamos centrados en dar respuesta a las necesidades de nuestros clientes en un contexto cada vez más exigente.
+                    </p>
+                    <%= link_to "Nuestro equipo", '#equipo', class: 'btn btn-success btn-large scroller', 'data-section' => '#equipo' %>
+                </div>
+                <div class="span6 animated fadeInDownBig">
+                    <%= image_tag('theme/people_llorens.jpg', alt: 'slide2') %>
+                </div>
+            </div>
+        </div>
+        <!-- slide -->
+        <div class="item slide3">
+            <div class="row">
+                <div class="span4 animated fadeInUpBig">
+                    <h1>Acceso desde cualquier dispositivo</h1>
+                    <p>
+                        Nuestros clientes pueden consultar y solicitar trámites desde su ordenador, móvil o tablet. Aumentar su productividad es nuestro objetivo.
+                    </p>
+                    <%= link_to "Área de Cliente", online_root_path, class: 'btn btn-success btn-large' %>
+                </div>
+                <div class="span6 animated fadeInDownBig">
+                    <%= image_tag('theme/slide2.png', alt: 'slide3') %>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Carousel nav -->
+    <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+    <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+</div>

@@ -1,8 +1,10 @@
-<h1><%= t("Listado de Informes de Trafico") %></h1>
+<% provide :title, t("Listado de Informes de Trafico") %>
 
-<div><%= link_to 'Nuevo Informe', new_online_informe_path %></div>
-
-<table class="table table-bordered table-striped table-condensed informe_traficos top_filtered">
+<div class="about_page">
+  <%= section_header t("Informes de trafico") %>
+  <div class="row"><%= link_to 'Nuevo Informe', new_online_informe_path %></div>
+  <div class="row">
+    <table class="row pull-right table table-bordered table-striped table-condensed informe_traficos top_filtered">
   
   <thead>
     <tr class="filter">
@@ -46,3 +48,6 @@
 <% end %>
   </tbody>
 </table>
+
+  </div>
+</div>

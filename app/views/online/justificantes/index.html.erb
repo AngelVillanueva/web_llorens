@@ -1,9 +1,10 @@
 <% provide :title, t("Listado de Justificantes") %>
 
-<h1><%= t("Justificantes") %></h1>
-<h4><%= link_to t("Nuevo justificante"), new_online_justificante_path %></h4>
-
-<table class="table table-condensed table-bordered table-striped top_filtered justificantes">
+<div class="about_page">
+  <%= section_header t("Justificantes") %>
+  <div class="row"><%= link_to t("Nuevo justificante"), new_online_justificante_path %></div>
+  <div class="row">
+    <table class="row pull-right table table-condensed table-bordered table-striped top_filtered justificantes">
   <thead>
     <tr class="filter">
       <th><%= t("Organización") %></th>
@@ -81,3 +82,5 @@
     <% end %>
   </tbody>
 </table>
+  </div>
+</div>

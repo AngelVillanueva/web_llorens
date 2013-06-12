@@ -5,12 +5,13 @@ border: 1px solid #d9d9d9;
 border-radius: 20px;
 box-shadow: 0 0 5px 2px #e8e8e8;
 }
-table {
-  margin: 20px 0;
+.row table.dataTable {
+  margin: 30px 0!important;
 }
 .table tbody td {
   text-align: center;
-  padding: 10px 0;
+  padding: 10px 5px;
+  font-size: 14px;
 }
 table.top_filtered {
   // border-top: none;

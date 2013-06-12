@@ -90,7 +90,7 @@ $(document).ready ->
   }
   );
   $('.justificantes').dataTable( {
-    "sDom": "<'row'<'span6'T><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+    "sDom": "<'row'<'span6'T><'span6 pull-right'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
     "sPaginationType": "bootstrap",
     "oLanguage": {
         "sSearch": "Buscar en la tabla",
@@ -132,7 +132,7 @@ $(document).ready ->
   }
   );
   $('.informe_traficos').dataTable( {
-    "sDom": "<'row'<'span6'T><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+    "sDom": "<'row'<'span6'T><'span6 pull-right'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
     "sPaginationType": "bootstrap",
     "oLanguage": {
         "sSearch": "Buscar en la tabla",

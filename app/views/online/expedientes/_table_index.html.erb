@@ -1,11 +1,15 @@
-<table class="table table-condensed table-bordered table-striped top_filtered expedientes">
+<table class="table table-condensed table-bordered table-striped top_filtered expedientes <%= expediente_type? expediente, 'matriculacion' %>">
   <thead>
     <tr class="filter">
       <th><%= t("Matrícula") %></th>
-      <th><%= t("Bastidor") %></th>
+      <% if expediente_type? expediente, 'matriculacion' %>
+        <th><%= t("Bastidor") %></th>
+      <% end %>
       <th><%= t("Comprador") %></th>
       <th><%= t("Vendedor") %></th>
-      <th><%= t("Marca") %></th>
+      <% if expediente_type? expediente, 'transferencia' %>
+        <th><%= t("Marca") %></th>
+      <% end %>
       <th><%= t("Modelo") %></th>
       <th><%= t("Fecha de alta") %></th>
       <th><%= t("Fecha presentación Tráfico") %></th>
@@ -16,10 +20,14 @@
     </tr>
     <tr>
       <th><%= t("Matrícula") %></th>
-      <th><%= t("Bastidor") %></th>
+      <% if expediente_type? expediente, 'matriculacion' %>
+        <th><%= t("Bastidor") %></th>
+      <% end %>
       <th><%= t("Comprador") %></th>
       <th><%= t("Vendedor") %></th>
-      <th><%= t("Marca") %></th>
+      <% if expediente_type? expediente, 'transferencia' %>
+        <th><%= t("Marca") %></th>
+      <% end %>
       <th><%= t("Modelo") %></th>
       <th><%= t("Fecha de alta") %></th>
       <th><%= t("Fecha presentación Tráfico") %></th>
@@ -35,18 +43,22 @@
         <td>
           <%= link_to expediente.matricula, this_expediente_path(expediente) %>
         </td>
-        <td class="large">
-          <%= expediente.bastidor %>
-        </td>
+        <% if expediente_type? expediente, 'matriculacion' %>
+          <td>
+            <%= expediente.bastidor %>
+          </td>
+        <% end %>
         <td>
           <%= expediente.comprador %>
         </td>
         <td>
           <%= expediente.vendedor %>
         </td>
-        <td>
-          <%= expediente.marca %>
-        </td>
+        <% if expediente_type? expediente, 'transferencia' %>
+          <td>
+            <%= expediente.marca %>
+          </td>
+        <% end %>
         <td>
           <%= expediente.modelo %>
         </td>

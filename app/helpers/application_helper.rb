@@ -39,6 +39,14 @@ module ApplicationHelper
       online_matriculaciones_path
     end
   end
+  # Returns the expediente type
+  def expediente_type? expediente, type
+    if expediente.type.downcase == type.downcase
+      true
+    else
+      false
+    end
+  end
 
   # Section header helper
   def section_header header_text

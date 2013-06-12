@@ -1,7 +1,9 @@
 <% provide :title, t("Editar Informe Trafico") %>
 
-<h1><%= t("Editar informe") %></h1>
+<%= section_header t("Editar informe") %>
 
-<p><%= link_to t("Volver al listado"), online_informes_path %></p>
-
-<%= render 'form' %>
+<div class="container">
+  <div class="span6 offset4">
+    <%= render 'form' %>
+  </div>
+</div>

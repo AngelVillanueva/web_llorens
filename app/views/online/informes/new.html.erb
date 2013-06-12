@@ -1,7 +1,9 @@
 <% provide :title, t("Crear nuevo Informe de Trafico") %>
 
-<h1><%= t("Nuevo informe") %><span><%= t("solo_5_minutos") %></span></h1>
+<%= section_header t("Nuevo informe") %>
 
-<p><%= link_to t("Volver al listado"), online_informes_path %></p>
-
-<%= render 'form' %>
+<div class="container">
+  <div class="span6 offset4">
+    <%= render 'form' %>
+  </div>
+</div>

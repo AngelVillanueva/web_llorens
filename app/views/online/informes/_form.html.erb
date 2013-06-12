@@ -10,6 +10,6 @@
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, (informe.new_record? ? "Solicitar informe" : "Subir PDF") %>
   </div>
 <% end %>

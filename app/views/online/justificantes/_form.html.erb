@@ -18,5 +18,5 @@
     <%= t("PDF actual", pdf: justificante.pdf_file_name) unless justificante.pdf_file_name.nil? %>
   </div>
   <div><%= f.file_field :pdf %></div>
-  <%= f.button :submit, value: "Generar Justificante" %>
+  <%= f.button :submit, (justificante.new_record? ? "Solicitar justificante" : "Subir PDF") %>
 <% end %>

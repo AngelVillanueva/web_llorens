@@ -56,6 +56,7 @@ module ApplicationHelper
       # content_tag 'hr', class: 'right visible-desktop'
       concat content_tag( 'hr', '', class: 'left visible-desktop' )
       concat content_tag( 'span', header_text )
+      concat content_tag( 'small', link_to( t( "volver inicio" ), online_root_path ) )
       concat content_tag( 'hr', '', class: 'right visible-desktop' )
     end
   end

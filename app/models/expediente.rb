@@ -22,6 +22,7 @@
 
 class Expediente < ActiveRecord::Base
   belongs_to :organizacion
+  default_scope order('created_at DESC')
 
   validates :identificador, :matricula, :bastidor, :comprador, :vendedor, :marca, :modelo, :fecha_alta, :fecha_entra_trafico, :fecha_facturacion, :organizacion_id, :type, presence: true
 

@@ -29,6 +29,7 @@
 class Justificante < ActiveRecord::Base
   belongs_to :organizacion
   has_attached_file :pdf
+  default_scope order('created_at DESC')
 
   before_validation :assign_hora_solicitud, on: :create
   before_update :assign_hora_entrega, if: :first_time_pdf?

@@ -28,7 +28,7 @@
   </thead>
   <tbody>
 <% informes.each do |informe| %>
-  <tr class="<%= informe.pdf_file_name.nil? && 'error' || '' %>">
+  <tr class="<%= informe.pdf_file_name.nil? && 'new' || '' %>">
     <td><%= informe.organizacion.identificador %></td>
     <td><%= informe.matricula %></td>
     <td><%= informe.solicitante %></td>

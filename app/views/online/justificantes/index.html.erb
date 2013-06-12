@@ -39,7 +39,7 @@
   </thead>
   <tbody>
   <% justificantes.each do |justificante| %>
-      <tr class="<%= 'error' if justificante.pdf_file_name.nil? %>">
+      <tr class="<%= 'new' if justificante.pdf_file_name.nil? %>">
         <td>
           <%= link_to justificante.matricula, online_justificante_path(justificante) %>
         </td>

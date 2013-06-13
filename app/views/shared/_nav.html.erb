@@ -27,6 +27,9 @@
             <li><%= link_to "Contacto", contact_path %></li>
             <% if current_usuario %>
                 <li><%= link_to t("Area usuarios"), online_root_path, class: 'root' %></li>
+                <% if current_usuario.role? "admin" %>
+                    <li><%= link_to t("Admin"), rails_admin_path, class: 'admin' %></li>
+                <% end %>
                 <li>
                     <%= link_to t("Sign out"),
                           destroy_usuario_session_path, method: "delete",

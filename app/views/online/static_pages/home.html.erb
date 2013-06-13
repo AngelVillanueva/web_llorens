@@ -28,9 +28,9 @@
       <hr>
       <p class="description">Consulte los expedientes de Matriculación de Vehículos de Ocasión</p>
     </li>
-    <li class="span3 teammate">
+    <li class="span3 teammate new">
       <h5><%= link_to new_online_justificante_path do %>
-            <%= content_tag('span', "J") %>
+            <%= content_tag('span', "J", class: 'J') %>
             <%= t("Solicitud Justificantes") %>
           <% end %>
       </h5>
@@ -38,9 +38,9 @@
       <hr>
       <p class="description">Solicite un Justificante y descárguelo en formato PDF</p>
     </li>
-    <li class="span3 teammate">
+    <li class="span3 teammate new">
       <h5><%= link_to new_online_informe_path do %>
-            <%= content_tag('span', "I") %>
+            <%= content_tag('span', "I", class: 'I') %>
             <%= t("Solicitud Informes") %>
           <% end %>
       </h5>

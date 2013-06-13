@@ -6,7 +6,13 @@ $(document).ready ->
       $('#debug').slideToggle()
       $('a.debug b').toggleClass('clicked')
       event.stopPropagation()
-  
+
+  # change text on big buttons (hover)
+  $( '.new a span' ).hover(
+    -> $( this ).html( "+" )
+    -> $( this ).html( $( this ).attr('class') )
+  )
+      
 
   # dataTables: Set the classes that TableTools uses to something suitable for Bootstrap
   $.extend( true, $.fn.DataTable.TableTools.classes, {

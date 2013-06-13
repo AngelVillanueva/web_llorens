@@ -29,7 +29,7 @@
   </thead>
   <tbody>
 <% informes.each do |informe| %>
-  <tr class="<%= informe.pdf_file_name.nil? && 'new' || '' %>">
+  <tr class="informe <%= informe.pdf_file_name.nil? && 'new' || '' %>" data-time="<%= informe.created_at.to_i %>">
     <td><%= informe.organizacion.nombre %></td>
     <td><%= link_to informe.matricula, online_informe_path(informe) %></td>
     <td><%= informe.solicitante %></td>

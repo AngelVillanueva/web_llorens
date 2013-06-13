@@ -21,3 +21,4 @@
 //= require dataTables_column_filter
 //= require theme/theme
 //= require functions
+//= require more_functions

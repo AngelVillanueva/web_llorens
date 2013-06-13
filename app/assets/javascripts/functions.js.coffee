@@ -12,6 +12,10 @@ $(document).ready ->
     -> $( this ).html( "+" )
     -> $( this ).html( $( this ).attr('class') )
   )
+
+  # polling for new Informes requests
+  if ($('table.informe_traficos').length > 0)
+    setTimeout(updateInformes, 10000)
       
 
   # dataTables: Set the classes that TableTools uses to something suitable for Bootstrap

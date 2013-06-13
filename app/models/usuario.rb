@@ -18,6 +18,7 @@
 #  nombre                 :string(255)
 #  apellidos              :string(255)
 #  organizacion_id        :integer
+#  role                   :string(255)
 #
 
 class Usuario < ActiveRecord::Base
@@ -33,6 +34,14 @@ class Usuario < ActiveRecord::Base
   belongs_to :organizacion
   has_many :justificantes
   has_many :informes
+
+  def role_enum
+    %w[admin employee]
+  end
+
+  def role?(role)
+   self.role == role.to_s
+  end
 
   def expedientes
     Expediente.where(organizacion_id: organizacion_id)

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130528150948) do
+ActiveRecord::Schema.define(:version => 20130613003611) do
 
   create_table "expedientes", :force => true do |t|
     t.string   "identificador"
@@ -84,6 +84,19 @@ ActiveRecord::Schema.define(:version => 20130528150948) do
     t.string   "cif"
   end
 
+  create_table "rails_admin_histories", :force => true do |t|
+    t.text     "message"
+    t.string   "username"
+    t.integer  "item"
+    t.string   "table"
+    t.integer  "month",      :limit => 2
+    t.integer  "year",       :limit => 8
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+  end
+
+  add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories"
+
   create_table "usuarios", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
     t.string   "encrypted_password",     :default => "", :null => false
@@ -100,6 +113,7 @@ ActiveRecord::Schema.define(:version => 20130528150948) do
     t.string   "nombre"
     t.string   "apellidos"
     t.integer  "organizacion_id"
+    t.string   "role"
   end
 
   add_index "usuarios", ["email"], :name => "index_usuarios_on_email", :unique => true

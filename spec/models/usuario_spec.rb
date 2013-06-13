@@ -18,6 +18,7 @@
 #  nombre                 :string(255)
 #  apellidos              :string(255)
 #  organizacion_id        :integer
+#  role                   :string(255)
 #
 
 require 'spec_helper'

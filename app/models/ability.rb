@@ -2,6 +2,13 @@ class Ability
   include CanCan::Ability
 
   def initialize(usuario)
+    # panel de administración
+    if usuario.role? "admin"
+        can :access, :rails_admin
+        can :dashboard
+        can :manage, :all
+    end
+    # área de clientes
     if usuario
         can :manage, Expediente, organizacion_id: usuario.organizacion_id
         can :manage, Justificante, organizacion_id: usuario.organizacion_id

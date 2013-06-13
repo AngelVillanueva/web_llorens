@@ -1,5 +1,7 @@
 WebLlorens::Application.routes.draw do
 
+  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+
   devise_for :usuarios
 
   root to: 'web_pages#home'

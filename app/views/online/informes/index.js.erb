@@ -1,1 +1,27 @@
-console.log('Comprobando nuevos informes...')
+console.log('Checking new...');
+
+oTable = $('.informe_traficos ').dataTable();
+
+<% if informes.count > 0 %>
+  console.log("found " + <%= informes.count %> + " new");
+  //$('.informe_traficos').dataTable().fnClearTable();
+  <% informes.each do |informe| %>
+    console.log( "va..." );
+    //theTr = $( 'tr.informe:first' );
+    //console.log( "<%= j render( informe ) %>" );
+    //$( '.informe_traficos' ).dataTable().fnAddTr( theTr[0] );
+  <% end %>
+  var theTr = oTable.$( 'tr.informe:first' );
+  var data = oTable.fnGetData(theTr[0]);
+  console.log(theTr);
+  $('.informe_traficos ').dataTable().fnAddData(data);
+  //$( '#informes tbody' ).prepend( "<%= j render( informes ) %>" );
+  //$('.informe_traficos ').dataTable().fnAddData([1,2,3,4,5,6,7]);
+  //$('.informe_traficos').dataTable().fnDraw();
+  //$( '.informe_traficos' ).dataTable().fnReloadAjax('/online/informes.json');
+  //$('.informe_traficos ').dataTable().fnStandingRedraw();
+  var shown = $( '#informes tbody tr').length;
+  $( '#informes_info' ).html( "Mostrando 1 a " + shown + " de " + <%= Informe.where(organizacion_id: current_usuario.organizacion.id).count %> + " entradas" );
+<% else %>
+  console.log( 'no new as informes was ' + <%= informes.count %> );
+<% end %>

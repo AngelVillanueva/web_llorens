@@ -1,6 +1,19 @@
 class Online::InformesController < OnlineController
-  expose( :informes ) { current_usuario.organizacion.informes }
+  respond_to :html, :json, :js
+  
+  expose( :informes ) do
+    if params[:after]
+      timing = Time.at(params[:after].to_i - 10000)
+      current_usuario.organizacion.informes.where("created_at > ?", timing)
+    else
+      current_usuario.organizacion.informes
+    end
+  end
   expose( :informe, attributes: :informe_params )
+
+  def index
+    respond_with informes
+  end
 
   def create
     if informe.save

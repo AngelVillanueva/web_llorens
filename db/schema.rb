@@ -64,7 +64,6 @@ ActiveRecord::Schema.define(:version => 20130613003611) do
     t.string   "modelo"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
-    t.string   "pdf"
     t.string   "pdf_file_name"
     t.string   "pdf_content_type"
     t.integer  "pdf_file_size"

@@ -219,6 +219,7 @@ es:
   Listado de Expedientes: "Listado de %{type}"
   Listado de Justificantes: "Listado de Justificantes"
   Listado de Informes: "Listado de Informes"
+  Listado de Informes de Trafico: "Listado de Informes de Tráfico"
   confimar_borrado: "¿Está seguro?"
   Expediente n: "Expediente número %{n}"
   Expediente para: "Expediente para %{n}"

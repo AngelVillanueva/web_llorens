@@ -19,6 +19,9 @@
 //= require dataTables/extras/TableTools
 //= require ZeroClipboard
 //= require dataTables_column_filter
+//= require dataTables_add_tr
+//= require dataTables_reload_ajax
+//= require dataTables_standing_redraw
 //= require theme/theme
 //= require functions
 //= require more_functions

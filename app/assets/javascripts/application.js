@@ -24,4 +24,3 @@
 //= require dataTables_standing_redraw
 //= require theme/theme
 //= require functions
-//= require more_functions

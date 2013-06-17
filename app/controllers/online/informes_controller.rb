@@ -3,7 +3,7 @@ class Online::InformesController < OnlineController
   
   expose( :informes ) do
     if params[:after]
-      timing = Time.at(params[:after].to_i - 10000)
+      timing = Time.at(params[:after].to_i + 1)
       current_usuario.organizacion.informes.where("created_at > ?", timing)
     else
       current_usuario.organizacion.informes
@@ -12,7 +12,11 @@ class Online::InformesController < OnlineController
   expose( :informe, attributes: :informe_params )
 
   def index
-    respond_with informes
+    respond_to do |format|
+      format.html { informes }
+      format.json { render json: informes_for_table(informes) }
+      format.js
+    end
   end
 
   def create
@@ -57,6 +61,28 @@ class Online::InformesController < OnlineController
         params
         .require(:informe)
         .permit!
+      end
+    end
+    def informes_for_table informes
+      data = {}
+      data[:sEcho] = 1
+      data[:iTotalRecords] = informes.count
+      data[:iTotalDisplayRecords] = informes.count
+      data[:aaData] = format_data informes
+      data
+    end
+    def format_data informes
+      informes.map do |informe|
+        [
+          informe.organizacion.nombre,
+          informe.matricula,
+          informe.solicitante,
+          informe.created_at.strftime("%d/%m/%Y %H:%M"),
+          informe.created_at.to_i,
+          informe.pdf_file_name.nil? && t("En curso") || t('Si'),
+          "pend",
+          "link"
+        ]
       end
     end
 end

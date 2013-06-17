@@ -15,7 +15,16 @@ $(document).ready ->
 
   # polling for new Informes requests
   if ($('table.informe_traficos').length > 0)
+    $( '.new' ).fadeIn();
     setTimeout(updateInformes, 10000)
+
+
+
+  $( '#updating' ).dataTable( {
+    "bProcessing": true,
+    "bServerSide": true,
+    "sAjaxSource": "/online/informes.json"
+  } )
       
 
   # dataTables: Set the classes that TableTools uses to something suitable for Bootstrap
@@ -158,7 +167,7 @@ $(document).ready ->
           "sExtends":    "xls",
           "sButtonText": "Exportar a Excel",
           "sFileName": "Informes_Llorens.xls",
-          "mColumns": [0,1,2,3,4],
+          "mColumns": [0,1,2,3,5],
           "sCharSet": "utf16le"
         }
 
@@ -172,10 +181,20 @@ $(document).ready ->
       { type: "text" },
       { type: "text" },
       { type: "date-range" },
+      null,
       { type: "select" },
       null,
       null
       ]
   }
   );
+
+
+### shared functions ###
+## polling ##
+updateInformes = ->
+    if( $('tr.informe').length )
+      after = $('tr.informe:eq(0)').attr('data-time')
+      $.getScript('/online/informes.js?after=' + after)
+      setTimeout(updateInformes, 10000)
   

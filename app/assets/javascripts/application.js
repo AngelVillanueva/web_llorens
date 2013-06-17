@@ -22,4 +22,5 @@
 //= require datatables/dataTables_add_tr
 //= require theme/theme
 //= require development/development
-//= require functions
+//= require functions/functions
+//= require ready

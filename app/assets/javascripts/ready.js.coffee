@@ -6,18 +6,18 @@ $(document).ready ->
     -> $( this ).html( $( this ).attr('class') )
   )
 
-  # polling for new Informes requests
-  if ($('table.informe_traficos').length > 0)
+  # polling
+  if ( $( '#informes'.length ) )
     $( '.new' ).fadeIn();
     setTimeout(updateInformes, 10000)
+    #updateTable( 'informe' )
+    #setTimeout( -> updateTable 'informe', 1000 )
 
 
-
-  $( '#updating' ).dataTable( {
-    "bProcessing": true,
-    "bServerSide": true,
-    "sAjaxSource": "/online/informes.json"
-  } )
+  # polling for new Informes requests
+  #if ($('table.informe_traficos').length > 0)
+    #$( '.new' ).fadeIn();
+    #setTimeout( update( 'informe', 10000 ) )
       
 
   # dataTables: Set the classes that TableTools uses to something suitable for Bootstrap
@@ -182,12 +182,4 @@ $(document).ready ->
   }
   );
 
-
-### shared functions ###
-## polling ##
-updateInformes = ->
-    if( $('tr.informe').length )
-      after = $('tr.informe:eq(0)').attr('data-time')
-      $.getScript('/online/informes.js?after=' + after)
-      setTimeout(updateInformes, 10000)
   

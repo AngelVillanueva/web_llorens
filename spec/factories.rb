@@ -58,4 +58,9 @@ FactoryGirl.define do
     modelo "serie J"
     organizacion
   end
+  factory :informe do
+    matricula "Test informe"
+    solicitante "Bush C. Oinforme"
+    organizacion
+  end
 end

@@ -50,6 +50,7 @@ group :test do
   gem 'rspec-rails', '~> 2.13.1'
   gem 'shoulda-matchers', '~> 2.1.0'
   gem 'capybara', '~> 2.1.0'
+  gem 'selenium-webdriver', '~> 2.33.0'
   gem 'cucumber-rails', '1.3.1', require: false
   gem 'database_cleaner', '0.9.1'
   gem 'factory_girl_rails', '4.2.1'

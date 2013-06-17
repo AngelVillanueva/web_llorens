@@ -14,3 +14,10 @@ Given(/^I am a registered User with some Expedientes$/) do
   matriculacion
   transferencia
 end
+
+Given(/^I am a registered User with some Informes$/) do
+  login_as( usuario, :scope => :usuario )
+  informe
+  informe_2 = FactoryGirl.create( :informe, matricula: "Otro informe",
+    organizacion: organizacion )
+end

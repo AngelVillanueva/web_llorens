@@ -21,9 +21,12 @@ oTable = $( '#informes' ).dataTable();
       $( '#temp_table' ).prepend( "<%= j render( informes ) %>" );
       $( '#temp_table tr.informe' ).each(function(){
           oTable.fnAddTr( $( this ).get( 0 ) );
+          console.log('added...');
           $( this ).remove();
       });
-      oTable.fnSort( [ [ 6, 'desc' ], [ 4, 'desc' ] ] );
+      console.log('lets sort...');
+      oTable.fnSort( [ [ 4, 'desc' ] ] );
+      console.log('sorted...')
 
       //$('.informe_traficos ').dataTable().fnAddData([1,2,3,4,5,6,7]);
       //$('.informe_traficos').dataTable().fnDraw();

@@ -4,7 +4,7 @@ class Online::InformesController < OnlineController
   expose( :informes ) do
     if params[:after]
       timing = Time.at(params[:after].to_i + 1)
-      current_usuario.organizacion.informes.where("created_at > ?", timing)
+      current_usuario.organizacion.informes.where("pdf_file_name IS NULL").where("created_at > ?", timing)
     else
       current_usuario.organizacion.informes
     end

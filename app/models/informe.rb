@@ -18,6 +18,6 @@
 class Informe < ActiveRecord::Base
   has_attached_file :pdf
   belongs_to :organizacion
-  default_scope order('created_at DESC')
+  default_scope order('pdf_content_type DESC, created_at DESC')
   
 end

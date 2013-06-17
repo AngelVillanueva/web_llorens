@@ -7,7 +7,7 @@ $(document).ready ->
   )
 
   # polling
-  if ( $( '#informes'.length ) )
+  if ( $( '#informes' ).length )
     $( '.new' ).fadeIn();
     setTimeout(updateInformes, 10000)
     #updateTable( 'informe' )

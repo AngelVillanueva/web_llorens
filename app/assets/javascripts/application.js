@@ -17,9 +17,9 @@
 //= require dataTables/jquery.dataTables
 //= require dataTables/jquery.dataTables.bootstrap
 //= require dataTables/extras/TableTools
-//= require ZeroClipboard
-//= require dataTables_column_filter
-//= require dataTables_add_tr
+//= require datatables/ZeroClipboard
+//= require datatables/dataTables_column_filter
+//= require datatables/dataTables_add_tr
 //= require theme/theme
 //= require development/development
 //= require functions

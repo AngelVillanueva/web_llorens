@@ -12,12 +12,12 @@ When(/^I submit all the information for a new Justificante$/) do
   fill_in "Bastidor", with: "AAA"
   fill_in "Marca", with: "AAA"
   fill_in "Modelo", with: "AAA"
-  click_button "Generar Justificante"
+  click_button "Solicitar justificante"
 end
 
 When(/^I submit not all the needed information for a new Justificante$/) do
   visit new_online_justificante_path
-  click_button "Generar Justificante"
+  click_button "Solicitar justificante"
 end
 
 Then(/^a new Justificante should (not )?be created$/) do |negation|

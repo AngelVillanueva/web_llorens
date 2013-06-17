@@ -8,7 +8,7 @@ $(document).ready ->
       event.stopPropagation()
 
   # change text on big buttons (hover)
-  $( '.new a span' ).hover(
+  $( 'li.new a span' ).hover(
     -> $( this ).html( "+" )
     -> $( this ).html( $( this ).attr('class') )
   )

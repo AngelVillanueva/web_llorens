@@ -37,3 +37,51 @@ Shared functions
     showMonthAfterYear: false,
     yearSuffix: ''};
   $.datepicker.setDefaults($.datepicker.regional['es'])
+
+# table tools configuration: set classes to something suitable for Bootstrap
+@configureTableTools = ->
+  $.extend( true, $.fn.DataTable.TableTools.classes, {
+    "container": "btn-group",
+    "buttons": {
+      "normal": "btn",
+      "disabled": "btn disabled"
+    },
+    "collection": {
+      "container": "DTTT_dropdown dropdown-menu",
+      "buttons": {
+        "normal": "",
+        "disabled": "disabled"
+      }
+    }
+  } )
+
+# create DataTable
+@createDataTable = ( selector, excelname, exportcolumns, filtercolumns ) ->
+  $( '#' + selector ).dataTable({
+    "sDom": "<'row'<'span6'T><'span6 pull-right'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+    "sPaginationType": "bootstrap",
+    "oLanguage": {
+        "sSearch": "Buscar en la tabla",
+        "sLengthMenu": "Mostrar _MENU_ entradas por página",
+        "sZeroRecords": "Lo siento, no hay resultados",
+        "sInfo": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
+        "sInfoEmpty": "Mostrando 0 a 0 de 0 entradas",
+        "sInfoFiltered": "(filtrado de _MAX_ total entradas)"
+    },
+    "oTableTools": {
+      "aButtons": [
+        {
+          "sExtends":    "xls",
+          "sButtonText": "Exportar a Excel",
+          "sFileName": excelname + ".xls",
+          "mColumns": exportcolumns,
+          "sCharSet": "utf16le"
+        }
+
+      ]
+    }
+  }).columnFilter({
+    sPlaceHolder: "head:before",
+    sRangeFormat: "De {from} a {to}",
+    aoColumns: filtercolumns
+  })

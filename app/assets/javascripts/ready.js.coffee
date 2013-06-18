@@ -6,6 +6,10 @@ $(document).ready ->
     -> $( this ).html( $( this ).attr('class') )
   )
 
+  # printThis binding
+  $( 'a.print' ).click ->
+    $( $(this).attr( 'data-print-area' ) ).printThis()
+
   # datepicker localization (es)
   if ( $( 'table' ).length )
     configureDatePicker() # datepicker localization (es)

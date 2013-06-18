@@ -1,23 +1,32 @@
 <% provide :title, t( "Justificante profesional para", n: justificante.matricula ) %>
 
-<p><%= link_to "Volver al listado", online_justificantes_path %></p>
+<div class="about_page">
+  <%= section_header t("Justificante profesional para", n: justificante.matricula) %>
 
-<div class="with_pdf">
-  <h1>Justificante para <%= justificante.matricula %></h1>
-  <table class="table-condensed table-hover table-bordered">
-    <tbody>
-      <tr><td>Organización</td><td><%= justificante.organizacion.identificador %></td></tr>
-      <tr><td>Matrícula</td><td><%= justificante.matricula %></td></tr>
-      <tr><td>Bastidor</td><td><%= justificante.bastidor %></td></tr>
-      <tr><td>NIF Comprador</td><td><%= justificante.nif_comprador %></td></tr>
-      <tr><td>Nombre o Razón Social</td><td><%= justificante.nombre_razon_social %></td></tr>
-      <tr><td>Primer apellido</td><td><%= justificante.primer_apellido %></td></tr>
-      <tr><td>Segundo apellido</td><td><%= justificante.segundo_apellido %></td></tr>
-      <tr><td>Marca</td><td><%= justificante.marca %></td></tr>
-      <tr><td>Modelo</td><td><%= justificante.modelo %></td></tr>
-      <tr><td>Documentación</td><td><%= link_to "Ampliar PDF", justificante.pdf.url %></td></tr>
-    </tbody>
-  </table>
+  <div class="tools pull-right">
+    <ul>
+      <li><a href="#" class="print" title="<%= t("Imprimir") %>" data-print-area="table#justificante"><i class="icon icon-print icon-2x"></i></a></li>
+      <li><a href="#" title="<%= t("Ampliar PDF") %>"><i class="icon icon-file icon-2x"></i></a></li>
+    </ul>
+  </div>
 
-  <iframe class="pdf" src="<%= justificante.pdf.url %>">
+  <div class="row with_pdf">
+    <table id="justificante" class="table-condensed table-hover table-bordered">
+      <tbody>
+        <tr><td>Organización</td><td><%= justificante.organizacion.identificador %></td></tr>
+        <tr><td>Matrícula</td><td><%= justificante.matricula %></td></tr>
+        <tr><td>Bastidor</td><td><%= justificante.bastidor %></td></tr>
+        <tr><td>NIF Comprador</td><td><%= justificante.nif_comprador %></td></tr>
+        <tr><td>Nombre o Razón Social</td><td><%= justificante.nombre_razon_social %></td></tr>
+        <tr><td>Primer apellido</td><td><%= justificante.primer_apellido %></td></tr>
+        <tr><td>Segundo apellido</td><td><%= justificante.segundo_apellido %></td></tr>
+        <tr><td>Marca</td><td><%= justificante.marca %></td></tr>
+        <tr><td>Modelo</td><td><%= justificante.modelo %></td></tr>
+        <tr><td>Documentación</td><td><%= link_to t("Ampliar PDF"), justificante.pdf.url %></td></tr>
+      </tbody>
+    </table>
+
+    <iframe class="pdf" src="<%= justificante.pdf.url %>"></iframe>
+  </div>
+
 </div>

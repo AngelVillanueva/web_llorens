@@ -1,0 +1,45 @@
+<tr class="justificante <%= 'new' if justificante.pdf_file_name.nil? %>">
+    <td>
+      <%= link_to justificante.matricula, online_justificante_path(justificante) %>
+    </td>
+    <td><%= justificante.organizacion.identificador %>
+    <td class="large">
+      <%= justificante.bastidor %>
+    </td>
+    <td>
+      <%= justificante.nif_comprador %>
+    </td>
+    <td>
+      <%= justificante.nombre_razon_social %>
+    </td>
+     <td>
+      <%= justificante.primer_apellido %>
+    </td>
+     <td>
+      <%= justificante.segundo_apellido %>
+    </td>
+    <td>
+      <%= justificante.marca %>
+    </td>
+    <td>
+      <%= justificante.modelo %>
+    </td>
+    <td>
+      <%= l justificante.hora_solicitud, format: "%d/%m %H:%M" unless justificante.hora_solicitud.nil? %>
+    </td>
+    <td>
+      <%= l justificante.hora_entrega, format: "%d/%m %H:%M" unless justificante.hora_entrega.nil? %>
+    </td>
+    <td class="icon">
+      <% unless justificante.pdf_file_name.nil? %>
+        <%= link_to justificante.pdf.url, title: "PDF" do %>
+          <i class="icon icon-file"></i>
+        <% end %>
+      <% end %>
+    </td>
+    <td class="icon">
+      <%= link_to edit_online_justificante_path(justificante), title: "Editar" do %>
+          <i class="icon icon-edit"></i>
+        <% end %>
+    </td>
+  </tr>

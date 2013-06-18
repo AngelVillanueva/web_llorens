@@ -15,6 +15,13 @@ Given(/^I am a registered User with some Expedientes$/) do
   transferencia
 end
 
+Given(/^I am a registered User with some Justificantes$/) do
+  login_as( usuario, :scope => :usuario )
+  justificante
+  justificante_2 = FactoryGirl.create( :justificante, matricula: "Otro justificante",
+    organizacion: organizacion )
+end
+
 Given(/^I am a registered User with some Informes$/) do
   login_as( usuario, :scope => :usuario )
   informe

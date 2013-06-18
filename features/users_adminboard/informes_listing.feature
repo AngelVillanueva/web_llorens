@@ -1,4 +1,3 @@
-@now
 Feature: Informes listing
   In order to check the status of all the Informes
   as an Usuario
@@ -11,10 +10,10 @@ Feature: Informes listing
 
   Scenario: the Informes are sorted by not having a PDF yet and then by created_at field
     Given I am a registered User with some Informes
-      And one of them has an attached PDF
+      And one of the informes has an attached PDF
     When I access the Informes index page
     Then I should see a list of the Informes
-      And the first one should be the most urgent one
+      And the first Informe should be the most urgent one
 
   Scenario: an Usuario can not see Informes from other Organizacion
     Given I am a registered User with some Informes
@@ -27,5 +26,5 @@ Feature: Informes listing
     Given I am a registered User with some Informes
     When I access the Informes index page
       And another Informe from my Organizacion is added
-    Then I should see the list updated and sorted without reloading the page
+    Then I should see the list of the Informes updated and sorted without reloading the page
 

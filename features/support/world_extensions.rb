@@ -11,6 +11,9 @@ module KnowstheDomain
   def transferencia
     @transferencia || FactoryGirl.create( :transferencia, organizacion: organizacion )
   end
+  def justificante
+    @justificante || FactoryGirl.create( :justificante, organizacion: organizacion )
+  end
   def informe
     @informe || FactoryGirl.create( :informe, organizacion: organizacion )
   end

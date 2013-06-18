@@ -1,41 +1,26 @@
-console.log('Checking new...');
-
 oTable = $( '#informes' ).dataTable();
 
-<% if informes.count > 0 %>
-  console.log("found " + <%= informes.count %> + " new");
-  
-      //upTable.prepend( "<%= j render( informes ) %>" );
-      //$('.informe_traficos').dataTable().fnClearTable();
-      //<% informes.each do |informe| %>
-        //console.log( "va..." );
-        //theTr = $( 'tr.informe:first' );
-        //console.log( "<%= j render( informe ) %>" );
-        //$( '.informe_traficos' ).dataTable().fnAddTr( theTr[0] );
-      //<% end %>
-  //oTable.fnReloadAjax( '/online/informes.json?after=1371079465' )
-      //var theTr = upTable.$( 'tr:last' );
-      //var data = oTable.fnGetData(theTr[0]);
-      //console.log(theTr);
-      //$('.informe_traficos ').dataTable().fnAddData(data);
-      $( '#temp_table' ).prepend( "<%= j render( informes ) %>" );
-      $( '#temp_table tr.informe' ).each(function(){
-          oTable.fnAddTr( $( this ).get( 0 ) );
-          console.log('added...');
-          $( this ).remove();
-      });
-      console.log('lets sort...');
-      oTable.fnSort( [ [ 4, 'desc' ] ] );
-      console.log('sorted...')
-
-      //$('.informe_traficos ').dataTable().fnAddData([1,2,3,4,5,6,7]);
-      //$('.informe_traficos').dataTable().fnDraw();
-      //$( '.informe_traficos' ).dataTable().fnReloadAjax('/online/informes.json');
-      //$('.informe_traficos ').dataTable().fnStandingRedraw();
-  //var shown = $( '#informes tbody tr').length;
-  //$( '#informes_info' ).html( "Mostrando 1 a " + shown + " de " + <%= Informe.where(organizacion_id: current_usuario.organizacion.id).count %> + " entradas" );
-<% else %>
-  console.log( 'no new as informes was ' + <%= informes.count %> );
+<% if Rails.env.development? %>
+  console.log("Checking new...");
 <% end %>
 
-$( '.informe_traficos tr.new' ).fadeIn();
+<% if informes.count > 0 %>
+  <% if Rails.env.development? %>
+  console.log("found " + <%= informes.count %> + " new");
+  <% end %>
+  // populate temp table with new informes, then add to the table via fnAddTr,
+  // then remove from temporary
+  $( '#temp_table' ).prepend( "<%= j render( informes ) %>" );
+    $( '#temp_table tr.informe' ).each(function(){
+        oTable.fnAddTr( $( this ).get( 0 ) );
+        $( this ).remove();
+    });
+  // sort the table taking into account the new informes
+  oTable.fnSort( [ [ 4, 'desc' ] ] );
+<% else %>
+  <% if Rails.env.development? %>
+  console.log( 'no new as informes was ' + <%= informes.count %> );
+  <% end %>
+<% end %>
+
+$( '#informes tr.new' ).fadeIn();

@@ -22,6 +22,7 @@ $(document).ready ->
     configureTableTools() # set the tabletools classes to something Bootstrap-like
 
   # dataTables initialization
+  # justificantes
   createDataTable(
     'justificantes',
     "Justificantes_Llorens",
@@ -39,6 +40,22 @@ $(document).ready ->
       null,
       { type: "date-range" },
       { type: "date-range" },
+      null
+    ]
+  )
+  # informes
+  createDataTable(
+    'informes',
+    "Informes_Llorens",
+    [0,1,2,3,5], 
+    [
+      { type: "select" },
+      { type: "text" },
+      { type: "text" },
+      { type: "date-range" },
+      null,
+      { type: "select" },
+      null,
       null
     ]
   )
@@ -87,44 +104,3 @@ $(document).ready ->
       ]
   }
   );
-  
-  $('.informe_traficos').dataTable( {
-    "sDom": "<'row'<'span6'T><'span6 pull-right'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
-    "sPaginationType": "bootstrap",
-    "oLanguage": {
-        "sSearch": "Buscar en la tabla",
-        "sLengthMenu": "Mostrar _MENU_ entradas por página",
-        "sZeroRecords": "Lo siento, no hay resultados",
-        "sInfo": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
-        "sInfoEmpty": "Mostrando 0 a 0 de 0 entradas",
-        "sInfoFiltered": "(filtrado de _MAX_ total entradas)"
-    },
-    "oTableTools": {
-      "aButtons": [
-        {
-          "sExtends":    "xls",
-          "sButtonText": "Exportar a Excel",
-          "sFileName": "Informes_Llorens.xls",
-          "mColumns": [0,1,2,3,5],
-          "sCharSet": "utf16le"
-        }
-
-      ]
-    }
-  } ).columnFilter( {
-    sPlaceHolder: "head:before",
-    sRangeFormat: "De {from} a {to}",
-    aoColumns: [
-      { type: "select" },
-      { type: "text" },
-      { type: "text" },
-      { type: "date-range" },
-      null,
-      { type: "select" },
-      null,
-      null
-      ]
-  }
-  );
-
-  

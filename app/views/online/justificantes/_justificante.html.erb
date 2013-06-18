@@ -1,8 +1,8 @@
-<tr class="justificante <%= 'new' if justificante.pdf_file_name.nil? %>">
+<tr class="justificante <%= 'new' if justificante.pdf_file_name.nil? %>" data-time="<%= justificante.created_at.to_i %>">
+    <td><%= justificante.organizacion.identificador %>
     <td>
       <%= link_to justificante.matricula, online_justificante_path(justificante) %>
     </td>
-    <td><%= justificante.organizacion.identificador %>
     <td class="large">
       <%= justificante.bastidor %>
     </td>
@@ -24,6 +24,7 @@
     <td>
       <%= justificante.modelo %>
     </td>
+    <td class="hidden"><%= justificante.created_at.to_i %></td>
     <td>
       <%= l justificante.hora_solicitud, format: "%d/%m %H:%M" unless justificante.hora_solicitud.nil? %>
     </td>

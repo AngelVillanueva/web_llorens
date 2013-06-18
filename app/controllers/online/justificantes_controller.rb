@@ -1,6 +1,13 @@
 class Online::JustificantesController < OnlineController
   load_and_authorize_resource except: [:new, :create]
-  expose( :justificantes ) { current_usuario.organizacion.justificantes }
+  expose( :justificantes ) do
+    if params[:after]
+      timing = Time.at(params[:after].to_i + 1)
+      current_usuario.organizacion.justificantes.where("pdf_file_name IS NULL").where("created_at > ?", timing)
+    else
+      current_usuario.organizacion.justificantes
+    end
+  end
   expose( :justificante, attributes: :justificante_params )
 
 

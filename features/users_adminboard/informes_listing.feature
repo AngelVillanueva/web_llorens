@@ -21,7 +21,7 @@ Feature: Informes listing
     When I access the Informes index page
     Then I should see just the list of the Informes from my Organizacion
 
-  @javascript
+  @javascript @now 
   Scenario: the list of Informes is auto updated via ajax
     Given I am a registered User with some Informes
     When I access the Informes index page

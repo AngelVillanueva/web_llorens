@@ -4,7 +4,7 @@
   <%= section_header t("Justificantes") %>
   <div class="row pull-right"><%= link_to t("Nuevo justificante"), new_online_justificante_path, class: 'btn btn-primary new_record' %></div>
   <div class="row">
-    <table class="row pull-right table table-condensed table-bordered table-striped top_filtered justificantes">
+    <table id="justificantes" class="row pull-right table table-condensed table-bordered table-striped top_filtered justificantes">
   <thead>
     <tr class="filter">
       <th><%= t("Organizacion") %></th>
@@ -16,6 +16,7 @@
       <th><%= t("Segundo apellido") %></th>
       <th><%= t("Marca") %></th>
       <th><%= t("Modelo") %></th>
+      <th class="hidden"></th>
       <th><%= t("Hora solicitud") %></th>
       <th><%= t("Hora entrega") %></th>
       <th></th>
@@ -31,6 +32,7 @@
       <th><%= t("Segundo apellido") %></th>
       <th><%= t("Marca") %></th>
       <th><%= t("Modelo") %></th>
+      <th class="hidden"></th>
       <th><%= t("Hora solicitud") %></th>
       <th><%= t("Hora entrega") %></th>
       <th colspan="2"></th>
@@ -41,4 +43,11 @@
   </tbody>
 </table>
   </div>
+</div>
+
+<% # hidden table to serve as a bridge for polled new records to be added to the table %>
+<div class="row hidden">
+  <table id="temp_table">
+    <tbody></tbody>
+  </table>
 </div>

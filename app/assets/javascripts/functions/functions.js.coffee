@@ -2,7 +2,14 @@
 Shared functions
 ###
 
-# polling table data
+# polling Justificantes table data
+@updateJustificantes = ->
+    if( $('tr.justificante').length )
+      after = $('tr.justificante:eq(0)').attr('data-time')
+      $.getScript('/online/justificantes.js?after=' + after)
+      setTimeout(updateJustificantes, 10000)
+
+# polling Informes table data
 @updateInformes = ->
     if( $('tr.informe').length )
       after = $('tr.informe:eq(0)').attr('data-time')

@@ -1,4 +1,3 @@
-@now
 Feature: Justificantes listing
   As a registered User
   In order to find out the Justificantes status

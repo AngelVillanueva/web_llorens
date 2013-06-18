@@ -66,6 +66,6 @@ end
 Then(/^I should see the list of the Justificantes updated and sorted without reloading the page$/) do
   using_wait_time 11 do
     expect( page ).to have_selector( 'tr.justificante', count: 3 )
-    expect( first( '#informes tr.justificante' ) ).to have_selector( 'td', text: "Nuevo justificante interno" )
+    expect( first( '#justificantes tr.justificante' ) ).to have_selector( 'td', text: "Nuevo justificante interno" )
   end
 end

@@ -6,7 +6,12 @@ $(document).ready ->
     -> $( this ).html( $( this ).attr('class') )
   )
 
-  # polling
+  # polling Justificantes table
+  if ( $( '#justificantes' ).length )
+    $( '.new' ).fadeIn();
+    setTimeout(updateJustificantes, 10000)
+
+  # polling Informes table
   if ( $( '#informes' ).length )
     $( '.new' ).fadeIn();
     setTimeout(updateInformes, 10000)

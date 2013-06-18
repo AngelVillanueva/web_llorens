@@ -1,14 +1,11 @@
 <% provide :title, t( "Justificante profesional para", n: justificante.matricula ) %>
 
 <div class="about_page">
-  <%= section_header t("Justificante profesional para", n: justificante.matricula) %>
-
-  <div class="tools pull-right">
-    <ul>
-      <li><a href="#" class="print" title="<%= t("Imprimir") %>" data-print-area="table#justificante"><i class="icon icon-print icon-2x"></i></a></li>
-      <li><a href="#" title="<%= t("Ampliar PDF") %>"><i class="icon icon-file icon-2x"></i></a></li>
-    </ul>
-  </div>
+  <%= render 'shared/section_wrapper',
+    header_text: t("Justificante profesional para", n: justificante.matricula),
+    index_link: 'justificantes',
+    print_element: 'table#justificante',
+    linked_pdf: justificante %>
 
   <div class="row with_pdf">
     <table id="justificante" class="table-condensed table-hover table-bordered">

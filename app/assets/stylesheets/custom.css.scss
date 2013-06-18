@@ -256,9 +256,19 @@ width: 95%;
 //   text-shadow: none;
 // }
 
+.section_wrapper {
+  position: relative;
+}
+.tools {
+  position: absolute;
+  top: 30%;
+  right: 0;
+  height: 52px;
+}
 .tools li {
   display: inline-block;
   list-style: none;
+  margin: 5px 2px auto 2px;
 }
 .tools a {
   display: block;
@@ -282,6 +292,7 @@ width: 95%;
     height: 40px;
     line-height: 40px;
     border-radius: 30px;
+    margin: -5px 0px auto -5px;
     i {
       line-height: 40px;
     }

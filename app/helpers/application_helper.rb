@@ -56,8 +56,29 @@ module ApplicationHelper
       # content_tag 'hr', class: 'right visible-desktop'
       concat content_tag( 'hr', '', class: 'left visible-desktop' )
       concat content_tag( 'span', header_text )
-      concat content_tag( 'small', link_to( t( "volver inicio" ), online_root_path ) )
+      #concat content_tag( 'small', link_to( t( "volver inicio" ), online_root_path ) )
       concat content_tag( 'hr', '', class: 'right visible-desktop' )
+    end
+  end
+  
+  def tool_link_to_home
+    link_to online_root_path do
+      content_tag( 'i', nil, class: 'icon icon-2x icon-home' )
+    end
+  end
+  def tool_link_to_table model
+    link_to url_for controller: model, action: 'index' do
+      content_tag( 'i', nil, class: 'icon icon-2x icon-table' )
+    end
+  end
+  def tool_link_to_print element
+    link_to '#', class: 'print', 'data-print-area' => element do
+      content_tag( 'i', nil, class: 'icon icon-2x icon-print' )
+    end
+  end
+  def tool_link_to_pdf linked
+    link_to linked.pdf.url do
+      content_tag( 'i', nil, class: 'icon icon-2x icon-file' )
     end
   end
 end

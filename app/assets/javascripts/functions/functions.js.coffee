@@ -31,11 +31,12 @@ Shared functions
     dayNamesShort: ['Dom','Lun','Mar','Mi&eacute;','Juv','Vie','S&aacute;b'],
     dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','S&aacute;'],
     weekHeader: 'Sm',
-    dateFormat: 'dd/mm/yy',
     firstDay: 1,
     isRTL: false,
     showMonthAfterYear: false,
     yearSuffix: ''};
+  $.datepicker.regional[""].dateFormat = 'dd/mm/yy';
+  $.datepicker.setDefaults($.datepicker.regional['']);
   $.datepicker.setDefaults($.datepicker.regional['es'])
 
 # table tools configuration: set classes to something suitable for Bootstrap

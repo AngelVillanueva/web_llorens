@@ -10,9 +10,19 @@ Given(/^there are also Informes from other Organizaciones$/) do
     organizacion: acompany )
 end
 
+Given(/^one new Informe was created yesterday$/) do
+  y_informe = FactoryGirl.create(:informe, matricula: "Test yesterday", organizacion: organizacion, created_at: 1.day.ago )
+end
+
 When(/^another Informe from my Organizacion is added$/) do
   internal_informe = FactoryGirl.create( :informe, matricula: "Nuevo informe interno",
     organizacion: organizacion )
+end
+
+When(/^I filter the Informes by the date of yesterday$/) do
+  fill_in 'informes_range_from_3', with: 1.day.ago.strftime("%d/%m/%Y")
+  fill_in 'informes_range_to_3', with: 1.day.ago.strftime("%d/%m/%Y")
+  page.execute_script %Q{ $('#informes_range_from_3').trigger("focus") } # activate datetime picker
 end
 
 Then(/^I should see a list of the Informes$/) do
@@ -38,4 +48,8 @@ Then(/^I should see the list of the Informes updated and sorted without reloadin
     expect( page ).to have_selector( 'tr.informe', count: 3 )
     expect( first( '#informes tr.informe' ) ).to have_selector( 'td', text: "Nuevo informe interno" )
   end
+end
+
+Then(/^I should see just the Informe created yesterday$/) do
+  expect( page ).to have_selector( 'tr.informe', count: 1 )
 end

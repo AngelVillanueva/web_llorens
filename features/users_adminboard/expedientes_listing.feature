@@ -23,7 +23,7 @@ Scenario: Users can see just the Expedientes from their Organizations
   When I access the Matriculaciones index page
   Then I should just see the list of my Expedientes
   
-@javascript @now
+@javascript
 Scenario: Users can filter by date
   Given I am a registered User with some Expedientes
     And one new Transferencia was created yesterday

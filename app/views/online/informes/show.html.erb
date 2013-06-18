@@ -1,28 +1,34 @@
 <% provide :title, t( "Informe para", n: informe.matricula ) %>
 
-<p><%= link_to "Volver al listado", online_informes_path %></p>
+<div class="about_page">
+  <%= render 'shared/section_wrapper',
+    header_text: t("Informe para", n: informe.matricula),
+    index_link: 'informes',
+    print_element: 'table#informe',
+    linked_pdf: !informe.pdf_file_name.nil? && informe || nil %>
 
-<div class="with_pdf">
-  <h1>Informe para <%= informe.matricula %></h1>
-  <table class="table-condensed table-hover table-bordered">
-    <tbody>
-      <tr><td>Matrícula</td><td><%= informe.matricula %></td></tr>
-      <tr><td>Solicitante</td><td><%= informe.solicitante %></td></tr>
-      <tr><td>Fecha solicitud</td><td><%= l informe.created_at, format: "%d/%m/%Y %H:%M" %></td></tr>
-      <tr>
-        <td>Documentación</td>
-        <td>
-          <% if informe.pdf_file_name.nil? %>
-            <%= t("pendiente") %>
-          <% else %>
-            <%= link_to "Ampliar PDF", informe.pdf.url %>
-          <% end %>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="row with_pdf">
+    <table id="informe" class="table-condensed table-hover table-bordered">
+      <tbody>
+        <tr><td>Matrícula</td><td><%= informe.matricula %></td></tr>
+        <tr><td>Solicitante</td><td><%= informe.solicitante %></td></tr>
+        <tr><td>Fecha solicitud</td><td><%= l informe.created_at, format: "%d/%m/%Y %H:%M" %></td></tr>
+        <tr>
+          <td>Documentación</td>
+          <td>
+            <% if informe.pdf_file_name.nil? %>
+              <%= t("pendiente") %>
+            <% else %>
+              <%= link_to "Ampliar PDF", informe.pdf.url %>
+            <% end %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
-  <% unless informe.pdf_file_name.nil? %>
-    <iframe class="pdf" src="<%= informe.pdf.url %>">
-  <% end %>
+    <% unless informe.pdf_file_name.nil? %>
+      <iframe class="pdf" src="<%= informe.pdf.url %>">
+    <% end %>
+  </div>
+
 </div>

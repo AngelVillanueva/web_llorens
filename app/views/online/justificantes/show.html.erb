@@ -5,7 +5,7 @@
     header_text: t("Justificante profesional para", n: justificante.matricula),
     index_link: 'justificantes',
     print_element: 'table#justificante',
-    linked_pdf: justificante %>
+    linked_pdf: !justificante.pdf.url.nil? && justificante || nil %>
 
   <div class="row with_pdf">
     <table id="justificante" class="table-condensed table-hover table-bordered">

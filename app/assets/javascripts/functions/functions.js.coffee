@@ -16,25 +16,24 @@ Shared functions
       $.getScript('/online/informes.js?after=' + after)
       setTimeout(updateInformes, 10000)
 
-@updateTable = (model, plural = model + 's', timing = 10000) ->
-  #console.log $( '#' + plural ).length
-  #if ( $( '#' + plural ).length )
-    $( 'tr.new').fadeIn()
-    #setTimeout( updates( model, plural, timing ), timing )
-    #delay timing, -> updates( model, plural, timing)
-    console.log "hola"
-
-@update = (model, plural, timing) ->
-  selector = 'tr.' + model
-  script = ( '/online/' + plural + '.js?after=' )
-  if ( $( selector ).length )
-    after = $( selector + ':eq( 0 )' ).attr( 'data-time' )
-    $.getScript( script + after )
-    #setTimeout( update( model, plural, timing ), timing)
-
-@updates = (model,plural,timing) ->
-  console.log model
-  console.log plural
-  console.log timing
-
-delay = ( ms, func ) -> setTimeout func, ms
+# datepicker localization (es)
+@configureDatePicker = ->
+  $.datepicker.regional['es'] = {
+    closeText: 'Cerrar',
+    prevText: '&#x3c;Ant',
+    nextText: 'Sig&#x3e;',
+    currentText: 'Hoy',
+    monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio',
+    'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
+    monthNamesShort: ['Ene','Feb','Mar','Abr','May','Jun',
+    'Jul','Ago','Sep','Oct','Nov','Dic'],
+    dayNames: ['Domingo','Lunes','Martes','Mi&eacute;rcoles','Jueves','Viernes','S&aacute;bado'],
+    dayNamesShort: ['Dom','Lun','Mar','Mi&eacute;','Juv','Vie','S&aacute;b'],
+    dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','S&aacute;'],
+    weekHeader: 'Sm',
+    dateFormat: 'dd/mm/yy',
+    firstDay: 1,
+    isRTL: false,
+    showMonthAfterYear: false,
+    yearSuffix: ''};
+  $.datepicker.setDefaults($.datepicker.regional['es'])

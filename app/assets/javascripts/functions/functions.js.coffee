@@ -57,31 +57,33 @@ Shared functions
 
 # create DataTable
 @createDataTable = ( selector, excelname, exportcolumns, filtercolumns ) ->
-  $( '#' + selector ).dataTable({
-    "sDom": "<'row'<'span6'T><'span6 pull-right'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
-    "sPaginationType": "bootstrap",
-    "oLanguage": {
-        "sSearch": "Buscar en la tabla",
-        "sLengthMenu": "Mostrar _MENU_ entradas por página",
-        "sZeroRecords": "Lo siento, no hay resultados",
-        "sInfo": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
-        "sInfoEmpty": "Mostrando 0 a 0 de 0 entradas",
-        "sInfoFiltered": "(filtrado de _MAX_ total entradas)"
-    },
-    "oTableTools": {
-      "aButtons": [
-        {
-          "sExtends":    "xls",
-          "sButtonText": "Exportar a Excel",
-          "sFileName": excelname + ".xls",
-          "mColumns": exportcolumns,
-          "sCharSet": "utf16le"
-        }
+  oTable = $( '#' + selector )
+  if ( oTable.length )
+    oTable.dataTable({
+      "sDom": "<'row'<'span6'T><'span6 pull-right'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+      "sPaginationType": "bootstrap",
+      "oLanguage": {
+          "sSearch": "Buscar en la tabla",
+          "sLengthMenu": "Mostrar _MENU_ entradas por página",
+          "sZeroRecords": "Lo siento, no hay resultados",
+          "sInfo": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
+          "sInfoEmpty": "Mostrando 0 a 0 de 0 entradas",
+          "sInfoFiltered": "(filtrado de _MAX_ total entradas)"
+      },
+      "oTableTools": {
+        "aButtons": [
+          {
+            "sExtends":    "xls",
+            "sButtonText": "Exportar a Excel",
+            "sFileName": excelname + ".xls",
+            "mColumns": exportcolumns,
+            "sCharSet": "utf16le"
+          }
 
-      ]
-    }
-  }).columnFilter({
-    sPlaceHolder: "head:before",
-    sRangeFormat: "De {from} a {to}",
-    aoColumns: filtercolumns
-  })
+        ]
+      }
+    }).columnFilter({
+      sPlaceHolder: "head:before",
+      sRangeFormat: "De {from} a {to}",
+      aoColumns: filtercolumns
+    })

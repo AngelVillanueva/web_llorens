@@ -3,6 +3,10 @@ Given(/^there are more Expedientes from other Organizaciones$/) do
   other_expediente = FactoryGirl.create( :matriculacion, matricula: "Other matricula", organizacion: other_organizacion )
 end
 
+Given(/^one new Transferencia was created yesterday$/) do
+  y_transferencia = FactoryGirl.create(:transferencia, matricula: "Test yesterday", organizacion: organizacion, created_at: 1.day.ago )
+end
+
 When(/^I submit all the information for a new Expediente$/) do
   visit new_expediente_path
   fill_in "Identificador", with: "IM1"
@@ -17,11 +21,23 @@ When(/^I access the page for the second Expediente$/) do
   visit online_matriculacion_path Expediente.find_by_matricula( "Other matricula" )
 end
 
+When(/^I filter the Transferencias by the date of yesterday$/) do
+  #page.execute_script %Q{ $('#expedientes_range_from_5').trigger("focus") } # activate datetime picker
+  fill_in 'expedientes_range_from_5', with: 1.day.ago.strftime("%d/%m/%Y")
+  fill_in 'expedientes_range_to_5', with: 1.day.ago.strftime("%d/%m/%Y")
+
+end
+
 Then(/^I should see a list of the Expedientes$/) do
   page.should have_title( "Listado de Expedientes" )
   expedientes = Expediente.all.each do |expediente|
     page.should have_selector( 'td', text: expediente.matricula )
   end
+end
+
+Then(/^I should see just the Transferencia created yesterday$/) do
+  page.should have_selector( 'td', text: "Test yesterday" )
+  page.should have_selector( 'tr.expediente', count: 1 )
 end
 
 Then(/^I should see a list of the Matriculaciones$/) do

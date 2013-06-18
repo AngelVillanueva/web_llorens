@@ -23,4 +23,5 @@
 //= require theme/theme
 //= require development/development
 //= require functions/functions
+//= require functions/printThis
 //= require ready

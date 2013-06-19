@@ -1,8 +1,13 @@
 <% provide :title, t("Listado de Expedientes", type: expediente.type.pluralize) %>
 
 <div class="about_page">
-  <%= section_header expediente.type.pluralize %>
+  <%= render 'shared/section_wrapper',
+      header_text: expediente.type.pluralize,
+      linked_pdf: nil,
+      search: 'expedientes' %>
+
   <div class="row">
     <%= render 'table_index', expedientes: expedientes %>
   </div>
+
 </div>

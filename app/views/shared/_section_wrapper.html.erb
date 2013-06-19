@@ -9,10 +9,11 @@
         <% if defined? new_link %><li><%= tool_link_to_new new_link %></li><% end %>
         <% if defined? search %><li><%= tool_search_box %></li><% end %>
     </ul>
-    <% if defined? search %>
-    <div class="dataTables_filter" id='<%= "#{search}" %>_filter'>
-          <input type="text" aria-controls="<%= "#{search}" %>" placeholder="<%= t("Buscar en la tabla") %>">
+    
+  </div>
+  <% if defined? search %>
+    <div class="dataTables_filter pull-right" id='<%= "#{search}" %>_filter'>
+        <input type="text" aria-controls="<%= "#{search}" %>" placeholder="<%= t("Buscar en la tabla") %>">
     </div>
     <% end %>
-  </div>
 </div>

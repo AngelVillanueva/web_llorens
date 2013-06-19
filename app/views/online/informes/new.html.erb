@@ -1,9 +1,15 @@
 <% provide :title, t("Crear nuevo Informe de Trafico") %>
 
-<%= section_header t("Nuevo informe") %>
+<div class="about_page">
+  <%= render 'shared/section_wrapper',
+      header_text: t("Nuevo informe"),
+      index_link: 'informes',
+      print_element: nil,
+      linked_pdf: nil %>
 
-<div class="container">
-  <div class="span6 offset4">
-    <%= render 'form' %>
+  <div class="row">
+    <div class="span6 offset4">
+      <%= render 'form' %>
+    </div>
   </div>
 </div>

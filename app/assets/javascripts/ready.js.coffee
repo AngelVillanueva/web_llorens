@@ -93,3 +93,7 @@ $(document).ready ->
   # move 'Export to Excel' functionality
   if TableTools.fnGetMasters().length
     moveExportExcelButton()
+
+  # printThis binding
+  $( 'a.filtering' ).click ->
+    $( 'tr.filter' ).slideToggle()

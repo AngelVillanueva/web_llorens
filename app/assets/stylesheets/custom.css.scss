@@ -308,3 +308,26 @@ width: 95%;
 a.DTTT_button_xls {
   position: relative;
 }
+
+#informes {
+  tr.titles {
+    background: #08c;
+    color: white;
+  }
+  tr.odd > td {
+    background: white;
+  }
+}
+
+#expedientes {
+  tr.titles {
+    background: #333;
+    color: white;
+    th {
+      border-bottom: 3px solid black;
+    }
+  }
+  tr.odd > td {
+    background: white;
+  }
+}

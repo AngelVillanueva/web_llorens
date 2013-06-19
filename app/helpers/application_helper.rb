@@ -91,4 +91,9 @@ module ApplicationHelper
       content_tag( 'i', nil, class: 'icon icon-2x icon-search' )
     end
   end
+  def tool_link_to_filter
+    link_to '#', class: 'filtering' do
+      content_tag( 'i', nil, class: 'icon icon-2x icon-signal' )
+    end
+  end
 end

@@ -8,6 +8,7 @@
         <% unless linked_pdf.nil? %><li><%= tool_link_to_pdf linked_pdf %></li><% end %>
         <% if defined? new_link %><li><%= tool_link_to_new new_link %></li><% end %>
         <% if defined? search %><li><%= tool_search_box %></li><% end %>
+        <% if defined? search %><li><%= tool_link_to_filter %></li><% end %>
     </ul>
     
   </div>

@@ -1,7 +1,15 @@
 <% provide :title, t("Crear nuevo Justificante Profesional") %>
 
-<h1><%= t("Nuevo justificante") %><span><%= t("solo_5_minutos") %></span></h1>
+<div class="about_page">
+  <%= render 'shared/section_wrapper',
+      header_text: t("Nuevo justificante"),
+      index_link: 'justificantes',
+      print_element: nil,
+      linked_pdf: nil %>
 
-<p><%= link_to t("Volver al listado"), online_justificantes_path %></p>
-
-<%= render 'form' %>
+  <div class="row">
+    <div class="span6 offset4">
+      <%= render 'form' %>
+    </div>
+  </div>
+</div>

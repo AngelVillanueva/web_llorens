@@ -86,4 +86,9 @@ module ApplicationHelper
       content_tag( 'i', nil, class: 'icon icon-2x icon-plus' )
     end
   end
+  def tool_search_box
+    link_to '#', class: 'search' do
+      content_tag( 'i', nil, class: 'icon icon-2x icon-search' )
+    end
+  end
 end

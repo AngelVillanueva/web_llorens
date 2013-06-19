@@ -56,12 +56,25 @@ Shared functions
     }
   } )
 
+# custom search box for dataTables functionality
+@createSearchBox = ->
+  $input = $('.dataTables_filter input')
+  model = $input.attr( 'aria-controls' )
+  $dataT = $( '#' + model )
+  $input.data('val',  $input.val() ); # save value
+  $input.change ->
+    $dataT.dataTable().fnFilter( $input.val() )
+  $input.keyup ->
+    if ( $input.val() is '' || ( $input.val() != $input.data( 'val' ) && $input.val().length >= 3 ) )
+      $input.data( 'val', $input.val )
+      $( this ).change()
+
 # create DataTable
 @createDataTable = ( selector, excelname, exportcolumns, filtercolumns ) ->
   oTable = $( '#' + selector )
   if ( oTable.length )
     oTable.dataTable({
-      "sDom": "<'row'<'span6'T><'span6 pull-right'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+      "sDom": "<'row'<'span6'T><'span6 pull-right'>r>t<'row-fluid'<'span6'i><'span6'p>>",
       "sPaginationType": "bootstrap",
       "oLanguage": {
           "sSearch": "Buscar en la tabla",

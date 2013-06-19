@@ -10,10 +10,16 @@ $(document).ready ->
   $( 'a.print' ).click ->
     $( $(this).attr( 'data-print-area' ) ).printThis()
 
-  # datepicker localization (es)
+  # prepare the content if a table
   if ( $( 'table' ).length )
     configureDatePicker() # datepicker localization (es)
     configureTableTools() # set the tabletools classes to something Bootstrap-like
+    createSearchBox() # custom search box for dataTables functionality
+
+  # search link in Tools div
+  $( 'a.search' ).click ->
+    $( '.dataTables_filter' ).slideToggle()
+    false
 
   ###
   dataTables initialization

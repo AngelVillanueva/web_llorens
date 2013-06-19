@@ -16,11 +16,6 @@ $(document).ready ->
     configureTableTools() # set the tabletools classes to something Bootstrap-like
     createSearchBox() # custom search box for dataTables functionality
 
-  # search link in Tools div
-  $( 'a.search' ).click ->
-    $( '.dataTables_filter' ).slideToggle()
-    false
-
   ###
   dataTables initialization
   ###
@@ -89,3 +84,12 @@ $(document).ready ->
     )
     $( '.new' ).fadeIn(); # reveal new records
     setTimeout(updateInformes, 10000) # fired polling for new records
+
+  # search link in Tools div
+  $( 'a.search' ).click ->
+    $( '.dataTables_filter' ).slideToggle()
+    false
+
+  # move 'Export to Excel' functionality
+  if TableTools.fnGetMasters().length
+    moveExportExcelButton()

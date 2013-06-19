@@ -1,10 +1,13 @@
 <% provide :title, t("Listado de Informes de Trafico") %>
 
 <div class="about_page">
-  <%= section_header t("Informes de trafico") %>
-  <div class="row pull-right">
-    <%= link_to 'Nuevo Informe', new_online_informe_path, class: 'btn btn-primary new_record' %>
-  </div>
+  
+  <%= render 'shared/section_wrapper',
+      header_text: t("Informes de trafico"),
+      index_link: 'informes',
+      linked_pdf: nil,
+      new_link: 'informes' %>
+
   <div class="row">
     <table id="informes" class="row pull-right table table-bordered table-striped table-condensed informe_traficos top_filtered">
       <thead>

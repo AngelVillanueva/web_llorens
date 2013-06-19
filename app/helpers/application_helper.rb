@@ -81,4 +81,9 @@ module ApplicationHelper
       content_tag( 'i', nil, class: 'icon icon-2x icon-file' )
     end
   end
+  def tool_link_to_new model
+    link_to url_for controller: model, action: 'new' do
+      content_tag( 'i', nil, class: 'icon icon-2x icon-plus' )
+    end
+  end
 end

@@ -3,9 +3,10 @@
   <div class="tools">
      <ul>
         <li><%= tool_link_to_home %></li>
-        <li><%= tool_link_to_table index_link unless index_link.nil? %></li>
-        <li><%= tool_link_to_print print_element unless print_element.nil? %></li>
-        <li><%= tool_link_to_pdf linked_pdf unless linked_pdf.nil? %></li>
+        <% if defined? index_link %><li><%= tool_link_to_table index_link %></li><% end %>
+        <% if defined? print_element %><li><%= tool_link_to_print print_element %></li><% end %>
+        <% unless linked_pdf.nil? %><li><%= tool_link_to_pdf linked_pdf %></li><% end %>
+        <% if defined? new_link %><li><%= tool_link_to_new new_link %></li><% end %>
     </ul>
   </div>
 </div>

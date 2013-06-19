@@ -20,6 +20,7 @@
 //= require datatables/ZeroClipboard
 //= require datatables/dataTables_column_filter
 //= require datatables/dataTables_add_tr
+//= require lightbox/bootstrap-lightbox
 //= require theme/theme
 //= require development/development
 //= require functions/functions

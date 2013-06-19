@@ -189,10 +189,18 @@
           <p>A lo largo de los años en Gestoría Llorens hemos seguido insistiendo en mejorar la eficiencia y los resultados a través del esfuerzo, el compromiso, la diversidad, la ambición, el trabajo en equipo y la innovación. A través del conocimiento de las personas, construimos un equipo humano diverso y motivado, centrado en dar respuesta a las necesidades de nuestros clientes en un contexto económico, social y laboral cada vez más exigente (el XX% de la plantilla está vinculado directamente al negocio con clientes).</p>
         </div>
         <div class="span5 right">
-          <div class="figure"><%= image_tag('theme/about.png') %></div>
-          <div class="figure"><%= image_tag('theme/about.png') %></div>
+            <a data-toggle="lightbox" href="#demoLightbox" class="thumbnail">
+                <%= image_tag "theme/organigrama-940x549.png", width: '470' %>
+            </a>
         </div>
       </div>
     </div>
   </div>
+</div>
+
+<div id="demoLightbox" class="lightbox hide fade"  tabindex="-1" role="dialog" aria-hidden="true">
+    <div class='lightbox-content'>
+        <%= image_tag "theme/organigrama-940x549.png" %>
+        <div class="lightbox-caption"><p>Organigrama</p></div>
+    </div>
 </div>

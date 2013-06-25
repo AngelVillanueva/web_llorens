@@ -4,4 +4,6 @@ class WebPagesController < ApplicationController
   end
   def contacto
   end
+  def download
+  end
 end

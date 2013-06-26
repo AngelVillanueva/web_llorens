@@ -9,4 +9,5 @@
 #
 
 class Cliente < ActiveRecord::Base
+  validates :nombre, :identificador, :cif, presence: true
 end

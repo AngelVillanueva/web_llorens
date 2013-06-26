@@ -4,7 +4,6 @@
   <div class="form-inputs">
     <%= f.input :matricula %>
     <%= f.input :solicitante %>
-    <%= f.input :organizacion_id, as: :hidden, input_html: { value: current_usuario.organizacion_id } %>
     <%= f.association :cliente,
       collection: current_usuario.clientes, label_method: :nombre,
       value_method: :id, include_blank: false %>

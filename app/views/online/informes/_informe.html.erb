@@ -1,5 +1,5 @@
 <tr class="informe <%= informe.pdf_file_name.nil? && 'new' || '' %>" data-time="<%= informe.created_at.to_i %>">
-  <td><%= informe.organizacion.nombre %></td>
+  <td><%= informe.cliente.nombre %></td>
   <td><%= link_to informe.matricula, online_informe_path(informe) %></td>
   <td><%= informe.solicitante %></td>
   <td><%= l informe.created_at, format: "%d/%m/%Y" %></td>

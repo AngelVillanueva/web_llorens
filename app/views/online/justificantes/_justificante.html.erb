@@ -1,5 +1,5 @@
 <tr class="justificante <%= 'new' if justificante.pdf_file_name.nil? %>" data-time="<%= justificante.created_at.to_i %>">
-    <td><%= justificante.organizacion.identificador %>
+    <td><%= justificante.cliente.identificador %>
     <td>
       <%= link_to justificante.matricula, online_justificante_path(justificante) %>
     </td>

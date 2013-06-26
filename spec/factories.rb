@@ -17,6 +17,7 @@ FactoryGirl.define do
     email "info@sinapse.es"
     password "foobarfoo"
     password_confirmation "foobarfoo"
+    organizacion
   end
 
   factory :matriculacion, class: 'Matriculacion' do

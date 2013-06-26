@@ -2,8 +2,8 @@ When(/^I follow a PDF link$/) do
   first('tbody tr').click_link "Ver PDF"
 end
 
-When(/^I visit the Expediente PDF page for an Expediente of another Organizacion$/) do
-  step "there are more Expedientes from other Organizaciones"
+When(/^I visit the Expediente PDF page for an Expediente of another Cliente$/) do
+  step "there are more Expedientes from other Clientes"
   visit online_matriculacion_path Expediente.last, format: 'pdf'
 end
 

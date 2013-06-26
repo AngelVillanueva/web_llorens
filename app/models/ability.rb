@@ -10,9 +10,9 @@ class Ability
     end
     # área de clientes
     if usuario
-        can :manage, Expediente, organizacion_id: usuario.organizacion_id
-        can :manage, Justificante, organizacion_id: usuario.organizacion_id
-        can :manage, Informe, organizacion_id: usuario.organizacion_id
+        can :manage, Expediente, cliente_id: usuario.cliente_ids
+        can :manage, Justificante, cliente_id: usuario.cliente_ids
+        can :manage, Informe, cliente_id: usuario.cliente_ids
     end
     # Define abilities for the passed in user here. For example:
     #

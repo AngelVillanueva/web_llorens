@@ -2,7 +2,6 @@
 <%= simple_form_for [:online, justificante], html: { class: 'form-horizontal', multipart: true } do |f| %>
   <%= f.error_notification %>
   <%= f.input :identificador %>
-  <%= f.input :organizacion_id, as: :hidden, input_html: { value: current_usuario.organizacion.id } %>
   <%= f.association :cliente,
     collection: current_usuario.clientes, label_method: :nombre,
     value_method: :id, include_blank: false %>

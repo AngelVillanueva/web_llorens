@@ -3,11 +3,11 @@ Given(/^one of the justificantes has an attached PDF$/) do
   justificante.pdf_content_type = "application/pdf"
 end
 
-Given(/^there are also Justificantes from other Organizaciones$/) do
-  acompany = FactoryGirl.create( :organizacion, nombre: "Company",
+Given(/^there are also Justificantes from other Clientes$/) do
+  acompany = FactoryGirl.create( :cliente, nombre: "Company",
     identificador: "ORG", cif: "00")
   external_justificantes = FactoryGirl.create( :justificante, matricula: "Justificante externo",
-    organizacion: acompany )
+    cliente: acompany )
 end
 
 When(/^I submit all the information for a new Justificante$/) do
@@ -33,9 +33,9 @@ When(/^I submit not all the needed information for a new Justificante$/) do
   click_button "Solicitar justificante"
 end
 
-When(/^another Justificante from my Organizacion is added$/) do
+When(/^another Justificante from my Cliente is added$/) do
   internal_justificante = FactoryGirl.create( :justificante, matricula: "Nuevo justificante interno",
-    organizacion: organizacion )
+    cliente: cliente )
 end
 
 Then(/^a new Justificante should (not )?be created$/) do |negation|
@@ -49,7 +49,7 @@ end
 Then(/^I should see a list of the Justificantes$/) do
   page.should have_title( I18n.t( "Justificantes" ) )
   usuario = Usuario.find_by_nombre( "Angel" )
-  justificantes = usuario.organizacion.justificantes do |justificante|
+  justificantes = usuario.justificantes do |justificante|
     page.should have_selector( 'td', text: justificante.matricula )
   end
   expect( page ).to have_selector( 'tr.justificante', count: 2 )
@@ -59,7 +59,7 @@ Then(/^the first Justificante should be the most urgent one$/) do
   expect( first( 'tr.justificante' ) ).to have_selector( 'td', text: "Otro justificante" )
 end
 
-Then(/^I should see just the list of the Justificantes from my Organizacion$/) do
+Then(/^I should see just the list of the Justificantes from my Cliente$/) do
   expect( page ).to have_selector( 'tr.justificante', count: 2 )
   expect( page ).to_not have_selector( 'td', text: "Justificante externo" )
 end

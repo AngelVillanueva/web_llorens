@@ -12,6 +12,7 @@
 
 class Organizacion < ActiveRecord::Base
   has_many :clientes
+  has_many :usuarios
 
   validates :nombre, :identificador, :cif, presence: true
   

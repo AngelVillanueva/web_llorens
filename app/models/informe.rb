@@ -11,7 +11,6 @@
 #  pdf_file_size    :integer
 #  pdf_updated_at   :datetime
 #  identificador    :string(255)
-#  organizacion_id  :integer
 #  solicitante      :string(255)
 #  cliente_id       :integer
 #

@@ -21,6 +21,7 @@ describe Organizacion do
     it { should respond_to :nombre }
     it { should respond_to :identificador}
     it { should respond_to :clientes }
+    it { should respond_to :usuarios }
     it { should be_valid }
   end
   describe "with mandatory field nombre" do

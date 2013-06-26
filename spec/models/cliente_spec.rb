@@ -2,10 +2,11 @@
 #
 # Table name: clientes
 #
-#  id            :integer          not null, primary key
-#  nombre        :string(255)
-#  identificador :string(255)
-#  cif           :string(255)
+#  id              :integer          not null, primary key
+#  nombre          :string(255)
+#  identificador   :string(255)
+#  cif             :string(255)
+#  organizacion_id :integer
 #
 
 require 'spec_helper'

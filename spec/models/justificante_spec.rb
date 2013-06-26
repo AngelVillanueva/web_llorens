@@ -21,7 +21,6 @@
 #  pdf_content_type    :string(255)
 #  pdf_file_size       :integer
 #  pdf_updated_at      :datetime
-#  organizacion_id     :integer
 #  hora_solicitud      :datetime
 #  hora_entrega        :datetime
 #  cliente_id          :integer

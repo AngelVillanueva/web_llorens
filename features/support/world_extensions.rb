@@ -6,21 +6,21 @@ module KnowstheDomain
     @cliente ||= FactoryGirl.create( :cliente )
   end
   def usuario
-    usuario ||= FactoryGirl.create( :usuario, organizacion: organizacion )
+    usuario ||= FactoryGirl.create( :usuario )
     usuario.clientes << cliente if usuario.clientes.empty?
     usuario
   end
   def matriculacion
-    @matriculacion || FactoryGirl.create( :matriculacion, organizacion: organizacion, cliente: cliente )
+    @matriculacion || FactoryGirl.create( :matriculacion, cliente: cliente )
   end
   def transferencia
-    @transferencia || FactoryGirl.create( :transferencia, organizacion: organizacion, cliente: cliente )
+    @transferencia || FactoryGirl.create( :transferencia, cliente: cliente )
   end
   def justificante
-    @justificante || FactoryGirl.create( :justificante, organizacion: organizacion )
+    @justificante || FactoryGirl.create( :justificante, cliente: cliente )
   end
   def informe
-    @informe || FactoryGirl.create( :informe, organizacion: organizacion, cliente: cliente )
+    @informe || FactoryGirl.create( :informe, cliente: cliente )
   end
 end
 

@@ -33,8 +33,9 @@ class Usuario < ActiveRecord::Base
   # attr_accessible :title, :body
   belongs_to :organizacion
   has_and_belongs_to_many :clientes
-  has_many :justificantes
-  has_many :informes
+
+  validates :nombre, :apellidos, :organizacion_id, presence: true
+  validate :clientes_from_same_organizacion
 
   def role_enum
     %w[admin employee]
@@ -45,6 +46,22 @@ class Usuario < ActiveRecord::Base
   end
 
   def expedientes
-    Expediente.where(organizacion_id: organizacion_id)
+    Expediente.where(cliente_id: clientes)
+  end
+  def justificantes
+    Justificante.where(cliente_id: clientes)
+  end
+  def informes
+    Informe.where(cliente_id: clientes)
+  end
+
+  private
+  def clientes_from_same_organizacion
+    #errors.add(:usuarios, 'No pertenecen a la misma Organizacion') if organizacion_id !== cliente.organizacion_id
+    clientes.each do |cliente|
+      if organizacion_id != cliente.organizacion_id
+        errors.add(:usuarios, "No pertenecen a la misma Organizacion")
+      end
+    end
   end
 end

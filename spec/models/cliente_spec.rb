@@ -18,6 +18,7 @@ describe Cliente do
     it { should respond_to :nombre }
     it { should respond_to :identificador }
     it { should respond_to :cif }
+    it { should belong_to :organizacion }
   end
   describe "with all fields being mandatory" do
     it "should validate presence of" do

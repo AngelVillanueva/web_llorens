@@ -11,10 +11,7 @@
 #
 
 class Organizacion < ActiveRecord::Base
-  has_many :usuarios
-  has_many :expedientes
-  has_many :justificantes
-  has_many :informes
+  has_many :clientes
 
   validates :nombre, :identificador, :cif, presence: true
   

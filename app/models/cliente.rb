@@ -9,5 +9,6 @@
 #
 
 class Cliente < ActiveRecord::Base
+  belongs_to :organizacion
   validates :nombre, :identificador, :cif, presence: true
 end

@@ -50,7 +50,6 @@ describe Justificante do
     it { should respond_to :hora_entrega }
     it { should respond_to :pdf }
     it { should respond_to :cliente }
-    it { should respond_to :organizacion }
     it { should be_valid }
   end
   describe "with all fields but observaciones being mandatory" do
@@ -69,7 +68,6 @@ describe Justificante do
       should validate_presence_of :modelo
       should validate_presence_of :hora_solicitud
       should validate_presence_of :cliente_id
-      should validate_presence_of :organizacion_id
     end
   end
   describe "with auto assigned hora_solicitud field" do

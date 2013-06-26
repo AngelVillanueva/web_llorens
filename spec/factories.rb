@@ -17,7 +17,6 @@ FactoryGirl.define do
     email "info@sinapse.es"
     password "foobarfoo"
     password_confirmation "foobarfoo"
-    organizacion
   end
 
   factory :matriculacion, class: 'Matriculacion' do
@@ -33,7 +32,6 @@ FactoryGirl.define do
     fecha_facturacion 1.day.ago.to_date
     observaciones "Por favor, recoger"
     cliente
-    organizacion
   end
 
   factory :transferencia, class: 'Transferencia' do
@@ -49,7 +47,6 @@ FactoryGirl.define do
     fecha_facturacion 1.day.ago.to_date
     observaciones "Por favor, llevatelo"
     cliente
-    organizacion
   end
   factory :justificante do
     identificador "J-test"
@@ -65,12 +62,10 @@ FactoryGirl.define do
     marca "BMV"
     modelo "serie J"
     cliente
-    organizacion
   end
   factory :informe do
     matricula "Test informe"
     solicitante "Bush C. Oinforme"
     cliente
-    organizacion
   end
 end

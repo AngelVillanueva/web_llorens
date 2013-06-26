@@ -49,7 +49,6 @@ private
     expediente[:marca] = "AAA"
     expediente[:modelo] = "AAA"
     expediente[:cliente_id] = 1
-    expediente[:organizacion_id] = 1
     expediente[:observaciones] = "AAA"
     expediente
   end

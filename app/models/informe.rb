@@ -18,9 +18,8 @@
 
 class Informe < ActiveRecord::Base
   belongs_to :cliente
-  belongs_to :organizacion
   has_attached_file :pdf
-  default_scope includes(:organizacion).order('pdf_content_type DESC, created_at DESC')
+  default_scope order('pdf_content_type DESC, created_at DESC')
   
-  validates :matricula, :solicitante, :cliente_id, :organizacion_id, presence: true
+  validates :matricula, :solicitante, :cliente_id, presence: true
 end

@@ -24,21 +24,49 @@
 require 'spec_helper'
 
 describe Usuario do
-  usuario = Usuario.new
-  usuario.email = "foo@bar.com"
-  usuario.password = "foobarfoo"
-  describe "as a Model" do
-    subject { usuario }
+  # usuario = Usuario.new
+  # usuario.email = "foo@bar.com"
+  # usuario.password = "foobarfoo"
+  # usuario.nombre = "Angel"
+  # usuario.apellidos = "Villa"
+  # usuario.organizacion_id = 1
+  # usuario.save
+  let( :usuario ) { FactoryGirl.create( :usuario, organizacion_id: 1 ) }
+  subject { usuario }
 
+  describe "as a Model" do
     it { should respond_to :nombre }
     it { should respond_to :apellidos }
-    it { should respond_to :organizacion }
     it { should respond_to :email }
     it { should respond_to :password }
     it { should respond_to :expedientes }
     it { should respond_to :justificantes }
     it { should respond_to :informes }
     it { should respond_to :clientes }
+    it { should respond_to :organizacion }
     it { should be_valid }
+  end
+  describe "with several fields being mandatory" do
+    it "should validate presence of" do
+      should validate_presence_of :email
+      should validate_presence_of :nombre
+      should validate_presence_of :apellidos
+      should validate_presence_of :organizacion_id
+    end
+  end
+  describe "with all her Clientes belonging to the same organizacion" do
+    before do
+      cliente = FactoryGirl.create( :cliente )
+      usuario.organizacion_id = cliente.id.to_i + 1
+      usuario.clientes << cliente
+    end
+    it { should_not be_valid }
+  end
+  specify 'associations should not be stored' do
+    # reload group from DB to make sure that
+    # invalid associations have not been stored
+    subject.reload
+    expect(subject.clientes).to eql( [] )
+    expect(usuario.clientes.count).to eql( 0 )
   end
 end

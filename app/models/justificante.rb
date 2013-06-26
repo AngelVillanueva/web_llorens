@@ -29,14 +29,13 @@
 
 class Justificante < ActiveRecord::Base
   belongs_to :cliente
-  belongs_to :organizacion
   has_attached_file :pdf
   default_scope order('created_at DESC')
 
   before_validation :assign_hora_solicitud, on: :create
   before_update :assign_hora_entrega, if: :first_time_pdf?
 
-  validates :identificador, :nif_comprador, :nombre_razon_social, :primer_apellido, :segundo_apellido, :provincia, :municipio, :direccion, :matricula, :bastidor, :marca, :modelo, :hora_solicitud, :cliente_id, :organizacion_id, presence: true
+  validates :identificador, :nif_comprador, :nombre_razon_social, :primer_apellido, :segundo_apellido, :provincia, :municipio, :direccion, :matricula, :bastidor, :marca, :modelo, :hora_solicitud, :cliente_id, presence: true
 
   #protected
   def assign_hora_solicitud

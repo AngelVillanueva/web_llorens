@@ -5,6 +5,12 @@ FactoryGirl.define do
     cif "00000000T"
   end
 
+  factory :cliente do
+    nombre "Sinapse Consulting SL"
+    identificador "SIN"
+    cif "00000000T"
+  end
+
   factory :usuario do
     nombre "Angel"
     apellidos "Villanueva Perez"
@@ -26,6 +32,7 @@ FactoryGirl.define do
     fecha_entra_trafico 2.days.ago.to_date
     fecha_facturacion 1.day.ago.to_date
     observaciones "Por favor, recoger"
+    cliente
     organizacion
   end
 
@@ -41,6 +48,7 @@ FactoryGirl.define do
     fecha_entra_trafico 2.days.ago.to_date
     fecha_facturacion 1.day.ago.to_date
     observaciones "Por favor, llevatelo"
+    cliente
     organizacion
   end
   factory :justificante do
@@ -56,11 +64,13 @@ FactoryGirl.define do
     bastidor "ABC123"
     marca "BMV"
     modelo "serie J"
+    cliente
     organizacion
   end
   factory :informe do
     matricula "Test informe"
     solicitante "Bush C. Oinforme"
+    cliente
     organizacion
   end
 end

@@ -17,7 +17,6 @@
 #  modelo              :string(255)
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
-#  pdf                 :string(255)
 #  pdf_file_name       :string(255)
 #  pdf_content_type    :string(255)
 #  pdf_file_size       :integer
@@ -25,6 +24,7 @@
 #  organizacion_id     :integer
 #  hora_solicitud      :datetime
 #  hora_entrega        :datetime
+#  cliente_id          :integer
 #
 
 require 'spec_helper'
@@ -49,6 +49,7 @@ describe Justificante do
     it { should respond_to :hora_solicitud }
     it { should respond_to :hora_entrega }
     it { should respond_to :pdf }
+    it { should respond_to :cliente }
     it { should respond_to :organizacion }
     it { should be_valid }
   end
@@ -67,6 +68,7 @@ describe Justificante do
       should validate_presence_of :marca
       should validate_presence_of :modelo
       should validate_presence_of :hora_solicitud
+      should validate_presence_of :cliente_id
       should validate_presence_of :organizacion_id
     end
   end

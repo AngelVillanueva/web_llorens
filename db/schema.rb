@@ -11,7 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130613003611) do
+ActiveRecord::Schema.define(:version => 20130626100733) do
+
+  create_table "clientes", :force => true do |t|
+    t.string "nombre"
+    t.string "identificador"
+    t.string "cif"
+  end
 
   create_table "expedientes", :force => true do |t|
     t.string   "identificador"
@@ -29,6 +35,7 @@ ActiveRecord::Schema.define(:version => 20130613003611) do
     t.text     "observaciones"
     t.integer  "organizacion_id"
     t.string   "type"
+    t.integer  "cliente_id"
   end
 
   add_index "expedientes", ["id", "type"], :name => "index_expedientes_on_id_and_type"
@@ -45,6 +52,7 @@ ActiveRecord::Schema.define(:version => 20130613003611) do
     t.string   "identificador"
     t.integer  "organizacion_id"
     t.string   "solicitante"
+    t.integer  "cliente_id"
   end
 
   add_index "informes", ["organizacion_id"], :name => "index_informes_on_organizacion_id"
@@ -71,6 +79,7 @@ ActiveRecord::Schema.define(:version => 20130613003611) do
     t.integer  "organizacion_id"
     t.datetime "hora_solicitud"
     t.datetime "hora_entrega"
+    t.integer  "cliente_id"
   end
 
   add_index "justificantes", ["organizacion_id"], :name => "index_justificantes_on_organizacion_id"

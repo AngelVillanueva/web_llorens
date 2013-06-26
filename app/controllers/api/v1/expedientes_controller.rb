@@ -30,7 +30,7 @@ class Api::V1::ExpedientesController < ApplicationController
     params[:expediente].delete :type # to avoid Mass Assignment Error [:type is reserved]
     params
       .require( :expediente )
-      .permit( :identificador, :matricula, :bastidor, :comprador, :vendedor, :marca, :modelo, :fecha_alta, :fecha_entra_trafico, :fecha_facturacion, :organizacion_id, :observaciones )
+      .permit( :identificador, :matricula, :bastidor, :comprador, :vendedor, :marca, :modelo, :fecha_alta, :fecha_entra_trafico, :fecha_facturacion, :cliente_id, :organizacion_id, :observaciones )
   end
   def this_expediente_params index
     params[:expedientes][index][:expediente].delete :type

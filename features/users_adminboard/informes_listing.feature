@@ -21,14 +21,14 @@ Feature: Informes listing
     When I access the Informes index page
     Then I should see just the list of the Informes from my Organizacion
 
-  @javascript @now 
+  @javascript @wip 
   Scenario: the list of Informes is auto updated via ajax
     Given I am a registered User with some Informes
     When I access the Informes index page
       And another Informe from my Organizacion is added
     Then I should see the list of the Informes updated and sorted without reloading the page
 
-  @javascript
+  @javascript @wip
   Scenario: Users can filter by date
     Given I am a registered User with some Informes
       And one new Informe was created yesterday

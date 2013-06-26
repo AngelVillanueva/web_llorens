@@ -11,12 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130626100733) do
+ActiveRecord::Schema.define(:version => 20130626105403) do
 
   create_table "clientes", :force => true do |t|
     t.string "nombre"
     t.string "identificador"
     t.string "cif"
+  end
+
+  create_table "clientes_usuarios", :id => false, :force => true do |t|
+    t.integer "cliente_id"
+    t.integer "usuario_id"
   end
 
   create_table "expedientes", :force => true do |t|

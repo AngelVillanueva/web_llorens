@@ -6,7 +6,7 @@ FactoryGirl.define do
   end
 
   factory :cliente do
-    nombre "Sinapse Consulting SL"
+    nombre "Sinapse Consulting S.L."
     identificador "SIN"
     cif "00000000T"
   end

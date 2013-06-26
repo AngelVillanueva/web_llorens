@@ -32,6 +32,7 @@ class Usuario < ActiveRecord::Base
   #attr_accessible :email, :password, :password_confirmation, :remember_me
   # attr_accessible :title, :body
   belongs_to :organizacion
+  has_and_belongs_to_many :clientes
   has_many :justificantes
   has_many :informes
 

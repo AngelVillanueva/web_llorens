@@ -15,5 +15,6 @@ Scenario: Expediente detail page
 Scenario: Expediente detail page is just accessible by Usuarios from its Organizacion
   Given I am a registered User with some Expedientes
     And there are more Expedientes from other Organizaciones
+    And there are more Expedientes from other Clientes
   When I access the page for the second Expediente
   Then I should not see a detail of that Expediente

@@ -25,6 +25,19 @@ When(/^I filter the Informes by the date of yesterday$/) do
   page.execute_script %Q{ $('#informes_range_from_3').trigger("focus") } # activate datetime picker
 end
 
+When(/^I submit not all the needed information for a new Informe$/) do
+  visit new_online_informe_path
+  click_button "Solicitar informe"
+end
+
+When(/^I submit all the information for a new Informe$/) do
+  visit new_online_informe_path
+  fill_in "Matricula", with: "AAA"
+  fill_in "Solicitante", with: "Yo"
+  select "Sinapse Consulting S.L.", from: "Cliente"
+  click_button "Solicitar informe"
+end
+
 Then(/^I should see a list of the Informes$/) do
   page.should have_title( I18n.t( "Informes de trafico" ) )
   usuario = Usuario.find_by_nombre( "Angel" )
@@ -52,4 +65,12 @@ end
 
 Then(/^I should see just the Informe created yesterday$/) do
   expect( page ).to have_selector( 'tr.informe', count: 1 )
+end
+
+Then(/^a new Informe should (not )?be created$/) do |negation|
+  if negation
+    Informe.all.count.should eql( 0 )
+  else
+    Informe.all.count.should eql( 1 )
+  end
 end

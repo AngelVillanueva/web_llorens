@@ -3,6 +3,11 @@ Given(/^there are more Expedientes from other Organizaciones$/) do
   other_expediente = FactoryGirl.create( :matriculacion, matricula: "Other matricula", organizacion: other_organizacion )
 end
 
+Given(/^there are more Expedientes from other Clientes$/) do
+  other_cliente = Cliente.create( nombre: "Other C", identificador: "CCC", cif: "00000000T" )
+  other_expediente = FactoryGirl.create( :matriculacion, matricula: "Other matricula", cliente: other_cliente)
+end
+
 Given(/^one new Transferencia was created yesterday$/) do
   y_transferencia = FactoryGirl.create(:transferencia, matricula: "Test yesterday", organizacion: organizacion, fecha_alta: 1.day.ago )
 end

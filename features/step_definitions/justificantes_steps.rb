@@ -24,6 +24,7 @@ When(/^I submit all the information for a new Justificante$/) do
   fill_in "Bastidor", with: "AAA"
   fill_in "Marca", with: "AAA"
   fill_in "Modelo", with: "AAA"
+  select "Sinapse Consulting S.L.", from: "Cliente"
   click_button "Solicitar justificante"
 end
 

@@ -5,6 +5,9 @@
     <%= f.input :matricula %>
     <%= f.input :solicitante %>
     <%= f.input :organizacion_id, as: :hidden, input_html: { value: current_usuario.organizacion_id } %>
+    <%= f.association :cliente,
+      collection: current_usuario.clientes, label_method: :nombre,
+      value_method: :id, include_blank: false %>
     <%= t("PDF actual", pdf: informe.pdf_file_name) unless informe.pdf_file_name.nil? %>
     <%= f.file_field :pdf %>
   </div>

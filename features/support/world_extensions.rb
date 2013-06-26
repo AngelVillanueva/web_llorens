@@ -7,6 +7,8 @@ module KnowstheDomain
   end
   def usuario
     usuario ||= FactoryGirl.create( :usuario, organizacion: organizacion )
+    usuario.clientes << cliente if usuario.clientes.empty?
+    usuario
   end
   def matriculacion
     @matriculacion || FactoryGirl.create( :matriculacion, organizacion: organizacion, cliente: cliente )

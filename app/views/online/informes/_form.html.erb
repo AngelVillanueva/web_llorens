@@ -10,10 +10,10 @@
       value_method: :id, include_blank: false %>
     <% end %>
     <%= t("PDF actual_html", pdf: informe.pdf_file_name) unless informe.pdf_file_name.nil? %>
-    <%= f.file_field :pdf %>
+    <%= f.file_field :pdf unless informe.new_record? %>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, (informe.new_record? ? "Solicitar informe" : "Subir PDF") %>
+  <div>
+    <%= f.button :submit, (informe.new_record? ? "Solicitar informe" : "Subir PDF"), class: 'btn-info' %>
   </div>
 <% end %>

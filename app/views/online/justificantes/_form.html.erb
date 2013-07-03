@@ -1,23 +1,24 @@
-<p><%= t("Persona solicitante: ")%><%= "#{current_usuario.nombre} #{current_usuario.apellidos}" %></p>
 <%= simple_form_for [:online, justificante], html: { class: 'form-horizontal', multipart: true } do |f| %>
   <%= f.error_notification %>
-  <%= f.input :identificador %>
-  <%= f.association :cliente,
-    collection: current_usuario.clientes, label_method: :nombre,
-    value_method: :id, include_blank: false %>
-  <%= f.input :nif_comprador %>
-  <%= f.input :nombre_razon_social, label: t("Nombre o Razón Social") %>
-  <%= f.input :primer_apellido %>
-  <%= f.input :segundo_apellido %>
-  <%= f.input :provincia %>
-  <%= f.input :municipio %>
-  <%= f.input :direccion, input_html: { rows: "5" } %>
-  <%= f.input :matricula %>
-  <%= f.input :bastidor %>
-  <%= f.input :marca %>
-  <%= f.input :modelo %>
+  <% if justificante.new_record? %>
+    <%= f.input :identificador %>
+    <%= f.association :cliente,
+      collection: current_usuario.clientes, label_method: :nombre,
+      value_method: :id, include_blank: false %>
+    <%= f.input :nif_comprador %>
+    <%= f.input :nombre_razon_social, label: t("Nombre o Razón Social") %>
+    <%= f.input :primer_apellido %>
+    <%= f.input :segundo_apellido %>
+    <%= f.input :provincia %>
+    <%= f.input :municipio %>
+    <%= f.input :direccion, input_html: { rows: "5" } %>
+    <%= f.input :matricula %>
+    <%= f.input :bastidor %>
+    <%= f.input :marca %>
+    <%= f.input :modelo %>
+  <% end %>
   <div>
-    <%= t("PDF actual", pdf: justificante.pdf_file_name) unless justificante.pdf_file_name.nil? %>
+    <%= t("PDF actual_html", pdf: justificante.pdf_file_name) unless justificante.pdf_file_name.nil? %>
   </div>
   <div><%= f.file_field :pdf %></div>
   <%= f.button :submit, (justificante.new_record? ? t("Solicitar justificante") : t("Subir PDF")) %>

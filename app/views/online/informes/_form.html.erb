@@ -2,12 +2,14 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :matricula %>
-    <%= f.input :solicitante %>
-    <%= f.association :cliente,
+    <% if informe.new_record? %>
+      <%= f.input :matricula %>
+      <%= f.input :solicitante %>
+      <%= f.association :cliente,
       collection: current_usuario.clientes, label_method: :nombre,
       value_method: :id, include_blank: false %>
-    <%= t("PDF actual", pdf: informe.pdf_file_name) unless informe.pdf_file_name.nil? %>
+    <% end %>
+    <%= t("PDF actual_html", pdf: informe.pdf_file_name) unless informe.pdf_file_name.nil? %>
     <%= f.file_field :pdf %>
   </div>
 

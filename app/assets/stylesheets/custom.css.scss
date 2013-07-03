@@ -62,6 +62,9 @@ tr.titles th {
   padding: 20px;
   border-bottom: 3px solid #87cefa;
 }
+tr.titles th.centered {
+  text-align: center;
+}
 tr.filter, .filter th {
   // border: none;
 }
@@ -313,7 +316,7 @@ a.DTTT_button_xls {
   position: relative;
 }
 
-#informes {
+#informesOld {
   tr.titles {
     background: #08c;
     color: white;
@@ -323,7 +326,7 @@ a.DTTT_button_xls {
   }
 }
 
-#expedientes {
+#expedientes, #justificantes, #informes {
   tr.titles {
     background: #333;
     color: white;

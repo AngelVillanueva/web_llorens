@@ -1,10 +1,10 @@
 <tr class="informe <%= informe.pdf_file_name.nil? && 'new' || '' %>" data-time="<%= informe.created_at.to_i %>">
-  <td><%= informe.cliente.nombre %></td>
-  <td><%= link_to informe.matricula, online_informe_path(informe) %></td>
-  <td><%= informe.solicitante %></td>
-  <td><%= l informe.created_at, format: "%d/%m/%Y" %></td>
+  <td class="printable" data-titular="Cliente"><%= informe.cliente.nombre %></td>
+  <td class="printable" data-titular="Matricula"><%= informe.matricula %></td>
+  <td class="printable" data-titular="Solicitante"><%= informe.solicitante %></td>
+  <td class="printable" data-titular="Fecha solicitud"><%= l informe.created_at, format: "%d/%m/%Y" %></td>
   <td class="hidden"><%= informe.created_at.to_i %></td>
-  <td><%= informe.pdf_file_name.nil? && t("En curso") || t('Si') %></td>
+  <td class="printable" data-titular="Finalizado"><%= informe.pdf_file_name.nil? && t("En curso") || t('Si') %></td>
   <td class="icon">
     <% unless informe.pdf_file_name.nil? %>
       <%= link_to informe.pdf.url do %>
@@ -21,5 +21,8 @@
         <span><%= edit_pdf_label informe %></span>
         <i class="icon icon-edit"></i>
     <% end %>
+  </td>
+  <td>
+    <a href="#" class="printLink"><i class="icon icon-print"></i></a>
   </td>
 </tr>

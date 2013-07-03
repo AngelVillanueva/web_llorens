@@ -13,6 +13,9 @@ $(document).ready ->
   $( 'a.print' ).click ->
     $( $(this).attr( 'data-print-area' ) ).printThis()
 
+  $( 'a.printLink').click ->
+    printRow( $( this ).parent('td').parent('tr') )
+
   # prepare the content if a table
   if ( $( 'table' ).length )
     configureDatePicker() # datepicker localization (es)
@@ -83,6 +86,7 @@ $(document).ready ->
         null,
         { type: "date-range" },
         { type: "date-range" },
+        null,
         null
       ]
     )
@@ -102,6 +106,7 @@ $(document).ready ->
         { type: "date-range" },
         null,
         { type: "select" },
+        null,
         null,
         null
       ]

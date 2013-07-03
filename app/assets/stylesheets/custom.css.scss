@@ -369,3 +369,16 @@ form.justificantes {
   margin-left: -30px;
 }
 
+// Printing row
+.printable .titular {
+  font-weight: bold;
+  padding-right: 10px;
+}
+
+@media screen {
+  #toPrint {
+    display:none;
+    visibility: hidden;
+  }
+}
+

@@ -55,6 +55,18 @@ class Usuario < ActiveRecord::Base
     Informe.where(cliente_id: clientes)
   end
 
+  rails_admin do
+    edit do
+      field :nombre
+      field :apellidos
+      field :email
+      field :password
+      field :organizacion
+      field :clientes
+      field :role
+    end
+  end
+
   private
   def clientes_from_same_organizacion
     #errors.add(:usuarios, 'No pertenecen a la misma Organizacion') if organizacion_id !== cliente.organizacion_id

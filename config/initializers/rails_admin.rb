@@ -36,7 +36,7 @@ RailsAdmin.config do |config|
   # config.included_models = ['Expediente', 'Informe', 'Justificante', 'Matriculacion', 'Organizacion', 'Transferencia', 'Usuario']
 
   # Label methods for model instances:
-  # config.label_methods << :description # Default is [:name, :title]
+  config.label_methods << :nombre # Default is [:name, :title]
 
 
   ################  Model configuration  ################

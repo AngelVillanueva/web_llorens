@@ -1,16 +1,19 @@
-<table id="expedientes" class="row pull-right table table-condensed table-bordered table-striped top_filtered expedientes <%= expediente_type? expediente, 'matriculacion' %>">
+<table id="expedientes" class="row pull-right table table-condensed table-bordered table-striped top_filtered expedientes <%= expediente_type?(expediente, 'matriculacion') ? 'matriculacion' : 'transferencia' %>">
   <thead>
     <tr class="filter">
+      <th><%= t("Cliente") %></th>
       <th><%= t("Matricula") %></th>
       <% if expediente_type? expediente, 'matriculacion' %>
         <th><%= t("Bastidor") %></th>
       <% end %>
       <th><%= t("Comprador") %></th>
-      <th><%= t("Vendedor") %></th>
       <% if expediente_type? expediente, 'transferencia' %>
+        <th><%= t("Vendedor") %></th>
         <th><%= t("Marca") %></th>
       <% end %>
-      <th><%= t("Modelo") %></th>
+      <% if expediente_type? expediente, 'matriculacion' %>
+        <th><%= t("Modelo") %></th>
+      <% end %>
       <th><%= t("Alta") %></th>
       <th><%= t("Presentacion_t") %></th>
       <th><%= t("Salida_t") %></th>
@@ -19,16 +22,19 @@
       <th></th>
     </tr>
     <tr class="titles">
+      <th><%= t("Cliente") %></th>
       <th><%= t("Matricula") %></th>
       <% if expediente_type? expediente, 'matriculacion' %>
         <th><%= t("Bastidor") %></th>
       <% end %>
       <th><%= t("Comprador") %></th>
-      <th><%= t("Vendedor") %></th>
       <% if expediente_type? expediente, 'transferencia' %>
+        <th><%= t("Vendedor") %></th>
         <th><%= t("Marca") %></th>
       <% end %>
-      <th><%= t("Modelo") %></th>
+      <% if expediente_type? expediente, 'matriculacion' %>
+        <th><%= t("Modelo") %></th>
+      <% end %>
       <th><%= t("Alta") %></th>
       <th><%= t("Presentacion_f") %></th>
       <th><%= t("Salida_f") %></th>
@@ -41,7 +47,10 @@
   <% expedientes.each do |expediente| %>
       <tr class="expediente">
         <td>
-          <%= link_to expediente.matricula, this_expediente_path(expediente) %>
+          <%= expediente.cliente.nombre %>
+        </td>
+        <td>
+          <%= expediente.matricula %>
         </td>
         <% if expediente_type? expediente, 'matriculacion' %>
           <td>
@@ -51,17 +60,19 @@
         <td>
           <%= expediente.comprador %>
         </td>
-        <td>
-          <%= expediente.vendedor %>
-        </td>
         <% if expediente_type? expediente, 'transferencia' %>
+          <td>
+            <%= expediente.vendedor %>
+          </td>
           <td>
             <%= expediente.marca %>
           </td>
         <% end %>
-        <td>
-          <%= expediente.modelo %>
-        </td>
+        <% if expediente_type? expediente, 'matriculacion' %>
+          <td>
+            <%= expediente.modelo %>
+          </td>
+        <% end %>
         <td>
           <%= l expediente.fecha_alta unless expediente.fecha_alta.nil? %>
         </td><td>

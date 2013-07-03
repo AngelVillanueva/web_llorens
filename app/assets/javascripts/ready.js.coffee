@@ -1,4 +1,7 @@
 $(document).ready -> 
+  
+  #tooltip init
+  $('a[rel*="tooltip"]').tooltip({ 'placement': 'top' })
 
   # change text on big buttons (hover)
   $( 'li.new a span' ).hover(

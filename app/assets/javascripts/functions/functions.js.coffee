@@ -105,8 +105,9 @@ Shared functions
 # move Export to Excel Button to Tools div
 @moveExportExcelButton = ->
   $button = $('a.DTTT_button_xls')
-  $('<li/>').appendTo('.tools ul')
+  $('<li class="here"/>').appendTo('.tools ul')
   $button.children('span').remove()
   $('<i class="icon icon-save icon-2x"/>').appendTo($button)
   $button.removeClass('btn').appendTo('.tools ul li:last')
   $('.dataTables_wrapper').children('div.row:first').remove()
+  $('li.here').tooltip({'title': 'Exportar Excel'})

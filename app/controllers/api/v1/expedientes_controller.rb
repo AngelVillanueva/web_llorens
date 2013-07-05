@@ -34,6 +34,13 @@ class Api::V1::ExpedientesController < ApplicationController
   end
   def this_expediente_params index
     params[:expedientes][index][:expediente].delete :type
+    # DEV: move organizacion_id to Observaciones if is a string and add a temp cliente_id [SIGES int 64 issue]
+      if params[:expedientes][index][:expediente][:organizacion_id].is_a?(String)
+        params[:expedientes][index][:expediente][:observaciones] = params[:expedientes][index][:expediente][:organizacion_id]
+        params[:expedientes][index][:expediente][:cliente_id] = 1001
+        params[:expedientes][index][:expediente].delete :organizacion_id
+      end
+    # End of DEV
     params[:expedientes][index][:expediente]
   end
 end

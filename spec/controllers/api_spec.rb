@@ -48,7 +48,7 @@ private
     expediente[:fecha_facturacion] = 1.day.ago.to_date
     expediente[:marca] = "AAA"
     expediente[:modelo] = "AAA"
-    expediente[:organizacion_id] = 1
+    expediente[:cliente_id] = 1
     expediente[:observaciones] = "AAA"
     expediente
   end

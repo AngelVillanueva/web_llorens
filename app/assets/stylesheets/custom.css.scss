@@ -62,6 +62,9 @@ tr.titles th {
   padding: 20px;
   border-bottom: 3px solid #87cefa;
 }
+tr.titles th.centered {
+  text-align: center;
+}
 tr.filter, .filter th {
   // border: none;
 }
@@ -156,6 +159,7 @@ outline: 0;
 box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #0088cc;
 }
 .row ul { margin: 0; }
+.row ul.thumbnails { margin-left: -30px; }
 .navbar .nav > li > a.root { color: #08c; }
 .navbar .nav > li > a.admin { color: red; }
 h3.organizacion { color: #282f39; text-align: right; }
@@ -312,7 +316,7 @@ a.DTTT_button_xls {
   position: relative;
 }
 
-#informes {
+#informesOld {
   tr.titles {
     background: #08c;
     color: white;
@@ -322,7 +326,7 @@ a.DTTT_button_xls {
   }
 }
 
-#expedientes {
+#expedientes, #justificantes, #informes {
   tr.titles {
     background: #333;
     color: white;
@@ -334,3 +338,47 @@ a.DTTT_button_xls {
     background: white;
   }
 }
+
+
+#demoLightbox {
+  top: 100px!important;
+}
+
+// Download page
+#portfolio .thumbnail:hover {
+  box-shadow: 0px 0px 7px 0px #08c;
+}
+.download .thumbnail .pic { height: 270px; }
+.thumbnail a { color: #08c; text-decoration: none; }
+i.see_more {
+  display: block;
+  padding: 5px;
+  height: 70px;
+  line-height: 70px;
+  background: white;
+  border: 1px solid #bbb;
+  border-radius: 55px;
+  -webkit-transition: all 0.2s, ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s, ease-in-out;
+}
+
+// Justificantes creation form
+form.justificantes {
+  margin-left: -30px;
+}
+
+// Printing row
+.printable .titular {
+  font-weight: bold;
+  padding-right: 10px;
+}
+
+@media screen {
+  #toPrint {
+    display:none;
+    visibility: hidden;
+  }
+}
+

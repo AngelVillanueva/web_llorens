@@ -11,7 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130613003611) do
+ActiveRecord::Schema.define(:version => 20130626133537) do
+
+  create_table "clientes", :force => true do |t|
+    t.string  "nombre"
+    t.string  "identificador"
+    t.string  "cif"
+    t.integer "organizacion_id"
+  end
+
+  create_table "clientes_usuarios", :id => false, :force => true do |t|
+    t.integer "cliente_id"
+    t.integer "usuario_id"
+  end
 
   create_table "expedientes", :force => true do |t|
     t.string   "identificador"
@@ -27,12 +39,12 @@ ActiveRecord::Schema.define(:version => 20130613003611) do
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
     t.text     "observaciones"
-    t.integer  "organizacion_id"
     t.string   "type"
+    t.integer  "cliente_id"
   end
 
+  add_index "expedientes", ["cliente_id"], :name => "index_expedientes_on_cliente_id"
   add_index "expedientes", ["id", "type"], :name => "index_expedientes_on_id_and_type"
-  add_index "expedientes", ["organizacion_id"], :name => "index_expedientes_on_organizacion_id"
 
   create_table "informes", :force => true do |t|
     t.string   "matricula"
@@ -43,11 +55,11 @@ ActiveRecord::Schema.define(:version => 20130613003611) do
     t.integer  "pdf_file_size"
     t.datetime "pdf_updated_at"
     t.string   "identificador"
-    t.integer  "organizacion_id"
     t.string   "solicitante"
+    t.integer  "cliente_id"
   end
 
-  add_index "informes", ["organizacion_id"], :name => "index_informes_on_organizacion_id"
+  add_index "informes", ["cliente_id"], :name => "index_informes_on_cliente_id"
 
   create_table "justificantes", :force => true do |t|
     t.string   "identificador"
@@ -64,16 +76,17 @@ ActiveRecord::Schema.define(:version => 20130613003611) do
     t.string   "modelo"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
+    t.string   "pdf"
     t.string   "pdf_file_name"
     t.string   "pdf_content_type"
     t.integer  "pdf_file_size"
     t.datetime "pdf_updated_at"
-    t.integer  "organizacion_id"
     t.datetime "hora_solicitud"
     t.datetime "hora_entrega"
+    t.integer  "cliente_id"
   end
 
-  add_index "justificantes", ["organizacion_id"], :name => "index_justificantes_on_organizacion_id"
+  add_index "justificantes", ["cliente_id"], :name => "index_justificantes_on_cliente_id"
 
   create_table "organizaciones", :force => true do |t|
     t.string   "nombre"

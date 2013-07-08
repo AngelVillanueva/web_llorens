@@ -7,23 +7,14 @@
           <span class="icon-bar"></span>
         </a>
         <%= link_to root_path, class: 'brand', "data-section" => 'body' do %>
-            <%= image_tag('theme/logo_llorens-treb.png', alt: "logo") %>
+            <%= image_tag('theme/logo_llorens-treb-upc.png', alt: "logo") %>
         <% end %>
         <div class="nav-collapse collapse">
         <ul class="nav pull-right">
             <li><a href="#" class="scroller" data-section="#somos">Quiénes somos</a></li>
             <li><a href="#" class="scroller" data-section="#ofrecemos">Qué ofrecemos</a></li>
             <li><a href="#" class="scroller" data-section="#equipo">Nuestro equipo</a></li>
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    Descargas
-                    <b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a href="/download">Información de tráfico</a></li>
-                    <li><a href="/download">Modelos</a></li>
-                </ul>
-            </li>
+            <li><%= link_to "Descargas", download_path %></li>
             <li><%= link_to "Contacto", contact_path %></li>
             <% if current_usuario %>
                 <li><%= link_to t("Area usuarios"), online_root_path, class: 'root' %></li>

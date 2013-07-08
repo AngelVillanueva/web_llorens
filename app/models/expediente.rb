@@ -16,15 +16,15 @@
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #  observaciones       :text
-#  organizacion_id     :integer
 #  type                :string(255)
+#  cliente_id          :integer
 #
 
 class Expediente < ActiveRecord::Base
-  belongs_to :organizacion
-  default_scope order('created_at DESC')
+  belongs_to :cliente
+  default_scope includes(:cliente).order('created_at DESC')
 
-  validates :identificador, :matricula, :bastidor, :comprador, :vendedor, :marca, :modelo, :fecha_alta, :fecha_entra_trafico, :fecha_facturacion, :organizacion_id, :type, presence: true
+  validates :identificador, :matricula, :bastidor, :comprador, :vendedor, :marca, :modelo, :fecha_alta, :fecha_entra_trafico, :fecha_facturacion, :cliente_id, :type, presence: true
 
   def fecha_sale_trafico
     fecha_facturacion

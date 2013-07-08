@@ -1,4 +1,7 @@
 $(document).ready -> 
+  
+  #tooltip init
+  $('a[rel*="tooltip"]').tooltip({ 'placement': 'top' })
 
   # change text on big buttons (hover)
   $( 'li.new a span' ).hover(
@@ -10,6 +13,9 @@ $(document).ready ->
   $( 'a.print' ).click ->
     $( $(this).attr( 'data-print-area' ) ).printThis()
 
+  $( 'a.printLink').click ->
+    printRow( $( this ).parent('td').parent('tr') )
+
   # prepare the content if a table
   if ( $( 'table' ).length )
     configureDatePicker() # datepicker localization (es)
@@ -19,14 +25,35 @@ $(document).ready ->
   ###
   dataTables initialization
   ###
-  # expedientes
-  if ( $( '#expedientes' ).length )
+  # matriculaciones
+  if ( $( '#expedientes.matriculacion' ).length )
     createDataTable(
       'expedientes',
-      "Expedientes_Llorens",
+      "Matriculaciones_Llorens",
+      [0,1,2,3,4,5,6,7,9,10], 
+      [
+        { type: "select" },
+        { type: "text" },
+        { type: "text" },
+        { type: "text" },
+        { type: "select" },
+        { type: "date-range" },
+        { type: "date-range" },
+        { type: "date-range" },
+        { type: "select" },
+        null,
+        null
+      ]
+    )
+
+  # transferencias
+  if ( $( '#expedientes.transferencia' ).length )
+    createDataTable(
+      'expedientes',
+      "Transferencias_Llorens",
       [0,1,2,3,4,5,6,7,8,10], 
       [
-        { type: "text" },
+        { type: "select" },
         { type: "text" },
         { type: "text" },
         { type: "text" },
@@ -59,6 +86,7 @@ $(document).ready ->
         null,
         { type: "date-range" },
         { type: "date-range" },
+        null,
         null
       ]
     )
@@ -78,6 +106,7 @@ $(document).ready ->
         { type: "date-range" },
         null,
         { type: "select" },
+        null,
         null,
         null
       ]

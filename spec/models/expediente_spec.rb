@@ -16,8 +16,8 @@
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #  observaciones       :text
-#  organizacion_id     :integer
 #  type                :string(255)
+#  cliente_id          :integer
 #
 
 require 'spec_helper'
@@ -41,7 +41,7 @@ describe Expediente do
     it { should respond_to :dias_tramite }
     it { should respond_to :observaciones }
     it { should respond_to :type }
-    it { should belong_to :organizacion }
+    it { should belong_to :cliente }
 
     it { should be_valid }
   end
@@ -60,7 +60,7 @@ describe Expediente do
       should validate_presence_of :fecha_alta
       should validate_presence_of :fecha_entra_trafico
       should validate_presence_of :fecha_facturacion
-      should validate_presence_of :organizacion_id
+      should validate_presence_of :cliente_id
     end
   end
 end

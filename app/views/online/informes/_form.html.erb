@@ -2,14 +2,18 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :matricula %>
-    <%= f.input :solicitante %>
-    <%= f.input :organizacion_id, as: :hidden, input_html: { value: current_usuario.organizacion_id } %>
-    <%= t("PDF actual", pdf: informe.pdf_file_name) unless informe.pdf_file_name.nil? %>
-    <%= f.file_field :pdf %>
+    <% if informe.new_record? %>
+      <%= f.input :matricula %>
+      <%= f.input :solicitante %>
+      <%= f.association :cliente,
+      collection: current_usuario.clientes, label_method: :nombre,
+      value_method: :id, include_blank: false %>
+    <% end %>
+    <%= t("PDF actual_html", pdf: informe.pdf_file_name) unless informe.pdf_file_name.nil? %>
+    <%= f.file_field :pdf unless informe.new_record? %>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, (informe.new_record? ? "Solicitar informe" : "Subir PDF") %>
+  <div>
+    <%= f.button :submit, (informe.new_record? ? "Solicitar informe" : "Subir PDF"), class: 'btn-info' %>
   </div>
 <% end %>

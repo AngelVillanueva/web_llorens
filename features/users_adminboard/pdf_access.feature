@@ -15,8 +15,8 @@ Scenario: Generating the PDF
     And the PDF should be the one for the related Item
     And the first page from the original PDF should not appear
 
-Scenario: Users can just access PDFs from their Organizaciones
+Scenario: Users can just access PDFs from their Clientes
   Given I am a registered User
-  When I visit the Expediente PDF page for an Expediente of another Organizacion 
+  When I visit the Expediente PDF page for an Expediente of another Cliente 
   Then I should not see a PDF document
       And I should be redirected to the online homepage

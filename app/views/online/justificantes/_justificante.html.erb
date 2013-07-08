@@ -1,34 +1,34 @@
 <tr class="justificante <%= 'new' if justificante.pdf_file_name.nil? %>" data-time="<%= justificante.created_at.to_i %>">
-    <td><%= justificante.organizacion.identificador %>
-    <td>
-      <%= link_to justificante.matricula, online_justificante_path(justificante) %>
+    <td class="printable" data-titular="Cliente"><%= justificante.cliente.identificador %>
+    <td class="printable" data-titular="Matricula">
+      <%= justificante.matricula %>
     </td>
-    <td class="large">
+    <td class="printable" data-titular="Cliente">
       <%= justificante.bastidor %>
     </td>
-    <td>
+    <td class="printable" data-titular="NIF">
       <%= justificante.nif_comprador %>
     </td>
-    <td>
+    <td class="printable" data-titular="Nombre o Razon Social">
       <%= justificante.nombre_razon_social %>
     </td>
-     <td>
+     <td class="printable" data-titular="Primer apellido">
       <%= justificante.primer_apellido %>
     </td>
-     <td>
+     <td class="printable" data-titular="Segundo apellido">
       <%= justificante.segundo_apellido %>
     </td>
-    <td>
+    <td class="printable" data-titular="Marca">
       <%= justificante.marca %>
     </td>
-    <td>
+    <td class="printable" data-titular="Modelo">
       <%= justificante.modelo %>
     </td>
     <td class="hidden"><%= justificante.created_at.to_i %></td>
-    <td>
+    <td class="printable" data-titular="Hora solicitud">
       <%= l justificante.hora_solicitud, format: "%d/%m %H:%M" unless justificante.hora_solicitud.nil? %>
     </td>
-    <td>
+    <td class="printable" data-titular="Hora entrega">
       <%= l justificante.hora_entrega, format: "%d/%m %H:%M" unless justificante.hora_entrega.nil? %>
     </td>
     <td class="icon">
@@ -43,4 +43,7 @@
           <i class="icon icon-edit"></i>
         <% end %>
     </td>
+    <td>
+    <a href="#" class="printLink"><i class="icon icon-print"></i></a>
+  </td>
   </tr>

@@ -11,13 +11,14 @@
 #  pdf_file_size    :integer
 #  pdf_updated_at   :datetime
 #  identificador    :string(255)
-#  organizacion_id  :integer
 #  solicitante      :string(255)
+#  cliente_id       :integer
 #
 
 class Informe < ActiveRecord::Base
-  belongs_to :organizacion
+  belongs_to :cliente
   has_attached_file :pdf
-  default_scope includes(:organizacion).order('pdf_content_type DESC, created_at DESC')
+  default_scope includes(:cliente).order('pdf_content_type DESC, created_at DESC')
   
+  validates :matricula, :solicitante, :cliente_id, presence: true
 end

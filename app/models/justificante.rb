@@ -17,25 +17,24 @@
 #  modelo              :string(255)
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
-#  pdf                 :string(255)
 #  pdf_file_name       :string(255)
 #  pdf_content_type    :string(255)
 #  pdf_file_size       :integer
 #  pdf_updated_at      :datetime
-#  organizacion_id     :integer
 #  hora_solicitud      :datetime
 #  hora_entrega        :datetime
+#  cliente_id          :integer
 #
 
 class Justificante < ActiveRecord::Base
-  belongs_to :organizacion
+  belongs_to :cliente
   has_attached_file :pdf
-  default_scope order('created_at DESC')
+  default_scope includes(:cliente).order('created_at DESC')
 
   before_validation :assign_hora_solicitud, on: :create
   before_update :assign_hora_entrega, if: :first_time_pdf?
 
-  validates :identificador, :nif_comprador, :nombre_razon_social, :primer_apellido, :segundo_apellido, :provincia, :municipio, :direccion, :matricula, :bastidor, :marca, :modelo, :hora_solicitud, :organizacion_id, presence: true
+  validates :identificador, :nif_comprador, :nombre_razon_social, :primer_apellido, :segundo_apellido, :provincia, :municipio, :direccion, :matricula, :bastidor, :marca, :modelo, :hora_solicitud, :cliente_id, presence: true
 
   #protected
   def assign_hora_solicitud

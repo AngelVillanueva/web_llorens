@@ -105,8 +105,27 @@ Shared functions
 # move Export to Excel Button to Tools div
 @moveExportExcelButton = ->
   $button = $('a.DTTT_button_xls')
-  $('<li/>').appendTo('.tools ul')
+  $('<li class="tooltip-xls"/>').appendTo('.tools ul')
   $button.children('span').remove()
   $('<i class="icon icon-save icon-2x"/>').appendTo($button)
   $button.removeClass('btn').appendTo('.tools ul li:last')
   $('.dataTables_wrapper').children('div.row:first').remove()
+  $('li.tooltip-xls').tooltip({'title': 'Exportar Excel'})
+
+
+# print a table row
+@printRow = (row) ->
+  tipo = $( row ).attr( 'class' ).split( ' ' )[0].toUpperCase()
+  $( '<div id="toPrint" class="printable" />' ).appendTo( 'body' )
+  $( '<h3>Resumen para Imprimir</h3><hr/><h4>' + tipo + '</h4>' ).appendTo( '#toPrint' )
+  $( '<ul id="printList" />' ).appendTo( '#toPrint' )
+  $( row ).children('td.printable').each ->
+    titular = $( this ).attr( 'data-titular' )
+    contenido = $( this ).html()
+    $( '<li><span class="titular">' + titular + ':</span><span class="contenido">' + contenido + '</span></li>').appendTo( '#printList' )
+  $( '#toPrint' ).printThis()
+  $( '#toPrint' ).remove()
+
+
+
+

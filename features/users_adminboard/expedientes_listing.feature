@@ -19,7 +19,7 @@ Scenario: Transferencias index
 
 Scenario: Users can see just the Expedientes from their Organizations
   Given I am a registered User with some Expedientes
-    And there are more Expedientes from other Organizaciones
+    And there are more Expedientes from other Clientes
   When I access the Matriculaciones index page
   Then I should just see the list of my Expedientes
   

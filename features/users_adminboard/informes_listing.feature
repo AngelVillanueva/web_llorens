@@ -15,17 +15,17 @@ Feature: Informes listing
     Then I should see a list of the Informes
       And the first Informe should be the most urgent one
 
-  Scenario: an Usuario can not see Informes from other Organizacion
+  Scenario: an Usuario can not see Informes from other Cliente
     Given I am a registered User with some Informes
-      And there are also Informes from other Organizaciones
+      And there are also Informes from other Clientes
     When I access the Informes index page
-    Then I should see just the list of the Informes from my Organizacion
+    Then I should see just the list of the Informes from my Cliente
 
-  @javascript @now 
+  @javascript 
   Scenario: the list of Informes is auto updated via ajax
     Given I am a registered User with some Informes
     When I access the Informes index page
-      And another Informe from my Organizacion is added
+      And another Informe from my Cliente is added
     Then I should see the list of the Informes updated and sorted without reloading the page
 
   @javascript

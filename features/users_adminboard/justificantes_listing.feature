@@ -19,15 +19,15 @@ Feature: Justificantes listing
       Then I should see a list of the Justificantes
         And the first Justificante should be the most urgent one
 
-  Scenario: an Usuario can not see Justificantes from other Organizacion
+  Scenario: an Usuario can not see Justificantes from other Cliente
       Given I am a registered User with some Justificantes
-        And there are also Justificantes from other Organizaciones
+        And there are also Justificantes from other Clientes
       When I access the Justificantes index page
-      Then I should see just the list of the Justificantes from my Organizacion
+      Then I should see just the list of the Justificantes from my Cliente
 
   @javascript
     Scenario: the list of Justificantes is auto updated via ajax
       Given I am a registered User with some Justificantes
       When I access the Justificantes index page
-        And another Justificante from my Organizacion is added
+        And another Justificante from my Cliente is added
       Then I should see the list of the Justificantes updated and sorted without reloading the page

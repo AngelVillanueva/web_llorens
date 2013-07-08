@@ -16,8 +16,8 @@
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #  observaciones       :text
-#  organizacion_id     :integer
 #  type                :string(255)
+#  cliente_id          :integer
 #
 
 class Transferencia < Expediente

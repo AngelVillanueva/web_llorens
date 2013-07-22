@@ -11,9 +11,9 @@
         <% end %>
         <div class="nav-collapse collapse">
         <ul class="nav pull-right">
-            <li><a href="#" class="scroller" data-section="#somos">Quiénes somos</a></li>
-            <li><a href="#" class="scroller" data-section="#ofrecemos">Qué ofrecemos</a></li>
-            <li><a href="#" class="scroller" data-section="#equipo">Nuestro equipo</a></li>
+            <li><%= home_somos_link %></li>
+            <li><%= home_ofrecemos_link %></li>
+            <li><%= home_equipo_link %></li>
             <li><%= link_to "Descargas", download_path %></li>
             <li><%= link_to "Contacto", contact_path %></li>
             <% if current_usuario %>

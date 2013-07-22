@@ -104,4 +104,26 @@ module ApplicationHelper
       I18n.t "Cambiar PDF"
     end
   end
+
+  def home_somos_link
+    if request.fullpath == '/'
+      link_to t('Quienes somos'), root_path, class: 'scroller', 'data-section' => '#somos'
+    else
+      link_to t('Quienes somos'), root_path(anchor: 'somos')
+    end
+  end
+  def home_ofrecemos_link
+    if request.fullpath == '/'
+      link_to t('Que ofrecemos'), '#', class: 'scroller', 'data-section' => '#ofrecemos'
+    else
+      link_to t('Quienes somos'), root_path(anchor: 'ofrecemos')
+    end
+  end
+  def home_equipo_link
+    if request.fullpath == '/'
+      link_to t('Nuestro equipo'), '#', class: 'scroller', 'data-section' => '#equipo'
+    else
+      link_to t('Nuestro equipo'), root_path(anchor: 'equipo')
+    end
+  end
 end

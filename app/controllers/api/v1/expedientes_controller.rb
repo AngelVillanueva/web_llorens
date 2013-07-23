@@ -1,5 +1,6 @@
 class Api::V1::ExpedientesController < ApplicationController
   skip_before_filter :authenticate_usuario!
+  before_filter :restrict_access
   respond_to :json
   expose( :expedientes ) { params[ :expedientes ] }
   expose( :expediente )
@@ -41,5 +42,10 @@ class Api::V1::ExpedientesController < ApplicationController
       end
     # End of DEV
     params[:expedientes][index][:expediente]
+  end
+  def restrict_access
+    authenticate_or_request_with_http_token do |token, options|
+    ApiKey.exists?(access_token: token)
+  end
   end
 end

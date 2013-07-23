@@ -9,6 +9,6 @@ class ContactMailer < ActionMailer::Base
   def contact_confirmation
     @greeting = "Hi"
 
-    mail to: "gestoriallorens@gestoriallorens.com", subject: "Solicitud de información recibida"
+    mail to: "info@sinapse.es", subject: "Solicitud de informacion recibida"
   end
 end

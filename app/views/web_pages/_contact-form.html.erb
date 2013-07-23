@@ -1,0 +1,18 @@
+<p>p:<%= params[:inputName] %></p>
+<%= form_tag "/contacto" do %>
+<div class="control-group">
+  <label class="control-label" for="inputName">Nombre</label>
+  <div class="controls">
+    <input type="text" class="span4" name="inputName" id="inputName" placeholder="su nombre, por favor">
+  </div>
+</div>
+<div class="control-group"></div>
+<div class="control-group"></div>
+<div class="control-group"></div>
+<div class="control-group"></div>
+<div class="control-group">
+  <div class="controls action">
+    <%= submit_tag "Enviar", class: "btn" %>
+  </div>
+</div>
+<% end %>

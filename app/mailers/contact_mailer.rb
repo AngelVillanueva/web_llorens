@@ -6,9 +6,12 @@ class ContactMailer < ActionMailer::Base
   #
   #   en.contact_mailer.contact_confirmation.subject
   #
-  def contact_confirmation
-    @greeting = "Hi"
+  def contact_confirmation contact_params
+    @contact_params = contact_params
 
-    mail to: "info@sinapse.es", subject: "Solicitud de informacion recibida"
+    mail to: "info@sinapse.es", subject: t("Solicitud")
+  end
+  def agradecimiento contact_params
+    mail to: contact_params[:email], subject: t("Confirmado")
   end
 end

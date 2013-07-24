@@ -1,4 +1,3 @@
-<p>p:<%= params[:inputName] %></p>
 <%= form_tag "/contacto" do %>
 <div class="control-group">
   <label class="control-label" for="inputName">Nombre</label>
@@ -6,10 +5,30 @@
     <input type="text" class="span4" name="inputName" id="inputName" placeholder="su nombre, por favor">
   </div>
 </div>
-<div class="control-group"></div>
-<div class="control-group"></div>
-<div class="control-group"></div>
-<div class="control-group"></div>
+<div class="control-group">
+    <label class="control-label" for="inputEmail">Email</label>
+    <div class="controls">
+        <input type="text" name="inputEmail" class="span4" id="inputEmail">
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="inputPhone">Teléfono</label>
+    <div class="controls">
+        <input type="text" name="inputPhone" class="span4" id="inputPhone">
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="inputCity">Ciudad</label>
+    <div class="controls">
+        <input type="text" name="inputCity" class="span4" id="inputCity">
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="inputComment">Comentario</label>
+    <div class="controls">
+        <textarea class="span4" name="inputComment" id="inputComment" rows="6"></textarea>
+    </div>
+</div>
 <div class="control-group">
   <div class="controls action">
     <%= submit_tag "Enviar", class: "btn" %>

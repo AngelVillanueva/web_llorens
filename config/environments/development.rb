@@ -24,8 +24,8 @@ WebLlorens::Application.configure do
   domain: "gmail.com",
   authentication: "plain",
   enable_starttls_auto: true,
-  user_name: "clara.agras@gmail.com",
-  password: "zaplanaberna"
+  user_name: "",
+  password: ""
 }
 
   # Print deprecation notices to the Rails logger

@@ -10,7 +10,7 @@ class WebPagesController < ApplicationController
         ContactMailer.agradecimiento(contact_data).deliver
         redirect_to root_path, notice: "Solicitud enviada correctamente"
       else
-        flash[:error] = "Complete todos los campos, por favor y no #{contact_params(params).to_s}"
+        flash[:error] = "Complete todos los campos, por favor"
         render :contact
       end
     end

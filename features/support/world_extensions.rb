@@ -13,8 +13,14 @@ module KnowstheDomain
   def matriculacion
     @matriculacion || FactoryGirl.create( :matriculacion, cliente: cliente )
   end
+  def matriculacion_incomplete
+    @matriculacion || FactoryGirl.create( :matriculacion, cliente: cliente, identificador: "Missing" )
+  end
   def transferencia
     @transferencia || FactoryGirl.create( :transferencia, cliente: cliente )
+  end
+  def transferencia_incomplete
+    @transferencia || FactoryGirl.create( :transferencia, cliente: cliente, identificador: "Missing" )
   end
   def justificante
     @justificante || FactoryGirl.create( :justificante, cliente: cliente )

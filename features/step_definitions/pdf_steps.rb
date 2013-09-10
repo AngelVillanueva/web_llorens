@@ -20,6 +20,11 @@ Then /^the PDF should be the one for the related Item$/ do
   content.should have_content( "Smarty Manual" )
 end
 
+Then(/^the PDF should be the one for missing document case$/) do
+  content = parse_pdf_content( parse_pdf( page.source ) )
+  content.should have_content( "No se ha encontrado el documento" )
+end
+
 Then /^the first page from the original PDF should not appear$/ do
   the_pdf = parse_pdf( page.source )
   content = parse_pdf_content(parse_pdf( page.source ) )

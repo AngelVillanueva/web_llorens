@@ -15,6 +15,13 @@ Scenario: Generating the PDF
     And the PDF should be the one for the related Item
     And the first page from the original PDF should not appear
 
+Scenario: Accessing not existing PDFs
+  Given I am a registered User with some Expedientes but without documents
+    And I visit the Matriculacion index page
+  When I follow a PDF link
+  Then I should see a PDF document
+    And the PDF should be the one for missing document case
+
 Scenario: Users can just access PDFs from their Clientes
   Given I am a registered User
   When I visit the Expediente PDF page for an Expediente of another Cliente 

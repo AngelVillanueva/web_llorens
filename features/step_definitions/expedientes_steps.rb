@@ -31,6 +31,12 @@ When(/^I filter the Transferencias by the date of yesterday$/) do
   page.execute_script %Q{ $('#expedientes_range_from_5').trigger("focus") } # activate datetime picker
 end
 
+When(/^some PDF is not yet on the server$/) do
+  m = Matriculacion.last
+  m.identificador = "Not-here"
+  m.save!
+end
+
 Then(/^I should see a list of the Expedientes$/) do
   page.should have_title( "Listado de Expedientes" )
   expedientes = Expediente.all.each do |expediente|
@@ -73,4 +79,9 @@ Then(/^I should (not )?see a detail of that Expediente$/) do |negation|
     page.should have_css( 'h1', "Expediente para #{Expediente.first.matricula}" )
     page.should have_selector( 'iframe.pdf' )
   end
+end
+
+Then(/^I should see "(.*?)" instead of the link to the PDF$/) do |arg1|
+  visit online_matriculaciones_path
+  page.should have_selector( 'td', text: "PDF pendiente" )
 end

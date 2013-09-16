@@ -15,6 +15,8 @@ Scenario: Generating the PDF
     And the PDF should be the one for the related Item
     And the first page from the original PDF should not appear
 
+# disabled as no link appears if the document is not on the server
+@wip
 Scenario: Accessing not existing PDFs
   Given I am a registered User with some Expedientes but without documents
     And I visit the Matriculacion index page

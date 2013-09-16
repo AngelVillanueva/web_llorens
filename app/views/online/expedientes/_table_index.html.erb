@@ -85,9 +85,13 @@
           <%= expediente.dias_tramite %>
         </td>
         <td class="icon">
-          <%= link_to pdf_path(expediente) do %>
-            <span><%= "Ver PDF" %></span>
-            <i class="icon icon-file"></i>
+          <% if pdf_file(expediente) %>
+            <%= link_to pdf_path(expediente) do %>
+              <span><%= "Ver PDF" %></span>
+              <i class="icon icon-file"></i>
+            <% end %>
+          <% else %>
+            <span class="pendiente"><%= t("PDF Pendiente") %></span>
           <% end %>
         </td>
         <td>

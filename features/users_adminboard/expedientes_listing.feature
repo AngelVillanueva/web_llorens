@@ -12,6 +12,12 @@ Scenario: Matriculaciones index
   When I access the Matriculaciones index page
   Then I should see a list of the Matriculaciones
 
+Scenario: Matriculaciones index just show the PDF link if the document is on the server
+  Given I am a registered User with some Expedientes
+  When I access the Matriculaciones index page
+    And some PDF is not yet on the server
+  Then I should see "Pendiente" instead of the link to the PDF
+
 Scenario: Transferencias index
   Given I am a registered User with some Expedientes
   When I access the Transferencias index page

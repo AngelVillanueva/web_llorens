@@ -15,6 +15,24 @@ module ApplicationHelper
     controller.class.name.split("::").first=="Online"
   end
 
+  # Returns the folder name for the PDFs in the server
+  def folder_name(type)
+    case type
+    when "Matriculacion"
+      folder_name = "TU-MATRICULACIONES/"
+    when "Transferencia"
+      folder_name = "TR-TRANSFERENCIAS/"
+    else
+      folder_name = ""
+    end
+    folder_name
+  end
+  # Returns true if a given expediente pdf is on the server
+  def pdf_file(expediente)
+    the_pdf_file = "#{Rails.root}/app/assets/pdfs/expedientes/#{folder_name(expediente.type)}#{expediente.identificador}.pdf"
+    File.exist? the_pdf_file
+  end
+
   # Returns the pdf route for a given expediente
   def pdf_path(expediente)
     if expediente.type == "Transferencia"

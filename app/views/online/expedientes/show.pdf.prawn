@@ -1,13 +1,5 @@
 # load pdf template from Llorens repository
-case expediente.type
-when "Matriculacion"
-  folder = "TU-MATRICULACIONES/"
-when "Transferencia"
-  folder = "TR-TRANSFERENCIAS/"
-else
-  folder = ""
-end
-template_pdf = "#{Rails.root}/app/assets/pdfs/expedientes/#{folder}#{expediente.identificador}.pdf"
+template_pdf = "#{Rails.root}/app/assets/pdfs/expedientes/#{folder_name(expediente.type)}#{expediente.identificador}.pdf"
 # if the pdf exists render it skipping the first page
 if File.exist? template_pdf
   # calculate page range skipping first page

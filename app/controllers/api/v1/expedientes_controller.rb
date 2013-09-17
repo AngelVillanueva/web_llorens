@@ -6,19 +6,11 @@ class Api::V1::ExpedientesController < ApplicationController
   expose( :expediente )
   expose( :expediente_type ) { params[:expediente][:type].constantize }
 
-  def create
-    expediente = expediente_type.new(expediente_params)
-    if expediente.save
-      render json: expediente
-    else
-      render json: expediente.errors, status: :unprocessable_entity
-    end
-  end
-
   def create_update
     resultado = []
     edit = {}
     expediente = expediente_type.where(identificador: expediente_params[:identificador]).first
+    # it is a new one
     if expediente.nil?
       expediente = expediente_type.new(expediente_params)
       if expediente.save
@@ -29,6 +21,7 @@ class Api::V1::ExpedientesController < ApplicationController
       else
         render json: expediente.errors, status: :unprocessable_entity
       end
+    # it is an already existing Expediente
     else
       if expediente.update_attributes(expediente_params)
         edit = {}

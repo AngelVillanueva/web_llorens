@@ -116,7 +116,7 @@ module ApplicationHelper
     if request.fullpath == '/'
       link_to t('Que ofrecemos'), '#', class: 'scroller', 'data-section' => '#ofrecemos'
     else
-      link_to t('Quienes somos'), root_path(anchor: 'ofrecemos')
+      link_to t('Que ofrecemos'), root_path(anchor: 'ofrecemos')
     end
   end
   def home_equipo_link

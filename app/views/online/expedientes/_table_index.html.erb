@@ -82,7 +82,7 @@
           <%= l expediente.fecha_sale_trafico unless expediente.fecha_sale_trafico.nil? %>
         </td>
         <td>
-          <%= expediente.dias_tramite %>
+          <%= expediente.dias_tramite unless expediente.fecha_sale_trafico.nil? %>
         </td>
         <td class="icon">
           <% if pdf_file(expediente) %>

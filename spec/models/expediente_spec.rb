@@ -58,8 +58,6 @@ describe Expediente do
       should validate_presence_of :marca
       should validate_presence_of :modelo
       should validate_presence_of :fecha_alta
-      should validate_presence_of :fecha_entra_trafico
-      should validate_presence_of :fecha_facturacion
       should validate_presence_of :cliente_id
     end
   end

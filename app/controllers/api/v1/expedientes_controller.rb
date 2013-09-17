@@ -38,9 +38,24 @@ class Api::V1::ExpedientesController < ApplicationController
   def create_batch
     exp_list = []
     expedientes.each_with_index do |item, index|
-      expediente = expedientes[index][:expediente][:type].constantize.new( this_expediente_params( index ) )
-      if expediente.save
-        exp_list << expediente
+      expediente = expedientes[index][:expediente][:type].constantize.where(identificador: expedientes[index][:expediente][:identificador]).first
+      # it is a new Expediente
+      if expediente.nil?
+        exp_list << "new"
+        expediente = expedientes[index][:expediente][:type].constantize.new( this_expediente_params( index ) )
+        if expediente.save
+          exp_list << expediente
+        else
+          exp_list << expediente.errors
+        end
+      # it is an already existing Expediente
+      else
+        exp_list << "edit"
+        if expediente.update_attributes( this_expediente_params( index ) )
+          exp_list << expediente
+        else
+          exp_list << expediente.errors
+        end
       end
     end
     render json: exp_list

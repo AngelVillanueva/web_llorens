@@ -7,7 +7,7 @@ describe Api::V1::ExpedientesController do
     it "should return successful response" do
       request.accept = "application/json"
       json = { format: 'json', expediente: mock_expediente( Matriculacion ) }
-      post :create, json
+      post :create_update, json
       response.should be_success
       Expediente.count.should eql 1
       Matriculacion.count.should eql 1
@@ -17,7 +17,7 @@ describe Api::V1::ExpedientesController do
     it "should not create a record" do
       request.accept = "application/json"
       json = { format: 'json', expediente: mock_bad_expediente( Matriculacion ) }
-      post :create, json
+      post :create_update, json
       response.should_not be_success
       Expediente.count.should eql 0
       Matriculacion.count.should eql 0
@@ -27,7 +27,7 @@ describe Api::V1::ExpedientesController do
     it "should create a record" do
       request.accept = "application/json"
       json = { format: 'json', expediente: mock_ongoing_expediente( Matriculacion ) }
-      post :create, json
+      post :create_update, json
       response.should be_success
       Expediente.count.should eql 1
       Matriculacion.count.should eql 1
@@ -37,7 +37,7 @@ describe Api::V1::ExpedientesController do
     it "should not return successful response" do
       request.accept = "application/json"
       json = { format: 'json', expediente: { type: "Transferencia", identificadores: "IM1234" } }
-      expect{ post :create, json}.to raise_error(ActionController::UnpermittedParameters)
+      expect{ post :create_update, json}.to raise_error(ActionController::UnpermittedParameters)
       Expediente.count.should eql 0
     end
   end
@@ -52,14 +52,24 @@ describe Api::V1::ExpedientesController do
       Transferencia.count.should eql 1
     end
   end
+  describe "when the Expediente already exists" do
+    it "should just be updated" do
+      previous = FactoryGirl.create(:matriculacion)
+      request.accept = "application/json"
+      json = { format: 'json', expediente: mock_expediente( Matriculacion, "IM-test", "BBB" ) }
+      post :create_update, json
+      Expediente.count.should eql 1
+      Matriculacion.count.should eql 1
+    end
+  end
 end
 
 private
-  def mock_expediente kind
+  def mock_expediente kind, identificador = "AAA", bastidor = "AAA"
     expediente = {}
     expediente[:type] = kind.to_s.camelize
-    expediente[:identificador] = "AAA"
-    expediente[:bastidor] = "AAA"
+    expediente[:identificador] = identificador
+    expediente[:bastidor] = bastidor
     expediente[:matricula] = "AAA"
     expediente[:comprador] = "AAA"
     expediente[:vendedor] = "AAA"

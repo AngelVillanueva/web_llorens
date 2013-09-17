@@ -23,6 +23,7 @@ WebLlorens::Application.routes.draw do
     namespace :v1 do
       resources :expedientes
       match '/batch' => 'expedientes#create_batch'
+      match '/create_update' => 'expedientes#create_update'
     end
   end
   # The priority is based upon order of creation:

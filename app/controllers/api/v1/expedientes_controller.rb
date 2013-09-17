@@ -15,6 +15,33 @@ class Api::V1::ExpedientesController < ApplicationController
     end
   end
 
+  def create_update
+    resultado = []
+    edit = {}
+    expediente = expediente_type.where(identificador: expediente_params[:identificador]).first
+    if expediente.nil?
+      expediente = expediente_type.new(expediente_params)
+      if expediente.save
+        edit[:type] = "New"
+        resultado << edit
+        resultado << expediente
+        render json: resultado
+      else
+        render json: expediente.errors, status: :unprocessable_entity
+      end
+    else
+      if expediente.update_attributes(expediente_params)
+        edit = {}
+        edit[:type] = "Edit"
+        resultado << edit
+        resultado << expediente
+        render json: resultado
+      else
+        render json: expediente.errors, status: :unprocessable_entity
+      end
+    end
+  end
+
   def create_batch
     exp_list = []
     expedientes.each_with_index do |item, index|

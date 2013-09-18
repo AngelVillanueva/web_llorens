@@ -1,40 +1,42 @@
 class Api::V1::ExpedientesController < ApplicationController
-  skip_before_filter :authenticate_usuario!
-  before_filter :restrict_access
-  respond_to :json
+  skip_before_filter :authenticate_usuario!   # skip devise authentication
+  before_filter :restrict_access              # apikey authentication (private method, below)
+  respond_to :json                            # api is json driven
+  # decent exposure and strong parameters block
   expose( :expedientes ) { params[ :expedientes ] }
   expose( :expediente )
   expose( :expediente_type ) { params[:expediente][:type].constantize }
 
-  def create_update
-    resultado = []
-    edit = {}
+  
+  # this action process a json with a single record and creates (or updates) it
+  def create_or_update_single
+    response_message = []
     expediente = expediente_type.where(identificador: expediente_params[:identificador]).first
     # it is a new one
     if expediente.nil?
       expediente = expediente_type.new(expediente_params)
       if expediente.save
-        edit[:type] = "New"
-        resultado << edit
-        resultado << expediente
-        render json: resultado
+        response_message << {:type => "edit"}
+        response_message << expediente
+        response_message << {:result => "success"}
+        render json: response_message
       else
         render json: expediente.errors, status: :unprocessable_entity
       end
     # it is an already existing Expediente
     else
       if expediente.update_attributes(expediente_params)
-        edit = {}
-        edit[:type] = "Edit"
-        resultado << edit
-        resultado << expediente
-        render json: resultado
+        response_message << {:type => "new"}
+        response_message << expediente
+        response_message << {:result => "success"}
+        render json: response_message
       else
         render json: expediente.errors, status: :unprocessable_entity
       end
     end
   end
 
+  # this action process a json with multiples records and creates (or updates) them
   def create_batch
     exp_list = []
     expedientes.each_with_index do |item, index|

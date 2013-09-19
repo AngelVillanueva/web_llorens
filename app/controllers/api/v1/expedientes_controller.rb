@@ -23,7 +23,7 @@ class Api::V1::ExpedientesController < ApplicationController
       end
     # it is an already existing Expediente
     else
-      if expediente.update_attributes(expediente_params)
+      if expediente.update_attributes(expediente_params expediente.fecha_alta)
         render json: create_response("Edit", expediente, "success")
       else
         render json: create_response("Edit", expediente, "error"), status: :unprocessable_entity
@@ -50,7 +50,7 @@ class Api::V1::ExpedientesController < ApplicationController
       # it is an already existing Expediente
       else
         type = "Edit"
-        if expediente.update_attributes( this_expediente_params( index ) )
+        if expediente.update_attributes( this_expediente_params( index, expediente.fecha_alta ) )
           result = "success"
         else
           result = "error"
@@ -62,14 +62,16 @@ class Api::V1::ExpedientesController < ApplicationController
   end
 
   private
-  def expediente_params
+  def expediente_params previous_fecha_alta=nil
     params[:expediente].delete :type # to avoid Mass Assignment Error [:type is reserved]
+    params[:expediente] = complete_fecha_alta_if_needed params[:expediente], previous_fecha_alta # just in case an update with empty fecha_alta but informed fecha_entra or fecha_facturacion
     params
       .require( :expediente )
       .permit( :identificador, :matricula, :bastidor, :comprador, :vendedor, :marca, :modelo, :fecha_alta, :fecha_entra_trafico, :fecha_facturacion, :cliente_id, :observaciones )
   end
-  def this_expediente_params index
+  def this_expediente_params index, previous_fecha_alta=nil
     params[:expedientes][index][:expediente].delete :type
+    params[:expedientes][index][:expediente] = complete_fecha_alta_if_needed params[:expedientes][index][:expediente], previous_fecha_alta
     # DEV: move organizacion_id to Observaciones if is a string and add a temp cliente_id [SIGES int 64 issue]
       if params[:expedientes][index][:expediente][:cliente_id].is_a?(String)
         params[:expedientes][index][:expediente][:observaciones] = params[:expedientes][index][:expediente][:cliente_id]
@@ -84,6 +86,11 @@ class Api::V1::ExpedientesController < ApplicationController
         ApiKey.exists?(access_token: token)
       end
     end
+  end
+
+  def complete_fecha_alta_if_needed params, previous
+    params[:fecha_alta] = previous if params[:fecha_alta].to_s.empty?
+    params
   end
 
   def create_response type, received, result

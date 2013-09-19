@@ -62,6 +62,29 @@ describe Api::V1::ExpedientesController do
       Matriculacion.count.should eql 1
     end
   end
+  describe "when updated without Fecha Alta" do
+    it "should respect the previous Fecha Alta" do
+      previous = FactoryGirl.create(:matriculacion)
+      request.accept = "application/json"
+      json = { format: 'json', expediente: mock_expediente_wo_alta( Matriculacion, "IM-test" ) }
+      post :create_or_update_single, json
+      Expediente.count.should eql 1
+      Matriculacion.count.should eql 1
+      Matriculacion.first.fecha_alta.should eql(3.days.ago.to_date)
+    end
+  end
+  describe "when multiple updated without Fecha Alta" do
+    it "should respect the previous Fecha Alta" do
+      previous = FactoryGirl.create(:matriculacion)
+      request.accept = "application/json"
+      json = { format: 'json', expedientes: mock_expedientes(true) }
+      post :create_batch, json
+      Expediente.count.should eql 2
+      Matriculacion.count.should eql 1
+      Matriculacion.first.bastidor.should eql("test")
+      Matriculacion.first.fecha_alta.should eql(3.days.ago.to_date)
+    end
+  end
 end
 
 private
@@ -105,11 +128,31 @@ private
     expediente[:observaciones] = "AAA"
     expediente
   end
-  def mock_expedientes
+  def mock_expediente_wo_alta kind, identificador = "AAA", bastidor = "AAA"
+    expediente = {}
+    expediente[:type] = kind.to_s.camelize
+    expediente[:identificador] = identificador
+    expediente[:bastidor] = bastidor
+    expediente[:matricula] = "AAA"
+    expediente[:comprador] = "AAA"
+    expediente[:vendedor] = "AAA"
+    expediente[:fecha_entra_trafico] = 5.days.ago.to_date
+    expediente[:fecha_alta] = ""
+    expediente[:fecha_facturacion] = 1.days.ago.to_date
+    expediente[:marca] = "AAA"
+    expediente[:modelo] = "AAA"
+    expediente[:cliente_id] = 1
+    expediente[:observaciones] = "AAA"
+    expediente
+  end
+  def mock_expedientes wo_alta=false
     expedientes = []
     matriculacion = {}
     transferencia = {}   
     matriculacion["expediente"] = mock_expediente(Matriculacion)
+    if wo_alta
+      matriculacion["expediente"] = mock_expediente_wo_alta(Matriculacion, "IM-test", "test")
+    end
     transferencia["expediente"] = mock_expediente(Transferencia)
     expedientes << matriculacion
     expedientes << transferencia

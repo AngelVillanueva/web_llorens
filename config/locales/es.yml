@@ -283,6 +283,10 @@ es:
   Pendiente: "Pendiente"
   pendiente: "Pendiente"
   PDF Pendiente: "PDF pendiente"
+  New: "Nuevo registro"
+  Edit: "Registro ya existente"
+  Correcto: "Correcto"
+  Incorrecto: "Incorrecto"
 
 
 

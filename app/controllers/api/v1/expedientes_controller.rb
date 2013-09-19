@@ -8,35 +8,32 @@ class Api::V1::ExpedientesController < ApplicationController
   expose( :expediente_type ) { params[:expediente][:type].constantize }
 
   
-  # this action process a json with a single record and creates (or updates) it
+  # this action process a json with a single record
+  # and creates (or updates) it
+  ##############################
   def create_or_update_single
-    response_message = []
     expediente = expediente_type.where(identificador: expediente_params[:identificador]).first
     # it is a new one
     if expediente.nil?
       expediente = expediente_type.new(expediente_params)
       if expediente.save
-        response_message << {:type => "edit"}
-        response_message << expediente
-        response_message << {:result => "success"}
-        render json: response_message
+        render json: create_response("New", expediente, "success")
       else
-        render json: expediente.errors, status: :unprocessable_entity
+        render json: create_response("New", expediente, "error"), status: :unprocessable_entity
       end
     # it is an already existing Expediente
     else
       if expediente.update_attributes(expediente_params)
-        response_message << {:type => "new"}
-        response_message << expediente
-        response_message << {:result => "success"}
-        render json: response_message
+        render json: create_response("Edit", expediente, "success")
       else
-        render json: expediente.errors, status: :unprocessable_entity
+        render json: create_response("Edit", expediente, "error"), status: :unprocessable_entity
       end
     end
   end
 
-  # this action process a json with multiples records and creates (or updates) them
+  # this action process a json with multiples records
+  # and creates (or updates) them
+  ###############################
   def create_batch
     exp_list = []
     expedientes.each_with_index do |item, index|
@@ -86,5 +83,19 @@ class Api::V1::ExpedientesController < ApplicationController
         ApiKey.exists?(access_token: token)
       end
     end
+  end
+
+  def create_response type, received, result
+    response_message = []
+    response_message << {:tipo => I18n.t(type)}
+    response_message << received
+    case result
+    when "success"
+      response_message << {:resultado => I18n.t("Correcto")}
+    when "error"
+      response_message << {:resultado => I18n.t("Incorrecto")}
+      response_message << {:errores => received.errors}
+    end
+    response_message
   end
 end

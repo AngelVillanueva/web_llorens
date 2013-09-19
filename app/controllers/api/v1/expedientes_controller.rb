@@ -40,22 +40,23 @@ class Api::V1::ExpedientesController < ApplicationController
       expediente = expedientes[index][:expediente][:type].constantize.where(identificador: expedientes[index][:expediente][:identificador]).first
       # it is a new Expediente
       if expediente.nil?
-        exp_list << "new"
+        type = "New"
         expediente = expedientes[index][:expediente][:type].constantize.new( this_expediente_params( index ) )
         if expediente.save
-          exp_list << expediente
+          result = "success"
         else
-          exp_list << expediente.errors
+          result = "error"
         end
       # it is an already existing Expediente
       else
-        exp_list << "edit"
+        type = "Edit"
         if expediente.update_attributes( this_expediente_params( index ) )
-          exp_list << expediente
+          result = "success"
         else
-          exp_list << expediente.errors
+          result = "error"
         end
       end
+      exp_list << create_response(type, expediente, result) # add a response object for the received record
     end
     render json: exp_list
   end

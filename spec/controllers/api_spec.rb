@@ -89,6 +89,7 @@ end
 
 private
   def mock_expediente kind, identificador = "AAA", bastidor = "AAA"
+    cliente = FactoryGirl.create( :cliente )
     expediente = {}
     expediente[:type] = kind.to_s.camelize
     expediente[:identificador] = identificador
@@ -101,7 +102,7 @@ private
     expediente[:fecha_facturacion] = 1.day.ago.to_date
     expediente[:marca] = "AAA"
     expediente[:modelo] = "AAA"
-    expediente[:cliente_id] = 1
+    expediente[:cliente_id] = cliente.llorens_cliente_id
     expediente[:observaciones] = "AAA"
     expediente
   end
@@ -112,6 +113,7 @@ private
     expediente
   end
   def mock_ongoing_expediente kind
+    cliente = FactoryGirl.create( :cliente )
     expediente = {}
     expediente[:type] = kind.to_s.camelize
     expediente[:identificador] = "AAA"
@@ -124,7 +126,7 @@ private
     expediente[:fecha_facturacion] = ""
     expediente[:marca] = "AAA"
     expediente[:modelo] = "AAA"
-    expediente[:cliente_id] = 1
+    expediente[:cliente_id] = cliente.llorens_cliente_id
     expediente[:observaciones] = "AAA"
     expediente
   end

@@ -18,6 +18,7 @@
 #  observaciones       :text
 #  type                :string(255)
 #  cliente_id          :integer
+#  llorens_cliente_id  :string(255)
 #
 
 require 'spec_helper'
@@ -62,4 +63,5 @@ describe Expediente do
       should validate_presence_of :cliente_id
     end
   end
+  
 end

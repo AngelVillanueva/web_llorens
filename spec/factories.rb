@@ -9,6 +9,8 @@ FactoryGirl.define do
     nombre "Sinapse Consulting S.L."
     identificador "SIN"
     cif "00000000T"
+    llorens_cliente_id "444999111"
+    organizacion
   end
 
   factory :usuario do
@@ -32,6 +34,7 @@ FactoryGirl.define do
     fecha_entra_trafico 2.days.ago.to_date
     fecha_facturacion 1.day.ago.to_date
     observaciones "Por favor, recoger"
+    llorens_cliente_id "444999111"
     cliente
   end
 
@@ -47,6 +50,7 @@ FactoryGirl.define do
     fecha_entra_trafico 2.days.ago.to_date
     fecha_facturacion 1.day.ago.to_date
     observaciones "Por favor, llevatelo"
+    llorens_cliente_id "444999111"
     cliente
   end
   factory :justificante do

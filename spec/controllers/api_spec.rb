@@ -41,6 +41,18 @@ describe Api::V1::ExpedientesController do
       Expediente.count.should eql 0
     end
   end
+  describe "when a non valid cliente_id is sent" do
+    it "should not create a record" do
+      request.accept = "application/json"
+      expediente = mock_expediente( Matriculacion )
+      expediente[:cliente_id] = 111
+      json = { format: 'json', expediente: expediente }
+      post :create_or_update_single, json
+      response.should_not be_success
+      Expediente.count.should eql 0
+      Matriculacion.count.should eql 0
+    end
+  end
   describe "when more than one is sent together" do
     it "should return successful response" do
       request.accept = "application/json"
@@ -85,10 +97,22 @@ describe Api::V1::ExpedientesController do
       Matriculacion.first.fecha_alta.should eql(3.days.ago.to_date)
     end
   end
+  describe "when multiple updated without valid cliente_id" do
+    it "should not create a valid record" do
+      request.accept = "application/json"
+      json = { format: 'json', expedientes: mock_expedientes(false, true) }
+      post :create_batch, json
+      response.should be_success
+      Expediente.count.should eql 1
+      Matriculacion.count.should eql 0
+      Transferencia.count.should eql 1
+    end
+  end
 end
 
 private
   def mock_expediente kind, identificador = "AAA", bastidor = "AAA"
+    cliente = FactoryGirl.create( :cliente )
     expediente = {}
     expediente[:type] = kind.to_s.camelize
     expediente[:identificador] = identificador
@@ -101,7 +125,7 @@ private
     expediente[:fecha_facturacion] = 1.day.ago.to_date
     expediente[:marca] = "AAA"
     expediente[:modelo] = "AAA"
-    expediente[:cliente_id] = 1
+    expediente[:cliente_id] = cliente.llorens_cliente_id
     expediente[:observaciones] = "AAA"
     expediente
   end
@@ -112,6 +136,7 @@ private
     expediente
   end
   def mock_ongoing_expediente kind
+    cliente = FactoryGirl.create( :cliente )
     expediente = {}
     expediente[:type] = kind.to_s.camelize
     expediente[:identificador] = "AAA"
@@ -124,11 +149,12 @@ private
     expediente[:fecha_facturacion] = ""
     expediente[:marca] = "AAA"
     expediente[:modelo] = "AAA"
-    expediente[:cliente_id] = 1
+    expediente[:cliente_id] = cliente.llorens_cliente_id
     expediente[:observaciones] = "AAA"
     expediente
   end
   def mock_expediente_wo_alta kind, identificador = "AAA", bastidor = "AAA"
+    cliente = FactoryGirl.create( :cliente )
     expediente = {}
     expediente[:type] = kind.to_s.camelize
     expediente[:identificador] = identificador
@@ -141,17 +167,20 @@ private
     expediente[:fecha_facturacion] = 1.days.ago.to_date
     expediente[:marca] = "AAA"
     expediente[:modelo] = "AAA"
-    expediente[:cliente_id] = 1
+    expediente[:cliente_id] = cliente.llorens_cliente_id
     expediente[:observaciones] = "AAA"
     expediente
   end
-  def mock_expedientes wo_alta=false
+  def mock_expedientes wo_alta=false, wo_cliente=false
     expedientes = []
     matriculacion = {}
     transferencia = {}   
     matriculacion["expediente"] = mock_expediente(Matriculacion)
     if wo_alta
       matriculacion["expediente"] = mock_expediente_wo_alta(Matriculacion, "IM-test", "test")
+    end
+    if wo_cliente
+      matriculacion["expediente"][:cliente_id] = 111
     end
     transferencia["expediente"] = mock_expediente(Transferencia)
     expedientes << matriculacion

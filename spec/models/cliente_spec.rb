@@ -2,11 +2,12 @@
 #
 # Table name: clientes
 #
-#  id              :integer          not null, primary key
-#  nombre          :string(255)
-#  identificador   :string(255)
-#  cif             :string(255)
-#  organizacion_id :integer
+#  id                 :integer          not null, primary key
+#  nombre             :string(255)
+#  identificador      :string(255)
+#  cif                :string(255)
+#  organizacion_id    :integer
+#  llorens_cliente_id :string(255)
 #
 
 require 'spec_helper'
@@ -26,6 +27,8 @@ describe Cliente do
       should validate_presence_of :nombre
       should validate_presence_of :identificador
       should validate_presence_of :cif
+      should validate_presence_of :llorens_cliente_id
+      should validate_presence_of :organizacion_id
     end
   end
 end

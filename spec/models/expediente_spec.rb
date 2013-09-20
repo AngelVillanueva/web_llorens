@@ -18,6 +18,7 @@
 #  observaciones       :text
 #  type                :string(255)
 #  cliente_id          :integer
+#  llorens_cliente_id  :string(255)
 #
 
 require 'spec_helper'
@@ -41,6 +42,7 @@ describe Expediente do
     it { should respond_to :dias_tramite }
     it { should respond_to :observaciones }
     it { should respond_to :type }
+    it { should respond_to :llorens_cliente_id }
     it { should belong_to :cliente }
 
     it { should be_valid }
@@ -61,4 +63,5 @@ describe Expediente do
       should validate_presence_of :cliente_id
     end
   end
+  
 end

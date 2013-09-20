@@ -18,11 +18,14 @@
 #  observaciones       :text
 #  type                :string(255)
 #  cliente_id          :integer
+#  llorens_cliente_id  :string(255)
 #
 
 class Expediente < ActiveRecord::Base
   belongs_to :cliente
   default_scope includes(:cliente).order('created_at DESC')
+
+  #before_validation :assign_internal_cliente_id
 
   validates :identificador, :matricula, :bastidor, :comprador, :vendedor, :marca, :modelo, :fecha_alta, :cliente_id, :type, presence: true
 
@@ -34,4 +37,9 @@ class Expediente < ActiveRecord::Base
     return nil if ( fecha_sale_trafico.nil? && fecha_alta.nil? )
     ( fecha_sale_trafico - fecha_alta ).to_i
   end
+
+  # def assign_internal_cliente_id
+  #   internal_cliente = Cliente.where(llorens_cliente_id: self.cliente_id.to_s).first
+  #   self.cliente_id = internal_cliente.id 
+  # end
 end

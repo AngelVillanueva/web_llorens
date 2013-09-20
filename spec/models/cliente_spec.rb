@@ -27,6 +27,8 @@ describe Cliente do
       should validate_presence_of :nombre
       should validate_presence_of :identificador
       should validate_presence_of :cif
+      should validate_presence_of :llorens_cliente_id
+      should validate_presence_of :organizacion_id
     end
   end
 end

@@ -9,6 +9,8 @@ FactoryGirl.define do
     nombre "Sinapse Consulting S.L."
     identificador "SIN"
     cif "00000000T"
+    llorens_cliente_id "444999111"
+    organizacion
   end
 
   factory :usuario do

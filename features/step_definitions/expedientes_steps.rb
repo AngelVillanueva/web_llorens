@@ -1,5 +1,5 @@
 Given(/^there are more Expedientes from other Clientes$/) do
-  other_cliente = Cliente.create( nombre: "Other C", identificador: "CCC", cif: "00000000T" )
+  other_cliente = Cliente.create( nombre: "Other C", identificador: "CCC", cif: "00000000T", llorens_cliente_id: "444999111", organizacion_id: 2 )
   other_expediente = FactoryGirl.create( :matriculacion, matricula: "Other matricula", cliente: other_cliente)
 end
 

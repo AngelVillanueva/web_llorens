@@ -74,12 +74,7 @@ class Api::V1::ExpedientesController < ApplicationController
   def this_expediente_params index, previous_fecha_alta=nil
     params[:expedientes][index][:expediente].delete :type
     params[:expedientes][index][:expediente] = complete_fecha_alta_if_needed params[:expedientes][index][:expediente], previous_fecha_alta
-    # DEV: move organizacion_id to Observaciones if is a string and add a temp cliente_id [SIGES int 64 issue]
-      if params[:expedientes][index][:expediente][:cliente_id].is_a?(String)
-        params[:expedientes][index][:expediente][:observaciones] = params[:expedientes][index][:expediente][:cliente_id]
-        params[:expedientes][index][:expediente][:cliente_id] = 1001
-      end
-    # End of DEV
+    params[:expedientes][index][:expediente] = assign_internal_cliente_id params[:expedientes][index][:expediente]
     params[:expedientes][index][:expediente]
   end
   def restrict_access

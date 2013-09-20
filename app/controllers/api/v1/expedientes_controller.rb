@@ -39,6 +39,7 @@ class Api::V1::ExpedientesController < ApplicationController
     exp_list = []
     expedientes.each_with_index do |item, index|
       expediente = expedientes[index][:expediente][:type].constantize.where(identificador: expedientes[index][:expediente][:identificador]).first
+      cliente_recibido = expedientes[index][:expediente][:cliente_id]
       # it is a new Expediente
       if expediente.nil?
         type = "New"
@@ -57,7 +58,7 @@ class Api::V1::ExpedientesController < ApplicationController
           result = "error"
         end
       end
-      exp_list << create_response(type, expediente, result) # add a response object for the received record
+      exp_list << create_response(type, expediente, result, cliente_recibido) # add a response object for the received record
     end
     render json: exp_list
   end

@@ -18,6 +18,7 @@
 #  observaciones       :text
 #  type                :string(255)
 #  cliente_id          :integer
+#  llorens_cliente_id  :string(255)
 #
 
 class Matriculacion < Expediente

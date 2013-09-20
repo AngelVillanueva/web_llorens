@@ -41,6 +41,7 @@ describe Expediente do
     it { should respond_to :dias_tramite }
     it { should respond_to :observaciones }
     it { should respond_to :type }
+    it { should respond_to :llorens_cliente_id }
     it { should belong_to :cliente }
 
     it { should be_valid }

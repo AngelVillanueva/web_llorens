@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130723072806) do
+ActiveRecord::Schema.define(:version => 20130920103923) do
 
   create_table "api_keys", :force => true do |t|
     t.string   "access_token"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(:version => 20130723072806) do
     t.string  "identificador"
     t.string  "cif"
     t.integer "organizacion_id"
+    t.string  "llorens_cliente_id"
   end
 
   create_table "clientes_usuarios", :id => false, :force => true do |t|
@@ -47,6 +48,7 @@ ActiveRecord::Schema.define(:version => 20130723072806) do
     t.text     "observaciones"
     t.string   "type"
     t.integer  "cliente_id"
+    t.string   "llorens_cliente_id"
   end
 
   add_index "expedientes", ["cliente_id"], :name => "index_expedientes_on_cliente_id"
@@ -82,7 +84,6 @@ ActiveRecord::Schema.define(:version => 20130723072806) do
     t.string   "modelo"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
-    t.string   "pdf"
     t.string   "pdf_file_name"
     t.string   "pdf_content_type"
     t.integer  "pdf_file_size"

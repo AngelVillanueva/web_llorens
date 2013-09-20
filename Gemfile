@@ -16,6 +16,9 @@ gem 'faker', '~> 1.1.2'
 gem 'unicorn'
 # Deploy with Capistrano
 gem 'capistrano'
+# Qeue with Delayed Job
+gem 'delayed_job_active_record'
+gem 'daemons' # for production / capistrano
 ### PDF MANAGEMENT
 gem 'prawn', '~> 1.0.0rc2' # force prawn version
 gem 'prawn_rails', '~> 0.0.11' # pdf creation

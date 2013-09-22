@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130920154202) do
+ActiveRecord::Schema.define(:version => 20130922090314) do
 
   create_table "api_keys", :force => true do |t|
     t.string   "access_token"
@@ -26,6 +26,8 @@ ActiveRecord::Schema.define(:version => 20130920154202) do
     t.integer "organizacion_id"
     t.string  "llorens_cliente_id"
   end
+
+  add_index "clientes", ["llorens_cliente_id"], :name => "index_clientes_on_llorens_cliente_id"
 
   create_table "clientes_usuarios", :id => false, :force => true do |t|
     t.integer "cliente_id"
@@ -69,6 +71,7 @@ ActiveRecord::Schema.define(:version => 20130920154202) do
 
   add_index "expedientes", ["cliente_id"], :name => "index_expedientes_on_cliente_id"
   add_index "expedientes", ["id", "type"], :name => "index_expedientes_on_id_and_type"
+  add_index "expedientes", ["llorens_cliente_id"], :name => "index_expedientes_on_llorens_cliente_id"
 
   create_table "informes", :force => true do |t|
     t.string   "matricula"

@@ -6,8 +6,10 @@ class WebPagesController < ApplicationController
     if contact_params(params).count > 0
       contact_data = contact_params(params)
       if contact_data.count == 5
-        ContactMailer.delay.contact_confirmation(contact_data)
-        ContactMailer.delay.agradecimiento(contact_data)
+        #ContactMailer.delay.contact_confirmation(contact_data)
+        #ContactMailer.delay.agradecimiento(contact_data)
+        ContactMailer.contact_confirmation(contact_data).deliver
+        ContactMailer.agradecimiento(contact_data).deliver
         redirect_to root_path, notice: "Solicitud enviada correctamente"
       else
         flash[:error] = "Complete todos los campos, por favor"

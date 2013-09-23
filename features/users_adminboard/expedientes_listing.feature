@@ -28,6 +28,12 @@ Scenario: Users can see just the Expedientes from their Organizations
     And there are more Expedientes from other Clientes
   When I access the Matriculaciones index page
   Then I should just see the list of my Expedientes
+
+Scenario: Admin users can see all Expedientes
+  Given I am an admin user
+    And there are more Expedientes from other Clientes
+  When I access the Matriculaciones index page
+  Then I should see a list of the Matriculaciones
   
 @javascript
 Scenario: Users can filter by date

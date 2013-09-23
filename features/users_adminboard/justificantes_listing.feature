@@ -24,6 +24,12 @@ Feature: Justificantes listing
         And there are also Justificantes from other Clientes
       When I access the Justificantes index page
       Then I should see just the list of the Justificantes from my Cliente
+    
+  Scenario: an admin user can see all Justificantes
+      Given I am an admin user
+        And there are also Justificantes from other Clientes
+      When I access the Justificantes index page
+      Then I should see a list of all the Justificantes
 
   @javascript
     Scenario: the list of Justificantes is auto updated via ajax

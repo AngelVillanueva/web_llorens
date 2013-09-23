@@ -56,6 +56,10 @@ Then(/^I should see just the list of the Informes from my Cliente$/) do
   expect( page ).to_not have_selector( 'td', text: "Informe externo" )
 end
 
+Then(/^I should see a list of all the Informes$/) do
+  expect( page ).to have_selector( 'tr.informe', count: 1 )
+end
+
 Then(/^I should see the list of the Informes updated and sorted without reloading the page$/) do
   using_wait_time 11 do
     expect( page ).to have_selector( 'tr.informe', count: 3 )

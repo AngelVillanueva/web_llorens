@@ -5,7 +5,7 @@ class Online::JustificantesController < OnlineController
       timing = Time.at(params[:after].to_i + 1)
       current_usuario.justificantes.where("pdf_file_name IS NULL").where("created_at > ?", timing)
     else
-      current_usuario.justificantes
+      Justificante.scoped.accessible_by( current_ability )
     end
   end
   expose( :justificante, attributes: :justificante_params )

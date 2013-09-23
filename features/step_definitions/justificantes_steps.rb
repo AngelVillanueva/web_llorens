@@ -55,6 +55,12 @@ Then(/^I should see a list of the Justificantes$/) do
   expect( page ).to have_selector( 'tr.justificante', count: 2 )
 end
 
+Then(/^I should see a list of all the Justificantes$/) do
+  page.should have_title( I18n.t( "Justificantes" ) )
+  Justificante.count.should eql 1
+  expect( page ).to have_selector( 'tr.justificante', count: 1 )
+end
+
 Then(/^the first Justificante should be the most urgent one$/) do
   expect( first( 'tr.justificante' ) ).to have_selector( 'td', text: "Otro justificante" )
 end

@@ -10,6 +10,9 @@ module KnowstheDomain
     usuario.clientes << cliente if usuario.clientes.empty?
     usuario
   end
+  def admin
+    admin ||= FactoryGirl.create( :usuario, nombre: "super", role: "admin" )
+  end
   def matriculacion
     @matriculacion || FactoryGirl.create( :matriculacion, cliente: cliente )
   end

@@ -2,6 +2,15 @@
 # rake RAILS_ENV=test fakefeed:all 
 
 namespace :fakefeed do
+
+  desc 'Feeding ApiKeys'
+  task :apikeys => :environment do
+    ApiKey.delete_all
+    apikey = ApiKey.create!()
+    apikey.access_token = "f85b0cbe9e00194304c0d9bd7208e0e8"
+    apikey.save!
+  end
+
   desc 'Feeding Clientes'
   task :matriculaciones => :environment do
     Matriculacion.delete_all
@@ -78,7 +87,7 @@ namespace :fakefeed do
   
   
   desc 'Run all fake feedings'
-  task :all => [:matriculaciones, :transferencias, :justificantes, :informes]
+  task :all => [:apikeys, :matriculaciones, :transferencias, :justificantes, :informes]
   
   task :default => :all
 end

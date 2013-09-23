@@ -21,6 +21,8 @@ describe Cliente do
     it { should respond_to :identificador }
     it { should respond_to :cif }
     it { should respond_to :expedientes }
+    it { should respond_to :justificantes }
+    it { should respond_to :informes }
     it { should belong_to :organizacion }
   end
   describe "with all fields being mandatory" do

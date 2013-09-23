@@ -13,5 +13,7 @@
 class Cliente < ActiveRecord::Base
   belongs_to :organizacion
   has_many :expedientes
+  has_many :justificantes
+  has_many :informes
   validates :nombre, :identificador, :cif, :llorens_cliente_id, :organizacion_id, presence: true
 end

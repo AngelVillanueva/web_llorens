@@ -9,6 +9,21 @@ namespace :feed do
     FastSeeder.seed_csv!(Organizacion, "organizaciones.csv", :id, :nombre, :identificador)
   end
 
+  desc 'Feeding Admin users'
+  task :admins => :environment do
+    Usuario.where(role: "admin").delete_all
+    # Main admin user
+    superadmin = Usuario.find_or_create_by_nombre(
+        nombre: "Administrador",
+        apellidos: "Total",
+        email: "info@sinapse.es",
+        password: "foobarfoo",
+        password_confirmation: "foobarfoo",
+        organizacion: Organizacion.find_by_identificador("LLORENS"),
+        role: "admin"
+      )
+  end
+
   desc 'Feeding Clientes'
   task :clientes => :environment do
     Cliente.delete_all
@@ -18,7 +33,7 @@ namespace :feed do
   
   
   desc 'Run all feedings'
-  task :all => [:organizaciones, :clientes]
+  task :all => [:organizaciones, :admins, :clientes]
   
   task :default => :all
   

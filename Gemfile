@@ -12,6 +12,7 @@ gem 'jquery-rails', '~> 2.1'
 gem 'jquery-ui-rails', '~> 3.0.1'
 gem 'simple_form', '~> 2.1' # add gem 'country_select' if needed
 gem 'faker', '~> 1.1.2'
+gem 'fast_seeder'
 # Use unicorn as the app server
 gem 'unicorn'
 # Deploy with Capistrano

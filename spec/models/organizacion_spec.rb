@@ -36,10 +36,4 @@ describe Organizacion do
     end
     it { should_not be_valid }
   end
-  describe "with mandatory field cif" do
-    before do
-      organizacion.cif = nil
-    end
-    it { should_not be_valid }
-  end
 end

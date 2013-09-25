@@ -24,13 +24,6 @@
 require 'spec_helper'
 
 describe Usuario do
-  # usuario = Usuario.new
-  # usuario.email = "foo@bar.com"
-  # usuario.password = "foobarfoo"
-  # usuario.nombre = "Angel"
-  # usuario.apellidos = "Villa"
-  # usuario.organizacion_id = 1
-  # usuario.save
   let( :usuario ) { FactoryGirl.create( :usuario, organizacion_id: 1 ) }
   subject { usuario }
 
@@ -43,6 +36,7 @@ describe Usuario do
     it { should respond_to :justificantes }
     it { should respond_to :informes }
     it { should respond_to :clientes }
+    it { should respond_to :role }
     it { should respond_to :organizacion }
     it { should be_valid }
   end

@@ -1,5 +1,9 @@
 # load pdf template from Llorens repository
-template_pdf = "#{Rails.root}/app/assets/pdfs/expedientes/#{folder_name(expediente.type)}#{expediente.identificador}.pdf"
+if Rails.env.production?
+  template_pdf = "#{shared_path}/assets/expedientes/#{folder_name(expediente.type)}#{expediente.identificador}.pdf"
+else
+  template_pdf = "#{Rails.root}/app/assets/pdfs/expedientes/#{folder_name(expediente.type)}#{expediente.identificador}.pdf"
+end
 # if the pdf exists render it skipping the first page
 if File.exist? template_pdf
   # calculate page range skipping first page
@@ -15,6 +19,6 @@ if File.exist? template_pdf
   end
 else
   prawn_document do |pdf|
-    pdf.text "No se ha encontrado el documento"
+    pdf.text "No se ha encontrado el documento #{template_pdf}"
   end
 end

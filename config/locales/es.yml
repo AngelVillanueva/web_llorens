@@ -284,8 +284,8 @@ es:
   Pendiente: "Pendiente"
   pendiente: "Pendiente"
   PDF Pendiente: "PDF pendiente"
-  New: "Nuevo registro"
-  Edit: "Registro ya existente"
+  New: "Expediente recibido %{index}, Nuevo registro"
+  Edit: "Expediente recibido %{index}, Registro ya existente"
   Correcto: "Correcto"
   Incorrecto: "Incorrecto"
 

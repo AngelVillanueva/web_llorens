@@ -2,7 +2,7 @@ require 'spec_helper.rb'
 
 describe Api::V1::ExpedientesController do
   render_views
-  after(:all) do # empty custom api logger test file to avoid false positives
+  after(:each) do # empty custom api logger test file to avoid false positives
     api_log_file = "#{Rails.root}/log/api_test.log"
     File.open(api_log_file, 'w') {} if File.exists?(api_log_file)
   end
@@ -15,6 +15,7 @@ describe Api::V1::ExpedientesController do
       response.should be_success
       Expediente.count.should eql 1
       Matriculacion.count.should eql 1
+      check_custom_log_file
     end
   end
   describe "when mandatory fields are missing" do
@@ -25,6 +26,7 @@ describe Api::V1::ExpedientesController do
       response.should_not be_success
       Expediente.count.should eql 0
       Matriculacion.count.should eql 0
+      check_custom_log_file
     end
   end
   describe "when not mandatory fields are missing" do
@@ -35,6 +37,7 @@ describe Api::V1::ExpedientesController do
       response.should be_success
       Expediente.count.should eql 1
       Matriculacion.count.should eql 1
+      check_custom_log_file
     end
   end
   describe "when not allowed attributes are sent" do
@@ -43,6 +46,7 @@ describe Api::V1::ExpedientesController do
       json = { format: 'json', expediente: { type: "Transferencia", identificadores: "IM1234" } }
       expect{ post :create_or_update_single, json}.to raise_error(ActionController::UnpermittedParameters)
       Expediente.count.should eql 0
+      check_custom_log_file(0)
     end
   end
   describe "when a non valid cliente_id is sent" do
@@ -55,6 +59,7 @@ describe Api::V1::ExpedientesController do
       response.should_not be_success
       Expediente.count.should eql 0
       Matriculacion.count.should eql 0
+      check_custom_log_file
     end
   end
   describe "when more than one is sent together" do
@@ -66,6 +71,7 @@ describe Api::V1::ExpedientesController do
       Expediente.count.should eql 2
       Matriculacion.count.should eql 1
       Transferencia.count.should eql 1
+      check_custom_log_file
     end
   end
   describe "when the Expediente already exists" do
@@ -76,6 +82,7 @@ describe Api::V1::ExpedientesController do
       post :create_or_update_single, json
       Expediente.count.should eql 1
       Matriculacion.count.should eql 1
+      check_custom_log_file
     end
   end
   describe "when updated without Fecha Alta" do
@@ -87,6 +94,7 @@ describe Api::V1::ExpedientesController do
       Expediente.count.should eql 1
       Matriculacion.count.should eql 1
       Matriculacion.first.fecha_alta.should eql(3.days.ago.to_date)
+      check_custom_log_file
     end
   end
   describe "when multiple updated without Fecha Alta" do
@@ -99,6 +107,7 @@ describe Api::V1::ExpedientesController do
       Matriculacion.count.should eql 1
       Matriculacion.first.bastidor.should eql("test")
       Matriculacion.first.fecha_alta.should eql(3.days.ago.to_date)
+      check_custom_log_file
     end
   end
   describe "when multiple updated without valid cliente_id" do
@@ -110,13 +119,6 @@ describe Api::V1::ExpedientesController do
       Expediente.count.should eql 1
       Matriculacion.count.should eql 0
       Transferencia.count.should eql 1
-    end
-  end
-  describe "when a message is received" do
-    it "should generate a custom log entry" do
-      request.accept = "application/json"
-      json = { format: 'json', expediente: mock_expediente( Matriculacion ) }
-      post :create_or_update_single, json
       check_custom_log_file
     end
   end
@@ -199,8 +201,13 @@ private
     expedientes << transferencia
     expedientes
   end
-  def check_custom_log_file
+  def check_custom_log_file allowed=nil
     File.open("#{Rails.root}/log/api_test.log", "r") do |file|
-      file.lines.count.should_not eql 1
+      unless allowed
+        file.lines.count.should_not eql 0
+        file.lines.count.should_not eql 1
+      else
+        file.lines.count.should eql allowed
+      end
     end
   end

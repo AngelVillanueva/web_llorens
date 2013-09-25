@@ -71,5 +71,8 @@ module WebLlorens
 
     # Load Subfolder Models
     config.autoload_paths += Dir[Rails.root.join('app', 'models', '{**}')]
+
+    # custom API logger
+    config.api_logger = Logger.new(Rails.root.join("log/api_#{Rails.env}.log"))
   end
 end

@@ -12,23 +12,40 @@ class Api::V1::ExpedientesController < ApplicationController
   # and creates (or updates) it
   ##############################
   def create_or_update_single
+    error_count = 0
+    exp_list = []
     cliente_recibido = params[:expediente][:cliente_id]
     expediente = expediente_type.where(identificador: expediente_params[:identificador]).first
     # it is a new one
     if expediente.nil?
       expediente = expediente_type.new(expediente_params)
       if expediente.save
-        render json: create_response("New", expediente, "success")
+        resultado = create_response(0, "New", expediente, "success")
+        render json: resultado
+        exp_list << resultado
       else
-        render json: create_response("New", expediente, "error", cliente_recibido), status: :unprocessable_entity
+        resultado = create_response(0, "New", expediente, "error", cliente_recibido)
+        render json: resultado, status: :unprocessable_entity
+        error_count = 1
+        exp_list << resultado
       end
     # it is an already existing Expediente
     else
       if expediente.update_attributes(expediente_params expediente.fecha_alta)
-        render json: create_response("Edit", expediente, "success")
+        resultado = create_response(0, "Edit", expediente, "success")
+        render json: resultado
+        exp_list << resultado
       else
-        render json: create_response("Edit", expediente, "error", cliente_recibido), status: :unprocessable_entity
+        resultado = create_response(0, "Edit", expediente, "error", cliente_recibido)
+        render json: resultado, status: :unprocessable_entity
+        error_count = 1
+        exp_list << resultado
       end
+    end
+    respuesta = response_block(1, error_count, exp_list)
+    Rails.application.config.api_logger.debug respuesta
+    if error_count > 0
+      ApiMailer.api_error_message(respuesta).deliver
     end
   end
 
@@ -37,6 +54,7 @@ class Api::V1::ExpedientesController < ApplicationController
   ###############################
   def create_batch
     exp_list = []
+    error_count = 0
     expedientes.each_with_index do |item, index|
       expediente = expedientes[index][:expediente][:type].constantize.where(identificador: expedientes[index][:expediente][:identificador]).first
       cliente_recibido = expedientes[index][:expediente][:cliente_id]
@@ -48,6 +66,7 @@ class Api::V1::ExpedientesController < ApplicationController
           result = "success"
         else
           result = "error"
+          error_count = error_count + 1
         end
       # it is an already existing Expediente
       else
@@ -56,11 +75,17 @@ class Api::V1::ExpedientesController < ApplicationController
           result = "success"
         else
           result = "error"
+          error_count = error_count + 1
         end
       end
-      exp_list << create_response(type, expediente, result, cliente_recibido) # add a response object for the received record
+      exp_list << create_response(index, type, expediente, result, cliente_recibido) # add a response object for the received record
     end
     render json: exp_list
+    respuesta = response_block(expedientes.count, error_count, exp_list)
+    Rails.application.config.api_logger.debug respuesta
+    if error_count > 0
+      ApiMailer.api_error_message(respuesta).deliver
+    end
   end
 
   private
@@ -106,18 +131,40 @@ class Api::V1::ExpedientesController < ApplicationController
     params
   end
 
-  def create_response type, received, result, cliente_recibido=nil
+  def create_response index, type, received, result, cliente_recibido=nil
     response_message = []
-    response_message << {:tipo => I18n.t(type)}
-    response_message << received
+    response_message << { :timestamp => Time.now.strftime("%d/%m/%Y %I:%M") }
+    response_message << {:tipo => I18n.t(type, index: index+1)}
     case result
     when "success"
       response_message << {:resultado => I18n.t("Correcto")}
     when "error"
       response_message << {:resultado => I18n.t("Incorrecto")}
-      response_message << {:errores => received.errors}
+      response_message << {:errores => received.errors.messages}
       response_message << {:id_cliente_recibido => cliente_recibido }
     end
+    response_message << received
     response_message
+  end
+
+  def response_block expedientes_count, error_count, expedientes_list
+    rb = [] << { :timestamp => Time.now.strftime( "%d/%m/%Y %I:%M" ) }
+    recibidos = expedientes_count
+    case
+    when error_count == 0
+      resultado = "Completamente correcto"
+    when error_count == recibidos
+      resultado = "Error total"
+    when recibidos > error_count && error_count > 0
+      resultado = "Parcialmente correcto"
+    else
+      resultado = "Error fatal"
+    end
+    rb << { :resultado => resultado }
+    rb << { :recibidos => recibidos }
+    rb << { :guardados => recibidos - error_count }
+    rb << { :errores => error_count }
+    rb << { :detalle => expedientes_list }
+    rb.to_yaml
   end
 end

@@ -1,5 +1,11 @@
 class ContactMailer < ActionMailer::Base
-  default from: "gestoriallorens@gestoriallorens.com"
+  if Rails.env.production?
+    recipients = ["info@sinapse.es", "jbrugada@gestoriallorens.com"]
+  else
+    recipients = ["info@sinapse.es"]
+  end
+  default to: Proc.new { recipients },
+    from: "gestoriallorens@gestoriallorens.com"
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
@@ -9,7 +15,7 @@ class ContactMailer < ActionMailer::Base
   def contact_confirmation contact_params
     @contact_params = contact_params
 
-    mail to: "info@sinapse.es", subject: t("Solicitud")
+    mail subject: t("Solicitud")
   end
   def agradecimiento contact_params
     mail to: contact_params[:email], subject: t("Confirmado")

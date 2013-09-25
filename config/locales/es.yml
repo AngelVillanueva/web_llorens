@@ -288,6 +288,7 @@ es:
   Edit: "Expediente recibido %{index}, Registro ya existente"
   Correcto: "Correcto"
   Incorrecto: "Incorrecto"
+  Error creando Expedientes: "Error creando Expedientes en la aplicación web"
 
 
 

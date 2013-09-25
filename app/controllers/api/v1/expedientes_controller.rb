@@ -42,7 +42,9 @@ class Api::V1::ExpedientesController < ApplicationController
         exp_list << resultado
       end
     end
-    Rails.application.config.api_logger.debug response_block(1, error_count, exp_list)
+    respuesta = response_block(1, error_count, exp_list)
+    Rails.application.config.api_logger.debug respuesta
+    ApiMailer.api_error(respuesta).deliver
   end
 
   # this action process a json with multiples records

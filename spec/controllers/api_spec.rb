@@ -2,6 +2,10 @@ require 'spec_helper.rb'
 
 describe Api::V1::ExpedientesController do
   render_views
+  after(:all) do # empty custom api logger test file to avoid false positives
+    api_log_file = "#{Rails.root}/log/api_test.log"
+    File.open(api_log_file, 'w') {} if File.exists?(api_log_file)
+  end
   
   describe "when the allowed attributes are sent" do
     it "should return successful response" do
@@ -108,6 +112,14 @@ describe Api::V1::ExpedientesController do
       Transferencia.count.should eql 1
     end
   end
+  describe "when a message is received" do
+    it "should generate a custom log entry" do
+      request.accept = "application/json"
+      json = { format: 'json', expediente: mock_expediente( Matriculacion ) }
+      post :create_or_update_single, json
+      check_custom_log_file
+    end
+  end
 end
 
 private
@@ -186,4 +198,9 @@ private
     expedientes << matriculacion
     expedientes << transferencia
     expedientes
+  end
+  def check_custom_log_file
+    File.open("#{Rails.root}/log/api_test.log", "r") do |file|
+      file.lines.count.should_not eql 1
+    end
   end

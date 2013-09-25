@@ -118,6 +118,7 @@ class Api::V1::ExpedientesController < ApplicationController
       response_message << {:errores => received.errors}
       response_message << {:id_cliente_recibido => cliente_recibido }
     end
+    Rails.application.config.api_logger.debug response_message.to_yaml
     response_message
   end
 end

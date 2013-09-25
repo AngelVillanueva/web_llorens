@@ -19,8 +19,6 @@ describe Api::V1::ExpedientesController do
     end
   end
   describe "when mandatory fields are missing" do
-    include EmailSpec::Helpers
-    include EmailSpec::Matchers
     it "should not create a record" do
       request.accept = "application/json"
       json = { format: 'json', expediente: mock_bad_expediente( Matriculacion ) }

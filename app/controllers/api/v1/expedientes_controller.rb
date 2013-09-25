@@ -20,11 +20,11 @@ class Api::V1::ExpedientesController < ApplicationController
     if expediente.nil?
       expediente = expediente_type.new(expediente_params)
       if expediente.save
-        resultado = create_response(1, "New", expediente, "success")
+        resultado = create_response(0, "New", expediente, "success")
         render json: resultado
         exp_list << resultado
       else
-        resultado = create_response(1, "New", expediente, "error", cliente_recibido)
+        resultado = create_response(0, "New", expediente, "error", cliente_recibido)
         render json: resultado, status: :unprocessable_entity
         error_count = 1
         exp_list << resultado
@@ -32,11 +32,11 @@ class Api::V1::ExpedientesController < ApplicationController
     # it is an already existing Expediente
     else
       if expediente.update_attributes(expediente_params expediente.fecha_alta)
-        resultado = create_response(1, "Edit", expediente, "success")
+        resultado = create_response(0, "Edit", expediente, "success")
         render json: resultado
         exp_list << resultado
       else
-        resultado = create_response(1, "Edit", expediente, "error", cliente_recibido)
+        resultado = create_response(0, "Edit", expediente, "error", cliente_recibido)
         render json: resultado, status: :unprocessable_entity
         error_count = 1
         exp_list << resultado
@@ -44,7 +44,9 @@ class Api::V1::ExpedientesController < ApplicationController
     end
     respuesta = response_block(1, error_count, exp_list)
     Rails.application.config.api_logger.debug respuesta
-    ApiMailer.api_error(respuesta).deliver
+    if error_count > 0
+      ApiMailer.api_error_message(respuesta).deliver
+    end
   end
 
   # this action process a json with multiples records
@@ -79,7 +81,11 @@ class Api::V1::ExpedientesController < ApplicationController
       exp_list << create_response(index, type, expediente, result, cliente_recibido) # add a response object for the received record
     end
     render json: exp_list
-    Rails.application.config.api_logger.debug response_block(expedientes.count, error_count, exp_list)
+    respuesta = response_block(expedientes.count, error_count, exp_list)
+    Rails.application.config.api_logger.debug respuesta
+    if error_count > 0
+      ApiMailer.api_error_message(respuesta).deliver
+    end
   end
 
   private

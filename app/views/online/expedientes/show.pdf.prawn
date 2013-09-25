@@ -19,6 +19,10 @@ if File.exist? template_pdf
   end
 else
   prawn_document do |pdf|
-    pdf.text "No se ha encontrado el documento #{template_pdf}"
+    if current_usuario.role? "admin"
+      pdf.text "No se ha encontrado el documento #{template_pdf}"
+    else
+      pdf.text "No se ha encontrado el documento"
+    end
   end
 end

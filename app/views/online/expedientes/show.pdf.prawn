@@ -1,6 +1,6 @@
 # load pdf template from Llorens repository
 if Rails.env.production?
-  template_pdf = "#{shared_path}/assets/expedientes/#{folder_name(expediente.type)}#{expediente.identificador}.pdf"
+  template_pdf = "#{Rails.root}/public/assets/expedientes/#{folder_name(expediente.type)}#{expediente.identificador}.pdf"
 else
   template_pdf = "#{Rails.root}/app/assets/pdfs/expedientes/#{folder_name(expediente.type)}#{expediente.identificador}.pdf"
 end

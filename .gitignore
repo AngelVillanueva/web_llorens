@@ -37,3 +37,8 @@ doc/
 /config/database.yml
 /app/assets/pdfs
 /app/assets/pdfs/*
+/app/assets/pdfs/expedientes/*.*
+/app/assets/pdfs/expedientes/
+/app/assets/pdfs/justificantes/*.*
+/app/assets/pdfs/informes/*.*
+

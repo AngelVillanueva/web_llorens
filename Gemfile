@@ -25,7 +25,7 @@ gem 'prawn', '~> 1.0.0rc2' # force prawn version
 gem 'prawn_rails', '~> 0.0.11' # pdf creation
 gem 'Ascii85', '~> 1.0.1' # or pdf-reader will fail
 gem 'pdf-reader', '~> 1.3.3' # pdf reading
-gem "rghost", '~> 0.9.3', require: false # needed to skip the first page, prawn fails
+gem "rghost", '~> 0.9.3' # needed to skip the first page, prawn fails
 gem 'paperclip', '~> 3.0' # file attachment
 ### USER & PERMISSIONS MANAGEMENT
 # Devise

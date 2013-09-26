@@ -152,8 +152,4 @@ module ApplicationHelper
       template_pdf = "#{Rails.root}/app/assets/pdfs/expedientes/#{folder_name(expediente.type)}#{expediente.identificador}.pdf"
     end
   end
-  def range_page_for_pdf base_pdf, initial_page=1
-    final_page = PDF::Reader.new(base_pdf).page_count + 1
-    initial_page..final_page
-  end
 end

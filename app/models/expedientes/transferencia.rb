@@ -22,4 +22,5 @@
 #
 
 class Transferencia < Expediente
+  validates :vendedor, presence: true
 end

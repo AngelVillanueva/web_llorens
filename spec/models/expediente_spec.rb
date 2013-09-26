@@ -56,11 +56,22 @@ describe Expediente do
       should validate_presence_of :bastidor
       should validate_presence_of :matricula
       should validate_presence_of :comprador
-      should validate_presence_of :vendedor
       should validate_presence_of :marca
       should validate_presence_of :modelo
       should validate_presence_of :fecha_alta
       should validate_presence_of :cliente_id
+    end
+  end
+  describe "for Matriculaciones" do
+    it "should not have Vendedor as a mandatory field" do
+      should_not validate_presence_of :vendedor
+    end
+  end
+  describe "just for Transferencias" do
+    let(:transferencia) { FactoryGirl.create( :transferencia ) }
+    subject { transferencia }
+    it "should have Vendedor as a mandatory field" do
+      should validate_presence_of :vendedor
     end
   end
   

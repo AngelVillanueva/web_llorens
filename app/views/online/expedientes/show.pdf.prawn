@@ -1,17 +1,15 @@
 # load pdf template from Llorens repository via helper
-base_pdf = llorens_base_pdf expediente
+base_pdf = llorens_base_pdf expediente # llorens_base_pdf is a custom helper
 
 # if the pdf exists render it skipping the first page
 if File.exist? base_pdf
-  # calculate page range skipping first page
-  pages = range_page_for_pdf base_pdf, 2
-  # create temporary pdf file without first page with RGhost
-  temporary = RGhost::Convert.new(base_pdf)
-  modified = temporary.to :pdf, filename: "#{Rails.root}/app/testing.pdf", range: pages
+  # create temporary pdf file without first page with RGhost via a custom model TmpPdf
+    initial_page = 2 # skip 1st page
+    temporary = TmpPdf.new( base_pdf, initial_page ).path
   # def pdf output via prawn
-  prawn_document( template: modified ) do |pdf|
+  prawn_document( template: temporary ) do |pdf|
     pdf
-    File.delete modified
+    File.delete temporary
   end
 else
   # pdf not in the server, show an advise and the searched path if admin

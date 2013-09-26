@@ -10,6 +10,10 @@ describe TmpPdf do
   describe "as a Model" do
     it { should respond_to :initial_page }
     it { should respond_to :final_page }
+    it { should respond_to :path}
+
+    its(:initial_page) { should eql 1 }
+    its(:path) { should eql "#{Rails.root}/base_pdf_tmp.pdf" }
   end
 
   describe "when created from a base pdf" do

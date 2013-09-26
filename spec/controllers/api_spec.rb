@@ -62,6 +62,19 @@ describe Api::V1::ExpedientesController do
       check_custom_log_file
     end
   end
+  describe "when a special cliente_id is sent" do
+    it "should not create a record" do
+      request.accept = "application/json"
+      expediente = mock_expediente( Matriculacion )
+      expediente[:cliente_id] = "4300999999"
+      json = { format: 'json', expediente: expediente }
+      post :create_or_update_single, json
+      response.should be_success
+      Expediente.count.should eql 0
+      Matriculacion.count.should eql 0
+      check_custom_log_file
+    end
+  end
   describe "when more than one is sent together" do
     it "should return successful response" do
       request.accept = "application/json"
@@ -114,6 +127,18 @@ describe Api::V1::ExpedientesController do
     it "should not create a valid record" do
       request.accept = "application/json"
       json = { format: 'json', expedientes: mock_expedientes(false, true) }
+      post :create_batch, json
+      response.should be_success
+      Expediente.count.should eql 1
+      Matriculacion.count.should eql 0
+      Transferencia.count.should eql 1
+      check_custom_log_file
+    end
+  end
+  describe "when multiple sent with some special cliente_id" do
+    it "should not create a valid record" do
+      request.accept = "application/json"
+      json = { format: 'json', expedientes: mock_expedientes(false, true, true) }
       post :create_batch, json
       response.should be_success
       Expediente.count.should eql 1
@@ -185,7 +210,7 @@ private
     expediente[:observaciones] = "AAA"
     expediente
   end
-  def mock_expedientes wo_alta=false, wo_cliente=false
+  def mock_expedientes wo_alta=false, wo_cliente=false, sp_cliente=false
     expedientes = []
     matriculacion = {}
     transferencia = {}   
@@ -195,6 +220,9 @@ private
     end
     if wo_cliente
       matriculacion["expediente"][:cliente_id] = 111
+    end
+    if sp_cliente
+      matriculacion["expediente"][:cliente_id] = "4300999999"
     end
     transferencia["expediente"] = mock_expediente(Transferencia)
     expedientes << matriculacion

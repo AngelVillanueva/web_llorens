@@ -23,6 +23,10 @@ class Api::V1::ExpedientesController < ApplicationController
         resultado = create_response(0, "New", expediente, "success")
         render json: resultado
         exp_list << resultado
+      elsif check_special cliente_recibido
+        resultado = create_response(0, "New", expediente, "special", cliente_recibido)
+        render json: resultado
+        exp_list << resultado
       else
         resultado = create_response(0, "New", expediente, "error", cliente_recibido)
         render json: resultado, status: :unprocessable_entity
@@ -33,6 +37,10 @@ class Api::V1::ExpedientesController < ApplicationController
     else
       if expediente.update_attributes(expediente_params expediente.fecha_alta)
         resultado = create_response(0, "Edit", expediente, "success")
+        render json: resultado
+        exp_list << resultado
+      elsif check_special cliente_recibido
+        resultado = create_response(0, "Edit", expediente, "special", cliente_recibido)
         render json: resultado
         exp_list << resultado
       else
@@ -64,6 +72,8 @@ class Api::V1::ExpedientesController < ApplicationController
         expediente = expedientes[index][:expediente][:type].constantize.new( this_expediente_params( index ) )
         if expediente.save
           result = "success"
+        elsif check_special cliente_recibido
+          result = "special"
         else
           result = "error"
           error_count = error_count + 1
@@ -73,6 +83,8 @@ class Api::V1::ExpedientesController < ApplicationController
         type = "Edit"
         if expediente.update_attributes( this_expediente_params( index, expediente.fecha_alta ) )
           result = "success"
+        elsif check_special cliente_recibido
+          result = "special"
         else
           result = "error"
           error_count = error_count + 1
@@ -138,6 +150,9 @@ class Api::V1::ExpedientesController < ApplicationController
     case result
     when "success"
       response_message << {:resultado => I18n.t("Correcto")}
+    when "special"
+      response_message << {:resultado => I18n.t("Especial")}
+      response_message << {:id_cliente_recibido => cliente_recibido }
     when "error"
       response_message << {:resultado => I18n.t("Incorrecto")}
       response_message << {:errores => received.errors.messages}
@@ -166,5 +181,12 @@ class Api::V1::ExpedientesController < ApplicationController
     rb << { :errores => error_count }
     rb << { :detalle => expedientes_list }
     rb.to_yaml
+  end
+
+  # this method allows to mark special clients to not being considered
+  def check_special llorens_cliente_id
+    specials = ["4300999999"]
+    # 4300999999 is for non-company customers, not to be considered
+    specials.include? llorens_cliente_id
   end
 end

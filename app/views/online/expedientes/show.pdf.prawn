@@ -1,5 +1,3 @@
-require 'rghost'
-
 # load pdf template from Llorens repository via helper
 base_pdf = llorens_base_pdf expediente
 

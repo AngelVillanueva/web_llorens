@@ -7,6 +7,7 @@ After do
   Warden.test_reset! 
 end
 
+@pdf
 Scenario: Generating the PDF
   Given I am a registered User with some Expedientes
     And I visit the Matriculacion index page

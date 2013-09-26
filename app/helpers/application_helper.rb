@@ -144,4 +144,16 @@ module ApplicationHelper
       link_to t('Nuestro equipo'), root_path(anchor: 'equipo')
     end
   end
+
+  def llorens_base_pdf expediente
+    if Rails.env.production?
+      template_pdf = "#{Rails.root}/public/assets/expedientes/#{folder_name(expediente.type)}#{expediente.identificador}.pdf"
+    else
+      template_pdf = "#{Rails.root}/app/assets/pdfs/expedientes/#{folder_name(expediente.type)}#{expediente.identificador}.pdf"
+    end
+  end
+  def range_page_for_pdf base_pdf, initial_page=1
+    final_page = PDF::Reader.new(base_pdf).page_count + 1
+    initial_page..final_page
+  end
 end

@@ -67,11 +67,11 @@ describe Expediente do
       should_not validate_presence_of :vendedor
     end
   end
-  describe "just for Transferencias" do
+  describe "also for Transferencias" do
     let(:transferencia) { FactoryGirl.create( :transferencia ) }
     subject { transferencia }
-    it "should have Vendedor as a mandatory field" do
-      should validate_presence_of :vendedor
+    it "should not have Vendedor as a mandatory field" do
+      should_not validate_presence_of :vendedor
     end
   end
   

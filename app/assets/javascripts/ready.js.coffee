@@ -5,11 +5,11 @@ $(document).ready ->
 
   # set cookie policy if any link is clicked and hide the warning #
   $( document ).on 'click', 'a', ->
-    setCookiePolicyOnLinkClick()
+    setCookiePolicyOnAction("click")
 
   # set cookie policy if scroll and hide the warning #
   $( window ).scroll ->
-    setCookiePolicyOnScroll()
+    setCookiePolicyOnAction("scroll")
 
   # close cookie warning on close button click
   $('#cerrar_cookie_warning').click ->

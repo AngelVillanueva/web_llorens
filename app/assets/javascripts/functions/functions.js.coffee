@@ -10,22 +10,11 @@ Shared functions
   else
     $("#d-policy-disclaimer").hide()
 
-# set CookiePolicy if any link is clicked
-@setCookiePolicyOnLinkClick = ->
+@setCookiePolicyOnAction = (the_action) ->
   dcplyName = "DCKPLCY"
   dcplyExpireDate = new Date()
   expireMonths = 1
-  action = 'click'
-  dcplyExpireDate.setMonth dcplyExpireDate.getMonth() + expireMonths
-  setCookieValue dcplyName, action, dcplyExpireDate
-  $( '#d-policy-disclaimer' ).hide()
-
-# set CookiePolicy in case of scroll
-@setCookiePolicyOnScroll = ->
-  dcplyName = "DCKPLCY"
-  dcplyExpireDate = new Date()
-  expireMonths = 1
-  action = 'scroll'
+  action = the_action
   dcplyExpireDate.setMonth dcplyExpireDate.getMonth() + expireMonths
   setCookieValue dcplyName, action, dcplyExpireDate
   $( '#d-policy-disclaimer' ).hide()

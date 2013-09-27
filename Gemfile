@@ -28,6 +28,8 @@ gem 'pdf-reader', '~> 1.3.3' # pdf reading
 gem "rghost", '~> 0.9.3' # needed to skip the first page, prawn fails
 gem 'paperclip', '~> 3.0' # file attachment
 ### USER & PERMISSIONS MANAGEMENT
+# Cookies just if explicit allowment
+gem 'threepwood'
 # Devise
 gem 'devise', '~> 2.2.4'
 # Rails_Admin

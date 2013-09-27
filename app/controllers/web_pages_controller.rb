@@ -1,4 +1,5 @@
 class WebPagesController < ApplicationController
+  before_filter :set_cookie_if_not_set
 
   def home
   end
@@ -20,6 +21,15 @@ class WebPagesController < ApplicationController
   def download
   end
 
+  def cookies_accept
+    accept_cookies #this calls the threepwood method to allow cookies
+    redirect_to root_path
+  end
+  def cookies_deny
+    #reject_cookies # this calls the threepwood method to remove the fact that the user has accepted cookies
+    redirect_to root_path
+  end
+
   private
   def contact_params params
     contact_params = {}
@@ -37,5 +47,15 @@ class WebPagesController < ApplicationController
       end
     end
     params
+  end
+  def set_cookie_if_not_set
+    if js_cookie_is_set
+      unless @accepted_cookies
+        accept_cookies
+      end
+    end
+  end
+  def js_cookie_is_set name="DCKPLCY"
+    cookies[name]
   end
 end

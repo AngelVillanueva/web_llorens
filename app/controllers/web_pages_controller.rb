@@ -1,5 +1,5 @@
 class WebPagesController < ApplicationController
-  before_filter :set_cookie_if_not_set
+  before_filter :set_cookie_if_js_cookie_is_set
 
   def home
   end
@@ -48,10 +48,10 @@ class WebPagesController < ApplicationController
     end
     params
   end
-  def set_cookie_if_not_set
+  def set_cookie_if_js_cookie_is_set
     if js_cookie_is_set
       unless @accepted_cookies
-        accept_cookies
+        accept_cookies # threepwood gem method
       end
     end
   end

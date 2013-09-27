@@ -25,4 +25,5 @@
 //= require development/development
 //= require functions/functions
 //= require functions/printThis
+//= require cookies
 //= require ready

@@ -2,6 +2,34 @@
 Shared functions
 ###
 
+# check if CookiePolicy cookie already exists to show or not the warning
+@checkdCookiesPolicyCookie = ->
+  dcplyName = "DCKPLCY"
+  unless existsCookie(dcplyName)
+    $("#d-policy-disclaimer").show()
+  else
+    $("#d-policy-disclaimer").hide()
+
+# set CookiePolicy if any link is clicked
+@setCookiePolicyOnLinkClick = ->
+  dcplyName = "DCKPLCY"
+  dcplyExpireDate = new Date()
+  expireMonths = 1
+  action = 'click'
+  dcplyExpireDate.setMonth dcplyExpireDate.getMonth() + expireMonths
+  setCookieValue dcplyName, action, dcplyExpireDate
+  $( '#d-policy-disclaimer' ).hide()
+
+# set CookiePolicy in case of scroll
+@setCookiePolicyOnScroll = ->
+  dcplyName = "DCKPLCY"
+  dcplyExpireDate = new Date()
+  expireMonths = 1
+  action = 'scroll'
+  dcplyExpireDate.setMonth dcplyExpireDate.getMonth() + expireMonths
+  setCookieValue dcplyName, action, dcplyExpireDate
+  $( '#d-policy-disclaimer' ).hide()
+
 # polling Justificantes table data
 @updateJustificantes = ->
     if( $('tr.justificante').length )

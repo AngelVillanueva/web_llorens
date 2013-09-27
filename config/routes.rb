@@ -9,7 +9,8 @@ WebLlorens::Application.routes.draw do
   match '/download' => 'web_pages#download', as: :download
   # Threepwood gem routes to manage cookie acceptance in a explicit way, not used
   # put 'cookies_accept' => 'web_pages#cookies_accept'
-  # put 'cookies_deny' => 'web_pages#cookies_deny' 
+  # put 'cookies_deny' => 'web_pages#cookies_deny'
+  match '/privacidad' => 'web_pages#privacidad', as: :privacidad
 
   namespace :online do
     root to: 'static_pages#home'

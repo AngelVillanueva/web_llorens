@@ -19,7 +19,7 @@ class WebPagesController < ApplicationController
   end
   def download
   end
-  def privacidad
+  def legal
   end
 
   private

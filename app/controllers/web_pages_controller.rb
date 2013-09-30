@@ -19,6 +19,8 @@ class WebPagesController < ApplicationController
   end
   def download
   end
+  def privacidad
+  end
 
   private
   def contact_params params

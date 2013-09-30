@@ -7,6 +7,7 @@ WebLlorens::Application.routes.draw do
   root to: 'web_pages#home'
   match '/contacto' => 'web_pages#contact', as: :contact
   match '/download' => 'web_pages#download', as: :download
+  match '/privacidad' => 'web_pages#privacidad', as: :privacidad
 
   namespace :online do
     root to: 'static_pages#home'

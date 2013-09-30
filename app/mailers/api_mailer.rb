@@ -1,6 +1,6 @@
 class ApiMailer < ActionMailer::Base
   if Rails.env.production?
-    recipients = ["info@sinapse.es"]
+    recipients = ["info@sinapse.es", "jbrugada@gestoriallorens.com"]
   else
     recipients = ["info@sinapse.es"]
   end

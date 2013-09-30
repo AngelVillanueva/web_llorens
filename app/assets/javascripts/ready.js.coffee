@@ -13,6 +13,7 @@ $(document).ready ->
 
   # close cookie warning on close button click
   $('#cerrar_cookie_warning').click ->
+    setCookiePolicyOnAction("click")
     $('#d-policy-disclaimer').hide()
     return false
   

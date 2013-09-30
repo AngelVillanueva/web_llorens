@@ -400,3 +400,25 @@ form.justificantes {
   .minilink { display: inline; padding-left: 30px; }
 }
 
+@media (max-width: 979px) {
+  .navbar .nav .btn-header {
+    background: #414A57;
+    background: -moz-linear-gradient(top, #414A57 0%, #292f38 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#414A57), color-stop(100%,#292f38));
+    background: -webkit-linear-gradient(top, #414A57 0%,#292f38 100%);
+    background: -o-linear-gradient(top, #414A57 0%,#292f38 100%);
+    background: -ms-linear-gradient(top, #414A57 0%,#292f38 100%); 
+    background: linear-gradient(to bottom, #414A57 0%,#292f38 100%); 
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#414A57', endColorstr='#292f38',GradientType=0 );
+    border: 1px solid #13161b;
+    border-radius: 6px;
+    display: inline-block;
+    height: 10px;
+    line-height: 8px;
+    position: relative;
+    top: 4px;
+    margin-left: 8px;
+    margin-bottom: 5px;
+  }
+}
+

@@ -7,6 +7,10 @@ $(document).ready ->
   $( document ).on 'click', 'a', ->
     setCookiePolicyOnAction("click")
 
+  # set cookie policy if any submit button is clicked and hide the warning #
+  $( document ).on 'click', 'input[type="submit"]', ->
+    setCookiePolicyOnAction("click")
+
   # set cookie policy if scroll and hide the warning #
   $( window ).scroll ->
     setCookiePolicyOnAction("scroll")

@@ -1,9 +1,9 @@
 Then(/^I should (not )?be able to access the application$/) do |negation|
   if negation
-    page.should_not have_title( "Bienvenido" )
+    page.should_not have_title( I18n.t("Area usuarios") )
     page.should have_css( '.alert-alert', I18n.t("devise.failure.unauthenticated" ) )
   else
-    page.should have_title( "Bienvenido" )
+    page.should have_title( I18n.t("Area usuarios") )
   end
 end
 

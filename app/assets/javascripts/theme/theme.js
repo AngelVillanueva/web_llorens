@@ -28,6 +28,7 @@ $(function () {
     	var section = $($(this).data("section"));
     	var top = section.offset().top;
         $("html, body").animate({ scrollTop: top }, 700);
+        setCookiePolicyOnAction("click");
         return false;
     });
 

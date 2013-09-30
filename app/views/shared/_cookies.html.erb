@@ -1,11 +1,5 @@
-<div class="hide" id="d-policy-disclaimer" style="background: #00A5B6;color:#FFFFFF;height: 18px;">
-  <div style="margin: 0 auto; width: 919px; font-size:11px">Este sitio utiliza cookies propias y de terceros para an·lisis, contenido personalizado y publicidad. Si contin˙a navegando, consideramos que acepta su uso.
-          <span style="float: right;margin-left: 25px;">
-               <a id="cerrar_cookie_warning" title="Cerrar mensaje" style="color:#FFFFFF;cursor:pointer">Cerrar</a>
-            </span>
-            <span style="float: right;">
-               <a style="color:#FFFFFF;"  title="M·s informaciÛn" href="http://INSERTAR ENLACE POLÕTICA COOKIES">M·s informaciÛn</a>
-            </span>
-           
-     </div>
-</div> 
+<div id="d-policy-disclaimer" class="hide flash alert alert-info">
+  <button id="cerrar_cookie_warning" type="button" class="close" title="Close" data-dismiss="alert">&times;</button>
+  <%= t("Cookie warning") %>
+  <span class="minilink"><%= link_to t("Mas info"), privacidad_path %></span>
+ </div> 

@@ -388,3 +388,15 @@ form.justificantes {
 // Contact map
 .gmaps iframe { display: block; }
 
+// Policy Cookie warning
+.minilink {
+  font-weight: bold;
+  font-size: 0.8em;
+  display: block;
+  text-align: right;
+  margin-right: 20px;
+}
+@media (min-width: 780px) {
+  .minilink { display: inline; padding-left: 30px; }
+}
+

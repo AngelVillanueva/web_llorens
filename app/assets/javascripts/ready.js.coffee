@@ -1,21 +1,4 @@
 $(document).ready -> 
-
-  # cookie policy check
-  checkdCookiesPolicyCookie();
-
-  # set cookie policy if any link is clicked and hide the warning #
-  $( document ).on 'click', 'a', ->
-    setCookiePolicyOnAction("click")
-
-  # set cookie policy if scroll and hide the warning #
-  $( window ).scroll ->
-    setCookiePolicyOnAction("scroll")
-
-  # close cookie warning on close button click
-  $('#cerrar_cookie_warning').click ->
-    setCookiePolicyOnAction("click")
-    $('#d-policy-disclaimer').hide()
-    return false
   
   #tooltip init
   $('a[rel*="tooltip"]').tooltip({ 'placement': 'top' })

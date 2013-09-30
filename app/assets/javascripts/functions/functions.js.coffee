@@ -2,23 +2,6 @@
 Shared functions
 ###
 
-# check if CookiePolicy cookie already exists to show or not the warning
-@checkdCookiesPolicyCookie = ->
-  dcplyName = "DCKPLCY"
-  unless existsCookie(dcplyName)
-    $("#d-policy-disclaimer").show()
-  else
-    $("#d-policy-disclaimer").hide()
-
-@setCookiePolicyOnAction = (the_action) ->
-  dcplyName = "DCKPLCY"
-  dcplyExpireDate = new Date()
-  expireMonths = 1
-  action = the_action
-  dcplyExpireDate.setMonth dcplyExpireDate.getMonth() + expireMonths
-  setCookieValue dcplyName, action, dcplyExpireDate
-  $( '#d-policy-disclaimer' ).hide()
-
 # polling Justificantes table data
 @updateJustificantes = ->
     if( $('tr.justificante').length )

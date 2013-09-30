@@ -16,6 +16,7 @@
             <li><%= home_equipo_link %></li>
             <li><%= link_to "Descargas", download_path %></li>
             <li><%= link_to "Contacto", contact_path %></li>
+            <li class="hidden-desktop"><%= link_to t("Aviso legal"), legal_path %></li>
             <% if admin_menu %>
               <% if current_usuario %>
                   <li><%= link_to t("Area usuarios"), online_root_path, class: 'root' %></li>

@@ -2,6 +2,24 @@
 Shared functions
 ###
 
+root = exports ? this
+root._gaq = [['_setAccount', 'UA-44468535-1'], ['_trackPageview']]
+root.analytics_loaded = false
+
+# inject analytics tracking code
+@injectAnalytics = ->
+  ga = document.createElement 'script'
+  ga.type = 'text/javascript'
+  ga.async = true
+ 
+  proto = document.location.protocol
+  proto = if (proto is 'https:') then 'https://ssl' else 'http://www'
+  ga.src = "#{proto}.google-analytics.com/ga.js"
+  
+  s = document.getElementsByTagName 'script'
+  s[0].parentNode.insertBefore ga, s
+  analytics_loaded = true # so there please do not load it again
+
 # check if CookiePolicy cookie already exists to show or not the warning
 @checkdCookiesPolicyCookie = ->
   dcplyName = "DCKPLCY"
@@ -9,6 +27,7 @@ Shared functions
     $("#d-policy-disclaimer").show()
   else
     $("#d-policy-disclaimer").hide()
+    injectAnalytics()
 
 @setCookiePolicyOnAction = (the_action) ->
   dcplyName = "DCKPLCY"
@@ -18,6 +37,7 @@ Shared functions
   dcplyExpireDate.setMonth dcplyExpireDate.getMonth() + expireMonths
   setCookieValue dcplyName, action, dcplyExpireDate
   $( '#d-policy-disclaimer' ).hide()
+  injectAnalytics() if action is "scroll" unless analytics_loaded
 
 # polling Justificantes table data
 @updateJustificantes = ->

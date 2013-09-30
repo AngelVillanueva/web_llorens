@@ -1,4 +1,5 @@
 class WebPagesController < ApplicationController
+  before_filter :set_cookie_if_js_cookie_is_set
 
   def home
   end
@@ -19,6 +20,18 @@ class WebPagesController < ApplicationController
   end
   def download
   end
+  def privacidad
+  end
+
+  ## Not used
+  # def cookies_accept
+  #   accept_cookies #this calls the threepwood method to allow cookies
+  #   redirect_to root_path
+  # end
+  # def cookies_deny
+  #   #reject_cookies # this calls the threepwood method to remove the fact that the user has accepted cookies
+  #   redirect_to root_path
+  # end
 
   private
   def contact_params params
@@ -37,5 +50,15 @@ class WebPagesController < ApplicationController
       end
     end
     params
+  end
+  def set_cookie_if_js_cookie_is_set
+    if js_cookie_is_set
+      unless @accepted_cookies
+        accept_cookies # threepwood gem method
+      end
+    end
+  end
+  def js_cookie_is_set name="DCKPLCY"
+    cookies[name]
   end
 end

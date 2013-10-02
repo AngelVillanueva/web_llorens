@@ -4,8 +4,9 @@ class ApplicationController < ActionController::Base
     strategy DecentExposure::StrongParametersStrategy
   end
 
+  # override default Devise redirect after sign in
   def after_sign_in_path_for(resource_or_scope)
-   online_root_path
+   stored_location_for(resource) || online_root_path
   end
 
   # CanCan customization

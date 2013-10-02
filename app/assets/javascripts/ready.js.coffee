@@ -4,7 +4,7 @@ $(document).ready ->
   checkdCookiesPolicyCookie();
 
   # set cookie policy if any link is clicked and hide the warning #
-  $( document ).on 'click', 'a', ->
+  $( document ).on 'click', 'a:not(.nocookie)', ->
     setCookiePolicyOnAction("click")
 
   # set cookie policy if any submit button is clicked and hide the warning #
@@ -13,7 +13,7 @@ $(document).ready ->
 
   # set cookie policy if scroll and hide the warning #
   $( window ).scroll ->
-    setCookiePolicyOnAction("scroll")
+    setCookiePolicyOnAction("scroll") unless $('#legal_page').length
 
   # close cookie warning on close button click
   $('#cerrar_cookie_warning').click ->

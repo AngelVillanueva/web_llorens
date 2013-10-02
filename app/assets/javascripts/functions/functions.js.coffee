@@ -18,7 +18,7 @@ root.analytics_loaded = false
   
   s = document.getElementsByTagName 'script'
   s[0].parentNode.insertBefore ga, s
-  analytics_loaded = true # so there please do not load it again
+  root.analytics_loaded = true # so there please do not load it again
 
 # check if CookiePolicy cookie already exists to show or not the warning
 @checkdCookiesPolicyCookie = ->

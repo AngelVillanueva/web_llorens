@@ -15,5 +15,24 @@ class Organizacion < ActiveRecord::Base
   has_many :usuarios
 
   validates :nombre, :identificador, presence: true
+
+  rails_admin do
+    group :advanced do
+      label I18n.t("Advanced")
+      active false
+    end
+    field :nombre
+    field :identificador
+    field :cif do
+      label "CIF"
+      group :advanced
+    end
+    field :usuarios do
+      group :advanced
+    end
+    field :clientes do
+      group :advanced
+    end
+  end
   
 end

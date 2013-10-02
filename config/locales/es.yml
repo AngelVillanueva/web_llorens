@@ -294,5 +294,9 @@ es:
   Error creando Expedientes: "Error creando Expedientes en la aplicación web"
   Cookie warning: "Este sitio utiliza cookies propias y de terceros para análisis, contenido personalizado y publicidad. Si continúa navegando, consideramos que acepta su uso."
   Mas info: "Más información"
+  Advanced: "Opciones avanzadas"
+  Password: "Contraseña"
+  Role: "Privilegios"
+  llorens_cliente_id: "Cuenta contable cliente"
 
 

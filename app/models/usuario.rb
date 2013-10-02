@@ -57,13 +57,24 @@ class Usuario < ActiveRecord::Base
 
   rails_admin do
     edit do
+      group :advanced do
+        label I18n.t("Advanced")
+        active false
+      end
       field :nombre
       field :apellidos
       field :email
-      field :password
+      field :password do
+        label I18n.t("Password")
+      end
       field :organizacion
-      field :clientes
-      field :role
+      field :role do
+        label I18n.t("Role")
+        group :advanced
+      end
+      field :clientes do
+        group :advanced
+      end
     end
   end
 

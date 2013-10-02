@@ -16,4 +16,23 @@ class Cliente < ActiveRecord::Base
   has_many :justificantes
   has_many :informes
   validates :nombre, :identificador, :cif, :llorens_cliente_id, :organizacion_id, presence: true
+
+  rails_admin do
+    group :advanced do
+      label I18n.t("Advanced")
+      active false
+      field :expedientes
+      field :justificantes
+      field :informes
+    end
+    field :nombre
+    field :identificador
+    field :cif do
+      label "CIF"
+    end
+    field :organizacion
+    field :llorens_cliente_id do
+      label I18n.t("llorens_cliente_id")
+    end
+  end
 end

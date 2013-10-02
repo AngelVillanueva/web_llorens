@@ -27,11 +27,6 @@ module ApplicationHelper
     end
     folder_name
   end
-  # Returns true if a given expediente pdf is on the server
-  def pdf_file(expediente)
-    the_pdf_file = "#{Rails.root}/app/assets/pdfs/expedientes/#{folder_name(expediente.type)}#{expediente.identificador}.pdf"
-    File.exist? the_pdf_file
-  end
 
   # Returns the pdf route for a given expediente
   def pdf_path(expediente)
@@ -145,11 +140,21 @@ module ApplicationHelper
     end
   end
 
+  # Returns a pdf path if pdf is in the server
   def llorens_base_pdf expediente
     if Rails.env.production?
       template_pdf = "#{Rails.root}/public/assets/expedientes/#{folder_name(expediente.type)}#{expediente.identificador}.pdf"
     else
       template_pdf = "#{Rails.root}/app/assets/pdfs/expedientes/#{folder_name(expediente.type)}#{expediente.identificador}.pdf"
     end
+  end
+  # Returns true if a given expediente pdf is on the server
+  def pdf_file(expediente)
+    if Rails.env.production?
+      the_pdf_file = "#{Rails.root}/public/assets/expedientes/#{folder_name(expediente.type)}#{expediente.identificador}.pdf"
+    else
+      the_pdf_file = "#{Rails.root}/app/assets/pdfs/expedientes/#{folder_name(expediente.type)}#{expediente.identificador}.pdf"
+    end
+    File.exist? the_pdf_file
   end
 end

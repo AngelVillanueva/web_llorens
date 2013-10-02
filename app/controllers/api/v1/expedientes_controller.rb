@@ -62,8 +62,10 @@ class Api::V1::ExpedientesController < ApplicationController
   ###############################
   def create_batch
     exp_list = []
+    exp_err_list = []
     error_count = 0
     expedientes.each_with_index do |item, index|
+      this_is_error = false
       expediente = expedientes[index][:expediente][:type].constantize.where(identificador: expedientes[index][:expediente][:identificador]).first
       cliente_recibido = expedientes[index][:expediente][:cliente_id]
       # it is a new Expediente
@@ -77,6 +79,7 @@ class Api::V1::ExpedientesController < ApplicationController
         else
           result = "error"
           error_count = error_count + 1
+          this_is_error = true
         end
       # it is an already existing Expediente
       else
@@ -88,15 +91,21 @@ class Api::V1::ExpedientesController < ApplicationController
         else
           result = "error"
           error_count = error_count + 1
+          this_is_error = true
         end
       end
       exp_list << create_response(index, type, expediente, result, cliente_recibido) # add a response object for the received record
+      if this_is_error
+        exp_err_list << create_response(index, type, expediente, result, cliente_recibido) # add a response object for the received record
+        this_is_error = false
+      end
     end
     render json: exp_list
     respuesta = response_block(expedientes.count, error_count, exp_list)
+    respuesta_email = response_block(expedientes.count, error_count, exp_err_list)
     Rails.application.config.api_logger.debug respuesta
     if error_count > 0
-      ApiMailer.api_error_message(respuesta).deliver
+      ApiMailer.api_error_message(respuesta_email).deliver
     end
   end
 

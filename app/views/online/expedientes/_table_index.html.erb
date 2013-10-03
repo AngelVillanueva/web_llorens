@@ -19,7 +19,7 @@
       <th><%= t("Salida_t") %></th>
       <th></th>
       <th></th>
-      <th></th>
+      <th class="hideie8"></th>
     </tr>
     <tr class="titles">
       <th><%= t("Cliente") %></th>
@@ -40,7 +40,7 @@
       <th><%= t("Salida_f") %></th>
       <th><%= t("Tramite_d") %></th>
       <th><%= t("Documentos") %></th>
-      <th><%= t("Observaciones") %></th>
+      <th class="hideie8"><%= t("Observaciones") %></th>
     </tr>
   </thead>
   <tbody>
@@ -94,7 +94,7 @@
             <span class="pendiente"><%= t("PDF Pendiente") %></span>
           <% end %>
         </td>
-        <td>
+        <td class="hideie8">
           <%= expediente.observaciones %>
         </td>
       </tr>

@@ -18,4 +18,5 @@
  *= require lightbox/bootstrap-lightbox
  *= require custom
  *= require development
+ *= require ie.debug
  */

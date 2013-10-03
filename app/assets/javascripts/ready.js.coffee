@@ -1,25 +1,25 @@
 $(document).ready -> 
 
   # cookie policy check
-  checkdCookiesPolicyCookie();
+  # checkdCookiesPolicyCookie();
 
   # set cookie policy if any link is clicked and hide the warning #
-  $( document ).on 'click', 'a:not(.nocookie)', ->
-    setCookiePolicyOnAction("click")
+  # $( document ).on 'click', 'a:not(.nocookie)', ->
+  #   setCookiePolicyOnAction("click")
 
   # set cookie policy if any submit button is clicked and hide the warning #
-  $( document ).on 'click', 'input[type="submit"]', ->
-    setCookiePolicyOnAction("click")
+  # $( document ).on 'click', 'input[type="submit"]', ->
+  #   setCookiePolicyOnAction("click")
 
   # set cookie policy if scroll and hide the warning #
-  $( window ).scroll ->
-    setCookiePolicyOnAction("scroll") unless $('#legal_page').length
+  # $( window ).scroll ->
+  #   setCookiePolicyOnAction("scroll") unless $('#legal_page').length
 
   # close cookie warning on close button click
-  $('#cerrar_cookie_warning').click ->
-    setCookiePolicyOnAction("click")
-    $('#d-policy-disclaimer').hide()
-    return false
+  # $('#cerrar_cookie_warning').click ->
+  #   setCookiePolicyOnAction("click")
+  #   $('#d-policy-disclaimer').hide()
+  #   return false
   
   #tooltip init
   $('a[rel*="tooltip"]').tooltip({ 'placement': 'top' })

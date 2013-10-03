@@ -385,6 +385,10 @@ form.justificantes {
 // Miscellaneous
 .pendiente { color: red; }
 
+@media (min-width: 980px) and (max-width: 1199px) {
+  body { padding-top: 110px; }
+}
+
 // Contact map
 .gmaps iframe { display: block; }
 

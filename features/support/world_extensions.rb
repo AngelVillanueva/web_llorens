@@ -1,12 +1,12 @@
-module KnowstheDomain
+  module KnowstheDomain
   def organizacion
     @organizacion ||= FactoryGirl.create( :organizacion )
   end
   def cliente
-    @cliente ||= FactoryGirl.create( :cliente )
+    @cliente ||= FactoryGirl.create( :cliente, organizacion: organizacion )
   end
   def usuario
-    usuario ||= FactoryGirl.create( :usuario )
+    usuario ||= FactoryGirl.create( :usuario, organizacion: organizacion )
     usuario.clientes << cliente if usuario.clientes.empty?
     usuario
   end

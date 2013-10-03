@@ -36,5 +36,9 @@ class Organizacion < ActiveRecord::Base
       end
     end
   end
+
+  def expedientes
+    Expediente.where(cliente_id: self.cliente_ids)
+  end
   
 end

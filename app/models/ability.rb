@@ -8,7 +8,7 @@ class Ability
         can :dashboard # panel de administracion
         can :manage, :all
     elsif usuario
-        can :manage, Expediente, cliente_id: usuario.cliente_ids
+        can :manage, Expediente, cliente_id: usuario.organizacion.cliente_ids
         can :manage, Justificante, cliente_id: usuario.cliente_ids
         can :manage, Informe, cliente_id: usuario.cliente_ids
     end

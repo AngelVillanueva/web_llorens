@@ -7,10 +7,14 @@ class Ability
         can :access, :rails_admin # panel de administracion
         can :dashboard # panel de administracion
         can :manage, :all
+    elsif usuario.role? "employee"
+        can :manage, Expediente
+        can :manage, Justificante
+        can :manage, Informe
     elsif usuario
-        can :manage, Expediente, cliente_id: usuario.cliente_ids
-        can :manage, Justificante, cliente_id: usuario.cliente_ids
-        can :manage, Informe, cliente_id: usuario.cliente_ids
+        can :manage, Expediente, cliente_id: usuario.organizacion.cliente_ids
+        can :manage, Justificante, cliente_id: usuario.organizacion.cliente_ids
+        can :manage, Informe, cliente_id: usuario.organizacion.cliente_ids 
     end
     # Define abilities for the passed in user here. For example:
     #

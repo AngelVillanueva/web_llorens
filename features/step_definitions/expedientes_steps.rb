@@ -7,6 +7,13 @@ Given(/^one new Transferencia was created yesterday$/) do
   y_transferencia = FactoryGirl.create(:transferencia, matricula: "Test yesterday", cliente: cliente, fecha_alta: 1.day.ago )
 end
 
+Given(/^my Organizacion has many Matriculaciones$/) do
+  the_org = Organizacion.first
+  new_cliente = FactoryGirl.create(:cliente, organizacion: the_org)
+  m1 = FactoryGirl.create(:matriculacion, cliente: new_cliente)
+  m2 = FactoryGirl.create(:matriculacion, cliente: new_cliente)
+end
+
 When(/^I submit all the information for a new Expediente$/) do
   visit new_expediente_path
   fill_in "Identificador", with: "IM1"
@@ -70,6 +77,11 @@ end
 Then(/^I should just see the list of my Expedientes$/) do
   page.should have_content( "Test matricula" )
   page.should_not have_content( "Other matricula" )
+end
+
+Then(/^I should see all the Matriculaciones from my Organizacion$/) do
+  rows = Organizacion.first.expedientes.count
+  page.should have_selector( 'tr.expediente', count: rows )
 end
 
 Then(/^I should (not )?see a detail of that Expediente$/) do |negation|

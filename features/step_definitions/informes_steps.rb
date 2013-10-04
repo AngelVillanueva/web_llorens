@@ -10,6 +10,12 @@ Given(/^there are also Informes from other Clientes$/) do
     cliente: acompany )
 end
 
+Given(/^there are also Informes from other Clientes of my Organizacion$/) do
+  org = Organizacion.first
+  cliente = FactoryGirl.create(:cliente, organizacion: org)
+  informe = FactoryGirl.create(:informe, cliente: cliente)
+end
+
 Given(/^one new Informe was created yesterday$/) do
   y_informe = FactoryGirl.create(:informe, matricula: "Test yesterday", cliente: cliente, created_at: 1.day.ago )
 end
@@ -38,6 +44,11 @@ When(/^I submit all the information for a new Informe$/) do
   click_button "Solicitar informe"
 end
 
+When(/^I access the edit page for a given Informe$/) do
+  informe = Informe.last
+  visit edit_online_informe_path(informe)
+end
+
 Then(/^I should see a list of the Informes$/) do
   page.should have_title( I18n.t( "Informes de trafico" ) )
   usuario = Usuario.find_by_nombre( "Angel" )
@@ -56,6 +67,11 @@ Then(/^I should see just the list of the Informes from my Cliente$/) do
   expect( page ).to_not have_selector( 'td', text: "Informe externo" )
 end
 
+Then(/^I should see the list of all the Informes from my Organizacion$/) do
+  rows = Informe.where(cliente_id: Organizacion.first.cliente_ids).count
+  expect( page ).to have_selector( 'tr.informe', count: rows )
+end
+
 Then(/^I should see a list of all the Informes$/) do
   expect( page ).to have_selector( 'tr.informe', count: 1 )
 end
@@ -69,6 +85,15 @@ end
 
 Then(/^I should see just the Informe created yesterday$/) do
   expect( page ).to have_selector( 'tr.informe', count: 1 )
+end
+
+Then(/^I should (not )?see a link to edit the Informes$/) do |negation|
+  if negation
+    rows = 0
+  else
+    rows = Informe.count
+  end
+  expect( page ).to have_selector( 'span.toedit', count: rows )
 end
 
 Then(/^a new Informe should (not )?be created$/) do |negation|

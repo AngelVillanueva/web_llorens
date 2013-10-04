@@ -1,7 +1,7 @@
 Feature: Informes creation
   As a registered User
   In order to have all my Informes in one place
-  I should be able to add a new Justificante
+  I should be able to add a new Informe
 
 After do
   Warden.test_reset! 

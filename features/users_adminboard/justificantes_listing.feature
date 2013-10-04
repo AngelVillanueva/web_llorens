@@ -24,9 +24,21 @@ Feature: Justificantes listing
         And there are also Justificantes from other Clientes
       When I access the Justificantes index page
       Then I should see just the list of the Justificantes from my Cliente
+
+  Scenario: an Usuario can see all the Justificantes from her Organizacion
+    Given I am a registered User with no Justificantes
+      And there are also Justificantes from other Clientes of my Organizacion
+    When I access the Justificantes index page
+    Then I should see the list of all the Justificantes from my Organizacion
     
   Scenario: an admin user can see all Justificantes
       Given I am an admin user
+        And there are also Justificantes from other Clientes
+      When I access the Justificantes index page
+      Then I should see a list of all the Justificantes
+  
+  Scenario: an employee user can see all Justificantes
+      Given I am an employee user
         And there are also Justificantes from other Clientes
       When I access the Justificantes index page
       Then I should see a list of all the Justificantes

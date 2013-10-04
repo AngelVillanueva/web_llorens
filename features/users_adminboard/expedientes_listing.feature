@@ -29,8 +29,20 @@ Scenario: Users can see just the Expedientes from their Organizations
   When I access the Matriculaciones index page
   Then I should just see the list of my Expedientes
 
+Scenario: Users can see all the Expedientes from their Organizations
+  Given I am a registered User with no direct Clientes
+    And my Organizacion has many Matriculaciones
+  When I access the Matriculaciones index page
+  Then I should see all the Matriculaciones from my Organizacion
+
 Scenario: Admin users can see all Expedientes
   Given I am an admin user
+    And there are more Expedientes from other Clientes
+  When I access the Matriculaciones index page
+  Then I should see a list of the Matriculaciones
+
+Scenario: Employee users can see all Expedientes
+  Given I am an employee user
     And there are more Expedientes from other Clientes
   When I access the Matriculaciones index page
   Then I should see a list of the Matriculaciones

@@ -37,6 +37,8 @@ describe Usuario do
     it { should respond_to :informes }
     it { should respond_to :clientes }
     it { should respond_to :role }
+    it { should respond_to :role? }
+    it { should respond_to :norole? }
     it { should respond_to :organizacion }
     it { should be_valid }
   end

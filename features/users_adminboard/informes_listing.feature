@@ -21,11 +21,23 @@ Feature: Informes listing
     When I access the Informes index page
     Then I should see just the list of the Informes from my Cliente
 
+  Scenario: an Usuario can see all the Informes from her Organizacion
+    Given I am a registered User with no Informes
+      And there are also Informes from other Clientes of my Organizacion
+    When I access the Informes index page
+    Then I should see the list of all the Informes from my Organizacion
+
   Scenario: an admin user can see all Informes
     Given I am an admin user
       And there are also Informes from other Clientes
     When I access the Informes index page
     Then I should see a list of all the Informes
+  
+  Scenario: an employee user can see all Informes
+      Given I am an employee user
+        And there are also Informes from other Clientes
+      When I access the Informes index page
+      Then I should see a list of all the Informes
 
   @javascript 
   Scenario: the list of Informes is auto updated via ajax

@@ -39,9 +39,11 @@
       <% end %>
     </td>
     <td class="icon">
-      <%= link_to edit_online_justificante_path(justificante), title: "Editar" do %>
-          <i class="icon icon-edit"></i>
+      <% unless current_usuario.norole? %>
+        <%= link_to edit_online_justificante_path(justificante), title: "Editar" do %>
+            <i class="icon icon-edit toedit"></i>
         <% end %>
+      <% end %>
     </td>
     <td>
     <a href="#" class="printLink"><i class="icon icon-print"></i></a>

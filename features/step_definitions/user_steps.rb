@@ -13,6 +13,10 @@ Given(/^I am an admin user$/) do
   login_as( admin, scope: :usuario )
 end
 
+Given(/^I am an employee user$/) do
+  login_as( employee, scope: :usuario )
+end
+
 Given(/^I am a registered User with some Expedientes$/) do
   login_as( usuario, :scope => :usuario )
   matriculacion
@@ -23,6 +27,25 @@ Given(/^I am a registered User with some Expedientes but without documents$/) do
   login_as( usuario, :scope => :usuario )
   matriculacion_incomplete
   transferencia_incomplete
+end
+
+Given(/^I am a registered User with no direct Clientes$/) do
+  the_org = FactoryGirl.create(:organizacion)
+  one_usuario = FactoryGirl.create(:usuario, organizacion: the_org)
+  login_as( one_usuario, :scope => :usuario )
+end
+
+Given(/^I am a registered User with no Informes$/) do
+  the_org = FactoryGirl.create(:organizacion)
+  one_usuario = FactoryGirl.create(:usuario, organizacion: the_org)
+  login_as( one_usuario, :scope => :usuario )
+end
+
+
+Given(/^I am a registered User with no Justificantes$/) do
+  the_org = FactoryGirl.create(:organizacion)
+  one_usuario = FactoryGirl.create(:usuario, organizacion: the_org)
+  login_as( one_usuario, :scope => :usuario )
 end
 
 Given(/^I am a registered User with some Justificantes$/) do

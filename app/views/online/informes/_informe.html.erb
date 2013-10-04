@@ -17,9 +17,11 @@
   </td>
   <td class="icon">
     <span></span>
-    <%= link_to edit_online_informe_path(informe) do %>
-        <span><%= edit_pdf_label informe %></span>
-        <i class="icon icon-edit"></i>
+    <% unless current_usuario.norole? %>
+      <%= link_to edit_online_informe_path(informe) do %>
+          <span class="toedit"><%= edit_pdf_label informe %></span>
+          <i class="icon icon-edit"></i>
+      <% end %>
     <% end %>
   </td>
   <td>

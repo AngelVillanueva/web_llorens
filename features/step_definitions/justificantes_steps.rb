@@ -10,6 +10,12 @@ Given(/^there are also Justificantes from other Clientes$/) do
     cliente: acompany )
 end
 
+Given(/^there are also Justificantes from other Clientes of my Organizacion$/) do
+  org = Organizacion.first
+  cliente = FactoryGirl.create(:cliente, organizacion: org)
+  justificante = FactoryGirl.create(:justificante, cliente: cliente)
+end
+
 When(/^I submit all the information for a new Justificante$/) do
   visit new_online_justificante_path
   fill_in "Identificador", with: "AAA"
@@ -68,6 +74,11 @@ end
 Then(/^I should see just the list of the Justificantes from my Cliente$/) do
   expect( page ).to have_selector( 'tr.justificante', count: 2 )
   expect( page ).to_not have_selector( 'td', text: "Justificante externo" )
+end
+
+Then(/^I should see the list of all the Justificantes from my Organizacion$/) do
+  rows = Justificante.where(cliente_id: Organizacion.first.cliente_ids).count
+  expect( page ).to have_selector( 'tr.justificante', count: rows )
 end
 
 Then(/^I should see the list of the Justificantes updated and sorted without reloading the page$/) do

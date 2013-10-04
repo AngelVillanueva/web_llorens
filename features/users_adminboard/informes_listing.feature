@@ -21,7 +21,6 @@ Feature: Informes listing
     When I access the Informes index page
     Then I should see just the list of the Informes from my Cliente
 
-  @current
   Scenario: an Usuario can see all the Informes from her Organizacion
     Given I am a registered User with no Informes
       And there are also Informes from other Clientes of my Organizacion

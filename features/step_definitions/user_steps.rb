@@ -31,6 +31,12 @@ Given(/^I am a registered User with no direct Clientes$/) do
   login_as( one_usuario, :scope => :usuario )
 end
 
+Given(/^I am a registered User with no Informes$/) do
+  the_org = FactoryGirl.create(:organizacion)
+  one_usuario = FactoryGirl.create(:usuario, organizacion: the_org)
+  login_as( one_usuario, :scope => :usuario )
+end
+
 Given(/^I am a registered User with some Justificantes$/) do
   login_as( usuario, :scope => :usuario )
   justificante

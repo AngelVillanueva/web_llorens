@@ -10,6 +10,12 @@ Given(/^there are also Informes from other Clientes$/) do
     cliente: acompany )
 end
 
+Given(/^there are also Informes from other Clientes of my Organizacion$/) do
+  org = Organizacion.first
+  cliente = FactoryGirl.create(:cliente, organizacion: org)
+  informe = FactoryGirl.create(:informe, cliente: cliente)
+end
+
 Given(/^one new Informe was created yesterday$/) do
   y_informe = FactoryGirl.create(:informe, matricula: "Test yesterday", cliente: cliente, created_at: 1.day.ago )
 end
@@ -54,6 +60,11 @@ end
 Then(/^I should see just the list of the Informes from my Cliente$/) do
   expect( page ).to have_selector( 'tr.informe', count: 2 )
   expect( page ).to_not have_selector( 'td', text: "Informe externo" )
+end
+
+Then(/^I should see the list of all the Informes from my Organizacion$/) do
+  rows = Informe.where(cliente_id: Organizacion.first.cliente_ids).count
+  expect( page ).to have_selector( 'tr.informe', count: rows )
 end
 
 Then(/^I should see a list of all the Informes$/) do

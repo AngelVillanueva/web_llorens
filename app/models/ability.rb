@@ -14,7 +14,7 @@ class Ability
     elsif usuario
         can :manage, Expediente, cliente_id: usuario.organizacion.cliente_ids
         can :manage, Justificante, cliente_id: usuario.organizacion.cliente_ids
-        can :manage, Informe, cliente_id: usuario.organizacion.cliente_ids
+        can :manage, Informe, cliente_id: usuario.organizacion.cliente_ids 
     end
     # Define abilities for the passed in user here. For example:
     #

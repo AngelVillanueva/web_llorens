@@ -24,7 +24,7 @@ end
     When I access the Informes index page
     Then I should not see a link to edit the Informes
 
-  @current
+  @wip
   Scenario: registered users cannot access the edit page for Informes
     Given I am a registered User with some Informes
     When I access the edit page for a given Informe

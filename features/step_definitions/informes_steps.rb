@@ -44,6 +44,11 @@ When(/^I submit all the information for a new Informe$/) do
   click_button "Solicitar informe"
 end
 
+When(/^I access the edit page for a given Informe$/) do
+  informe = Informe.last
+  visit edit_online_informe_path(informe)
+end
+
 Then(/^I should see a list of the Informes$/) do
   page.should have_title( I18n.t( "Informes de trafico" ) )
   usuario = Usuario.find_by_nombre( "Angel" )

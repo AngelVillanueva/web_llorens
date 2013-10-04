@@ -87,3 +87,12 @@ Then(/^I should see the list of the Justificantes updated and sorted without rel
     expect( first( '#justificantes tr.justificante' ) ).to have_selector( 'td', text: "Nuevo justificante interno" )
   end
 end
+
+Then(/^I should (not )?see a link to edit the Justificantes$/) do |negation|
+  if negation
+    rows = 0
+  else
+    rows = Justificante.count
+  end
+  expect( page ).to have_selector( 'i.toedit', count: rows )
+end

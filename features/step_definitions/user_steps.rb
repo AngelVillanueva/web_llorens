@@ -13,6 +13,10 @@ Given(/^I am an admin user$/) do
   login_as( admin, scope: :usuario )
 end
 
+Given(/^I am an employee user$/) do
+  login_as( employee, scope: :usuario )
+end
+
 Given(/^I am a registered User with some Expedientes$/) do
   login_as( usuario, :scope => :usuario )
   matriculacion

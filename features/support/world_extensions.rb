@@ -13,6 +13,9 @@
   def admin
     admin ||= FactoryGirl.create( :usuario, nombre: "super", role: "admin" )
   end
+  def employee
+    employee ||= FactoryGirl.create( :usuario, nombre: "semi", role: "employee" )
+  end
   def matriculacion
     @matriculacion || FactoryGirl.create( :matriculacion, cliente: cliente )
   end

@@ -7,6 +7,10 @@ class Ability
         can :access, :rails_admin # panel de administracion
         can :dashboard # panel de administracion
         can :manage, :all
+    elsif usuario.role? "employee"
+        can :manage, Expediente
+        can :manage, Justificante
+        can :manage, Informe
     elsif usuario
         can :manage, Expediente, cliente_id: usuario.organizacion.cliente_ids
         can :manage, Justificante, cliente_id: usuario.organizacion.cliente_ids

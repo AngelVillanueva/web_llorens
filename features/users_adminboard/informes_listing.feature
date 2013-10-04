@@ -32,6 +32,12 @@ Feature: Informes listing
       And there are also Informes from other Clientes
     When I access the Informes index page
     Then I should see a list of all the Informes
+  @current
+  Scenario: an employee user can see all Informes
+      Given I am an employee user
+        And there are also Informes from other Clientes
+      When I access the Informes index page
+      Then I should see a list of all the Informes
 
   @javascript 
   Scenario: the list of Informes is auto updated via ajax

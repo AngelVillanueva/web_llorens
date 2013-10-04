@@ -40,6 +40,12 @@ Scenario: Admin users can see all Expedientes
     And there are more Expedientes from other Clientes
   When I access the Matriculaciones index page
   Then I should see a list of the Matriculaciones
+
+Scenario: Employee users can see all Expedientes
+  Given I am an employee user
+    And there are more Expedientes from other Clientes
+  When I access the Matriculaciones index page
+  Then I should see a list of the Matriculaciones
   
 @javascript
 Scenario: Users can filter by date

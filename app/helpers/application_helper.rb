@@ -75,7 +75,7 @@ module ApplicationHelper
   end
   
   def tool_link_to_home
-    link_to online_root_path, 'rel' => 'tooltip', 'data-original-title' => I18n.t("Area usuarios") do
+    link_to online_root_path, 'rel' => 'tooltip', 'data-original-title' => I18n.t("Inicio") do
       content_tag( 'i', nil, class: 'icon icon-2x icon-home' )
     end
   end

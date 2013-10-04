@@ -45,6 +45,10 @@ class Usuario < ActiveRecord::Base
    self.role == role.to_s
   end
 
+  def norole?
+    self.role == nil
+  end
+
   def expedientes
     Expediente.where(cliente_id: clientes)
   end

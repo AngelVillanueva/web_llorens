@@ -82,6 +82,15 @@ Then(/^I should see just the Informe created yesterday$/) do
   expect( page ).to have_selector( 'tr.informe', count: 1 )
 end
 
+Then(/^I should (not )?see a link to edit the Informes$/) do |negation|
+  if negation
+    rows = 0
+  else
+    rows = Informe.count
+  end
+  expect( page ).to have_selector( 'span.toedit', count: rows )
+end
+
 Then(/^a new Informe should (not )?be created$/) do |negation|
   if negation
     Informe.all.count.should eql( 0 )

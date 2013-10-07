@@ -1,12 +1,12 @@
 oTable = $( '#informes' ).dataTable();
 
 <% if Rails.env.development? %>
-  console.log("Checking new...");
+  //console.log("Checking new...");
 <% end %>
 
 <% if informes.count > 0 %>
   <% if Rails.env.development? %>
-  console.log("found " + <%= informes.count %> + " new");
+  //console.log("found " + <%= informes.count %> + " new");
   <% end %>
   // populate temp table with new informes, then add to the table via fnAddTr,
   // then remove from temporary
@@ -19,7 +19,7 @@ oTable = $( '#informes' ).dataTable();
   oTable.fnSort( [ [ 4, 'desc' ] ] );
 <% else %>
   <% if Rails.env.development? %>
-  console.log( 'no new as informes was ' + <%= informes.count %> );
+  //console.log( 'no new as informes was ' + <%= informes.count %> );
   <% end %>
 <% end %>
 

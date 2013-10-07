@@ -65,6 +65,7 @@ $(document).ready ->
         null
       ]
     )
+    $('tr.filter:first').slideUp("slow")
 
   # transferencias
   if ( $( '#expedientes.transferencia' ).length )
@@ -85,6 +86,7 @@ $(document).ready ->
         null
       ]
     )
+    $('tr.filter:first').slideUp("slow")
   
   # justificantes
   if ( $( '#justificantes' ).length )
@@ -109,6 +111,7 @@ $(document).ready ->
         null
       ]
     )
+    $('tr.filter:first').slideUp("slow")
     $( '.new' ).fadeIn(); # reveal new records
     setTimeout(updateJustificantes, 10000) # fired polling for new records
   
@@ -130,6 +133,7 @@ $(document).ready ->
         null
       ]
     )
+    $('tr.filter:first').slideUp("slow")
     $( '.new' ).fadeIn(); # reveal new records
     setTimeout(updateInformes, 10000) # fired polling for new records
 

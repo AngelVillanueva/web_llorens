@@ -51,7 +51,7 @@ $(document).ready ->
     createDataTable(
       'expedientes',
       "Matriculaciones_Llorens",
-      [0,1,2,3,4,5,6,7,9,10], 
+      [0,1,2,3,4,5,6,7,8,9], 
       [
         { type: "select" },
         { type: "text" },
@@ -60,19 +60,19 @@ $(document).ready ->
         { type: "select" },
         { type: "date-range" },
         { type: "date-range" },
-        { type: "date-range" },
         { type: "select" },
         null,
         null
       ]
     )
+    $('tr.filter:first').slideUp("slow")
 
   # transferencias
   if ( $( '#expedientes.transferencia' ).length )
     createDataTable(
       'expedientes',
       "Transferencias_Llorens",
-      [0,1,2,3,4,5,6,7,8,10], 
+      [0,1,2,3,4,5,6,7,8,9], 
       [
         { type: "select" },
         { type: "text" },
@@ -81,12 +81,12 @@ $(document).ready ->
         { type: "select" },
         { type: "date-range" },
         { type: "date-range" },
-        { type: "date-range" },
         { type: "select" },
         null,
         null
       ]
     )
+    $('tr.filter:first').slideUp("slow")
   
   # justificantes
   if ( $( '#justificantes' ).length )
@@ -111,6 +111,7 @@ $(document).ready ->
         null
       ]
     )
+    $('tr.filter:first').slideUp("slow")
     $( '.new' ).fadeIn(); # reveal new records
     setTimeout(updateJustificantes, 10000) # fired polling for new records
   
@@ -132,6 +133,7 @@ $(document).ready ->
         null
       ]
     )
+    $('tr.filter:first').slideUp("slow")
     $( '.new' ).fadeIn(); # reveal new records
     setTimeout(updateInformes, 10000) # fired polling for new records
 

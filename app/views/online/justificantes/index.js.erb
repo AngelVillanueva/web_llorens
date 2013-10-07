@@ -1,12 +1,12 @@
 oTable = $( '#justificantes' ).dataTable();
 
 <% if Rails.env.development? %>
-  console.log("Checking new...");
+  // console.log("Checking new...");
 <% end %>
 
 <% if justificantes.count > 0 %>
   <% if Rails.env.development? %>
-  console.log("found " + <%= justificantes.count %> + " new");
+  // console.log("found " + <%= justificantes.count %> + " new");
   <% end %>
   // populate temp table with new justificantes, then add to the table via fnAddTr,
   // then remove from temporary
@@ -19,7 +19,7 @@ oTable = $( '#justificantes' ).dataTable();
   oTable.fnSort( [ [ 9, 'desc' ] ] );
 <% else %>
   <% if Rails.env.development? %>
-  console.log( 'no new as justificantes was ' + <%= justificantes.count %> );
+  // console.log( 'no new as justificantes was ' + <%= justificantes.count %> );
   <% end %>
 <% end %>
 

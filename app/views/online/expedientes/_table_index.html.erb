@@ -15,7 +15,6 @@
         <th><%= t("Modelo") %></th>
       <% end %>
       <th><%= t("Alta") %></th>
-      <th><%= t("Presentacion_t") %></th>
       <th><%= t("Salida_t") %></th>
       <th></th>
       <th></th>
@@ -36,7 +35,6 @@
         <th><%= t("Modelo") %></th>
       <% end %>
       <th><%= t("Alta") %></th>
-      <th><%= t("Presentacion_f") %></th>
       <th><%= t("Salida_f") %></th>
       <th><%= t("Tramite_d") %></th>
       <th><%= t("Documentos") %></th>
@@ -75,8 +73,6 @@
         <% end %>
         <td>
           <%= l expediente.fecha_alta unless expediente.fecha_alta.nil? %>
-        </td><td>
-          <%= l expediente.fecha_entra_trafico unless expediente.fecha_entra_trafico.nil? %>
         </td>
         <td>
           <%= l expediente.fecha_sale_trafico unless expediente.fecha_sale_trafico.nil? %>

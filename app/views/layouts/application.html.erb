@@ -16,8 +16,7 @@
     <%= render 'shared/nav', admin_menu: true %>
     <div class="container">
       <%= render 'shared/cookies' %>
-      <div class="row"><%= render 'shared/flash', flash: flash %></div>
-      <div class="row"><%= render 'shared/organizacion' %></div>
+      <%= render 'shared/flash', flash: flash %>
       <% unless current_page? root_path %>
         <div class="row"><%= yield %></div>
       <% end %>

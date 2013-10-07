@@ -106,7 +106,7 @@ module ApplicationHelper
     end
   end
   def tool_link_to_filter
-    link_to '#', class: 'filtering', 'rel' => 'tooltip', 'data-original-title' => I18n.t("Filtrar") do
+    link_to '#', id: 'filtering', class: 'filtering', 'rel' => 'tooltip', 'data-original-title' => I18n.t("Filtrar") do
       content_tag( 'i', nil, class: 'icon icon-2x icon-signal' )
     end
   end

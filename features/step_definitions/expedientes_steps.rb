@@ -33,6 +33,7 @@ When(/^I filter the Transferencias by the date of yesterday$/) do
   #page.execute_script %Q{ $("a.ui-state-default:contains('17')").trigger("click") } # click on day
   #page.execute_script %Q{ $('#expedientes_range_to_5').trigger("focus") } # activate datetime picker
   #page.execute_script %Q{ $("a.ui-state-default:contains('17')").trigger("click") } # click on day
+  click_link "filtering"
   fill_in 'expedientes_range_from_5', with: 1.day.ago.strftime("%d/%m/%Y")
   fill_in 'expedientes_range_to_5', with: 1.day.ago.strftime("%d/%m/%Y")
   page.execute_script %Q{ $('#expedientes_range_from_5').trigger("focus") } # activate datetime picker

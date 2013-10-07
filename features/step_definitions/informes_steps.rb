@@ -26,6 +26,7 @@ When(/^another Informe from my Cliente is added$/) do
 end
 
 When(/^I filter the Informes by the date of yesterday$/) do
+  click_link "filtering"
   fill_in 'informes_range_from_3', with: 1.day.ago.strftime("%d/%m/%Y")
   fill_in 'informes_range_to_3', with: 1.day.ago.strftime("%d/%m/%Y")
   page.execute_script %Q{ $('#informes_range_from_3').trigger("focus") } # activate datetime picker

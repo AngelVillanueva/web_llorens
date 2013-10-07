@@ -62,7 +62,7 @@ module ApplicationHelper
   end
 
   # Section header helper
-  def section_header header_text
+  def section_header header_text, organizacion
     content_tag 'h2', class: 'section_header' do
       # content_tag 'hr', class: 'left visible-desktop'
       # "<span>#{header_text}</span>"
@@ -71,6 +71,7 @@ module ApplicationHelper
       concat content_tag( 'span', header_text )
       #concat content_tag( 'small', link_to( t( "volver inicio" ), online_root_path ) )
       concat content_tag( 'hr', '', class: 'right visible-desktop' )
+      concat content_tag( 'span', organizacion , class: 'org' )
     end
   end
   

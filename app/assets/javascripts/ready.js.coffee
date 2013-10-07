@@ -50,6 +50,18 @@ $(document).ready ->
   if ( $( '#expedientes.matriculacion' ).length )
     createDataTable(
       'expedientes',
+      [
+        null,
+        null,
+        null,
+        null,
+        null,
+        {"sType": "uniDate"},
+        {"sType": "uniDate"},
+        null,
+        null,
+        null
+        ],
       "Matriculaciones_Llorens",
       [0,1,2,3,4,5,6,7,8,9], 
       [
@@ -71,6 +83,18 @@ $(document).ready ->
   if ( $( '#expedientes.transferencia' ).length )
     createDataTable(
       'expedientes',
+      [
+        null,
+        null,
+        null,
+        null,
+        null,
+        {"sType": "uniDate"},
+        {"sType": "uniDate"},
+        null,
+        null,
+        null
+        ],
       "Transferencias_Llorens",
       [0,1,2,3,4,5,6,7,8,9], 
       [
@@ -86,12 +110,29 @@ $(document).ready ->
         null
       ]
     )
-    $('tr.filter:first').slideUp("slow")
+    $('tr.filter:first').hide()
   
   # justificantes
   if ( $( '#justificantes' ).length )
     createDataTable(
       'justificantes',
+      [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        {"sType": "uniDate"},
+        {"sType": "uniDate"},
+        null,
+        null,
+        null
+        ],
       "Justificantes_Llorens",
       [0,1,2,3,4,5,6,7,8,10,11], 
       [
@@ -111,7 +152,7 @@ $(document).ready ->
         null
       ]
     )
-    $('tr.filter:first').slideUp("slow")
+    $('tr.filter:first').hide()
     $( '.new' ).fadeIn(); # reveal new records
     setTimeout(updateJustificantes, 10000) # fired polling for new records
   
@@ -119,6 +160,17 @@ $(document).ready ->
   if ( $( '#informes' ).length )
     createDataTable(
       'informes',
+      [
+        null,
+        null,
+        null,
+        {"sType": "uniDate"},
+        null,
+        null,
+        null,
+        null,
+        null
+        ],
       "Informes_Llorens",
       [0,1,2,3,5], 
       [
@@ -133,7 +185,7 @@ $(document).ready ->
         null
       ]
     )
-    $('tr.filter:first').slideUp("slow")
+    $('tr.filter:first').hide()
     $( '.new' ).fadeIn(); # reveal new records
     setTimeout(updateInformes, 10000) # fired polling for new records
 

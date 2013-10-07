@@ -107,12 +107,13 @@ root.analytics_loaded = false
       $( this ).change()
 
 # create DataTable
-@createDataTable = ( selector, excelname, exportcolumns, filtercolumns ) ->
+@createDataTable = ( selector, columntypes, excelname, exportcolumns, filtercolumns ) ->
   oTable = $( '#' + selector )
   if ( oTable.length )
     oTable.dataTable({
       "sDom": "<'row'<'span6'T><'span6 pull-right'>r>t<'row-fluid'<'span6'i><'span6'p>>",
       "sPaginationType": "bootstrap",
+      "aoColumns": columntypes,
       "oLanguage": {
           "sSearch": "Buscar en la tabla",
           "sLengthMenu": "Mostrar _MENU_ entradas por página",

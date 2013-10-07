@@ -17,6 +17,7 @@
 //= require dataTables/jquery.dataTables
 //= require dataTables/jquery.dataTables.bootstrap
 //= require dataTables/extras/TableTools
+//= require dataTables/uniDate.min
 //= require datatables/ZeroClipboard
 //= require datatables/dataTables_column_filter
 //= require datatables/dataTables_add_tr

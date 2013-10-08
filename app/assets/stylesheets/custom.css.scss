@@ -431,3 +431,12 @@ form.justificantes {
   }
 }
 
+// Footer menu
+.footer_menu li {
+  display: inline-block;
+  padding-left: 15px;
+  a:hover {
+    color: #08f;
+  }
+}
+

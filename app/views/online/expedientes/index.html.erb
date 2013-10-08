@@ -4,7 +4,8 @@
   <%= render 'shared/section_wrapper',
       header_text: expediente.type.pluralize,
       linked_pdf: nil,
-      search: 'expedientes' %>
+      search: 'expedientes',
+      reload: expediente.type %>
 
   <div class="row">
     <%= render 'table_index', expedientes: expedientes %>

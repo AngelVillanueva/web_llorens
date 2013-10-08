@@ -110,6 +110,11 @@ module ApplicationHelper
       content_tag( 'i', nil, class: 'icon icon-2x icon-signal' )
     end
   end
+  def tool_link_to_reload model
+    link_to online_expedientes_path(type: model), class: 'update', 'rel' => 'tooltip', 'data-original-title' => I18n.t("Actualizar") do
+      content_tag( 'i', nil, class: 'icon icon-2x icon-undo' )
+    end
+  end
 
   def edit_pdf_label item
     if item.pdf_file_name.nil?

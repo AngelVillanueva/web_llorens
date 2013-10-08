@@ -296,6 +296,9 @@ width: 95%;
   -moz-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
   transition: all 0.2s, ease-in-out;
+  &.update, &.update:hover {
+    color: #90ccdd;
+  }
   i {
     line-height: 35px;
   }

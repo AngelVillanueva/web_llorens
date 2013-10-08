@@ -1,4 +1,3 @@
-@current
 Feature: Justificantes edition
   As an admin or employee User
   In order to complete my Justificantes

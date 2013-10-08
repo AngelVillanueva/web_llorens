@@ -297,5 +297,9 @@ es:
   Password: "Contraseña"
   Role: "Privilegios"
   llorens_cliente_id: "Cuenta contable cliente"
+  TOS: "He leído y acepto la "
+  TOSlink: "Política de privacidad"
+  Privacidad ok: "Aceptada"
+  Privacidad no ok: "Rechazada"
 
 

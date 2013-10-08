@@ -19,7 +19,11 @@ class WebPagesController < ApplicationController
   end
   def download
   end
-  def legal
+  def condiciones
+  end
+  def privacidad
+  end
+  def cookies_policy
   end
 
   private

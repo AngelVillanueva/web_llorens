@@ -28,7 +28,7 @@ $(document).ready ->
   # change text on big buttons (hover)
   $( 'li.new a span' ).hover(
     -> $( this ).html( "+" )
-    -> $( this ).html( $( this ).attr('class') )
+    -> $( this ).html( $( this ).attr('class').split(' ')[0] )
   )
 
   # printThis binding

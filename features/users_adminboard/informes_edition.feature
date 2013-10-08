@@ -24,8 +24,19 @@ end
     When I access the Informes index page
     Then I should not see a link to edit the Informes
 
-  @wip
   Scenario: registered users cannot access the edit page for Informes
     Given I am a registered User with some Informes
     When I access the edit page for a given Informe
     Then I should be redirected to the homepage
+  
+  Scenario: employee users can access the edit page for Informes
+    Given I am an employee user
+      And there are also Informes from other Clientes
+    When I access the edit page for a given Informe
+    Then I should be able to edit the Informe
+  
+  Scenario: admin users can access the edit page for Informes
+    Given I am an admin user
+      And there are also Informes from other Clientes
+    When I access the edit page for a given Informe
+    Then I should be able to edit the Informe

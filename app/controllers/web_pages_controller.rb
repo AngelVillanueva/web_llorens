@@ -3,9 +3,10 @@ class WebPagesController < ApplicationController
   def home
   end
   def contact
-    if contact_params(params).count > 0
+    counter = contact_params(params).count
+    if counter > 0
       contact_data = contact_params(params)
-      if contact_data.count == 5
+      if contact_data.count == 6
         #ContactMailer.delay.contact_confirmation(contact_data)
         #ContactMailer.delay.agradecimiento(contact_data)
         ContactMailer.contact_confirmation(contact_data).deliver
@@ -15,6 +16,9 @@ class WebPagesController < ApplicationController
         flash[:error] = "Complete todos los campos, por favor"
         render :contact
       end
+    elsif request.post? && counter == 0 
+      flash[:error] = "Complete todos los campos, por favor"
+      redirect_to contact_path
     end
   end
   def download
@@ -34,6 +38,7 @@ class WebPagesController < ApplicationController
     contact_params[:telefono] = params[:inputPhone]
     contact_params[:ciudad] = params[:inputCity]
     contact_params[:mensaje] = params[:inputComment]
+    contact_params[:acepta_privacidad] = params[:inputTOS]
     clean contact_params
   end
   def clean params

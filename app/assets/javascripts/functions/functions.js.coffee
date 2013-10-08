@@ -144,6 +144,7 @@ root.analytics_loaded = false
 @moveExportExcelButton = ->
   $button = $('a.DTTT_button_xls')
   $('<li class="tooltip-xls"/>').appendTo('.tools ul')
+  $button.addClass('pie')
   $button.children('span').remove()
   $('<i class="icon icon-save icon-2x"/>').appendTo($button)
   $button.removeClass('btn').appendTo('.tools ul li:last')

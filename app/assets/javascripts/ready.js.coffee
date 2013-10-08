@@ -202,3 +202,8 @@ $(document).ready ->
   # printThis binding
   $( 'a.filtering' ).click ->
     $( 'tr.filter' ).slideToggle()
+
+  # IE8- rounded borders through PIE.js
+  if window.PIE
+    $(".pie").each ->
+      PIE.attach this

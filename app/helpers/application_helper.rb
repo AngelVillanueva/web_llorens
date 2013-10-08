@@ -76,42 +76,42 @@ module ApplicationHelper
   end
   
   def tool_link_to_home
-    link_to online_root_path, 'rel' => 'tooltip', 'data-original-title' => I18n.t("Inicio") do
+    link_to online_root_path, class:'pie', 'rel' => 'tooltip', 'data-original-title' => I18n.t("Inicio") do
       content_tag( 'i', nil, class: 'icon icon-2x icon-home' )
     end
   end
   def tool_link_to_table model
-    link_to url_for(controller: model, action: 'index'), 'rel' => 'tooltip', 'data-original-title' => I18n.t("Ver listado") do
+    link_to url_for(controller: model, action: 'index'), class: 'pie', 'rel' => 'tooltip', 'data-original-title' => I18n.t("Ver listado") do
       content_tag( 'i', nil, class: 'icon icon-2x icon-table' )
     end
   end
   def tool_link_to_print element
-    link_to '#', class: 'print', 'data-print-area' => element, 'rel' => 'tooltip', 'data-original-title' => I18n.t("Imprimir") do
+    link_to '#', class: 'print pie', 'data-print-area' => element, 'rel' => 'tooltip', 'data-original-title' => I18n.t("Imprimir") do
       content_tag( 'i', nil, class: 'icon icon-2x icon-print' )
     end
   end
   def tool_link_to_pdf linked
-    link_to linked.pdf.url, 'rel' => 'tooltip', 'data-original-title' => I18n.t("Ver PDF") do
+    link_to linked.pdf.url, class: 'pie','rel' => 'tooltip', 'data-original-title' => I18n.t("Ver PDF") do
       content_tag( 'i', nil, class: 'icon icon-2x icon-file' )
     end
   end
   def tool_link_to_new model
-    link_to url_for(controller: model, action: 'new'), 'rel' => 'tooltip', 'data-original-title' => I18n.t("Solicitar nuevo") do
+    link_to url_for(controller: model, action: 'new'), class: 'pie', 'rel' => 'tooltip', 'data-original-title' => I18n.t("Solicitar nuevo") do
       content_tag( 'i', nil, class: 'icon icon-2x icon-plus' )
     end
   end
   def tool_search_box
-    link_to '#', class: 'search', 'rel' => 'tooltip', 'data-original-title' => I18n.t("Buscar") do
+    link_to '#', class: 'search pie', 'rel' => 'tooltip', 'data-original-title' => I18n.t("Buscar") do
       content_tag( 'i', nil, class: 'icon icon-2x icon-search' )
     end
   end
   def tool_link_to_filter
-    link_to '#', id: 'filtering', class: 'filtering', 'rel' => 'tooltip', 'data-original-title' => I18n.t("Filtrar") do
+    link_to '#', id: 'filtering', class: 'filtering pie', 'rel' => 'tooltip', 'data-original-title' => I18n.t("Filtrar") do
       content_tag( 'i', nil, class: 'icon icon-2x icon-signal' )
     end
   end
   def tool_link_to_reload model
-    link_to online_expedientes_path(type: model), class: 'update', 'rel' => 'tooltip', 'data-original-title' => I18n.t("Actualizar") do
+    link_to online_expedientes_path(type: model), class: 'update pie', 'rel' => 'tooltip', 'data-original-title' => I18n.t("Actualizar") do
       content_tag( 'i', nil, class: 'icon icon-2x icon-undo' )
     end
   end

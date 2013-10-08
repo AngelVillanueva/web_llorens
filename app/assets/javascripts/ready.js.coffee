@@ -28,7 +28,7 @@ $(document).ready ->
   # change text on big buttons (hover)
   $( 'li.new a span' ).hover(
     -> $( this ).html( "+" )
-    -> $( this ).html( $( this ).attr('class') )
+    -> $( this ).html( $( this ).attr('class').split(' ')[0] )
   )
 
   # printThis binding
@@ -202,3 +202,8 @@ $(document).ready ->
   # printThis binding
   $( 'a.filtering' ).click ->
     $( 'tr.filter' ).slideToggle()
+
+  # IE8- rounded borders through PIE.js
+  if window.PIE
+    $(".pie").each ->
+      PIE.attach this

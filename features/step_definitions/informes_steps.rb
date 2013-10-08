@@ -104,3 +104,8 @@ Then(/^a new Informe should (not )?be created$/) do |negation|
     Informe.all.count.should eql( 1 )
   end
 end
+
+Then(/^I should be able to edit the Informe$/) do
+  page.should have_title( I18n.t( "Editar Informe Trafico" ) )
+  page.should have_selector( "form.edit_informe" )
+end

@@ -1,4 +1,3 @@
-@current
 Feature: Contact Form
   As the website owner
   In order to enable a communication channel with my prospects

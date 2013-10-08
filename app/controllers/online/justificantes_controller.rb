@@ -1,5 +1,6 @@
 class Online::JustificantesController < OnlineController
   load_and_authorize_resource except: [:new, :create]
+  before_filter :authorize_edition, only: :edit
   expose( :justificantes ) do
     if params[:after]
       timing = Time.at(params[:after].to_i + 1)
@@ -47,6 +48,11 @@ class Online::JustificantesController < OnlineController
       params
         .require( :justificante )
         .permit!
+    end
+  end
+  def authorize_edition
+    unless current_usuario.role?("employee") || current_usuario.role?("admin")
+      redirect_to root_path, flash: { :alert => "No autorizado" }
     end
   end
 end

@@ -17,7 +17,7 @@ root.analytics_loaded = false
   ga.src = "#{proto}.google-analytics.com/ga.js"
   
   s = document.getElementsByTagName 'script'
-  s[0].parentNode.insertBefore ga, s
+  $(ga).insertBefore(s[0])
   root.analytics_loaded = true # so there please do not load it again
 
 # check if CookiePolicy cookie already exists to show or not the warning
@@ -37,7 +37,7 @@ root.analytics_loaded = false
   dcplyExpireDate.setMonth dcplyExpireDate.getMonth() + expireMonths
   setCookieValue dcplyName, action, dcplyExpireDate
   $( '#d-policy-disclaimer' ).hide()
-  injectAnalytics() if action is "scroll" unless analytics_loaded
+  injectAnalytics() unless analytics_loaded
 
 # polling Justificantes table data
 @updateJustificantes = ->

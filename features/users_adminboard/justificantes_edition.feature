@@ -24,7 +24,7 @@ end
     When I access the Justificantes index page
     Then I should not see a link to edit the Justificantes
 
-  @wip
+  @current
   Scenario: registered users cannot access the edit page for Justificantes
     Given I am a registered User with some Justificantes
     When I access the edit page for a given Justificantes

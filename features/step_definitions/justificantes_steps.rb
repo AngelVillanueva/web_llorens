@@ -44,6 +44,13 @@ When(/^another Justificante from my Cliente is added$/) do
     cliente: cliente )
 end
 
+When(/^I access the edit page for a given Justificantes$/) do
+  Usuario.count.should eql 1
+  Justificante.count.should eql 2
+  Justificante.where(cliente_id: Usuario.first.organizacion.cliente_ids)
+  visit edit_online_justificante_path(Justificante.first)
+end
+
 Then(/^a new Justificante should (not )?be created$/) do |negation|
   if negation
     Justificante.all.count.should eql( 0 )

@@ -51,7 +51,7 @@ class Online::JustificantesController < OnlineController
     end
   end
   def authorize_edition
-    unless current_usuario.role? "employee"
+    unless current_usuario.role?("employee") || current_usuario.role?("admin")
       redirect_to root_path, flash: { :alert => "No autorizado" }
     end
   end

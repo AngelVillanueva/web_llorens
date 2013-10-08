@@ -27,5 +27,17 @@ end
   @current
   Scenario: registered users cannot access the edit page for Justificantes
     Given I am a registered User with some Justificantes
-    When I access the edit page for a given Justificantes
+    When I access the edit page for a given Justificante
     Then I should be redirected to the homepage
+  @current
+  Scenario: employee users can access the edit page for Justificantes
+    Given I am an employee user
+      And there are also Justificantes from other Clientes
+    When I access the edit page for a given Justificante
+    Then I should be able to edit the Justificante
+  @current
+  Scenario: admin users can access the edit page for Justificantes
+    Given I am an admin user
+      And there are also Justificantes from other Clientes
+    When I access the edit page for a given Justificante
+    Then I should be able to edit the Justificante

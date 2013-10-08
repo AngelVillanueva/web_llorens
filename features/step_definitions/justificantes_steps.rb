@@ -44,10 +44,10 @@ When(/^another Justificante from my Cliente is added$/) do
     cliente: cliente )
 end
 
-When(/^I access the edit page for a given Justificantes$/) do
-  Usuario.count.should eql 1
-  Justificante.count.should eql 2
-  Justificante.where(cliente_id: Usuario.first.organizacion.cliente_ids)
+When(/^I access the edit page for a given Justificante$/) do
+  # Usuario.count.should eql 1
+  # Justificante.count.should eql 2
+  # Justificante.where(cliente_id: Usuario.first.organizacion.cliente_ids)
   visit edit_online_justificante_path(Justificante.first)
 end
 
@@ -102,4 +102,9 @@ Then(/^I should (not )?see a link to edit the Justificantes$/) do |negation|
     rows = Justificante.count
   end
   expect( page ).to have_selector( 'i.toedit', count: rows )
+end
+
+Then(/^I should be able to edit the Justificante$/) do
+  page.should have_title( I18n.t( "Editar Justificante Profesional" ) )
+  page.should have_selector( "form.justificantes" )
 end

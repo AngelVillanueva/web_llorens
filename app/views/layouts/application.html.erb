@@ -25,16 +25,7 @@
       <div class="row"><%= yield %></div>
     <% end %>
     <div id="footer" class="coming-soon">
-      <div class="container">
-          <div class="row">
-              <div class="span2 offset5">
-                  <p>2013 - Gestor&iacute;a Llorens</p>
-              </div>
-              <div class="pull-right visible-desktop">
-                <%= link_to t("Aviso legal"), legal_path %>
-              </div>
-          </div>
-      </div>
+      <%= render 'shared/footer' %>
     </div>
     
     <% unless Rails.env.production? %>

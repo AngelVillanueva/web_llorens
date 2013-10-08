@@ -17,6 +17,8 @@
             <li><%= link_to t("Descargas"), download_path %></li>
             <li><%= link_to t("Contacto"), contact_path %></li>
             <li class="hidden-desktop"><%= link_to t("Condiciones"), condiciones_path %></li>
+            <li class="hidden-desktop"><%= link_to t("Privacidad"), privacidad_path %></li>
+            <li class="hidden-desktop"><%= link_to t("Condiciones"), cookies_policy_path %></li>
             <% if admin_menu %>
               <% if current_usuario %>
                   <li><%= link_to t("Area usuarios"), online_root_path, class: 'root' %></li>

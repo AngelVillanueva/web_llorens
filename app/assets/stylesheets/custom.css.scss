@@ -431,3 +431,15 @@ form.justificantes {
   }
 }
 
+// Footer menu
+.footer_menu li {
+  display: inline-block;
+  padding-left: 15px;
+  a:hover {
+    color: #08f;
+  }
+}
+
+// Legal pages
+.legal, .entered { padding-left: 2em; }
+

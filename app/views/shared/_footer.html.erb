@@ -1,0 +1,12 @@
+<div class="container">
+    <div class="row">
+        <div class="span3">
+            <p><%= Time.now.year %> - <%= t("Brandname") %></p>
+        </div>
+        <ul class="footer_menu pull-right visible-desktop">
+          <li><%= link_to t("Condiciones"), condiciones_path %></li>
+          <li><%= link_to t("Privacidad"), privacidad_path %></li>
+          <li><%= link_to t("Cookies policy"), cookies_policy_path %></li>
+        </ul>
+    </div>
+</div>

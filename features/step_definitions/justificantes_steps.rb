@@ -40,7 +40,7 @@ When(/^I submit not all the needed information for a new Justificante$/) do
 end
 
 When(/^another Justificante from my Cliente is added$/) do
-  internal_justificante = FactoryGirl.create( :justificante, matricula: "Nuevo justificante interno",
+  internal_justificante = FactoryGirl.create( :justificante, modelo: "Nuevo justificante interno",
     cliente: cliente )
 end
 

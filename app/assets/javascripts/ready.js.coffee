@@ -51,6 +51,7 @@ $(document).ready ->
   if ( $( '#expedientes.matriculacion' ).length )
     createDataTable(
       'expedientes',
+      0,
       [
         null,
         null,
@@ -84,6 +85,7 @@ $(document).ready ->
   if ( $( '#expedientes.transferencia' ).length )
     createDataTable(
       'expedientes',
+      0,
       [
         null,
         null,
@@ -117,6 +119,7 @@ $(document).ready ->
   if ( $( '#justificantes' ).length )
     createDataTable(
       'justificantes',
+      9,
       [
         null,
         null,
@@ -161,6 +164,7 @@ $(document).ready ->
   if ( $( '#informes' ).length )
     createDataTable(
       'informes',
+      4,
       [
         null,
         null,

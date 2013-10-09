@@ -21,4 +21,25 @@ class Informe < ActiveRecord::Base
   default_scope includes(:cliente).order('pdf_content_type DESC, created_at DESC')
   
   validates :matricula, :solicitante, :cliente_id, presence: true
+
+  rails_admin do
+    edit do
+      group :advanced do
+        label I18n.t("Advanced")
+        active false
+      end
+      field :matricula
+      field :solicitante
+      field :cliente
+      field :pdf_file_name do
+        label I18n.t("PDF file name")
+        read_only true
+        group :advanced
+      end
+      field :pdf, :paperclip do
+        label I18n.t("PDF")
+        group :advanced
+      end
+    end
+  end
 end

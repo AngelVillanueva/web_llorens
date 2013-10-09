@@ -1,0 +1,33 @@
+<h2 class="renew"><%= t("Renew your password") %></h2>
+<p><%= t("Renewal instructions") %></p>
+
+<%= form_for(resource, :as => resource_name, :url => [resource_name, :password_expired], :html => { :method => :put, class: 'new_pw' }) do |f| %>
+  <% unless devise_error_messages!.empty? %>
+    <div class="alert alert-error"><%= devise_error_messages! %></div>
+  <% end %>
+
+  <div class="control-group">
+    <%= f.label :current_password, t("Current password"), class: "control-label" %>
+    <div class="controls">
+      <%= f.password_field :current_password, class: "span4", placeholder: t("Your current password") %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :password, t("New password"), class: "control-label" %>
+    <div class="controls">
+      <%= f.password_field :password, class: "span4", placeholder: t("Your new password") %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :password_confirmation, t("Confirm new password"), class: "control-label" %>
+    <div class="controls">
+      <%= f.password_field :password_confirmation, class: "span4", placeholder: t("Password again") %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <div class="controls action">
+      <%= f.submit t("Change my password"), class: "btn btn-success" %>
+    </div>
+  </div>
+<% end %>

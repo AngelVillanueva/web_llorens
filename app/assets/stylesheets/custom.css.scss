@@ -1,4 +1,4 @@
-input[type='text'], select {
+input[type='text'], select, .new_pw input {
   height: 30px;
 }
 
@@ -445,3 +445,22 @@ form.justificantes {
 // Legal pages
 .legal, .entered { padding-left: 2em; }
 
+// Renew your password
+h2.renew { margin-bottom: 0; }
+h2.renew + p {
+  color: #999;
+  margin-bottom: 2em;
+}
+.new_pw label {
+  text-align: left;
+  font-weight: bold;
+}
+#error_explanation {
+  h2 {
+    font-size: 1em;
+    line-height: 1.5em;
+  }
+  ul {
+    padding-left: 3em;
+  }
+}

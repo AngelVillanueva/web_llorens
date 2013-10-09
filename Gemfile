@@ -30,6 +30,7 @@ gem 'paperclip', '~> 3.0' # file attachment
 ### USER & PERMISSIONS MANAGEMENT
 # Devise
 gem 'devise', '~> 2.2.4'
+gem 'devise_security_extension' # for password_expirable
 # Rails_Admin
 gem 'rails_admin', '~> 0.4.3'
 # CanCan

@@ -46,4 +46,42 @@ class Justificante < ActiveRecord::Base
   def first_time_pdf?
     pdf_file_name_was.nil? && !pdf_file_name.nil?
   end
+
+  rails_admin do
+    edit do
+      group :advanced do
+        label I18n.t("Advanced")
+        active false
+      end
+      field :identificador
+      field :matricula
+      field :bastidor
+      field :marca
+      field :modelo
+      field :nif_comprador
+      field :nombre_razon_social
+      field :primer_apellido
+      field :segundo_apellido
+      field :direccion
+      field :municipio
+      field :provincia
+      field :pdf_file_name do
+        label I18n.t("PDF file name")
+        read_only true
+        group :advanced
+      end
+      field :pdf, :paperclip do
+        label I18n.t("PDF")
+        group :advanced
+      end
+      field :cliente
+      field :hora_solicitud do
+        date_format :default
+      end
+      field :hora_entrega do
+        date_format :default
+        group :advanced
+      end
+    end
+  end
 end

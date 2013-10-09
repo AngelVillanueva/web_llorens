@@ -55,7 +55,7 @@ namespace :fakefeed do
   task :justificantes => :environment do
     Justificante.delete_all
     10.times do
-      Justificante.create(
+      j = Justificante.create(
         identificador: "#{Faker::Lorem.characters(3).upcase}-#{Faker::Lorem.characters(3).upcase}",
         nif_comprador: "00000000T",
         nombre_razon_social: Faker::Name.first_name,
@@ -70,18 +70,23 @@ namespace :fakefeed do
         modelo: Faker::Lorem.word.capitalize,
         cliente: Cliente.all.sample
       )
+      j.created_at = Time.at( rand * ( Time.now.to_f - 1.year.ago.to_f ) + 1.year.ago.to_f )
+      j.hora_solicitud = j.created_at
+      j.save!
     end
   end
 
   task :informes => :environment do
     Informe.delete_all
     10.times do
-      Informe.create(
+      i = Informe.create(
         identificador: "#{Faker::Lorem.characters(3).upcase}-#{Faker::Lorem.characters(3).upcase}",
         solicitante: Faker::Name.name,
         matricula: Faker::Lorem.characters(6).upcase,
         cliente: Cliente.all.sample
       )
+      i.created_at = Time.at( rand * ( Time.now.to_f - 1.year.ago.to_f ) + 1.year.ago.to_f )
+      i.save!
     end
   end
   

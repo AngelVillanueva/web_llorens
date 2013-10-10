@@ -61,3 +61,10 @@ Given(/^I am a registered User with some Informes$/) do
   informe_2 = FactoryGirl.create( :informe, matricula: "Otro informe",
     cliente: cliente )
 end
+
+Given(/^I did not change my password during the last year$/) do
+  Usuario.count.should eql 1
+  u = Usuario.first
+  u.password_changed_at = 13.months.ago
+  u.save!
+end

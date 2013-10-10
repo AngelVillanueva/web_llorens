@@ -14,3 +14,7 @@ Then (/^I should see the following links$/) do |table|
     end
   end
 end
+
+Then(/^I should be redirected to the renewal password page$/) do
+  page.should have_css( 'h2', text: I18n.t("Renew your password") )
+end

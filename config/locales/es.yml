@@ -197,6 +197,10 @@ es:
   activerecord:
     errors:
       <<: *errors
+    attributes:
+      usuario:
+        password: "Contraseña"
+        current_password: "Contraseña actual"
   unauthorized:
     manage:
       all: "No estás autorizado a acceder a esa página"

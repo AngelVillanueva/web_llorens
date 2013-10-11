@@ -7,7 +7,7 @@ es:
       not_locked: "no ha sido bloqueada"
       not_saved:
         one: "Ha habido 1 error:"
-        other: "Han habido %{count} errores:"
+        other: "Ha habido %{count} errores:"
 
   devise:
     failure:

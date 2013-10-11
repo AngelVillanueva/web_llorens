@@ -29,8 +29,8 @@ gem "rghost", '~> 0.9.3' # needed to skip the first page, prawn fails
 gem 'paperclip', '~> 3.0' # file attachment
 ### USER & PERMISSIONS MANAGEMENT
 # Devise
-gem 'devise', '~> 2.2.4'
 gem 'devise_security_extension', git: 'git://github.com/phatworx/devise_security_extension.git' # for password_expirable
+gem 'devise', '~> 2.2.4'
  # for password_expirable
 # Rails_Admin
 gem 'rails_admin', '~> 0.4.3'

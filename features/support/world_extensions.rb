@@ -10,6 +10,9 @@
     usuario.clientes << cliente if usuario.clientes.empty?
     usuario
   end
+  def usuario_pw_expired
+    usuario_pw_expired ||= FactoryGirl.create(:usuario, organizacion: organizacion, password_changed_at: 13.months.ago )
+  end
   def admin
     admin ||= FactoryGirl.create( :usuario, nombre: "super", role: "admin" )
   end

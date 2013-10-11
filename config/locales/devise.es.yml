@@ -7,7 +7,7 @@ es:
       not_locked: "no ha sido bloqueada"
       not_saved:
         one: "Ha habido 1 error:"
-        other: "Han habido %{count} errores:"
+        other: "Ha habido %{count} errores:"
 
   devise:
     failure:
@@ -19,6 +19,8 @@ es:
       invalid_token: 'Token de autentificación inválido.'
       timeout: 'Tu sesión ha expirado. Inicia sesión nuevamente.'
       inactive: 'Tu cuenta aun no ha sido activada.'
+      usuario:
+        not_found_in_database: "El usuario no existe o la contraseña es incorrecta"
     sessions:
       signed_in: 'Iniciaste sesión correctamente.'
       signed_out: 'Cerraste sesión correctamente.'

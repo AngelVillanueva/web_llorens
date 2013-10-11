@@ -1,0 +1,13 @@
+es:
+  errors:
+    messages:
+      taken_in_past: "ya se ha utilizado en el pasado"
+      equal_to_current_password: "debe ser distinta a la actual contraseña"
+  devise:
+    invalid_captcha: "¡Código incorrecto!"
+    password_expired:
+      updated: "Su nueva contraseña se ha guardado."
+      change_required: "Su contraseña ha expirado. Cambiela, por favor."
+    failure:
+      session_limited: 'Ha accedido en otro navegador. Por favor, vuelva a ingresar para continuar en este navegador.'
+      expired: 'Su cuenta ha expirado por no utilización. Por favor, contacte con el administrador del sitio.'

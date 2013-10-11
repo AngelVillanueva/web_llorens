@@ -61,3 +61,7 @@ Given(/^I am a registered User with some Informes$/) do
   informe_2 = FactoryGirl.create( :informe, matricula: "Otro informe",
     cliente: cliente )
 end
+
+Given(/^I am a registered User who did not change my password during the last year$/) do
+  login_as( usuario_pw_expired, :scope => :usuario )
+end

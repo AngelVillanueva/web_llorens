@@ -197,6 +197,10 @@ es:
   activerecord:
     errors:
       <<: *errors
+    attributes:
+      usuario:
+        password: "Contraseña"
+        current_password: "Contraseña actual"
   unauthorized:
     manage:
       all: "No estás autorizado a acceder a esa página"
@@ -304,5 +308,23 @@ es:
   Actualizar: "Actualizar"
   PDF file name: "Nombre del PDF"
   PDF: "PDF"
-
+  Renew your password: "Renueve su contraseña"
+  Renewal instructions: "No debe haberla utilizado anteriormente"
+  Current password: "Contraseña actual"
+  Your current password: "Su contraseña actual"
+  New password: "Nueva contraseña"
+  Your new password: "Su nueva contraseña"
+  Confirm new password: "Confirme la nueva contraseña"
+  Password again: "Vuelva a introducir su nueva contraseña"
+  Change my password: "Cambiar"
+  Forgot password?: "¿Olvidó su contraseña?"
+  Send me reset password instructions: "Iniciar proceso de cambio de contraseña"
+  Current account email: "El email de su cuenta de usuario"
+  Your current account email: "Es el que utiliza habitualmente para acceder"
+  Hello : "Hola "
+  Password reset requested: "Se ha solicitado el cambio de contraseña (no se recordaba). Puede iniciar el proceso haciendo a través del enlace que aparece a continuación:"
+  Change my password: "Cambiar mi contraseña"
+  Not requested: "Si no solicitó este cambio simplemente ignore este email."
+  Nothing will happen yet: "Su contraseña no se cambiará hasta que no utilice el enlace de más arriba y cree una nueva."
+  Change your password: "Cambie su contraseña"
 

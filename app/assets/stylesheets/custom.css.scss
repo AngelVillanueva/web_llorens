@@ -464,3 +464,8 @@ h2.renew + p {
     padding-left: 3em;
   }
 }
+
+// forms
+.btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success.active, .btn-success.disabled, .btn-success[disabled] {
+  background-color: #0175af;
+}

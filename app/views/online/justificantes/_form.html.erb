@@ -2,7 +2,7 @@
   <%= f.error_notification %>
   <% if justificante.new_record? %>
   <div class="span4">
-    <%= f.input :identificador %>
+    <%= f.input :identificador, :as => :hidden, :input_html => { :value => Time.now.to_i.to_s } %>
     <%= f.association :cliente,
       collection: current_usuario.clientes, label_method: :nombre,
       value_method: :id, include_blank: false %>

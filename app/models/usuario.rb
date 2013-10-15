@@ -46,7 +46,7 @@ class Usuario < ActiveRecord::Base
   end
 
   def norole?
-    self.role == nil
+    self.role.nil? || self.role.empty?
   end
 
   def expedientes

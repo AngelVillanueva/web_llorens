@@ -1,4 +1,3 @@
-@current
 Feature: password expiration
   As the webapp owner
   In order to meet the legal requirements

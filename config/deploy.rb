@@ -59,3 +59,24 @@ namespace :deploy do
   after "deploy:start",   "delayed_job:start"
   after "deploy:restart", "delayed_job:restart"
 end
+
+# ==============================
+# Uploads
+# ==============================
+
+namespace :paperclip do
+
+  desc "Create a storage folder for Paperclip attachment in shared path"
+  task :create_storage do
+    run "mkdir -p #{shared_path}/uploads"
+  end
+  
+  desc "Link the Paperclip storage folder into the current release"
+  task :link_storage do
+    run "ln -nfs #{shared_path}/uploads #{release_path}/uploads"
+  end
+
+end
+
+before "deploy:setup", 'paperclip:create_storage'
+after "deploy:update_code", "paperclip:link_storage"

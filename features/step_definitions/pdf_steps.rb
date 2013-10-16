@@ -7,6 +7,15 @@ When(/^I visit the Expediente PDF page for an Expediente of another Cliente$/) d
   visit online_matriculacion_path Expediente.last, format: 'pdf'
 end
 
+When(/^I visit the Justificante PDF page for a Justificante of another Cliente$/) do
+  the_pdf = File.new(Rails.root.join('spec', 'fixtures', 'test-J.pdf'))
+  step "there are also Justificantes from other Clientes"
+  j = Justificante.first
+  j.pdf = the_pdf
+  j.save!
+  visit j.pdf.url
+end
+
 Then (/^I should (not )?see a PDF document$/) do |negation|
   if negation
     page.source.force_encoding( 'BINARY' ).should_not =~ /%PDF-1./

@@ -1,4 +1,5 @@
 class Online::InformesController < OnlineController
+  load_and_authorize_resource except: [:new, :create]
   before_filter :authorize_edition, only: :edit
   expose( :informes ) do
     if params[:after]
@@ -38,6 +39,10 @@ class Online::InformesController < OnlineController
   def destroy
     informe.destroy
     redirect_to online_informes_path, notice: I18n.t("El Informe fue borrado correctamente")
+  end
+
+  def download
+    send_file informe.pdf.path, :type => informe.pdf_content_type, :disposition => 'inline'
   end
   
 

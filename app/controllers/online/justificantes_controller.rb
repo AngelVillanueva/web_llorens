@@ -42,6 +42,10 @@ class Online::JustificantesController < OnlineController
     redirect_to online_justificantes_path, notice: I18n.t("El Justificante fue borrado correctamente")
   end
 
+  def download
+    send_file justificante.pdf.path, :type => justificante.pdf_content_type, :disposition => 'inline'
+  end
+
   private
   def justificante_params
     if current_usuario

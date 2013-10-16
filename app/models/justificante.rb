@@ -28,7 +28,9 @@
 
 class Justificante < ActiveRecord::Base
   belongs_to :cliente
-  has_attached_file :pdf
+  has_attached_file :pdf,
+    :path => ":rails_root/uploads/:class/:id/:basename.:extension",
+    :url => "/online/justificantes/:id/download"
   default_scope includes(:cliente).order('created_at DESC')
 
   before_validation :assign_hora_solicitud, on: :create

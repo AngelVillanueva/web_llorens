@@ -35,6 +35,8 @@ doc/
 .idea
 
 /config/database.yml
+/uploads
+/uploads/*
 /app/assets/pdfs
 /app/assets/pdfs/*
 /app/assets/pdfs/expedientes/*.*

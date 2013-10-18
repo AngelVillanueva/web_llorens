@@ -75,7 +75,7 @@ $(document).ready ->
         { type: "date-range" },
         { type: "date-range" },
         { type: "select" },
-        null,
+        { type: "select", values: [ 'PDF Pendiente', 'Ver PDF' ] },
         null
       ]
     )
@@ -109,7 +109,7 @@ $(document).ready ->
         { type: "date-range" },
         { type: "date-range" },
         { type: "select" },
-        null,
+        { type: "select", values: [ 'PDF Pendiente', 'Ver PDF' ] },
         null
       ]
     )

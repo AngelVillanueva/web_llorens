@@ -119,8 +119,11 @@ $(document).ready ->
   if ( $( '#justificantes' ).length )
     createDataTable(
       'justificantes',
-      9,
+      12,
       [
+        null,
+        null,
+        null,
         null,
         null,
         null,
@@ -138,7 +141,7 @@ $(document).ready ->
         null
         ],
       "Justificantes_Llorens",
-      [0,1,2,3,4,5,6,7,8,10,11], 
+      [0,1,2,3,4,5,6,10,11,13,14], 
       [
         { type: "text" },
         { type: "text" },
@@ -147,6 +150,9 @@ $(document).ready ->
         { type: "text" },
         { type: "text" },
         { type: "text" },
+        null,
+        null,
+        null,
         { type: "select" },
         { type: "text" },
         null,

@@ -72,15 +72,13 @@ class Usuario < ActiveRecord::Base
         label I18n.t("Password")
       end
       field :organizacion
+      field :clientes
       field :role do
         label I18n.t("Role")
         group :advanced
       end
       field :password_changed_at do
         label I18n.t("Password changed at")
-        group :advanced
-      end
-      field :clientes do
         group :advanced
       end
     end

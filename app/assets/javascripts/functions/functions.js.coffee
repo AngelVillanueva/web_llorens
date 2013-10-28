@@ -45,6 +45,7 @@ root.analytics_loaded = false
       after = $('tr.justificante:eq(0)').attr('data-time')
       $.getScript('/online/justificantes.js?after=' + after)
       setTimeout(updateJustificantes, 10000)
+      setInterval(updateScreen, 15000)
 
 # polling Informes table data
 @updateInformes = ->
@@ -52,6 +53,7 @@ root.analytics_loaded = false
       after = $('tr.informe:eq(0)').attr('data-time')
       $.getScript('/online/informes.js?after=' + after)
       setTimeout(updateInformes, 10000)
+      setInterval(updateScreen, 15000)
 
 # datepicker localization (es)
 @configureDatePicker = ->
@@ -165,6 +167,10 @@ root.analytics_loaded = false
     $( '<li><span class="titular">' + titular + ':</span><span class="contenido">' + contenido + '</span></li>').appendTo( '#printList' )
   $( '#toPrint' ).printThis()
   $( '#toPrint' ).remove()
+
+# force page reload
+@updateScreen = ->
+  location.reload(true)
 
 
 

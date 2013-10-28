@@ -16,7 +16,7 @@ oTable = $( '#justificantes' ).dataTable();
         $( this ).remove();
     });
   // sort the table taking into account the new justificantes
-  oTable.fnSort( [ [ 9, 'desc' ] ] );
+  oTable.fnSort( [ [ 12, 'desc' ] ] );
 <% else %>
   <% if Rails.env.development? %>
   // console.log( 'no new as justificantes was ' + <%= justificantes.count %> );

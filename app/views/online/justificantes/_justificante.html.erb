@@ -42,7 +42,7 @@
     </td>
     <td class="icon">
       <% unless justificante.pdf_file_name.nil? %>
-        <%= link_to justificante.pdf.url, title: "PDF" do %>
+        <%= link_to justificante.pdf.url, title: "PDF", target: 'blank' do %>
           <i class="icon icon-file"></i>
         <% end %>
       <% end %>

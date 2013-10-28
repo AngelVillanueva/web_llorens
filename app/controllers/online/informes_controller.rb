@@ -4,7 +4,7 @@ class Online::InformesController < OnlineController
   expose( :informes ) do
     if params[:after]
       timing = Time.at(params[:after].to_i + 1)
-      Informe.accessible_by( current_ability ).where("pdf_file_name IS NULL").where("created_at > ?", timing)
+      Informe.accessible_by( current_ability ).where("pdf_file_name IS NULL").where("updated_at > ?", timing)
     else
       Informe.accessible_by( current_ability )
     end

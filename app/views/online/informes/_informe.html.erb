@@ -3,7 +3,7 @@
   <td class="printable" data-titular="Matricula"><%= informe.matricula %></td>
   <td class="printable" data-titular="Solicitante"><%= informe.solicitante %></td>
   <td class="printable" data-titular="Fecha solicitud"><%= l informe.created_at, format: "%d/%m/%Y" %></td>
-  <td class="hidden"><%= informe.created_at.to_i %></td>
+  <td class="hidden"><%= informe.updated_at.to_i %></td>
   <td class="printable" data-titular="Finalizado"><%= informe.pdf_file_name.nil? && t("En curso") || t('Si') %></td>
   <td class="icon">
     <% unless informe.pdf_file_name.nil? %>

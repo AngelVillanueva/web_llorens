@@ -54,7 +54,7 @@ group :development do
   gem 'sextant', '0.2.3' # Navigate to 0.0.0.0:3000/rails/routes to see routes in the browser
   gem 'quiet_assets', '~> 1.0.2' # Get rid of loading assets info in development log
   gem 'ruby_gntp', '~> 0.3.4' # Growl with Bullet
-  gem 'bullet', '~> 4.6.0' # Advise on n+1 queries # Not working since Mavericks
+  gem 'bullet', '~> 4.6.0' # Advise on n+1 queries
   gem 'lol_dba', '~> 1.5.0' # Advise on missing indexes
   #gem 'railroady' # SVG generator for models and associations
 end

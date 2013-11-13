@@ -23,6 +23,12 @@ Given(/^I am a registered User with some Expedientes$/) do
   transferencia
 end
 
+Given(/^I am a registered User with some Expedientes without matricula$/) do
+  login_as( usuario, :scope => :usuario )
+  matriculacion_sin_matricula
+  transferencia
+end
+
 Given(/^I am a registered User with some Expedientes but without documents$/) do
   login_as( usuario, :scope => :usuario )
   matriculacion_incomplete

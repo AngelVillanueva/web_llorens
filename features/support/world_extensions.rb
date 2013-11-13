@@ -22,6 +22,9 @@
   def matriculacion
     @matriculacion || FactoryGirl.create( :matriculacion, cliente: cliente )
   end
+  def matriculacion_sin_matricula
+    @matriculacion || FactoryGirl.create( :matriculacion, matricula:nil, cliente: cliente )
+  end
   def matriculacion_incomplete
     @matriculacion || FactoryGirl.create( :matriculacion, cliente: cliente, identificador: "Missing" )
   end

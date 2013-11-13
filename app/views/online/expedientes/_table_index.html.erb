@@ -52,7 +52,13 @@
           <%= expediente.cliente.nombre %>
         </td>
         <td>
-          <%= expediente.matricula.upcase if expediente.matricula %>
+          <% if expediente.matricula %>
+            <%= expediente.matricula.upcase %>
+          <% else %>
+            <% unless current_usuario.norole? %>
+              <%= link_to t( "matricula_PDF" ), edit_online_matriculacion_path( expediente ) %>
+            <% end %>
+          <% end %>
         </td>
         <% if expediente_type? expediente, 'matriculacion' %>
           <td>

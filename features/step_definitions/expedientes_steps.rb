@@ -3,6 +3,10 @@ Given(/^there are more Expedientes from other Clientes$/) do
   other_expediente = FactoryGirl.create( :matriculacion, matricula: "Other matricula", cliente: other_cliente)
 end
 
+Given(/^there are some Expedientes without matricula$/) do
+  matriculacion = FactoryGirl.create( :matriculacion, matricula: nil)
+end
+
 Given(/^one new Transferencia was created yesterday$/) do
   y_transferencia = FactoryGirl.create(:transferencia, matricula: "Test yesterday", cliente: cliente, fecha_alta: 1.day.ago )
 end
@@ -97,4 +101,12 @@ end
 Then(/^I should see "(.*?)" instead of the link to the PDF$/) do |arg1|
   visit online_matriculaciones_path
   page.should have_selector( 'td', text: "PDF pendiente" )
+end
+
+Then(/^I should (not )?see a link to edit the Matriculaciones$/) do |negation|
+  if negation
+    page.should_not have_selector( 'a', text: I18n.t( "matricula_PDF" ))
+  else
+    page.should have_selector( 'a', text: I18n.t( "matricula_PDF" ))
+  end
 end

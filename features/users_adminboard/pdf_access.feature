@@ -30,7 +30,7 @@ Scenario: Users can just access PDFs from their Clientes (Justificantes)
   Then I should not see a PDF document
     And I should be redirected to the online homepage
 
-@pdf @current
+@pdf
 Scenario: Users can just access PDFs from their Clientes (Informes)
   Given I am a registered User
   When I visit the Informe PDF page for a Informe of another Cliente 

@@ -12,6 +12,11 @@ Feature: Justificantes listing
     When I access the Justificantes index page
     Then I should see a list of the Justificantes
 
+  Scenario: Justificantes "matricula" is always uppercase
+    Given I am a registered User with some Justificantes
+    When I access the Justificantes index page
+    Then I should see a list of the Justificantes with matricula in uppercase
+
   Scenario: the Justificantes are sorted by not having a PDF yet and then by created_at field
       Given I am a registered User with some Justificantes
         And one of the justificantes has an attached PDF

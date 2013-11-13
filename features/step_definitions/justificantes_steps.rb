@@ -61,8 +61,19 @@ end
 Then(/^I should see a list of the Justificantes$/) do
   page.should have_title( I18n.t( "Justificantes" ) )
   usuario = Usuario.find_by_nombre( "Angel" )
-  justificantes = usuario.justificantes do |justificante|
-    page.should have_selector( 'td', text: justificante.matricula )
+  justificantes = usuario.justificantes
+  justificantes.each do |justificante|
+    page.should have_selector( 'td', text: justificante.matricula.upcase )
+  end
+  expect( page ).to have_selector( 'tr.justificante', count: 2 )
+end
+
+Then(/^I should see a list of the Justificantes with matricula in uppercase$/) do
+  page.should have_title( I18n.t( "Justificantes" ) )
+  usuario = Usuario.find_by_nombre( "Angel" )
+  justificantes = usuario.justificantes
+  justificantes.each do |justificante|
+    page.should have_selector( 'td', text: justificante.matricula.upcase )
   end
   expect( page ).to have_selector( 'tr.justificante', count: 2 )
 end
@@ -74,7 +85,7 @@ Then(/^I should see a list of all the Justificantes$/) do
 end
 
 Then(/^the first Justificante should be the most urgent one$/) do
-  expect( first( 'tr.justificante' ) ).to have_selector( 'td', text: "Otro justificante" )
+  expect( first( 'tr.justificante' ) ).to have_selector( 'td', text: "Otro justificante".upcase )
 end
 
 Then(/^I should see just the list of the Justificantes from my Cliente$/) do

@@ -1,6 +1,6 @@
 <tr class="informe <%= informe.pdf_file_name.nil? && 'new' || '' %>" data-time="<%= informe.created_at.to_i %>">
   <td class="printable" data-titular="Cliente"><%= informe.cliente.nombre %></td>
-  <td class="printable" data-titular="Matricula"><%= informe.matricula %></td>
+  <td class="printable" data-titular="Matricula"><%= informe.matricula.upcase %></td>
   <td class="printable" data-titular="Solicitante"><%= informe.solicitante %></td>
   <td class="printable" data-titular="Fecha solicitud"><%= l informe.created_at, format: "%d/%m/%Y" %></td>
   <td class="hidden"><%= informe.updated_at.to_i %></td>

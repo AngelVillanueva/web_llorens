@@ -27,7 +27,7 @@ class Expediente < ActiveRecord::Base
 
   #before_validation :assign_internal_cliente_id
 
-  validates :identificador, :matricula, :bastidor, :comprador, :marca, :modelo, :fecha_alta, :cliente_id, :type, presence: true
+  validates :identificador, :bastidor, :comprador, :marca, :modelo, :fecha_alta, :cliente_id, :type, presence: true
 
   def fecha_sale_trafico
     fecha_facturacion

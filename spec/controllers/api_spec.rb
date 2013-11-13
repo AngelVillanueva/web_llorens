@@ -110,6 +110,28 @@ describe Api::V1::ExpedientesController do
       check_custom_log_file
     end
   end
+  describe "when created without Matricula" do
+    it "should be allowed for Matriculaciones" do
+      request.accept = "application/json"
+      json = { format: 'json', expediente: mock_expediente_wo_matricula( Matriculacion ) }
+      post :create_or_update_single, json
+      response.should be_success
+      Expediente.count.should eql 1
+      Matriculacion.count.should eql 1
+      Transferencia.count.should eql 0
+      check_custom_log_file
+    end
+    it "should not be allowed for Transferencias" do
+      request.accept = "application/json"
+      json = { format: 'json', expediente: mock_expediente_wo_matricula( Transferencia ) }
+      post :create_or_update_single, json
+      response.should_not be_success
+      Expediente.count.should eql 0
+      Matriculacion.count.should eql 0
+      Transferencia.count.should eql 0
+      check_custom_log_file
+    end
+  end
   describe "when multiple updated without Fecha Alta" do
     it "should respect the previous Fecha Alta" do
       previous = FactoryGirl.create(:matriculacion)
@@ -203,6 +225,24 @@ private
     expediente[:vendedor] = "AAA"
     expediente[:fecha_entra_trafico] = 5.days.ago.to_date
     expediente[:fecha_alta] = ""
+    expediente[:fecha_facturacion] = 1.days.ago.to_date
+    expediente[:marca] = "AAA"
+    expediente[:modelo] = "AAA"
+    expediente[:cliente_id] = cliente.llorens_cliente_id
+    expediente[:observaciones] = "AAA"
+    expediente
+  end
+  def mock_expediente_wo_matricula kind
+    cliente = FactoryGirl.create( :cliente )
+    expediente = {}
+    expediente[:type] = kind.to_s.camelize
+    expediente[:identificador] = "AAA"
+    expediente[:bastidor] = "BBB"
+    expediente[:matricula] = nil
+    expediente[:comprador] = "AAA"
+    expediente[:vendedor] = "AAA"
+    expediente[:fecha_entra_trafico] = 5.days.ago.to_date
+    expediente[:fecha_alta] = 4.days.ago.to_date
     expediente[:fecha_facturacion] = 1.days.ago.to_date
     expediente[:marca] = "AAA"
     expediente[:modelo] = "AAA"

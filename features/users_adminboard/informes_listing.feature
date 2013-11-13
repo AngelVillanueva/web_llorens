@@ -8,6 +8,11 @@ Feature: Informes listing
     When I access the Informes index page
     Then I should see a list of the Informes
 
+  Scenario: "matricula" in Informes is always uppercase
+    Given I am a registered User with some Informes
+    When I access the Informes index page
+    Then I should see a list of the Informes with matricula in uppercase
+
   Scenario: the Informes are sorted by not having a PDF yet and then by created_at field
     Given I am a registered User with some Informes
       And one of the informes has an attached PDF

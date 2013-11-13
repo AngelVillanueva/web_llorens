@@ -53,14 +53,25 @@ end
 Then(/^I should see a list of the Informes$/) do
   page.should have_title( I18n.t( "Informes de trafico" ) )
   usuario = Usuario.find_by_nombre( "Angel" )
-  informes = usuario.informes do |informe|
-    page.should have_selector( 'td', text: informe.matricula )
+  informes = usuario.informes
+  informes.each do |informe|
+    page.should have_selector( 'td', text: informe.matricula.upcase )
+  end
+  expect( page ).to have_selector( 'tr.informe', count: 2 )
+end
+
+Then(/^I should see a list of the Informes with matricula in uppercase$/) do
+  page.should have_title( I18n.t( "Informes de trafico" ) )
+  usuario = Usuario.find_by_nombre( "Angel" )
+  informes = usuario.informes
+  informes.each do |informe|
+    page.should have_selector( 'td', text: informe.matricula.upcase )
   end
   expect( page ).to have_selector( 'tr.informe', count: 2 )
 end
 
 Then(/^the first Informe should be the most urgent one$/) do
-  expect( first( 'tr.informe' ) ).to have_selector( 'td', text: "Otro informe" )
+  expect( first( 'tr.informe' ) ).to have_selector( 'td', text: "Otro informe".upcase )
 end
 
 Then(/^I should see just the list of the Informes from my Cliente$/) do
@@ -80,7 +91,7 @@ end
 Then(/^I should see the list of the Informes updated and sorted without reloading the page$/) do
   using_wait_time 11 do
     expect( page ).to have_selector( 'tr.informe', count: 3 )
-    expect( first( '#informes tr.informe' ) ).to have_selector( 'td', text: "Nuevo informe interno" )
+    expect( first( '#informes tr.informe' ) ).to have_selector( 'td', text: "Nuevo informe interno".upcase)
   end
 end
 

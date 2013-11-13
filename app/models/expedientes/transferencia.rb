@@ -22,7 +22,7 @@
 #
 
 class Transferencia < Expediente
-  #validates :vendedor, presence: true
+  validates :matricula, presence: true
   rails_admin do
     edit do
       group :advanced do

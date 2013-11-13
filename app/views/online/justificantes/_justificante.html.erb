@@ -1,7 +1,7 @@
 <tr class="justificante <%= 'new' if justificante.pdf_file_name.nil? %>" data-time="<%= justificante.created_at.to_i %>">
     <td class="printable" data-titular="Cliente"><%= justificante.cliente.identificador %>
     <td class="printable" data-titular="Matricula">
-      <%= justificante.matricula %>
+      <%= justificante.matricula.upcase %>
     </td>
     <td class="printable" data-titular="Bastidor">
       <%= justificante.bastidor %>

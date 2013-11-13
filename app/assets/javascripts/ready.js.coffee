@@ -59,13 +59,11 @@ $(document).ready ->
         null,
         null,
         {"sType": "uniDate"},
-        {"sType": "uniDate"},
-        null,
         null,
         null
         ],
       "Matriculaciones_Llorens",
-      [0,1,2,3,4,5,6,7,8,9], 
+      [0,1,2,3,4,5,6,7], 
       [
         { type: "select" },
         { type: "text" },
@@ -73,8 +71,6 @@ $(document).ready ->
         { type: "text" },
         { type: "select" },
         { type: "date-range" },
-        { type: "date-range" },
-        { type: "select" },
         { type: "select", values: [ 'PDF Pendiente', 'Ver PDF' ] },
         null
       ]

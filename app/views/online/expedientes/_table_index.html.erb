@@ -15,8 +15,10 @@
         <th><%= t("Modelo") %></th>
       <% end %>
       <th><%= t("Alta") %></th>
-      <th><%= t("Salida_t") %></th>
-      <th><%= t("Tramite_d") %></th>
+      <% if expediente_type? expediente, 'transferencia' %>
+        <th><%= t("Salida_t") %></th>
+        <th><%= t("Tramite_d") %></th>
+      <% end %>
       <th><%= t("Documentos") %></th>
       <th class="hideie8"></th>
     </tr>
@@ -35,8 +37,10 @@
         <th><%= t("Modelo") %></th>
       <% end %>
       <th><%= t("Alta") %></th>
-      <th><%= t("Salida_f") %></th>
-      <th><%= t("Tramite_d") %></th>
+      <% if expediente_type? expediente, 'transferencia' %>
+        <th><%= t("Salida_f") %></th>
+        <th><%= t("Tramite_d") %></th>
+      <% end %>
       <th><%= t("Documentos") %></th>
       <th class="hideie8"><%= t("Observaciones") %></th>
     </tr>
@@ -74,12 +78,14 @@
         <td>
           <%= l expediente.fecha_alta unless expediente.fecha_alta.nil? %>
         </td>
-        <td>
-          <%= l expediente.fecha_sale_trafico unless expediente.fecha_sale_trafico.nil? %>
-        </td>
-        <td>
-          <%= expediente.dias_tramite unless expediente.fecha_sale_trafico.nil? %>
-        </td>
+        <% if expediente_type? expediente, 'transferencia' %>
+          <td>
+            <%= l expediente.fecha_sale_trafico unless expediente.fecha_sale_trafico.nil? %>
+          </td>
+          <td>
+            <%= expediente.dias_tramite unless expediente.fecha_sale_trafico.nil? %>
+          </td>
+        <% end %>
         <td class="icon">
           <% if pdf_file(expediente) %>
             <%= link_to pdf_path(expediente), target: 'blank' do %>

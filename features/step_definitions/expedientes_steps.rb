@@ -53,21 +53,21 @@ Then(/^I should see a list of the Expedientes$/) do
 end
 
 Then(/^I should see just the Transferencia created yesterday$/) do
-  page.should have_selector( 'td', text: "Test yesterday" )
+  page.should have_selector( 'td', text: "Test yesterday".upcase )
   page.should have_selector( 'tr.expediente', count: 1 )
 end
 
 Then(/^I should see a list of the Matriculaciones$/) do
   page.should have_title( "Listado de Matriculaciones" )
   matriculaciones = Matriculacion.all.each do |matriculacion|
-    page.should have_selector( 'td', text: matriculacion.matricula )
+    page.should have_selector( 'td', text: matriculacion.matricula.upcase )
   end
 end
 
 Then(/^I should see a list of the Transferencias$/) do
   page.should have_title( "Listado de Transferencias" )
   transferencias = Transferencia.all.each do |transferencia|
-    page.should have_selector( 'td', text: transferencia.matricula )
+    page.should have_selector( 'td', text: transferencia.matricula.upcase )
   end
 end
 
@@ -76,8 +76,8 @@ Then(/^a new Expediente should be created$/) do
 end
 
 Then(/^I should just see the list of my Expedientes$/) do
-  page.should have_content( "Test matricula" )
-  page.should_not have_content( "Other matricula" )
+  page.should have_content( "Test matricula".upcase )
+  page.should_not have_content( "Other matricula".upcase )
 end
 
 Then(/^I should see all the Matriculaciones from my Organizacion$/) do

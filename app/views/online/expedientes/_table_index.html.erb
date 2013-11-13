@@ -52,7 +52,7 @@
           <%= expediente.cliente.nombre %>
         </td>
         <td>
-          <%= expediente.matricula %>
+          <%= expediente.matricula.upcase if expediente.matricula %>
         </td>
         <% if expediente_type? expediente, 'matriculacion' %>
           <td>

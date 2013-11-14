@@ -40,10 +40,10 @@ end
     Given I am a registered User with some Expedientes
     When I access the Matriculaciones index page
     Then I should not see a link to "edit" the Matriculaciones PDF
-  @wip
+  
   Scenario: registered users cannot access the edit page for Informes
-    Given I am a registered User with some Informes
-    When I access the edit page for a given Informe
+    Given I am a registered User with some Expedientes
+    When I access the edit page for a given Matriculacion
     Then I should be redirected to the homepage
   @wip
   Scenario: employee users can access the edit page for Informes

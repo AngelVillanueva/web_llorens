@@ -56,6 +56,10 @@ When(/^there is no matricula yet$/) do
   end
 end
 
+When(/^I access the edit page for a given Matriculacion$/) do
+  visit edit_online_matriculacion_path(Matriculacion.first)
+end
+
 Then(/^I should see a list of the Expedientes$/) do
   page.should have_title( "Listado de Expedientes" )
   expedientes = Expediente.all.each do |expediente|

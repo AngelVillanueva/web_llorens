@@ -73,3 +73,12 @@ end
     Given I am a registered User with some Expedientes
     When I access the add pdf page for a given Matriculacion
     Then I should be redirected to the homepage
+
+  Scenario: registered users can access the pdf page for Matriculaciones
+    Given I am a registered User with some Expedientes
+      And some of my Matriculaciones have a matricula pdf
+    When I access the Matriculaciones index page
+      And I follow their matricula pdf link
+    Then I should see a PDF document
+
+    

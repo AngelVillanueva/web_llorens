@@ -62,6 +62,7 @@
               <%= link_to t( "add_matricula_PDF" ), edit_online_matriculacion_path( expediente ) %>
             <% end %>
           <% end %>
+          <%= link_to t( "PDF matricula" ), expediente.pdf.url, target: "blank" if expediente.pdf_file_name %>
         </td>
         <% if expediente_type? expediente, 'matriculacion' %>
           <td>

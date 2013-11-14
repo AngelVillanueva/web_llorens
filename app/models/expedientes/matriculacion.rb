@@ -28,7 +28,7 @@
 class Matriculacion < Expediente
   has_attached_file :pdf,
     :path => ":rails_root/uploads/:class/:id/:basename.:extension",
-    :url => "/online/matriculaciones/:id/download"
+    :url => "/online/matriculaciones/:id/matricula"
 
   rails_admin do
     edit do

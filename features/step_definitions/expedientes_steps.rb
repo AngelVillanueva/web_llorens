@@ -69,6 +69,17 @@ When(/^I want to add a PDF for those Matriculaciones$/) do
   click_link I18n.t( "add_matricula_PDF" )
 end
 
+When(/^some of my Matriculaciones have a matricula pdf$/) do
+  the_pdf = File.new( Rails.root.join( 'spec', 'fixtures', 'test-M.pdf' ) )
+  m = Matriculacion.first
+  m.pdf = the_pdf
+  m.save!
+end
+
+When(/^I follow their matricula pdf link$/) do
+  click_link I18n.t( "PDF matricula" )
+end
+
 Then(/^I should see a list of the Expedientes$/) do
   page.should have_title( "Listado de Expedientes" )
   expedientes = Expediente.all.each do |expediente|

@@ -17,6 +17,10 @@ class Online::ExpedientesController < OnlineController
   def edit
   end
 
+  def matricula
+    send_file expediente.pdf.path, :type => expediente.pdf_content_type, :disposition => 'inline'
+  end
+
   private
   def expediente_params
     # params

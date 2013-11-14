@@ -30,12 +30,11 @@ end
       And there are more Expedientes from other Clientes
     When I access the Matriculaciones index page
     Then I should see a link to "edit" the Matriculaciones PDF
-  @wip
+
   Scenario: employee users can see the link to edit Matriculacioness
-    Given I am an employee user
-      And there are some Expedientes without matricula
+    Given I am an employee user with some Expedientes
     When I access the Matriculaciones index page
-    Then I should see a link to edit the Matriculaciones
+    Then I should see a link to "edit" the Matriculaciones PDF
   @wip
   Scenario: registered users cannot see the link to edit Matriculaciones
     Given I am a registered User with some Expedientes without matricula

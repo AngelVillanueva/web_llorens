@@ -1,8 +1,9 @@
-<% provide :title, t("Editar matriculacion") %>
+<% expediente.pdf_file_name ? tit = "Editar matriculacion" : tit = "add_matricula_PDF" %>
+<% provide :title, t( tit ) %>
 
 <div class="about_page">
   <%= render 'shared/section_wrapper',
-      header_text: t("Editar matriculacion"),
+      header_text: t( tit ),
       index_link: 'expedientes',
       linked_pdf: nil %>
 

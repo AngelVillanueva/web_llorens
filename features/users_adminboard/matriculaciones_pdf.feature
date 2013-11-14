@@ -41,18 +41,35 @@ end
     When I access the Matriculaciones index page
     Then I should not see a link to "edit" the Matriculaciones PDF
   
-  Scenario: registered users cannot access the edit page for Informes
+  Scenario: registered users cannot access the edit page for Matriculaciones
     Given I am a registered User with some Expedientes
     When I access the edit page for a given Matriculacion
     Then I should be redirected to the homepage
   
-  Scenario: employee users can access the edit page for Informes
+  Scenario: employee users can access the edit page for Matriculaciones
     Given I am an employee user with some Expedientes
     When I access the edit page for a given Matriculacion
     Then I should be able to edit the Matriculacion
-  @wip
-  Scenario: admin users can access the edit page for Informes
+  
+  Scenario: admin users can access the edit page for Matriculaciones
     Given I am an admin user
-      And there are also Informes from other Clientes
-    When I access the edit page for a given Informe
-    Then I should be able to edit the Informe
+      And there are more Expedientes from other Clientes
+    When I access the edit page for a given Matriculacion
+    Then I should be able to edit the Matriculacion
+
+  Scenario: admin users can access the add pdf page for Matriculaciones
+    Given I am an admin user
+      And there are some Expedientes without matricula
+    When I want to add a PDF for those Matriculaciones
+    Then I should be able to add the Matriculacion PDF
+
+  Scenario: employee users can access the add pdf page for Matriculaciones
+    Given I am an employee user
+      And there are some Expedientes without matricula
+    When I want to add a PDF for those Matriculaciones
+    Then I should be able to add the Matriculacion PDF
+
+  Scenario: registered users cannot access the add pdf page for Matriculaciones
+    Given I am a registered User with some Expedientes
+    When I access the add pdf page for a given Matriculacion
+    Then I should be redirected to the homepage

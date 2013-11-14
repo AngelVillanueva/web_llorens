@@ -60,6 +60,15 @@ When(/^I access the edit page for a given Matriculacion$/) do
   visit edit_online_matriculacion_path(Matriculacion.first)
 end
 
+When(/^I access the add pdf page for a given Matriculacion$/) do
+  visit edit_online_matriculacion_path(Matriculacion.first)
+end
+
+When(/^I want to add a PDF for those Matriculaciones$/) do
+  visit online_matriculaciones_path
+  click_link I18n.t( "add_matricula_PDF" )
+end
+
 Then(/^I should see a list of the Expedientes$/) do
   page.should have_title( "Listado de Expedientes" )
   expedientes = Expediente.all.each do |expediente|
@@ -120,6 +129,17 @@ Then(/^I should (not )?see a link to "(.*?)" the Matriculaciones PDF$/) do |nega
   else
     page.should have_selector( 'a', text: I18n.t( "#{action}_matricula_PDF" ))
   end
+end
+
+Then(/^I should be able to add the Matriculacion PDF$/) do
+  page.should have_title( I18n.t( "add_matricula_PDF" ) )
+  page.should have_selector( 'h2', text: I18n.t( "add_matricula_PDF" ) )
+  page.should have_selector( 'div.tools li', count: 2 )
+  page.should_not have_content( I18n.t( "PDF actual" ) )
+  page.should have_selector( 'input[type=file]' )
+  submit_value = I18n.t( "Subir PDF" )
+  xpath = "//input[@value='#{submit_value}']"
+  page.should have_xpath(xpath)
 end
 
 Then(/^I should be able to edit the Matriculacion$/) do

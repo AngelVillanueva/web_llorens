@@ -54,9 +54,10 @@
         <td>
           <% if expediente.matricula %>
             <%= expediente.matricula.upcase %>
+            <%= link_to t( "edit_matricula_PDF" ), edit_online_matriculacion_path( expediente ) %>
           <% else %>
             <% unless current_usuario.norole? %>
-              <%= link_to t( "matricula_PDF" ), edit_online_matriculacion_path( expediente ) %>
+              <%= link_to t( "add_matricula_PDF" ), edit_online_matriculacion_path( expediente ) %>
             <% end %>
           <% end %>
         </td>

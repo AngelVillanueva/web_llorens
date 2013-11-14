@@ -328,5 +328,6 @@ es:
   Nothing will happen yet: "Su contraseña no se cambiará hasta que no utilice el enlace de más arriba y cree una nueva."
   Change your password: "Cambie su contraseña"
   Password changed at: "Fecha última modificación de contraseña"
-  matricula_PDF: "Editar PDF"
+  add_matricula_PDF: "Añadir PDF"
+  edit_matricula_PDF: "Editar PDF"
 

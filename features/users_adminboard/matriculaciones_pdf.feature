@@ -1,18 +1,24 @@
 @current
-Feature: Matriculaciones edition
+Feature: Matriculaciones PDFs for matricula
   As an admin or employee User
-  In order to complete my Matriculaciones
-  I should be able to edit an existing Matriculacion by adding a PDF
+  In order to manage my Matriculaciones
+  I should be able to complete an existing Matriculacion by adding a PDF
 
 After do
   Warden.test_reset! 
 end
   
-  Scenario: admin users can see the link to edit Matriculaciones
+  Scenario: admin users can see the link to add a PDF to Matriculaciones
     Given I am an admin user
       And there are some Expedientes without matricula
     When I access the Matriculaciones index page
-    Then I should see a link to edit the Matriculaciones
+    Then I should see a link to "add" the Matriculaciones PDF
+
+  Scenario: admin users can see the link to edit Matriculaciones
+    Given I am an admin user
+      And there are more Expedientes from other Clientes
+    When I access the Matriculaciones index page
+    Then I should see a link to "edit" the Matriculaciones PDF
   
   Scenario: employee users can see the link to edit Matriculacioness
     Given I am an employee user

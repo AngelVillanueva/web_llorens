@@ -49,6 +49,13 @@ When(/^some PDF is not yet on the server$/) do
   m.save!
 end
 
+When(/^there is no matricula yet$/) do
+  Matriculacion.all.each do |m|
+    m.matricula = nil
+    m.save!
+  end
+end
+
 Then(/^I should see a list of the Expedientes$/) do
   page.should have_title( "Listado de Expedientes" )
   expedientes = Expediente.all.each do |expediente|
@@ -103,10 +110,10 @@ Then(/^I should see "(.*?)" instead of the link to the PDF$/) do |arg1|
   page.should have_selector( 'td', text: "PDF pendiente" )
 end
 
-Then(/^I should (not )?see a link to edit the Matriculaciones$/) do |negation|
+Then(/^I should (not )?see a link to "(.*?)" the Matriculaciones PDF$/) do |negation, action|
   if negation
-    page.should_not have_selector( 'a', text: I18n.t( "matricula_PDF" ))
+    page.should_not have_selector( 'a', text: I18n.t( "#{action}_matricula_PDF" ))
   else
-    page.should have_selector( 'a', text: I18n.t( "matricula_PDF" ))
+    page.should have_selector( 'a', text: I18n.t( "#{action}_matricula_PDF" ))
   end
 end

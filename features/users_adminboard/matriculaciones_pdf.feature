@@ -81,4 +81,15 @@ end
       And I follow their matricula pdf link
     Then I should see a PDF document
 
+  Scenario: Users can just access PDFs from their Clientes (Matriculas)
+  Given I am a registered User
+  When I visit the matricula PDF page for a Matriculacion of another Cliente 
+  Then I should not see a PDF document
+    And I should be redirected to the online homepage
+
+
+  Scenario: no broken link but nothing should be shown if the pdf matricula file is not in the server
+
+  Scenario: employees can successfully update a Matriculacion adding or changing a pdf matricula file
+
     

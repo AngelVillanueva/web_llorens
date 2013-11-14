@@ -80,6 +80,15 @@ When(/^I follow their matricula pdf link$/) do
   click_link I18n.t( "PDF matricula" )
 end
 
+When(/^I visit the matricula PDF page for a Matriculacion of another Cliente$/) do
+  acompany = FactoryGirl.create( :cliente, nombre: "Company",
+    identificador: "ORG", cif: "00")
+  the_pdf = File.new( Rails.root.join( 'spec', 'fixtures', 'test-M.pdf' ) )
+  external_matriculacion = FactoryGirl.create( :matriculacion, pdf: the_pdf,
+    cliente: acompany )
+  visit online_matriculacion_path(external_matriculacion)
+end
+
 Then(/^I should see a list of the Expedientes$/) do
   page.should have_title( "Listado de Expedientes" )
   expedientes = Expediente.all.each do |expediente|

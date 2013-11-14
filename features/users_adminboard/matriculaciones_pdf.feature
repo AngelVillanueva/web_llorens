@@ -35,11 +35,11 @@ end
     Given I am an employee user with some Expedientes
     When I access the Matriculaciones index page
     Then I should see a link to "edit" the Matriculaciones PDF
-  @wip
+  
   Scenario: registered users cannot see the link to edit Matriculaciones
-    Given I am a registered User with some Expedientes without matricula
+    Given I am a registered User with some Expedientes
     When I access the Matriculaciones index page
-    Then I should not see a link to edit the Matriculaciones
+    Then I should not see a link to "edit" the Matriculaciones PDF
   @wip
   Scenario: registered users cannot access the edit page for Informes
     Given I am a registered User with some Informes

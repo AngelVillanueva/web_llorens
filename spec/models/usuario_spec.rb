@@ -19,6 +19,7 @@
 #  apellidos              :string(255)
 #  organizacion_id        :integer
 #  role                   :string(255)
+#  password_changed_at    :datetime
 #
 
 require 'spec_helper'

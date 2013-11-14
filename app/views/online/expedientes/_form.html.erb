@@ -1,7 +1,12 @@
-<%= simple_form_for [:online, expediente], html: { class: 'form-horizontal' } do |f| %>
+<%= simple_form_for([:online, expediente]) do |f| %>
   <%= f.error_notification %>
-  <%= f.input :identificador %>
-  <%= f.input :matricula %>
-  <%= f.input :organization_id %>
-  <%= f.button :submit %>
+
+  <div class="form-inputs">
+    <%= t("PDF actual_html", pdf: expediente.pdf_file_name) unless expediente.pdf_file_name.nil? %>
+    <%= f.file_field :pdf %>
+  </div>
+
+  <div>
+    <%= f.button :submit, t("Subir PDF"), class: 'btn-info' %>
+  </div>
 <% end %>

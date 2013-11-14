@@ -19,9 +19,17 @@
 #  type                :string(255)
 #  cliente_id          :integer
 #  llorens_cliente_id  :string(255)
+#  pdf_file_name       :string(255)
+#  pdf_content_type    :string(255)
+#  pdf_file_size       :integer
+#  pdf_updated_at      :datetime
 #
 
 class Matriculacion < Expediente
+  has_attached_file :pdf,
+    :path => ":rails_root/uploads/:class/:id/:basename.:extension",
+    :url => "/online/matriculaciones/:id/download"
+
   rails_admin do
     edit do
       group :advanced do

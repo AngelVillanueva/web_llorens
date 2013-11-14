@@ -121,3 +121,18 @@ Then(/^I should (not )?see a link to "(.*?)" the Matriculaciones PDF$/) do |nega
     page.should have_selector( 'a', text: I18n.t( "#{action}_matricula_PDF" ))
   end
 end
+
+Then(/^I should be able to edit the Matriculacion$/) do
+  m = Matriculacion.first
+  m.pdf_file_name = "el_pdf.pdf"
+  m.save!
+  visit edit_online_matriculacion_path(m)
+  page.should have_title( I18n.t( "Editar matriculacion" ) )
+  page.should have_selector( 'h2', text: I18n.t( "Editar matriculacion" ) )
+  page.should have_selector( 'div.tools li', count: 2 )
+  page.should have_content( I18n.t( "PDF actual" ) )
+  page.should have_selector( 'input[type=file]' )
+  submit_value = I18n.t( "Subir PDF" )
+  xpath = "//input[@value='#{submit_value}']"
+  page.should have_xpath(xpath)
+end

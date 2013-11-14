@@ -254,6 +254,8 @@ es:
   Editar Informe Trafico: "Editar Informe de Tráfico"
   El Justificante fue borrado correctamente: "El Justificante fue borrado correctamente"
   PDF actual_html: "<p><strong>PDF actual</strong>:<br />%{pdf}</p>"
+  PDF actual: "PDF actual"
+  Ver PDF: "Ver PDF"
   Acciones: "Acciones"
   Imprimir: "Imprimir"
   Ampliar PDF: "Ampliar PDF"
@@ -330,4 +332,6 @@ es:
   Password changed at: "Fecha última modificación de contraseña"
   add_matricula_PDF: "Añadir PDF"
   edit_matricula_PDF: "Editar PDF"
+  Editar matriculacion: "Editar matriculación"
+  Subir PDF: "Subir PDF"
 

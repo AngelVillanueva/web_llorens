@@ -45,12 +45,11 @@ end
     Given I am a registered User with some Expedientes
     When I access the edit page for a given Matriculacion
     Then I should be redirected to the homepage
-  @wip
+  
   Scenario: employee users can access the edit page for Informes
-    Given I am an employee user
-      And there are also Informes from other Clientes
-    When I access the edit page for a given Informe
-    Then I should be able to edit the Informe
+    Given I am an employee user with some Expedientes
+    When I access the edit page for a given Matriculacion
+    Then I should be able to edit the Matriculacion
   @wip
   Scenario: admin users can access the edit page for Informes
     Given I am an admin user

@@ -89,8 +89,25 @@ module ApplicationHelper
           #   <%= link_to t( "PDF matricula" ), expediente.pdf.url, target: "blank" %>
           # <% end %>
 
-  def matricula_cell_content expediente
+  def matricula_cell_matricula expediente
     matricula = expediente.matricula ? expediente.matricula.upcase : ""
+  end
+  def matricula_cell_pdf expediente
+    if expediente.pdf_file_name && File.exist?(expediente.pdf.path)
+      link_to expediente.pdf.url, target: "blank", class: "pdf-file" do
+        content_tag( 'i', nil, class: 'icon icon-file' )
+      end
+    end
+  end
+
+  def matricula_cell_actions expediente
+    unless current_usuario.norole?
+      if expediente.pdf_file_name && File.exist?(expediente.pdf.path)
+        link_to t( "edit_matricula_PDF" ), edit_online_matriculacion_path( expediente ), class: "pdf-edit"
+      else
+        link_to t( "add_matricula_PDF" ), edit_online_matriculacion_path( expediente ), class: "pdf-add"
+      end
+    end
   end
   
   def tool_link_to_home

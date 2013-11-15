@@ -52,19 +52,9 @@
           <%= expediente.cliente.nombre %>
         </td>
         <td>
-          <% if expediente.matricula %>
-            <%= matricula_cell_content expediente %>
-            <% unless current_usuario.norole? %>
-              <%= link_to t( "edit_matricula_PDF" ), edit_online_matriculacion_path( expediente ) %>
-            <% end %>
-          <% else %>
-            <% unless current_usuario.norole? %>
-              <%= link_to t( "add_matricula_PDF" ), edit_online_matriculacion_path( expediente ) %>
-            <% end %>
-          <% end %>
-          <% if expediente.pdf_file_name && File.exist?(expediente.pdf.path) %>
-            <%= link_to t( "PDF matricula" ), expediente.pdf.url, target: "blank" %>
-          <% end %>
+          <%= matricula_cell_matricula expediente %>
+          <%= matricula_cell_pdf expediente %>
+          <%= matricula_cell_actions expediente %>
         </td>
         <% if expediente_type? expediente, 'matriculacion' %>
           <td>

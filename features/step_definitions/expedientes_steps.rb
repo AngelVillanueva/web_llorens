@@ -3,6 +3,11 @@ Given(/^there are more Expedientes from other Clientes$/) do
   other_expediente = FactoryGirl.create( :matriculacion, matricula: "Other matricula", cliente: other_cliente)
 end
 
+Given(/^there are more Expedientes from other Clientes with matricula PDF$/) do
+  step "there are more Expedientes from other Clientes"
+  step "some of my Matriculaciones have a matricula pdf"
+end
+
 Given(/^there are some Expedientes without matricula$/) do
   matriculacion = FactoryGirl.create( :matriculacion, matricula: nil)
 end
@@ -83,7 +88,7 @@ When(/^some of my Matriculaciones have a matricula pdf$/) do
 end
 
 When(/^I follow their matricula pdf link$/) do
-  click_link I18n.t( "PDF matricula" )
+  first('a.pdf-file').click
 end
 
 When(/^I visit the matricula PDF page for a Matriculacion of another Cliente$/) do
@@ -215,9 +220,10 @@ Then(/^the Matriculacion should (not )?be linked to that PDF$/) do |negation|
 end
 
 Then(/^I should (not )?see a link to the matricula PDF$/) do |negation|
+  destination = Matriculacion.first.pdf.url
   unless negation
-    page.should have_selector( 'a', text: I18n.t( "PDF matricula" ) )
+    page.should have_selector( 'a.pdf-file' )
   else
-    page.should_not have_selector( 'a', text: I18n.t( "PDF matricula" ) )
+    page.should_not have_css( 'a.pdf-file' )
   end
 end

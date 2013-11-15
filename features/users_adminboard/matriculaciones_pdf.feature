@@ -27,12 +27,13 @@ end
 
   Scenario: admin users can see the link to edit Matriculaciones
     Given I am an admin user
-      And there are more Expedientes from other Clientes
+      And there are more Expedientes from other Clientes with matricula PDF
     When I access the Matriculaciones index page
     Then I should see a link to "edit" the Matriculaciones PDF
 
   Scenario: employee users can see the link to edit Matriculacioness
     Given I am an employee user with some Expedientes
+      And some of my Matriculaciones have a matricula pdf
     When I access the Matriculaciones index page
     Then I should see a link to "edit" the Matriculaciones PDF
   

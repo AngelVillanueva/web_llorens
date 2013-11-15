@@ -167,10 +167,15 @@ Then(/^I should see "(.*?)" instead of the link to the PDF$/) do |arg1|
 end
 
 Then(/^I should (not )?see a link to "(.*?)" the Matriculaciones PDF$/) do |negation, action|
+  # if negation
+  #   page.should_not have_selector( 'a', text: I18n.t( "#{action}_matricula_PDF" ))
+  # else
+  #   page.should have_selector( 'a', text: I18n.t( "#{action}_matricula_PDF" ))
+  # end
   if negation
-    page.should_not have_selector( 'a', text: I18n.t( "#{action}_matricula_PDF" ))
+    page.should_not have_css( "a.pdf-#{action}" )
   else
-    page.should have_selector( 'a', text: I18n.t( "#{action}_matricula_PDF" ))
+    page.should have_css( "a.pdf-#{action}" )
   end
 end
 

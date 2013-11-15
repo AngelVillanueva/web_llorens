@@ -103,7 +103,9 @@ module ApplicationHelper
   def matricula_cell_actions expediente
     unless current_usuario.norole?
       if expediente.pdf_file_name && File.exist?(expediente.pdf.path)
-        link_to t( "edit_matricula_PDF" ), edit_online_matriculacion_path( expediente ), class: "pdf-edit"
+        link_to edit_online_matriculacion_path( expediente ), class: "pdf-edit" do
+          content_tag( 'i', nil, class: 'icon icon-edit' )
+        end
       else
         link_to t( "add_matricula_PDF" ), edit_online_matriculacion_path( expediente ), class: "pdf-add"
       end

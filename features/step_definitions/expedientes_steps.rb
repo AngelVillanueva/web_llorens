@@ -77,7 +77,7 @@ end
 
 When(/^I want to add a PDF for those Matriculaciones$/) do
   visit online_matriculaciones_path
-  click_link I18n.t( "add_matricula_PDF" )
+  first( 'a.pdf-add' ).click
 end
 
 When(/^some of my Matriculaciones have a matricula pdf$/) do
@@ -167,11 +167,6 @@ Then(/^I should see "(.*?)" instead of the link to the PDF$/) do |arg1|
 end
 
 Then(/^I should (not )?see a link to "(.*?)" the Matriculaciones PDF$/) do |negation, action|
-  # if negation
-  #   page.should_not have_selector( 'a', text: I18n.t( "#{action}_matricula_PDF" ))
-  # else
-  #   page.should have_selector( 'a', text: I18n.t( "#{action}_matricula_PDF" ))
-  # end
   if negation
     page.should_not have_css( "a.pdf-#{action}" )
   else

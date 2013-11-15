@@ -108,7 +108,7 @@ module ApplicationHelper
         end
       else
         link_to edit_online_matriculacion_path( expediente ), class: "pdf-add" do
-          content_tag( 'i', nil, class: 'icon icon-plus' )
+          content_tag( 'i', nil, class: 'icon icon-plus-sign' )
         end
       end
     end

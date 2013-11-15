@@ -89,6 +89,13 @@ When(/^I visit the matricula PDF page for a Matriculacion of another Cliente$/) 
   visit online_matriculacion_path(external_matriculacion)
 end
 
+When(/^I add a PDF for those Matriculaciones$/) do
+  visit edit_online_matriculacion_path( Matriculacion.first )
+  the_pdf_path = Rails.root.join( 'spec', 'fixtures', 'test-M.pdf' )
+  attach_file "matriculacion_pdf", the_pdf_path
+  click_button "submit"
+end
+
 Then(/^I should see a list of the Expedientes$/) do
   page.should have_title( "Listado de Expedientes" )
   expedientes = Expediente.all.each do |expediente|
@@ -175,4 +182,15 @@ Then(/^I should be able to edit the Matriculacion$/) do
   submit_value = I18n.t( "Subir PDF" )
   xpath = "//input[@value='#{submit_value}']"
   page.should have_xpath(xpath)
+end
+
+Then(/^the update should occur$/) do
+  page.should have_selector( '.alert', text: I18n.t( "PDF editado correctamente" ))
+  current_path.should eql online_matriculaciones_path
+end
+
+Then(/^the Matriculacion should be linked to that PDF$/) do
+  m = Matriculacion.first
+  m.pdf.should_not eql nil
+  m.pdf_file_name.should eql( "test-M.pdf" )
 end

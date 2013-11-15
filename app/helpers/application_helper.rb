@@ -74,6 +74,24 @@ module ApplicationHelper
       concat content_tag( 'span', organizacion , class: 'org' )
     end
   end
+
+          # <% if expediente.matricula %>
+          #   <%= expediente.matricula.upcase %>
+          #   <% unless current_usuario.norole? %>
+          #     <%= link_to t( "edit_matricula_PDF" ), edit_online_matriculacion_path( expediente ) %>
+          #   <% end %>
+          # <% else %>
+          #   <% unless current_usuario.norole? %>
+          #     <%= link_to t( "add_matricula_PDF" ), edit_online_matriculacion_path( expediente ) %>
+          #   <% end %>
+          # <% end %>
+          # <% if expediente.pdf_file_name && File.exist?(expediente.pdf.path) %>
+          #   <%= link_to t( "PDF matricula" ), expediente.pdf.url, target: "blank" %>
+          # <% end %>
+
+  def matricula_cell_content expediente
+    matricula = expediente.matricula ? expediente.matricula.upcase : ""
+  end
   
   def tool_link_to_home
     link_to online_root_path, class:'pie', 'rel' => 'tooltip', 'data-original-title' => I18n.t("Inicio") do

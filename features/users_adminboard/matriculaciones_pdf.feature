@@ -87,13 +87,13 @@ end
   Then I should not see a PDF document
     And I should be redirected to the online homepage
 
-  @now
+
   Scenario: a link to see the matricula PDF should appear if the file is in the server
     Given I am a registered User with some Expedientes
       And some of my Matriculaciones have a matricula pdf
     When I access the Matriculaciones index page
     Then I should see a link to the matricula PDF
-  @next
+
   Scenario: no broken link but nothing should be shown if the pdf matricula file is not in the server
     Given I am a registered User with some Expedientes
       And some of my Matriculaciones have a matricula pdf

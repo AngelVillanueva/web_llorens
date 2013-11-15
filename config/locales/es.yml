@@ -201,6 +201,8 @@ es:
       usuario:
         password: "Contraseña"
         current_password: "Contraseña actual"
+      matriculacion:
+        pdf: "PDF de la matrícula"
   unauthorized:
     manage:
       all: "No estás autorizado a acceder a esa página"

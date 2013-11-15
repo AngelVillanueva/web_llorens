@@ -64,6 +64,15 @@ class Matriculacion < Expediente
       field :observaciones do
         group :advanced
       end
+      field :pdf_file_name do
+        label I18n.t("PDF matricula")
+        read_only true
+        group :advanced
+      end
+      field :pdf, :paperclip do
+        label I18n.t("PDF")
+        group :advanced
+      end
     end
   end
 end

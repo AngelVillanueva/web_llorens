@@ -30,6 +30,10 @@ class Matriculacion < Expediente
     :path => ":rails_root/uploads/:class/:id/:basename.:extension",
     :url => "/online/matriculaciones/:id/matricula"
 
+  def self.matriculable_pdf_date
+    Date.parse('18-11-2013')
+  end
+
   rails_admin do
     edit do
       group :advanced do

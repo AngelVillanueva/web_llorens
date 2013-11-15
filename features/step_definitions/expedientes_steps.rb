@@ -1,6 +1,6 @@
 Given(/^there are more Expedientes from other Clientes$/) do
   other_cliente = Cliente.create( nombre: "Other C", identificador: "CCC", cif: "00000000T", llorens_cliente_id: "444999111", organizacion_id: 2 )
-  other_expediente = FactoryGirl.create( :matriculacion, matricula: "Other matricula", cliente: other_cliente)
+  other_expediente = FactoryGirl.create( :matriculacion, matricula:  "Other matricula", cliente: other_cliente )
 end
 
 Given(/^there are more Expedientes from other Clientes with matricula PDF$/) do
@@ -26,6 +26,12 @@ end
 Given(/^the pdf file is not in the server due to any reason$/) do
   m = Matriculacion.first
   m.pdf_file_name = "non-existent.pdf"
+  m.save!
+end
+
+Given(/^they are older than the chosen date$/) do
+  m = Matriculacion.first
+  m.created_at = Matriculacion.matriculable_pdf_date.to_time
   m.save!
 end
 

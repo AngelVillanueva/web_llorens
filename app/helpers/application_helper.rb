@@ -93,6 +93,7 @@ module ApplicationHelper
     matricula = expediente.matricula ? expediente.matricula.upcase : t( "Pendiente_html" )
   end
   def matricula_cell_pdf expediente
+    return unless expediente.created_at > Matriculacion.matriculable_pdf_date.to_time
     if expediente.pdf_file_name && File.exist?(expediente.pdf.path)
       link_to expediente.pdf.url, target: "blank", class: "pdf-file" do
         content_tag( 'i', nil, class: 'icon icon-file' )
@@ -101,6 +102,7 @@ module ApplicationHelper
   end
 
   def matricula_cell_actions expediente
+    return unless expediente.created_at > Matriculacion.matriculable_pdf_date.to_time
     unless current_usuario.norole?
       if expediente.pdf_file_name && File.exist?(expediente.pdf.path)
         link_to edit_online_matriculacion_path( expediente ), class: "pdf-edit" do

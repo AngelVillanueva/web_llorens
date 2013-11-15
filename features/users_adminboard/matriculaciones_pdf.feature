@@ -129,5 +129,38 @@ end
     When I try to add a PDF for those Matriculaciones but fails
     Then the update should not occur
       And the Matriculacion should not be linked to that PDF
-
-    
+@now
+  Scenario: admin users should not see the action buttons for older Matriculaciones
+    Given I am an admin user
+      And there are more Expedientes from other Clientes with matricula PDF
+      But they are older than the chosen date
+    When I access the Matriculaciones index page
+    Then I should not see a link to "edit" the Matriculaciones PDF
+@now
+  Scenario: employees should not see the action buttons for older Matriculaciones
+    Given I am an employee user with some Expedientes
+      And some of my Matriculaciones have a matricula pdf
+      But they are older than the chosen date
+    When I access the Matriculaciones index page
+    Then I should not see a link to "edit" the Matriculaciones PDF
+@now
+Scenario: admin users can see the link to add a PDF to Matriculaciones
+    Given I am an admin user
+      And there are some Expedientes without matricula
+      But they are older than the chosen date
+    When I access the Matriculaciones index page
+    Then I should not see a link to "add" the Matriculaciones PDF
+@now
+Scenario: employee users can see the link to add a PDF to Matriculaciones
+  Given I am an employee user
+    And there are some Expedientes without matricula
+    But they are older than the chosen date
+  When I access the Matriculaciones index page
+  Then I should not see a link to "add" the Matriculaciones PDF
+@now
+Scenario: registered users can access the pdf page for Matriculaciones
+    Given I am a registered User with some Expedientes
+      And some of my Matriculaciones have a matricula pdf
+      But they are older than the chosen date
+    When I access the Matriculaciones index page
+    Then I should not see a link to the matricula PDF

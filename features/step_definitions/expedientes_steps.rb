@@ -18,6 +18,12 @@ Given(/^my Organizacion has many Matriculaciones$/) do
   m2 = FactoryGirl.create(:matriculacion, cliente: new_cliente)
 end
 
+Given(/^the pdf file is not in the server due to any reason$/) do
+  m = Matriculacion.first
+  m.pdf_file_name = "non-existent.pdf"
+  m.save!
+end
+
 When(/^I submit all the information for a new Expediente$/) do
   visit new_expediente_path
   fill_in "Identificador", with: "IM1"
@@ -205,5 +211,13 @@ Then(/^the Matriculacion should (not )?be linked to that PDF$/) do |negation|
     m.pdf_file_name.should eql( "test-M.pdf" )
   else
     m.pdf_file_name.should eql nil
+  end
+end
+
+Then(/^I should (not )?see a link to the matricula PDF$/) do |negation|
+  unless negation
+    page.should have_selector( 'a', text: I18n.t( "PDF matricula" ) )
+  else
+    page.should_not have_selector( 'a', text: I18n.t( "PDF matricula" ) )
   end
 end

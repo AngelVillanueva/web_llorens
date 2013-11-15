@@ -87,8 +87,19 @@ end
   Then I should not see a PDF document
     And I should be redirected to the online homepage
 
-
+  @now
+  Scenario: a link to see the matricula PDF should appear if the file is in the server
+    Given I am a registered User with some Expedientes
+      And some of my Matriculaciones have a matricula pdf
+    When I access the Matriculaciones index page
+    Then I should see a link to the matricula PDF
+  @next
   Scenario: no broken link but nothing should be shown if the pdf matricula file is not in the server
+    Given I am a registered User with some Expedientes
+      And some of my Matriculaciones have a matricula pdf
+      But the pdf file is not in the server due to any reason
+    When I access the Matriculaciones index page
+    Then I should not see a link to the matricula PDF
 
   Scenario: employees can successfully update a Matriculacion adding or changing a pdf matricula file
     Given I am an employee user
@@ -96,9 +107,23 @@ end
     When I add a PDF for those Matriculaciones
     Then the update should occur
       And the Matriculacion should be linked to that PDF
-  @now
+
+  Scenario: admin users can successfully update a Matriculacion adding or changing a pdf matricula file
+    Given I am an admin user
+      And there are some Expedientes without matricula
+    When I add a PDF for those Matriculaciones
+    Then the update should occur
+      And the Matriculacion should be linked to that PDF
+  
   Scenario: employees should see an error message if update fails
     Given I am an employee user
+      And there are some Expedientes without matricula
+    When I try to add a PDF for those Matriculaciones but fails
+    Then the update should not occur
+      And the Matriculacion should not be linked to that PDF
+
+  Scenario: admin users should see an error message if update fails
+    Given I am an admin user
       And there are some Expedientes without matricula
     When I try to add a PDF for those Matriculaciones but fails
     Then the update should not occur

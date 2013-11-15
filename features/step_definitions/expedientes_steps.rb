@@ -96,6 +96,11 @@ When(/^I add a PDF for those Matriculaciones$/) do
   click_button "submit"
 end
 
+When(/^I try to add a PDF for those Matriculaciones but fails$/) do
+  visit edit_online_matriculacion_path( Matriculacion.first )
+  click_button "submit"
+end
+
 Then(/^I should see a list of the Expedientes$/) do
   page.should have_title( "Listado de Expedientes" )
   expedientes = Expediente.all.each do |expediente|
@@ -184,13 +189,21 @@ Then(/^I should be able to edit the Matriculacion$/) do
   page.should have_xpath(xpath)
 end
 
-Then(/^the update should occur$/) do
-  page.should have_selector( '.alert', text: I18n.t( "PDF editado correctamente" ))
+Then(/^the update should (not )?occur$/) do |negation|
+  if negation
+    message = I18n.t( "Error editando matriculacion" )
+  else
+    message = I18n.t( "PDF editado correctamente" )
+  end
+  page.should have_selector( '.alert', text: message )
   current_path.should eql online_matriculaciones_path
 end
 
-Then(/^the Matriculacion should be linked to that PDF$/) do
+Then(/^the Matriculacion should (not )?be linked to that PDF$/) do |negation|
   m = Matriculacion.first
-  m.pdf.should_not eql nil
-  m.pdf_file_name.should eql( "test-M.pdf" )
+  unless negation
+    m.pdf_file_name.should eql( "test-M.pdf" )
+  else
+    m.pdf_file_name.should eql nil
+  end
 end

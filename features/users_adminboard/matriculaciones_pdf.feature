@@ -89,12 +89,19 @@ end
 
 
   Scenario: no broken link but nothing should be shown if the pdf matricula file is not in the server
-@now
+
   Scenario: employees can successfully update a Matriculacion adding or changing a pdf matricula file
     Given I am an employee user
       And there are some Expedientes without matricula
     When I add a PDF for those Matriculaciones
     Then the update should occur
       And the Matriculacion should be linked to that PDF
+  @now
+  Scenario: employees should see an error message if update fails
+    Given I am an employee user
+      And there are some Expedientes without matricula
+    When I try to add a PDF for those Matriculaciones but fails
+    Then the update should not occur
+      And the Matriculacion should not be linked to that PDF
 
     

@@ -31,6 +31,14 @@ class Online::ExpedientesController < OnlineController
     send_file expediente.pdf.path, :type => expediente.pdf_content_type, :disposition => 'inline'
   end
 
+  # custom rescue from strong parameters parameter missing
+  rescue_from(ActionController::ParameterMissing) do |parameter_missing_exception|
+    flash[:error] = I18n.t( "Error editando matriculacion" )
+    redirect_to(online_matriculaciones_path)
+  end
+
+  
+
   private
   def expediente_params
     # params

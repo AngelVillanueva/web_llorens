@@ -90,7 +90,7 @@ module ApplicationHelper
           # <% end %>
 
   def matricula_cell_matricula expediente
-    matricula = expediente.matricula ? expediente.matricula.upcase : ""
+    matricula = expediente.matricula ? expediente.matricula.upcase : t( "Pendiente_html" )
   end
   def matricula_cell_pdf expediente
     if expediente.pdf_file_name && File.exist?(expediente.pdf.path)

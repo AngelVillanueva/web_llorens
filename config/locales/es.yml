@@ -294,6 +294,7 @@ es:
   Confirmado: "Gracias por contactar con Gestoría Llorens"
   Pendiente: "Pendiente"
   pendiente: "Pendiente"
+  Pendiente_html: "<span class='pendiente'>Pendiente</span>"
   PDF Pendiente: "PDF pendiente"
   New: "Expediente recibido %{index}, Nuevo registro"
   Edit: "Expediente recibido %{index}, Registro ya existente"

@@ -31,7 +31,7 @@ class Matriculacion < Expediente
     :url => "/online/matriculaciones/:id/matricula"
 
   def self.matriculable_pdf_date
-    Date.parse('18-11-2013')
+    Date.parse('14-11-2013')
   end
 
   rails_admin do

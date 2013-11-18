@@ -26,7 +26,11 @@ WebLlorens::Application.routes.draw do
     end
 
     resources :expedientes
-    resources :matriculaciones, :controller => "expedientes", :type => "Matriculacion"
+    resources :matriculaciones, :controller => "expedientes", :type => "Matriculacion" do
+      member do
+        get 'matricula'
+      end
+    end
     resources :transferencias, :controller => "expedientes", :type => "Transferencia"
   end
 

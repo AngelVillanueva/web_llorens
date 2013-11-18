@@ -15,8 +15,8 @@
         <th><%= t("Modelo") %></th>
       <% end %>
       <th><%= t("Alta") %></th>
+      <th><%= t("Salida_t") %></th>
       <% if expediente_type? expediente, 'transferencia' %>
-        <th><%= t("Salida_t") %></th>
         <th><%= t("Tramite_d") %></th>
       <% end %>
       <th><%= t("Documentos") %></th>
@@ -37,8 +37,8 @@
         <th><%= t("Modelo") %></th>
       <% end %>
       <th><%= t("Alta") %></th>
+      <th><%= t("Salida_f") %></th>
       <% if expediente_type? expediente, 'transferencia' %>
-        <th><%= t("Salida_f") %></th>
         <th><%= t("Tramite_d") %></th>
       <% end %>
       <th><%= t("Documentos") %></th>
@@ -52,7 +52,9 @@
           <%= expediente.cliente.nombre %>
         </td>
         <td>
-          <%= expediente.matricula.upcase if expediente.matricula %>
+          <%= matricula_cell_matricula expediente %>
+          <%= matricula_cell_pdf expediente %>
+          <%= matricula_cell_actions expediente %>
         </td>
         <% if expediente_type? expediente, 'matriculacion' %>
           <td>
@@ -78,10 +80,10 @@
         <td>
           <%= l expediente.fecha_alta unless expediente.fecha_alta.nil? %>
         </td>
+        <td>
+          <%= l expediente.fecha_sale_trafico unless expediente.fecha_sale_trafico.nil? %>
+        </td>
         <% if expediente_type? expediente, 'transferencia' %>
-          <td>
-            <%= l expediente.fecha_sale_trafico unless expediente.fecha_sale_trafico.nil? %>
-          </td>
           <td>
             <%= expediente.dias_tramite unless expediente.fecha_sale_trafico.nil? %>
           </td>

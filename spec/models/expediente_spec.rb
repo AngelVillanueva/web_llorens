@@ -19,6 +19,10 @@
 #  type                :string(255)
 #  cliente_id          :integer
 #  llorens_cliente_id  :string(255)
+#  pdf_file_name       :string(255)
+#  pdf_content_type    :string(255)
+#  pdf_file_size       :integer
+#  pdf_updated_at      :datetime
 #
 
 require 'spec_helper'
@@ -83,6 +87,18 @@ describe Expediente do
     subject { transferencia }
     it "should have Matricula as a mandatory field" do
       should validate_presence_of :matricula
+    end
+  end
+  describe "for Matriculaciones" do
+    it "should have PDF as an attribute" do
+      should respond_to :pdf
+    end
+  end
+  describe "for Transferencias" do
+    let(:transferencia) { FactoryGirl.create( :transferencia ) }
+    subject { transferencia }
+    it "should not have pdf as an attribute" do
+      should_not respond_to :pdf
     end
   end
   

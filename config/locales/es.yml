@@ -201,6 +201,8 @@ es:
       usuario:
         password: "Contraseña"
         current_password: "Contraseña actual"
+      matriculacion:
+        pdf: "PDF de la matrícula"
   unauthorized:
     manage:
       all: "No estás autorizado a acceder a esa página"
@@ -254,6 +256,8 @@ es:
   Editar Informe Trafico: "Editar Informe de Tráfico"
   El Justificante fue borrado correctamente: "El Justificante fue borrado correctamente"
   PDF actual_html: "<p><strong>PDF actual</strong>:<br />%{pdf}</p>"
+  PDF actual: "PDF actual"
+  Ver PDF: "Ver PDF"
   Acciones: "Acciones"
   Imprimir: "Imprimir"
   Ampliar PDF: "Ampliar PDF"
@@ -290,6 +294,7 @@ es:
   Confirmado: "Gracias por contactar con Gestoría Llorens"
   Pendiente: "Pendiente"
   pendiente: "Pendiente"
+  Pendiente_html: "<span class='pendiente'>Pendiente</span>"
   PDF Pendiente: "PDF pendiente"
   New: "Expediente recibido %{index}, Nuevo registro"
   Edit: "Expediente recibido %{index}, Registro ya existente"
@@ -328,4 +333,11 @@ es:
   Nothing will happen yet: "Su contraseña no se cambiará hasta que no utilice el enlace de más arriba y cree una nueva."
   Change your password: "Cambie su contraseña"
   Password changed at: "Fecha última modificación de contraseña"
+  add_matricula_PDF: "Añadir PDF"
+  edit_matricula_PDF: "Editar PDF"
+  Editar matriculacion: "Editar matriculación"
+  Subir PDF: "Subir PDF"
+  PDF matricula: "PDF matrícula"
+  PDF editado correctamente: "El PDF se ha añadido correctamente"
+  Error editando matriculacion: "Se produjo un error añadiendo el PDF. Inténtelo de nuevo, por favor."
 

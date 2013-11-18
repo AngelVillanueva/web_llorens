@@ -31,7 +31,11 @@ class Matriculacion < Expediente
     :url => "/online/matriculaciones/:id/matricula"
 
   def self.matriculable_pdf_date
-    Date.parse('14-11-2013')
+    if Rails.env.development?
+      Date.parse('14-11-2013')
+    else
+      Date.parse('19-11-2013')
+    end
   end
 
   rails_admin do

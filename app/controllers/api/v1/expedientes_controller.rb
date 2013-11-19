@@ -116,7 +116,7 @@ class Api::V1::ExpedientesController < ApplicationController
     params[:expediente] = assign_internal_cliente_id params[:expediente]
     params
       .require( :expediente )
-      .permit( :identificador, :matricula, :bastidor, :comprador, :vendedor, :marca, :modelo, :fecha_alta, :fecha_entra_trafico, :fecha_facturacion, :cliente_id, :llorens_cliente_id, :observaciones )
+      .permit( :identificador, :matricula, :bastidor, :comprador, :vendedor, :marca, :modelo, :fecha_alta, :fecha_entra_trafico, :fecha_facturacion, :cliente_id, :llorens_cliente_id, :observaciones, :incidencia )
   end
   def this_expediente_params index, previous_fecha_alta=nil
     params[:expedientes][index][:expediente].delete :type

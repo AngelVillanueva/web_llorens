@@ -45,6 +45,7 @@ describe Expediente do
     it { should respond_to :fecha_sale_trafico }
     it { should respond_to :dias_tramite }
     it { should respond_to :observaciones }
+    it { should respond_to :incidencia }
     it { should respond_to :type }
     it { should respond_to :llorens_cliente_id }
     it { should belong_to :cliente }
@@ -54,7 +55,7 @@ describe Expediente do
   describe "with two types" do
     it { should respond_to :type }
   end
-  describe "with all fields but observaciones being mandatory" do
+  describe "with all fields but observaciones and incidencia being mandatory" do
     it "should validate presence of" do
       should validate_presence_of :identificador
       should validate_presence_of :bastidor

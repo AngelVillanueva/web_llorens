@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131114113311) do
+ActiveRecord::Schema.define(:version => 20131119150153) do
 
   create_table "api_keys", :force => true do |t|
     t.string   "access_token"
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(:version => 20131114113311) do
     t.string   "pdf_content_type"
     t.integer  "pdf_file_size"
     t.datetime "pdf_updated_at"
+    t.text     "incidencia"
   end
 
   add_index "expedientes", ["cliente_id"], :name => "index_expedientes_on_cliente_id"

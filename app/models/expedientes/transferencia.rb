@@ -27,6 +27,8 @@
 
 class Transferencia < Expediente
   validates :matricula, presence: true
+  default_scope includes(:cliente).order('has_incidencia DESC, created_at DESC')
+
   rails_admin do
     edit do
       group :advanced do

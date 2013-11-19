@@ -29,6 +29,7 @@ class Matriculacion < Expediente
   has_attached_file :pdf,
     :path => ":rails_root/uploads/:class/:id/:basename.:extension",
     :url => "/online/matriculaciones/:id/matricula"
+  default_scope includes(:cliente).order('created_at DESC')
 
   def self.matriculable_pdf_date
     if Rails.env.development?

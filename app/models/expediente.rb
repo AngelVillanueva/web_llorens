@@ -27,9 +27,9 @@
 
 class Expediente < ActiveRecord::Base
   belongs_to :cliente
-  default_scope includes(:cliente).order('created_at DESC')
 
   #before_validation :assign_internal_cliente_id
+  before_save :check_incidencia!
 
   validates :identificador, :bastidor, :comprador, :marca, :modelo, :fecha_alta, :cliente_id, :type, presence: true
 
@@ -40,6 +40,15 @@ class Expediente < ActiveRecord::Base
   def dias_tramite
     return nil if ( fecha_sale_trafico.nil? && fecha_alta.nil? )
     ( fecha_sale_trafico - fecha_alta ).to_i
+  end
+
+  def check_incidencia!
+    if incidencia && !incidencia.empty?
+      self.has_incidencia = true
+    else
+      self.has_incidencia = false
+    end
+    nil
   end
 
   # def assign_internal_cliente_id

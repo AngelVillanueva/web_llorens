@@ -53,8 +53,10 @@
         </td>
         <td>
           <%= matricula_cell_matricula expediente %>
-          <%= matricula_cell_pdf expediente %>
-          <%= matricula_cell_actions expediente %>
+          <% unless expediente_type? expediente, 'transferencia' %>
+            <%= matricula_cell_pdf expediente %>
+            <%= matricula_cell_actions expediente %>
+          <% end %>
         </td>
         <% if expediente_type? expediente, 'matriculacion' %>
           <td>

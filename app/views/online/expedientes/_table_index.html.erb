@@ -58,6 +58,8 @@
             <%= matricula_cell_actions expediente %>
           <% elsif expediente.incidencia && !expediente.incidencia.empty? %>
             <%= matricula_cell_incidencia expediente %>
+          <% else %>
+            <i class="noincidencia icon icon-circle"></i>
           <% end %>
         </td>
         <% if expediente_type? expediente, 'matriculacion' %>

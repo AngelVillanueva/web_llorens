@@ -25,6 +25,9 @@ $(document).ready ->
   #tooltip init
   $('a[rel*="tooltip"]').tooltip({ 'placement': 'top' })
 
+  #popover init
+  $('a[data-toggle*="popover"]').popover({ 'placement': 'top' })
+
   # change text on big buttons (hover)
   $( 'li.new a span' ).hover(
     -> $( this ).html( "+" )

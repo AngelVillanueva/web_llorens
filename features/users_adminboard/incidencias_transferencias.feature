@@ -29,10 +29,15 @@ I need a 'Incidencias' field
       But the Incidencia is nil
     When I access the Transferencias index page
     Then I should not see an Incidencia warning
-@now
+
   Scenario: a Transferencia with an Incidencia should appear at the top of the list
     Given I am a registered User with some Expedientes
       And one of them is a "Transferencia" and has an Incidencia
       And the one with Incidencia is older
     When I access the Transferencias index page
     Then the Transferencia with Incidencia should appear the first one
+@javascript
+  Scenario: the Incidencia icon should show the detail on click
+    Given there is an Incidencia in the page
+    When I click in the Incidencia icon
+    Then I should see the Incidencia detail

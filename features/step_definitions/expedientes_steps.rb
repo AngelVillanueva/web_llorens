@@ -61,6 +61,12 @@ Given(/^the one with Incidencia is older$/) do
   t2 = FactoryGirl.create( :transferencia, matricula: "Nuevo", cliente: c )
 end
 
+Given(/^there is an Incidencia in the page$/) do
+  step "I am a registered User with some Expedientes"
+  step 'one of them is a "Transferencia" and has an Incidencia'
+  step "I access the Transferencias index page"
+end
+
 When(/^I submit all the information for a new Expediente$/) do
   visit new_expediente_path
   fill_in "Identificador", with: "IM1"
@@ -142,6 +148,10 @@ end
 When(/^I try to add a PDF for those Matriculaciones but fails$/) do
   visit edit_online_matriculacion_path( Matriculacion.first )
   click_button "submit"
+end
+
+When(/^I click in the Incidencia icon$/) do
+  first( '.incidencia' ).hover
 end
 
 Then(/^I should see a list of the Expedientes$/) do
@@ -272,4 +282,8 @@ Then(/^the Transferencia with Incidencia should appear the first one$/) do
   page.should have_selector( 'tr.expediente', count: 2 )
   first( 'td.matricula' ).text.should eql "Test transferencia".upcase
   Transferencia.first.incidencia.should_not eql nil
+end
+
+Then(/^I should see the Incidencia detail$/) do
+  page.should have_content( Transferencia.first.incidencia )
 end

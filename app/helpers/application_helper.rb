@@ -95,7 +95,7 @@ module ApplicationHelper
   def matricula_cell_pdf expediente
     return unless expediente.created_at > Matriculacion.matriculable_pdf_date.to_time
     if expediente.pdf_file_name && File.exist?(expediente.pdf.path)
-      link_to expediente.pdf.url, target: "blank", class: "pdf pdf-file" do
+      link_to expediente.pdf.url, target: "blank", class: "pdf pdf-file", title: I18n.t( "Ver PDF" ) do
         content_tag( 'i', nil, class: 'icon icon-file' )
       end
     end
@@ -105,11 +105,11 @@ module ApplicationHelper
     return unless expediente.created_at > Matriculacion.matriculable_pdf_date.to_time
     unless current_usuario.norole?
       if expediente.pdf_file_name && File.exist?(expediente.pdf.path)
-        link_to edit_online_matriculacion_path( expediente ), class: "pdf pdf-edit" do
+        link_to edit_online_matriculacion_path( expediente ), class: "pdf pdf-edit", title: I18n.t( "Cambiar PDF" ) do
           content_tag( 'i', nil, class: 'icon icon-edit' )
         end
       else
-        link_to edit_online_matriculacion_path( expediente ), class: "pdf pdf-add" do
+        link_to edit_online_matriculacion_path( expediente ), class: "pdf pdf-add", title: I18n.t( "Incluir PDF" ) do
           content_tag( 'i', nil, class: 'icon icon-plus-sign' )
         end
       end

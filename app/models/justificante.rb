@@ -17,7 +17,6 @@
 #  modelo              :string(255)
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
-#  pdf                 :string(255)
 #  pdf_file_name       :string(255)
 #  pdf_content_type    :string(255)
 #  pdf_file_size       :integer

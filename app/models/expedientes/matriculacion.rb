@@ -23,6 +23,8 @@
 #  pdf_content_type    :string(255)
 #  pdf_file_size       :integer
 #  pdf_updated_at      :datetime
+#  incidencia          :text
+#  has_incidencia      :boolean
 #
 
 class Matriculacion < Expediente

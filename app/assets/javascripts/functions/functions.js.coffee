@@ -115,7 +115,7 @@ root.analytics_loaded = false
     oTable.dataTable({
       "sDom": "<'row'<'span6'T><'span6 pull-right'>r>t<'row-fluid'<'span6'i><'span6'p>>",
       "sPaginationType": "bootstrap",
-      "aaSorting": [ sortcolumn ],
+      "aaSorting": sortcolumn,
       "aoColumns": columntypes,
       "oLanguage": {
           "sSearch": "Buscar en la tabla",

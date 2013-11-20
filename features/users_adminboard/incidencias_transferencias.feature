@@ -29,7 +29,7 @@ I need a 'Incidencias' field
       But the Incidencia is nil
     When I access the Transferencias index page
     Then I should not see an Incidencia warning
-
+@now
   Scenario: a Transferencia with an Incidencia should appear at the top of the list
     Given I am a registered User with some Expedientes
       And one of them is a "Transferencia" and has an Incidencia

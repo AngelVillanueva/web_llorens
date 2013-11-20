@@ -35,6 +35,38 @@ Given(/^they are older than the chosen date$/) do
   m.save!
 end
 
+Given(/^one of them is a "(.*?)" and has an Incidencia$/) do |expediente|
+  t = expediente.constantize.first
+  t.incidencia = "Aqui hay tomate, quate"
+  t.save!
+end
+
+Given(/^the Incidencia has no text$/) do
+  t = Transferencia.first
+  t.incidencia = ""
+  t.save!
+end
+
+Given(/^the Incidencia is nil$/) do
+  t = Transferencia.first
+  t.incidencia = nil
+  t.save!
+end
+
+Given(/^the one with Incidencia is older$/) do
+  t = Transferencia.first
+  t.created_at = 200.days.ago
+  t.save!
+  c = Cliente.first
+  t2 = FactoryGirl.create( :transferencia, matricula: "Nuevo", cliente: c )
+end
+
+Given(/^there is an Incidencia in the page$/) do
+  step "I am a registered User with some Expedientes"
+  step 'one of them is a "Transferencia" and has an Incidencia'
+  step "I access the Transferencias index page"
+end
+
 When(/^I submit all the information for a new Expediente$/) do
   visit new_expediente_path
   fill_in "Identificador", with: "IM1"
@@ -116,6 +148,10 @@ end
 When(/^I try to add a PDF for those Matriculaciones but fails$/) do
   visit edit_online_matriculacion_path( Matriculacion.first )
   click_button "submit"
+end
+
+When(/^I click in the Incidencia icon$/) do
+  first( '.incidencia' ).hover
 end
 
 Then(/^I should see a list of the Expedientes$/) do
@@ -232,4 +268,22 @@ Then(/^I should (not )?see a link to the matricula PDF$/) do |negation|
   else
     page.should_not have_css( 'a.pdf-file' )
   end
+end
+
+Then(/^I should (not )?see an Incidencia warning$/) do |negation|
+  if negation
+    page.should_not have_selector( '.incidencia' )
+  else
+    page.should have_selector( '.incidencia' )
+  end
+end
+
+Then(/^the Transferencia with Incidencia should appear the first one$/) do
+  page.should have_selector( 'tr.expediente', count: 2 )
+  first( 'td.matricula' ).text.should eql "Test transferencia".upcase
+  Transferencia.first.incidencia.should_not eql nil
+end
+
+Then(/^I should see the Incidencia detail$/) do
+  page.should have_content( Transferencia.first.incidencia )
 end

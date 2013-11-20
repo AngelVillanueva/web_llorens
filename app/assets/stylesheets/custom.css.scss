@@ -476,3 +476,18 @@ h2.renew + p {
   margin-bottom: 5px;
 }
 .pdf i { padding: 0 6px; }
+
+.incidencia {
+  color: #f00;
+  float: right;
+  &:hover {
+    text-decoration: none;
+    color: #f00;
+    font-size: 1.2em;
+  }
+}
+
+.noincidencia {
+  color: #a9f5a9;
+  float: right;
+}

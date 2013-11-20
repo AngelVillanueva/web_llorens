@@ -25,6 +25,9 @@ $(document).ready ->
   #tooltip init
   $('a[rel*="tooltip"]').tooltip({ 'placement': 'top' })
 
+  #popover init
+  $('a[data-toggle*="popover"]').popover({ 'placement': 'top' })
+
   # change text on big buttons (hover)
   $( 'li.new a span' ).hover(
     -> $( this ).html( "+" )
@@ -51,7 +54,7 @@ $(document).ready ->
   if ( $( '#expedientes.matriculacion' ).length )
     createDataTable(
       'expedientes',
-      0,
+      [ [ 0, "desc" ] ],
       [
         null,
         null,
@@ -83,7 +86,7 @@ $(document).ready ->
   if ( $( '#expedientes.transferencia' ).length )
     createDataTable(
       'expedientes',
-      0,
+      [],
       [
         null,
         null,
@@ -117,7 +120,7 @@ $(document).ready ->
   if ( $( '#justificantes' ).length )
     createDataTable(
       'justificantes',
-      12,
+      [ [ 12, "desc" ] ],
       [
         null,
         null,
@@ -168,7 +171,7 @@ $(document).ready ->
   if ( $( '#informes' ).length )
     createDataTable(
       'informes',
-      4,
+      [ [ 4, "desc" ] ],
       [
         null,
         null,

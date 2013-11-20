@@ -115,6 +115,12 @@ module ApplicationHelper
       end
     end
   end
+
+  def matricula_cell_incidencia expediente
+    link_to '#', class: "incidencia", 'data-toggle' => 'popover', 'data-content' => expediente.incidencia, 'data-original-title' => I18n.t("Incidencia"), 'data-trigger' => 'hover' do
+      content_tag( 'i', nil, class: 'icon icon-info-sign' )
+    end
+  end
   
   def tool_link_to_home
     link_to online_root_path, class:'pie', 'rel' => 'tooltip', 'data-original-title' => I18n.t("Inicio") do

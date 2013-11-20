@@ -169,6 +169,19 @@ describe Api::V1::ExpedientesController do
       check_custom_log_file
     end
   end
+  describe "when an Incidencia is sent" do
+    it "should return successful response" do
+      request.accept = "application/json"
+      json = { format: 'json', expediente: mock_expediente( Transferencia ) }
+      post :create_or_update_single, json
+      response.should be_success
+      Expediente.count.should eql 1
+      Transferencia.count.should eql 1
+      t = Transferencia.first
+      t.incidencia.should eql ("Hay tomate")
+      check_custom_log_file
+    end
+  end
 end
 
 private
@@ -188,6 +201,7 @@ private
     expediente[:modelo] = "AAA"
     expediente[:cliente_id] = cliente.llorens_cliente_id
     expediente[:observaciones] = "AAA"
+    expediente[:incidencia] = "Hay tomate"
     expediente
   end
   def mock_bad_expediente kind

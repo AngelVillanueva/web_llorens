@@ -51,11 +51,15 @@
         <td>
           <%= expediente.cliente.nombre %>
         </td>
-        <td>
+        <td class="matricula">
           <%= matricula_cell_matricula expediente %>
-          <% unless expediente_type? expediente, 'transferencia' %>
+          <% if expediente_type? expediente, 'matriculacion' %>
             <%= matricula_cell_pdf expediente %>
             <%= matricula_cell_actions expediente %>
+          <% elsif expediente.incidencia && !expediente.incidencia.empty? %>
+            <%= matricula_cell_incidencia expediente %>
+          <% elsif Transferencia.no_incidenciable %>
+            <i class="noincidencia icon icon-circle"></i>
           <% end %>
         </td>
         <% if expediente_type? expediente, 'matriculacion' %>

@@ -58,7 +58,7 @@
             <%= matricula_cell_actions expediente %>
           <% elsif expediente.incidencia && !expediente.incidencia.empty? %>
             <%= matricula_cell_incidencia expediente %>
-          <% else %>
+          <% elsif Transferencia.no_incidenciable %>
             <i class="noincidencia icon icon-circle"></i>
           <% end %>
         </td>

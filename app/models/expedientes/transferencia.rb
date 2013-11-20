@@ -27,7 +27,12 @@
 
 class Transferencia < Expediente
   validates :matricula, presence: true
-  default_scope includes(:cliente).order('has_incidencia DESC, created_at DESC')
+  default_scope includes(:cliente).order('has_incidencia DESC, updated_at DESC')
+
+  # set to true to show red circles next to Transferencias matriculas if no incidencia
+  def self.no_incidenciable
+    false
+  end
 
   rails_admin do
     edit do

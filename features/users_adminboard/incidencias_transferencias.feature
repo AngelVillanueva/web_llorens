@@ -1,8 +1,11 @@
-@current
 Feature: Incidencias for Transferencias
 As a user of the application
 In order to know the status of a Transferencia
 I need a 'Incidencias' field
+
+After do
+  Warden.test_reset! 
+end
 
   Scenario: registered users can see Incidencias in the Transferencias listing
     Given I am a registered User with some Expedientes

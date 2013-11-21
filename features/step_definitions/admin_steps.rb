@@ -2,6 +2,11 @@ Given(/^there is one Aviso created$/) do
   aviso = FactoryGirl.create( :aviso )
 end
 
+Given(/^there are two Avisos created$/) do
+  aviso = FactoryGirl.create( :aviso )
+  aviso2 = FactoryGirl.create( :aviso, contenido: "Texto del segundo aviso")
+end
+
 When(/^I create an Aviso in the admin panel$/) do
   visit rails_admin.dashboard_path
   find( "li[data-model=aviso] a" ).click
@@ -22,4 +27,14 @@ end
 Then(/^I should be able to close the Aviso$/) do
   first( "button[data-dismiss=modal]" ).click
   page.should_not have_selector( '.modal-body', text: Aviso.first.contenido )
+end
+
+Then(/^I should see the first Aviso$/) do
+  page.should have_selector( '.modal-body', text: Aviso.first.contenido ) 
+end
+
+Then(/^I should be able to see the second Aviso also$/) do
+  first( "button[data-toggle=modal]" ).click
+  page.should_not have_selector( '.modal-body', text: Aviso.first.contenido )
+  page.should have_selector( '.modal-body', text: Aviso.last.contenido )
 end

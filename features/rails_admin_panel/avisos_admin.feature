@@ -18,7 +18,7 @@ Feature: Avisos created from the admin panel
       And there is one Aviso created
     When I visit the application home page
     Then I should see the Aviso
-    
+
 @javascript
   Scenario: users can close Avisos when shown
     Given I am a registered User
@@ -26,3 +26,11 @@ Feature: Avisos created from the admin panel
     When I visit the application home page
     Then I should see the Aviso
       And I should be able to close the Aviso
+
+@javascript @now
+  Scenario: users can see all existing Avisos
+    Given I am a registered User
+      And there are two Avisos created
+    When I visit the application home page
+    Then I should see the first Aviso
+      And I should be able to see the second Aviso also

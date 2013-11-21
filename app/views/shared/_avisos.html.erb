@@ -1,17 +1,21 @@
 <% avisos.each_with_index do |aviso, index| %>
   <% indice = index + 1 %>
+  <% divid = "aviso#{indice}" %>
+  <% arialabel = "aviso#{indice}Label" %>
   <!-- Modal -->
-  <div id='aviso<%= indice %>' class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby='aviso<%= indice %>Label' aria-hidden="true">
+  <div id='<%= divid %>' class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby='<% arialabel %>' aria-hidden="true">
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-      <h3 id='aviso<%= indice %>Label'>Modal header</h3>
+      <h3 id='<% arialabel %>'>Modal header</h3>
     </div>
     <div class="modal-body">
       <p><%= aviso.contenido %></p>
     </div>
     <div class="modal-footer">
       <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-      <button type="button" data-toggle="modal" data-target="#aviso2" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+      <% if avisos.count > indice %>
+        <button type="button" data-toggle="modal" data-target='#aviso<%= indice + 1 %>' class="btn btn-primary" data-dismiss="modal">Save changes</button>
+      <% end %>
     </div>
   </div>
 <% end %>

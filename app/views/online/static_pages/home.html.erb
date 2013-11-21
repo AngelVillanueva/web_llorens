@@ -1,10 +1,6 @@
 <% provide :title, t("Area usuarios") %>
 
-<div class="row">
-  <% avisos.each do |aviso| %>
-    <%= content_tag( 'div', aviso.contenido, class: "" ) %>
-  <% end %>
-</div>
+<%= render 'shared/avisos', avisos: avisos %>
 
 <div class="about_page">
   <h2 class="section_header">

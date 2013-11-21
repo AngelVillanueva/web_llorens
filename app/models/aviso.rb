@@ -7,4 +7,5 @@
 #
 
 class Aviso < ActiveRecord::Base
+  validates :contenido, presence: true
 end

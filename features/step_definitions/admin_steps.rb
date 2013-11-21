@@ -16,10 +16,10 @@ Then(/^the Aviso should be created$/) do
 end
 
 Then(/^I should see the Aviso$/) do
-  page.should have_selector( '.alert-error', text: Aviso.first.contenido )
+  page.should have_selector( '.modal-body', text: Aviso.first.contenido )
 end
 
 Then(/^I should be able to close the Aviso$/) do
-  find( ".aviso button.close" ).click
-  page.should_not have_selector( '.alert-error', text: Aviso.first.contenido )
+  first( "button[data-dismiss=modal]" ).click
+  page.should_not have_selector( '.modal-body', text: Aviso.first.contenido )
 end

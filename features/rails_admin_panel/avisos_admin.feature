@@ -18,6 +18,7 @@ Feature: Avisos created from the admin panel
       And there is one Aviso created
     When I visit the application home page
     Then I should see the Aviso
+    
 @javascript
   Scenario: users can close Avisos when shown
     Given I am a registered User

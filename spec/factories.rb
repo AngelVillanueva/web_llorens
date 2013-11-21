@@ -76,6 +76,7 @@ FactoryGirl.define do
   end
 
   factory :aviso do
+    titular "De: Quevedo"
     contenido "Un soneto me manda hacer Violante, que en mi vida me he visto en tal aprieto. 8 versos dicen que es soneto, burla burlando van los dos primeros."
   end
 end

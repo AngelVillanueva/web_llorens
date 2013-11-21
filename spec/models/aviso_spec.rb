@@ -5,6 +5,7 @@ describe Aviso do
   subject { aviso }
 
   describe "with valid attributes" do
+    it { should respond_to :titular }
     it { should respond_to :contenido }
 
     it { should be_valid }

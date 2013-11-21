@@ -12,6 +12,13 @@ Feature: Avisos created from the admin panel
     Given I am an admin user
     When I create an Aviso in the admin panel
     Then the Aviso should be created
+@now
+  Scenario: default titular for an Aviso is "Aviso"
+    Given I am a registered User
+      And there is one Aviso created without titular
+    When I visit the application home page
+    Then I should see the Aviso with "Aviso" as the titular
+
 
   Scenario: users see Avisos in the homepage of Llorens online
     Given I am a registered User
@@ -27,7 +34,7 @@ Feature: Avisos created from the admin panel
     Then I should see the Aviso
       And I should be able to close the Aviso
 
-@javascript @now
+@javascript
   Scenario: users can see all existing Avisos
     Given I am a registered User
       And there are two Avisos created

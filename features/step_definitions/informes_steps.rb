@@ -10,6 +10,14 @@ Given(/^there are also Informes from other Clientes$/) do
     cliente: acompany )
 end
 
+Given(/^there are also Informes from other Clientes but from my Organizacion$/) do
+  o = Usuario.first.organizacion
+  acompany = FactoryGirl.create( :cliente, nombre: "Company",
+    identificador: "ORG", cif: "00", organizacion: o)
+  external_informe = FactoryGirl.create( :informe, matricula: "Informe externo",
+    cliente: acompany )
+end
+
 Given(/^there are also Informes from other Clientes of my Organizacion$/) do
   org = Organizacion.first
   cliente = FactoryGirl.create(:cliente, organizacion: org)
@@ -79,9 +87,13 @@ Then(/^I should see just the list of the Informes from my Cliente$/) do
   expect( page ).to_not have_selector( 'td', text: "Informe externo" )
 end
 
-Then(/^I should see the list of all the Informes from my Organizacion$/) do
+Then(/^I should (not )?see the list of all the Informes from my Organizacion$/) do |negation|
   rows = Informe.where(cliente_id: Organizacion.first.cliente_ids).count
-  expect( page ).to have_selector( 'tr.informe', count: rows )
+  if negation
+    expect( page ).to_not have_selector( 'tr.informe', count: rows )
+  else
+    expect( page ).to have_selector( 'tr.informe', count: rows )
+  end
 end
 
 Then(/^I should see a list of all the Informes$/) do

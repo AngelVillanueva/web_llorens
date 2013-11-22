@@ -10,6 +10,14 @@ Given(/^there are also Justificantes from other Clientes$/) do
     cliente: acompany )
 end
 
+Given(/^there are also Justificantes from other Clientes but from my Organizacion$/) do
+  o = Usuario.first.organizacion
+  acompany = FactoryGirl.create( :cliente, nombre: "Company",
+    identificador: "ORG", cif: "00", organizacion: o)
+  external_justificantes = FactoryGirl.create( :justificante, matricula: "Justificante externo",
+    cliente: acompany )
+end
+
 Given(/^there are also Justificantes from other Clientes of my Organizacion$/) do
   org = Organizacion.first
   cliente = FactoryGirl.create(:cliente, organizacion: org)
@@ -93,9 +101,13 @@ Then(/^I should see just the list of the Justificantes from my Cliente$/) do
   expect( page ).to_not have_selector( 'td', text: "Justificante externo" )
 end
 
-Then(/^I should see the list of all the Justificantes from my Organizacion$/) do
+Then(/^I should (not )?see the list of all the Justificantes from my Organizacion$/) do |negation|
   rows = Justificante.where(cliente_id: Organizacion.first.cliente_ids).count
-  expect( page ).to have_selector( 'tr.justificante', count: rows )
+  if negation
+    expect( page ).to_not have_selector( 'tr.justificante', count: rows )
+  else
+    expect( page ).to have_selector( 'tr.justificante', count: rows )
+  end
 end
 
 Then(/^I should see the list of the Justificantes updated and sorted without reloading the page$/) do

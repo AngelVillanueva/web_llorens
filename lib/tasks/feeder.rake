@@ -58,6 +58,39 @@ namespace :feed do
       u.save!
     }    
   end
+
+  desc 'Asign Mauto clientes to usuarios'
+  task :m_clientes => :environment do
+    # define the common organization
+    org = Organizacion.find_by_identificador("EME")
+
+    # open the csv file
+    f = File.open("#{Rails.root}/db/seeds/m_usuarios_clientes.csv", "r")
+
+    # loop through each record in the csv file, adding
+    # each record as a new user
+    f.each_line { |line|
+
+      # each line has fields separated by commas, so split those fields
+      fields = line.split(',')
+
+      # select the usuario email
+      u_email = fields[0].tr_s('"', '').strip
+      # find the Usuario
+      u = Usuario.find_by_email( u_email )
+      # select the Clientes
+      the_clientes = []
+      identificadores = fields[1].tr_s('"', '').strip.split( '-' )
+      identificadores.each do |id|
+        c = Cliente.find_by_identificador( id )
+        the_clientes.push c
+      end
+
+      # assign clientes to usuario
+      u.clientes << the_clientes
+      u.save!
+    }    
+  end
   
   
   

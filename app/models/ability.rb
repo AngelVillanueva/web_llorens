@@ -12,7 +12,7 @@ class Ability
         can :manage, Justificante
         can :manage, Informe
     elsif usuario
-        can :manage, Expediente, cliente_id: usuario.organizacion.cliente_ids
+        can :manage, Expediente, cliente_id: usuario.cliente_ids
         can :manage, Justificante, cliente_id: usuario.organizacion.cliente_ids
         can :manage, Informe, cliente_id: usuario.organizacion.cliente_ids 
     end

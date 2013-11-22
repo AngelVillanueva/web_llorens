@@ -1,3 +1,4 @@
+@current
 Feature: Expedientes listing
   As a registered User
   In order to find out the Expedientes status
@@ -22,10 +23,10 @@ Scenario: Transferencias index
   Given I am a registered User with some Expedientes
   When I access the Transferencias index page
   Then I should see a list of the Transferencias
-
-Scenario: Users can see just the Expedientes from their Organizations
+@now
+Scenario: Users can see just the Expedientes from their Clientes
   Given I am a registered User with some Expedientes
-    And there are more Expedientes from other Clientes
+    And there are more Expedientes from other Clientes but from my Organization
   When I access the Matriculaciones index page
   Then I should just see the list of my Expedientes
 
@@ -33,7 +34,7 @@ Scenario: Users can see all the Expedientes from their Organizations
   Given I am a registered User with no direct Clientes
     And my Organizacion has many Matriculaciones
   When I access the Matriculaciones index page
-  Then I should see all the Matriculaciones from my Organizacion
+  Then I should not see all the Matriculaciones from my Organizacion
 
 Scenario: Admin users can see all Expedientes
   Given I am an admin user

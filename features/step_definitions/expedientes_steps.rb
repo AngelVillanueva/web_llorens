@@ -3,6 +3,13 @@ Given(/^there are more Expedientes from other Clientes$/) do
   other_expediente = FactoryGirl.create( :matriculacion, matricula:  "Other matricula", cliente: other_cliente )
 end
 
+Given(/^there are more Expedientes from other Clientes but from my Organization$/) do
+  u = Usuario.first
+  o = u.organizacion
+  other_cliente = Cliente.create( nombre: "Other C", identificador: "CCC", cif: "00000000T", llorens_cliente_id: "444999111", organizacion: o )
+  other_expediente = FactoryGirl.create( :matriculacion, matricula:  "Other matricula", cliente: other_cliente )
+end
+
 Given(/^there are more Expedientes from other Clientes with matricula PDF$/) do
   step "there are more Expedientes from other Clientes"
   step "some of my Matriculaciones have a matricula pdf"
@@ -189,9 +196,13 @@ Then(/^I should just see the list of my Expedientes$/) do
   page.should_not have_content( "Other matricula".upcase )
 end
 
-Then(/^I should see all the Matriculaciones from my Organizacion$/) do
+Then(/^I should (not ?)see all the Matriculaciones from my Organizacion$/) do |negation|
   rows = Organizacion.first.expedientes.count
-  page.should have_selector( 'tr.expediente', count: rows )
+  if negation
+    page.should_not have_selector( 'tr.expediente', count: rows )
+  else
+    page.should have_selector( 'tr.expediente', count: rows )
+  end
 end
 
 Then(/^I should (not )?see a detail of that Expediente$/) do |negation|

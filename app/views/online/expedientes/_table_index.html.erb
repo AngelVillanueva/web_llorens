@@ -59,7 +59,7 @@
           <% elsif expediente.incidencia && !expediente.incidencia.empty? %>
             <%= matricula_cell_incidencia expediente %>
           <% elsif Transferencia.no_incidenciable %>
-            <i class="noincidencia icon icon-circle"></i>
+            <i title='<%= t("Documentacion correcta") %>' class="noincidencia icon icon-circle"></i>
           <% end %>
         </td>
         <% if expediente_type? expediente, 'matriculacion' %>

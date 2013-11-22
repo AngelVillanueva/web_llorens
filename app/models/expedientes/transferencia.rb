@@ -31,7 +31,7 @@ class Transferencia < Expediente
 
   # set to true to show red circles next to Transferencias matriculas if no incidencia
   def self.no_incidenciable
-    false
+    true
   end
 
   rails_admin do

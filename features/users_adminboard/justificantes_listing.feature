@@ -23,13 +23,13 @@ Feature: Justificantes listing
       When I access the Justificantes index page
       Then I should see a list of the Justificantes
         And the first Justificante should be the most urgent one
-@now
+
   Scenario: an Usuario can not see Justificantes from other Cliente
       Given I am a registered User with some Justificantes
         And there are also Justificantes from other Clientes but from my Organizacion
       When I access the Justificantes index page
       Then I should see just the list of the Justificantes from my Cliente
-@now
+
   Scenario: an Usuario cannot see all the Justificantes from her Organizacion
     Given I am a registered User with no Justificantes
       And there are also Justificantes from other Clientes of my Organizacion

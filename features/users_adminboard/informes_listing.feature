@@ -19,18 +19,18 @@ Feature: Informes listing
     When I access the Informes index page
     Then I should see a list of the Informes
       And the first Informe should be the most urgent one
-
+@now
   Scenario: an Usuario can not see Informes from other Cliente
     Given I am a registered User with some Informes
-      And there are also Informes from other Clientes
+      And there are also Informes from other Clientes but from my Organizacion
     When I access the Informes index page
     Then I should see just the list of the Informes from my Cliente
-
-  Scenario: an Usuario can see all the Informes from her Organizacion
+@now
+  Scenario: an Usuario cannot see all the Informes from her Organizacion
     Given I am a registered User with no Informes
       And there are also Informes from other Clientes of my Organizacion
     When I access the Informes index page
-    Then I should see the list of all the Informes from my Organizacion
+    Then I should not see the list of all the Informes from my Organizacion
 
   Scenario: an admin user can see all Informes
     Given I am an admin user

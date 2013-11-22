@@ -1,4 +1,3 @@
-@current
 Feature: Expedientes listing
   As a registered User
   In order to find out the Expedientes status
@@ -23,7 +22,7 @@ Scenario: Transferencias index
   Given I am a registered User with some Expedientes
   When I access the Transferencias index page
   Then I should see a list of the Transferencias
-@now
+
 Scenario: Users can see just the Expedientes from their Clientes
   Given I am a registered User with some Expedientes
     And there are more Expedientes from other Clientes but from my Organization

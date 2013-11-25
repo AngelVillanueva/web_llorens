@@ -34,6 +34,8 @@ class Usuario < ActiveRecord::Base
   # attr_accessible :title, :body
   belongs_to :organizacion
   has_and_belongs_to_many :clientes
+  has_many :notificaciones
+  has_many :avisos, through: :notificaciones
 
   validates :nombre, :apellidos, :organizacion_id, presence: true
   validate :clientes_from_same_organizacion

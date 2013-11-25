@@ -12,14 +12,13 @@ Feature: Avisos created from the admin panel
     Given I am an admin user
     When I create an Aviso in the admin panel
     Then the Aviso should be created
-@now
+
   Scenario: default titular for an Aviso is "Aviso"
     Given I am a registered User
       And there is one Aviso created without titular
     When I visit the application home page
     Then I should see the Aviso with "Aviso" as the titular
-
-
+@now
   Scenario: users see Avisos in the homepage of Llorens online
     Given I am a registered User
       And there is one Aviso created

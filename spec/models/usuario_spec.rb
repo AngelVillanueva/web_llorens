@@ -41,6 +41,8 @@ describe Usuario do
     it { should respond_to :role? }
     it { should respond_to :norole? }
     it { should respond_to :organizacion }
+    it { should respond_to :notificaciones }
+    it { should respond_to :avisos }
     it { should be_valid }
   end
   describe "with several fields being mandatory" do

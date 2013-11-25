@@ -14,12 +14,17 @@ class Aviso < ActiveRecord::Base
   validates :contenido, presence: true
 
   after_create :create_notificaciones
+  before_save :assign_caducidad
 
   protected
   def create_notificaciones
     Usuario.all.each do |u|
       self.usuarios << u
     end
+  end
+
+  def assign_caducidad
+    self.fecha_de_caducidad = 1.year.from_now if fecha_de_caducidad.nil?
   end
 
 end

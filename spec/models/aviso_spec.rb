@@ -20,6 +20,15 @@ describe Aviso do
     it { should validate_presence_of :contenido }
   end
 
+  describe "with valid nil value for fecha de caducidad" do
+    let( :aviso_wo_fecha ) { FactoryGirl.create( :aviso, fecha_de_caducidad: nil ) }
+    subject { aviso_wo_fecha }
+    it "should default to 1 year from now" do
+      expect( aviso_wo_fecha ).to be_valid
+      expect( aviso_wo_fecha.fecha_de_caducidad.to_i ).to eql( 1.year.from_now.to_i )
+    end
+  end
+
   describe "a new Aviso should create as many Notificaciones as Usuarios" do
     it "should increment the count" do
       expect( usuario1 ).to be_valid
@@ -28,4 +37,5 @@ describe Aviso do
       expect { new_aviso = FactoryGirl.create( :aviso ) }.to change{ Notificacion.count }.by(2)
     end
   end
+
 end

@@ -62,6 +62,15 @@ class Usuario < ActiveRecord::Base
     Informe.where(cliente_id: clientes)
   end
 
+  # delete all notificaciones already expired after successful login
+  def after_database_authentication
+    return unless self.norole?
+    self.avisos.caducados.each do |aviso_caducado|
+      notificacion_caducada = Notificacion.where("usuario_id = ? AND aviso_id = ?", self.id, aviso_caducado.id)
+      notificacion_caducada.delete_all
+    end
+  end
+
   rails_admin do
     edit do
       group :advanced do

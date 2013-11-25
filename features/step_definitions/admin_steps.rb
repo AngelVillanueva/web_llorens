@@ -17,6 +17,11 @@ Given(/^its maximum date has expired$/) do
   aviso.save!
 end
 
+Given(/^I am a registered User with no role$/) do
+  user = FactoryGirl.create(:usuario)
+  user.norole?
+end
+
 When(/^I create an Aviso in the admin panel$/) do
   visit rails_admin.dashboard_path
   find( "li[data-model=aviso] a" ).click
@@ -24,6 +29,16 @@ When(/^I create an Aviso in the admin panel$/) do
   fill_in "aviso_titular", with: "Se hace saber"
   fill_in "aviso_contenido", with: "Importante aviso"
   first( "button[type=submit]" ).click
+end
+
+When(/^I visit the application home page and logs in$/) do
+  Usuario.count.should eql 1
+  Usuario.first.avisos.count.should eql 1
+  Usuario.first.avisos.caducados.count.should eql 1
+  visit online_root_path
+  fill_in "usuario_email", with: "info@sinapse.es"
+  fill_in "usuario_password", with: "foobarfoo"
+  first( "input[type=submit]" ).click
 end
 
 Then(/^the Aviso should be created$/) do
@@ -61,4 +76,9 @@ Then(/^I should be able to see the second Aviso also$/) do
   page.should_not have_selector( '.modal-body', text: Aviso.first.contenido )
   page.should have_selector( 'h3', text: I18n.t( "Aviso" ) )
   page.should have_selector( '.modal-body', text: Aviso.last.titular )
+end
+
+Then(/^the Aviso should be deleted$/) do 
+  current_usuario = Usuario.first
+  current_usuario.avisos.caducados.count.should eql 0
 end

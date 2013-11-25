@@ -24,13 +24,21 @@ Feature: Avisos created from the admin panel
       And there is one Aviso created
     When I visit the application home page
     Then I should see the Aviso
-@now
+
   Scenario: Avisos with an expired maximum date should not be shown
     Given I am a registered User
       And there is one Aviso created
       But its maximum date has expired
     When I visit the application home page
     Then I should not see the Aviso
+
+@now
+  Scenario: Avisos with an expired maximum should be deleted as well
+    Given I am a registered User with no role
+      And there is one Aviso created
+      But its maximum date has expired
+    When I visit the application home page and logs in
+    Then the Aviso should be deleted
 
 @javascript
   Scenario: users can close Avisos when shown

@@ -36,6 +36,8 @@ gem 'devise', '~> 2.2.4'
 gem 'rails_admin', '~> 0.4.3'
 # CanCan
 gem 'cancan', '~> 1.6.1'
+# New Relic
+gem 'newrelic_rpm'
 ### OTHER
 gem 'jquery-datatables-rails', '1.11.2', git: 'git://github.com/rweng/jquery-datatables-rails.git' # DataTables
 

@@ -29,6 +29,15 @@ describe Aviso do
     end
   end
 
+  describe "with valid nil value for dias visible desde ultimo login" do
+    let( :aviso_wo_dias_visible ) { FactoryGirl.create( :aviso, dias_visible_desde_ultimo_login: nil ) }
+    subject { aviso_wo_dias_visible }
+    it "should default to 1 week from now" do
+      expect( aviso_wo_dias_visible ).to be_valid
+      expect( aviso_wo_dias_visible.dias_visible_desde_ultimo_login.to_i ).to eql( 7 )
+    end
+  end
+
   describe "a new Aviso should create as many Notificaciones as Usuarios" do
     it "should increment the count" do
       expect( usuario1 ).to be_valid

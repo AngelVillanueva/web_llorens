@@ -26,6 +26,7 @@ class Aviso < ActiveRecord::Base
 
   def assign_caducidad
     self.fecha_de_caducidad = 1.year.from_now if fecha_de_caducidad.nil?
+    self.dias_visible_desde_ultimo_login = 7 if dias_visible_desde_ultimo_login.nil?
   end
 
 end

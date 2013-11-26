@@ -47,7 +47,6 @@ Feature: Avisos created from the admin panel
     When I visit the application home page and log in
     Then I should not see the Aviso
 
-@now
   Scenario: Avisos with a relative maximum date should be deleted as well
     Given I am a registered User with no role
       And there is one Aviso created

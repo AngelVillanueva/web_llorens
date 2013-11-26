@@ -40,9 +40,6 @@ When(/^I create an Aviso in the admin panel$/) do
 end
 
 When(/^I visit the application home page and log in$/) do
-  # Usuario.count.should eql 1
-  # Usuario.first.avisos.count.should eql 1
-  # Usuario.first.avisos.caducados.count.should eql 1
   visit online_root_path
   fill_in "usuario_email", with: "info@sinapse.es"
   fill_in "usuario_password", with: "foobarfoo"

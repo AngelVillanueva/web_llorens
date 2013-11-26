@@ -19,6 +19,12 @@ Feature: Avisos created from the admin panel
     When I visit the application home page
     Then I should see the Aviso with "Aviso" as the titular
 
+  Scenario: default titular for an Aviso is "Aviso" also when empty
+    Given I am a registered User
+      And there is one Aviso created with an empty titular
+    When I visit the application home page
+    Then I should see the Aviso with "Aviso" as the titular
+
   Scenario: users see Avisos in the homepage of Llorens online
     Given I am a registered User
       And there is one Aviso created

@@ -34,6 +34,7 @@ gem 'devise', '~> 2.2.4'
  # for password_expirable
 # Rails_Admin
 gem 'rails_admin', '~> 0.4.3'
+gem 'rich' # rich editor based on CKEdit
 # CanCan
 gem 'cancan', '~> 1.6.1'
 ### OTHER

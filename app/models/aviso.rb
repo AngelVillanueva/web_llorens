@@ -38,7 +38,7 @@ class Aviso < ActiveRecord::Base
       field :titular do
         help I18n.t( "Opcional o Aviso" )
       end
-      field :contenido do
+      field :contenido, :rich_editor do
         help I18n.t( "Requerido" )
       end
       field :dias_visible_desde_ultimo_login do

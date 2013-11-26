@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: avisos
+#
+#  id                              :integer          not null, primary key
+#  contenido                       :text
+#  titular                         :string(255)
+#  fecha_de_caducidad              :date
+#  dias_visible_desde_ultimo_login :integer
+#
+
 require 'spec_helper'
 
 describe Aviso do

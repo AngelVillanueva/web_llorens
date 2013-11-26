@@ -7,10 +7,10 @@
   <div id='<%= divid %>' class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby='<% arialabel %>' aria-hidden="true">
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-      <h3 id='<% arialabel %>'><%= aviso.titular ||= t( "Aviso" ) %></h3>
+      <h3 id='<% arialabel %>'><%= aviso_titular( aviso ) %></h3>
     </div>
     <div class="modal-body">
-      <p><%= aviso.contenido %></p>
+      <p><%= aviso.contenido.html_safe %></p>
     </div>
     <div class="modal-footer">
       <button class="btn" data-dismiss="modal" aria-hidden="true"><%= t("Cerrar") %></button>

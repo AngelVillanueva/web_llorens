@@ -6,6 +6,10 @@ Given(/^there is one Aviso created without titular$/) do
   aviso = FactoryGirl.create( :aviso, titular: nil )
 end
 
+Given(/^there is one Aviso created with an empty titular$/) do
+  aviso = FactoryGirl.create( :aviso, titular: "" )
+end
+
 Given(/^there are two Avisos created$/) do
   aviso = FactoryGirl.create( :aviso )
   aviso2 = FactoryGirl.create( :aviso, titular: nil, contenido: "Texto del segundo aviso")

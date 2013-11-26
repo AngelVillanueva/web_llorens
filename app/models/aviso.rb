@@ -24,11 +24,29 @@ class Aviso < ActiveRecord::Base
     list do
       field :id
       field :titular
-      field :contenido
+      field :contenido do
+        pretty_value do
+          value.html_safe
+        end
+      end
       field :fecha_de_caducidad
       field :dias_visible_desde_ultimo_login do
         label I18n.t( "Dias visible corto")
       end
+    end
+    show do
+      field :titular
+      field :contenido do
+        pretty_value do
+          value.html_safe
+        end
+      end
+      field :fecha_de_caducidad
+      field :dias_visible_desde_ultimo_login do
+        label I18n.t( "Dias visible corto")
+      end
+      field :usuarios
+      field :notificaciones
     end
     edit do
       group :advanced do
@@ -38,7 +56,7 @@ class Aviso < ActiveRecord::Base
       field :titular do
         help I18n.t( "Opcional o Aviso" )
       end
-      field :contenido do
+      field :contenido, :rich_editor do
         help I18n.t( "Requerido" )
       end
       field :dias_visible_desde_ultimo_login do

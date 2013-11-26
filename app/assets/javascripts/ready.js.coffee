@@ -28,6 +28,10 @@ $(document).ready ->
   #popover init
   $('a[data-toggle*="popover"]').popover({ 'placement': 'top' })
 
+  #modal alert init
+  if ( $( '.modal' ) ).length
+    $( '#aviso1' ).modal( 'show' )
+
   # change text on big buttons (hover)
   $( 'li.new a span' ).hover(
     -> $( this ).html( "+" )

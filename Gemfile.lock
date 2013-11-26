@@ -235,6 +235,8 @@ GEM
     rack-pjax (0.7.0)
       nokogiri (~> 1.5)
       rack (~> 1.3)
+    rack-raw-upload (1.1.1)
+      multi_json
     rack-ssl (1.3.3)
       rack
     rack-test (0.6.2)
@@ -280,6 +282,14 @@ GEM
       json (~> 1.4)
     remotipart (1.0.5)
     rghost (0.9.3)
+    rich (1.4.6)
+      jquery-rails
+      kaminari
+      mime-types
+      paperclip
+      rack-raw-upload
+      rails (>= 3.2.0)
+      sass-rails
     rspec (2.13.0)
       rspec-core (~> 2.13.0)
       rspec-expectations (~> 2.13.0)
@@ -400,6 +410,7 @@ DEPENDENCIES
   rails_admin (~> 0.4.3)
   rb-fsevent (~> 0.9.1)
   rghost (~> 0.9.3)
+  rich
   rspec-rails (~> 2.13.1)
   ruby_gntp (~> 0.3.4)
   sass-rails (~> 3.2)

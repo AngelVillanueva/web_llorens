@@ -11,12 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131119164814) do
+ActiveRecord::Schema.define(:version => 20131126154520) do
 
   create_table "api_keys", :force => true do |t|
     t.string   "access_token"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+  end
+
+  create_table "avisos", :force => true do |t|
+    t.text    "contenido"
+    t.string  "titular"
+    t.date    "fecha_de_caducidad"
+    t.integer "dias_visible_desde_ultimo_login"
   end
 
   create_table "clientes", :force => true do |t|
@@ -110,7 +117,6 @@ ActiveRecord::Schema.define(:version => 20131119164814) do
     t.string   "modelo"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
-    t.string   "pdf"
     t.string   "pdf_file_name"
     t.string   "pdf_content_type"
     t.integer  "pdf_file_size"
@@ -122,15 +128,16 @@ ActiveRecord::Schema.define(:version => 20131119164814) do
 
   add_index "justificantes", ["cliente_id"], :name => "index_justificantes_on_cliente_id"
 
-  create_table "old_passwords", :force => true do |t|
-    t.string   "encrypted_password",       :null => false
-    t.string   "password_salt"
-    t.string   "password_archivable_type", :null => false
-    t.integer  "password_archivable_id",   :null => false
-    t.datetime "created_at"
+  create_table "notificaciones", :force => true do |t|
+    t.integer  "aviso_id"
+    t.integer  "usuario_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.date     "caducidad_relativa"
   end
 
-  add_index "old_passwords", ["password_archivable_type", "password_archivable_id"], :name => "index_password_archivable"
+  add_index "notificaciones", ["aviso_id"], :name => "index_notificaciones_pendientes_on_aviso_id"
+  add_index "notificaciones", ["usuario_id"], :name => "index_notificaciones_pendientes_on_usuario_id"
 
   create_table "organizaciones", :force => true do |t|
     t.string   "nombre"
@@ -153,11 +160,18 @@ ActiveRecord::Schema.define(:version => 20131119164814) do
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories"
 
-  create_table "the_resources", :force => true do |t|
-    t.datetime "password_changed_at"
+  create_table "rich_rich_files", :force => true do |t|
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
+    t.string   "rich_file_file_name"
+    t.string   "rich_file_content_type"
+    t.integer  "rich_file_file_size"
+    t.datetime "rich_file_updated_at"
+    t.string   "owner_type"
+    t.integer  "owner_id"
+    t.text     "uri_cache"
+    t.string   "simplified_type",        :default => "file"
   end
-
-  add_index "the_resources", ["password_changed_at"], :name => "index_the_resources_on_password_changed_at"
 
   create_table "usuarios", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

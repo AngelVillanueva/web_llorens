@@ -210,4 +210,13 @@ module ApplicationHelper
     end
     File.exist? the_pdf_file
   end
+  # returns the titulo for an Aviso with a default text if empty or nil
+  def aviso_titular(aviso)
+    if aviso.titular
+      aviso.titular.empty? ? t( "Aviso" ) : aviso.titular
+    else
+      t( "Aviso" )
+    end
+  end
+
 end

@@ -47,4 +47,13 @@ describe Aviso do
     end
   end
 
+  describe "a destroyed Aviso should also destroy the related Notificaciones" do
+    it "should destroy the related" do
+      expect( usuario1 ).to be_valid
+      expect( usuario2 ).to be_valid
+      expect { new_aviso = FactoryGirl.create( :aviso ) }.to change{ Notificacion.count }.by(2)
+      expect { Aviso.last.destroy }.to change{ Notificacion.count }.by( -2 )
+    end
+  end
+
 end

@@ -69,6 +69,14 @@ class Usuario < ActiveRecord::Base
       notificacion_caducada = Notificacion.where("usuario_id = ? AND aviso_id = ?", self.id, aviso_caducado.id)
       notificacion_caducada.delete_all
     end
+    self.notificaciones.reload.each do |notificacion|
+      if notificacion.caducidad_relativa.nil?
+        notificacion.caducidad_relativa = ( Date.today + notificacion.aviso.dias_visible_desde_ultimo_login )
+        notificacion.save!
+      elsif notificacion.caducidad_relativa < Date.today
+        notificacion.delete
+      end
+    end
   end
 
   rails_admin do

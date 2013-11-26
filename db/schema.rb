@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131125121624) do
+ActiveRecord::Schema.define(:version => 20131126093453) do
 
   create_table "api_keys", :force => true do |t|
     t.string   "access_token"
@@ -20,9 +20,10 @@ ActiveRecord::Schema.define(:version => 20131125121624) do
   end
 
   create_table "avisos", :force => true do |t|
-    t.text   "contenido"
-    t.string "titular"
-    t.date   "fecha_de_caducidad"
+    t.text    "contenido"
+    t.string  "titular"
+    t.date    "fecha_de_caducidad"
+    t.integer "dias_visible_desde_ultimo_login"
   end
 
   create_table "clientes", :force => true do |t|
@@ -116,6 +117,7 @@ ActiveRecord::Schema.define(:version => 20131125121624) do
     t.string   "modelo"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
+    t.string   "pdf"
     t.string   "pdf_file_name"
     t.string   "pdf_content_type"
     t.integer  "pdf_file_size"
@@ -130,12 +132,23 @@ ActiveRecord::Schema.define(:version => 20131125121624) do
   create_table "notificaciones", :force => true do |t|
     t.integer  "aviso_id"
     t.integer  "usuario_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.date     "caducidad_relativa"
   end
 
   add_index "notificaciones", ["aviso_id"], :name => "index_notificaciones_pendientes_on_aviso_id"
   add_index "notificaciones", ["usuario_id"], :name => "index_notificaciones_pendientes_on_usuario_id"
+
+  create_table "old_passwords", :force => true do |t|
+    t.string   "encrypted_password",       :null => false
+    t.string   "password_salt"
+    t.string   "password_archivable_type", :null => false
+    t.integer  "password_archivable_id",   :null => false
+    t.datetime "created_at"
+  end
+
+  add_index "old_passwords", ["password_archivable_type", "password_archivable_id"], :name => "index_password_archivable"
 
   create_table "organizaciones", :force => true do |t|
     t.string   "nombre"
@@ -157,6 +170,12 @@ ActiveRecord::Schema.define(:version => 20131125121624) do
   end
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories"
+
+  create_table "the_resources", :force => true do |t|
+    t.datetime "password_changed_at"
+  end
+
+  add_index "the_resources", ["password_changed_at"], :name => "index_the_resources_on_password_changed_at"
 
   create_table "usuarios", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

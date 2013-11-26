@@ -17,6 +17,14 @@ Given(/^its maximum date has expired$/) do
   aviso.save!
 end
 
+Given(/^its relative maximum date has been reached$/) do
+  aviso = Aviso.first
+  usuario = Usuario.first
+  notificacion = Notificacion.where(aviso_id: aviso.id, usuario_id: usuario.id).first
+  notificacion.caducidad_relativa = 1.day.ago
+  notificacion.save!
+end
+
 Given(/^I am a registered User with no role$/) do
   user = FactoryGirl.create(:usuario)
   user.norole?
@@ -31,10 +39,10 @@ When(/^I create an Aviso in the admin panel$/) do
   first( "button[type=submit]" ).click
 end
 
-When(/^I visit the application home page and logs in$/) do
-  Usuario.count.should eql 1
-  Usuario.first.avisos.count.should eql 1
-  Usuario.first.avisos.caducados.count.should eql 1
+When(/^I visit the application home page and log in$/) do
+  # Usuario.count.should eql 1
+  # Usuario.first.avisos.count.should eql 1
+  # Usuario.first.avisos.caducados.count.should eql 1
   visit online_root_path
   fill_in "usuario_email", with: "info@sinapse.es"
   fill_in "usuario_password", with: "foobarfoo"

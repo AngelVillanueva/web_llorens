@@ -28,7 +28,7 @@ class Informe < ActiveRecord::Base
 
   def send_email_if_weekend
     if [0,6].include? created_at.to_date.wday
-      WeekendMailer.new_informe.deliver
+      WeekendMailer.delay.new_informe
     end
   end
 

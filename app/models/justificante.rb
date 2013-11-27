@@ -52,7 +52,7 @@ class Justificante < ActiveRecord::Base
   end
   def send_email_if_weekend
     if [0,6].include? created_at.to_date.wday
-      WeekendMailer.new_justificante.deliver
+      WeekendMailer.delay.new_justificante
     end
   end
 

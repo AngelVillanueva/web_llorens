@@ -58,6 +58,22 @@ When(/^I access the edit page for a given Justificante$/) do
   visit edit_online_justificante_path(Justificante.first)
 end
 
+When(/^a new Justificante is created during a Saturday$/) do
+  guardia1 = FactoryGirl.create( :guardia )
+  guardia2 = FactoryGirl.create( :guardia )
+  fecha = Date.parse( "23-11-2013" ) # it was a Saturday
+  justificante = FactoryGirl.create( :justificante, created_at: fecha )
+  Justificante.last.created_at.to_date.wday.should eql 6 # wday for Saturday is 6
+end
+
+When(/^a new Justificante is created during a Sunday$/) do
+  guardia1 = FactoryGirl.create( :guardia )
+  guardia2 = FactoryGirl.create( :guardia )
+  fecha = Date.parse( "24-11-2013" ) # it was a Sunday
+  justificante = FactoryGirl.create( :justificante, created_at: fecha )
+  Justificante.last.created_at.to_date.wday.should eql 0 # wday for Sunday is 0
+end
+
 Then(/^a new Justificante should (not )?be created$/) do |negation|
   if negation
     Justificante.all.count.should eql( 0 )
@@ -129,4 +145,8 @@ end
 Then(/^I should be able to edit the Justificante$/) do
   page.should have_title( I18n.t( "Editar Justificante Profesional" ) )
   page.should have_selector( "form.justificantes" )
+end
+
+Then(/^each employee on\-guard should receive an email$/) do
+  Justificante.last.provincia.should eql Guardia.all.map(&:email).join
 end

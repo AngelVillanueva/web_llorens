@@ -19,13 +19,13 @@ Feature: Informes listing
     When I access the Informes index page
     Then I should see a list of the Informes
       And the first Informe should be the most urgent one
-@now
+
   Scenario: an Usuario can not see Informes from other Cliente
     Given I am a registered User with some Informes
       And there are also Informes from other Clientes but from my Organizacion
     When I access the Informes index page
     Then I should see just the list of the Informes from my Cliente
-@now
+
   Scenario: an Usuario cannot see all the Informes from her Organizacion
     Given I am a registered User with no Informes
       And there are also Informes from other Clientes of my Organizacion

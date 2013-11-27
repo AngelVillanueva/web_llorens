@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131126154520) do
+ActiveRecord::Schema.define(:version => 20131127113935) do
 
   create_table "api_keys", :force => true do |t|
     t.string   "access_token"
@@ -87,6 +87,14 @@ ActiveRecord::Schema.define(:version => 20131126154520) do
   add_index "expedientes", ["id", "type"], :name => "index_expedientes_on_id_and_type"
   add_index "expedientes", ["llorens_cliente_id"], :name => "index_expedientes_on_llorens_cliente_id"
 
+  create_table "guardias", :force => true do |t|
+    t.string   "email"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "guardias", ["email"], :name => "index_guardias_on_email"
+
   create_table "informes", :force => true do |t|
     t.string   "matricula"
     t.datetime "created_at",       :null => false
@@ -117,6 +125,7 @@ ActiveRecord::Schema.define(:version => 20131126154520) do
     t.string   "modelo"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
+    t.string   "pdf"
     t.string   "pdf_file_name"
     t.string   "pdf_content_type"
     t.integer  "pdf_file_size"
@@ -138,6 +147,16 @@ ActiveRecord::Schema.define(:version => 20131126154520) do
 
   add_index "notificaciones", ["aviso_id"], :name => "index_notificaciones_pendientes_on_aviso_id"
   add_index "notificaciones", ["usuario_id"], :name => "index_notificaciones_pendientes_on_usuario_id"
+
+  create_table "old_passwords", :force => true do |t|
+    t.string   "encrypted_password",       :null => false
+    t.string   "password_salt"
+    t.string   "password_archivable_type", :null => false
+    t.integer  "password_archivable_id",   :null => false
+    t.datetime "created_at"
+  end
+
+  add_index "old_passwords", ["password_archivable_type", "password_archivable_id"], :name => "index_password_archivable"
 
   create_table "organizaciones", :force => true do |t|
     t.string   "nombre"
@@ -172,6 +191,12 @@ ActiveRecord::Schema.define(:version => 20131126154520) do
     t.text     "uri_cache"
     t.string   "simplified_type",        :default => "file"
   end
+
+  create_table "the_resources", :force => true do |t|
+    t.datetime "password_changed_at"
+  end
+
+  add_index "the_resources", ["password_changed_at"], :name => "index_the_resources_on_password_changed_at"
 
   create_table "usuarios", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

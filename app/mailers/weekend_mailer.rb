@@ -6,4 +6,8 @@ class WeekendMailer < ActionMailer::Base
   def new_justificante
     mail subject: t( "Solicitud de nuevo justificante" )
   end
+
+  def new_informe
+    mail subject: t( "Solicitud de nuevo informe" )
+  end
 end

@@ -21,8 +21,16 @@ class Informe < ActiveRecord::Base
     :path => ":rails_root/uploads/:class/:id/:basename.:extension",
     :url => "/online/informes/:id/download"
   default_scope includes(:cliente).order('pdf_content_type DESC, created_at DESC')
+
+  after_create :send_email_if_weekend
   
   validates :matricula, :solicitante, :cliente_id, presence: true
+
+  def send_email_if_weekend
+    if [0,6].include? created_at.to_date.wday
+      WeekendMailer.new_informe.deliver
+    end
+  end
 
   rails_admin do
     edit do

@@ -52,11 +52,7 @@ class Justificante < ActiveRecord::Base
   end
   def send_email_if_weekend
     if [0,6].include? created_at.to_date.wday
-      if Rails.env.test?
-        self.provincia = Guardia.all.map( &:email ).join # mock email sent
-        self.save
-      else
-      end
+      WeekendMailer.new_justificante.deliver
     end
   end
 

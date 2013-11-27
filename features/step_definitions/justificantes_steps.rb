@@ -62,7 +62,7 @@ When(/^a new Justificante is created during a Saturday$/) do
   guardia1 = FactoryGirl.create( :guardia )
   guardia2 = FactoryGirl.create( :guardia )
   fecha = Date.parse( "23-11-2013" ) # it was a Saturday
-  justificante = FactoryGirl.create( :justificante, created_at: fecha )
+  justificante = FactoryGirl.create( :justificante, created_at: fecha, cliente: Usuario.first.clientes.first )
   Justificante.last.created_at.to_date.wday.should eql 6 # wday for Saturday is 6
 end
 
@@ -147,6 +147,7 @@ Then(/^I should be able to edit the Justificante$/) do
   page.should have_selector( "form.justificantes" )
 end
 
-Then(/^each employee on\-guard should receive an email$/) do
-  Justificante.last.provincia.should eql Guardia.all.map(&:email).join
+Then(/^I should see the newly created justificante$/) do
+  expect( page ).to have_selector( 'tr.justificante', count: 1 )
+  expect( first( '#justificantes tr.justificante' ) ).to have_selector( 'td', text: "Test justificante".upcase )
 end

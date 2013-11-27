@@ -20,9 +20,14 @@ end
   Scenario: create a new Justificante during a Saturday implies an email
     Given I am a registered User
     When a new Justificante is created during a Saturday
-    Then each employee on-guard should receive an email
-@now
+    Then "email1@llorens.com" should receive an email
+    When I open the email
+    Then I should see "Recibida solicitud de nuevo justificante" in the email subject
+    Then I should see "Puede acceder a la solicitud" in the email body
+    When I follow "este enlace" in the email
+    Then I should see the newly created justificante
+
   Scenario: create a new Justificante during a Sunday implies an email
     Given I am a registered User
     When a new Justificante is created during a Sunday
-    Then "angel@a.com" should receive an email
+    Then "email1@llorens.com" should receive an email

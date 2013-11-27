@@ -25,4 +25,4 @@ end
   Scenario: create a new Justificante during a Sunday implies an email
     Given I am a registered User
     When a new Justificante is created during a Sunday
-    Then each employee on-guard should receive an email
+    Then "angel@a.com" should receive an email

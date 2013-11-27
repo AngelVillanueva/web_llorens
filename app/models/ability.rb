@@ -7,6 +7,7 @@ class Ability
         can :access, :rails_admin # panel de administracion
         can :dashboard # panel de administracion
         can :manage, :all
+        cannot :manage, [ Aviso, Notificacion ]
     elsif usuario.role? "employee"
         can :manage, Expediente
         can :manage, Justificante

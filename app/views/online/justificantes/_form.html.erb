@@ -18,9 +18,9 @@
     <%= f.association :cliente,
       collection: current_usuario.clientes, label_method: :nombre,
       value_method: :id, include_blank: false %>
-    <%= f.input :nif_comprador %>
+    <%= f.input :nif_comprador, label: t( "NIF Comprador" ) %>
     <%= f.input :nombre_razon_social, label: t("Nombre o Razon Social") %>
-    <%= f.input :primer_apellido %>
+    <%= f.input :primer_apellido, label: "* Primer apellido" %>
     <%= f.input :segundo_apellido %>
   </div>
   <div class="span4">

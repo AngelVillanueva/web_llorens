@@ -26,7 +26,7 @@ end
 
 When(/^I submit all the information for a new Justificante$/) do
   visit new_online_justificante_path
-  fill_in "Nif comprador", with: "00000000T"
+  fill_in "justificante_nif_comprador", with: "00000000T"
   fill_in "justificante_nombre_razon_social", with: "AAA"
   fill_in "Primer apellido", with: "AAA"
   fill_in "Segundo apellido", with: "AAA"
@@ -43,7 +43,7 @@ end
 
 When(/^I submit all the information for a new Justificante for a person$/) do
   visit new_online_justificante_path
-  fill_in "Nif comprador", with: "00000000T"
+  fill_in "justificante_nif_comprador", with: "00000000T"
   fill_in "justificante_nombre_razon_social", with: "AAA"
   fill_in "Primer apellido", with: "AAA"
   fill_in "Provincia", with: "AAA"
@@ -59,7 +59,7 @@ end
 
 When(/^I submit all the information for a new Justificante for a person but without first name$/) do
   visit new_online_justificante_path
-  fill_in "Nif comprador", with: "00000000T"
+  fill_in "justificante_nif_comprador", with: "00000000T"
   fill_in "justificante_nombre_razon_social", with: "AAA"
   fill_in "Provincia", with: "AAA"
   fill_in "Municipio", with: "AAA"
@@ -75,7 +75,7 @@ end
 When(/^I submit all the information for a new Justificante for a company$/) do
   visit new_online_justificante_path
   check "imacompany"
-  fill_in "Nif comprador", with: "00000000T"
+  fill_in "justificante_nif_comprador", with: "00000000T"
   fill_in "justificante_nombre_razon_social", with: "AAA"
   fill_in "Provincia", with: "AAA"
   fill_in "Municipio", with: "AAA"

@@ -16,20 +16,20 @@ end
     Given I am a registered User
     When I submit all the information for a new Justificante
     Then a new Justificante should be created
-@now
+
   Scenario: create a new Justificante for a person
     Given I am a registered User
     When I submit all the information for a new Justificante for a person
     Then a new Justificante should be created
 
-@now @javascript
+@javascript
   Scenario: create a new Justificante for a person
     Given I am a registered User
     When I submit all the information for a new Justificante for a person but without first name
     Then a new Justificante should not be created
       And I should be reminded to fulfill the first name field
 
-@now @javascript
+@javascript
   Scenario: create a new Justificante for a person
     Given I am a registered User
     When I submit all the information for a new Justificante for a company

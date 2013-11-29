@@ -218,6 +218,14 @@ $(document).ready ->
   $( 'a.filtering' ).click ->
     $( 'tr.filter' ).slideToggle()
 
+  # checkbox "acompany?" for new Justificante
+  $( document ).on 'change', '#imacompany', ->
+    handleNewJustificanteApellidos()
+
+  # take care of mandatory first name field for new Justificantes via javascript
+  $( document ).on 'submit', '#new_justificante', ->
+    handleFirstNameIfNotACompany()
+
   # IE8- rounded borders through PIE.js
   if window.PIE
     $(".pie").each ->

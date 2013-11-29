@@ -1,3 +1,15 @@
+<% if justificante.new_record? %>
+  <div class="control-group imacompany offset4">
+    <div class="controls checkbox">
+      <label class="control-label" for="imacompany">
+        <input type="checkbox" name="imacompany" id="imacompany">
+        <%= t( "Solicitud a nombre de empresa" ) %>
+      </label>
+    </div>
+  </div>
+  <%= render 'shared/primer_apellido' %>
+<% end %>
+
 <%= simple_form_for [:online, justificante], html: { class: 'form-horizontal justificantes', multipart: true } do |f| %>
   <%= f.error_notification %>
   <% if justificante.new_record? %>
@@ -6,9 +18,9 @@
     <%= f.association :cliente,
       collection: current_usuario.clientes, label_method: :nombre,
       value_method: :id, include_blank: false %>
-    <%= f.input :nif_comprador %>
-    <%= f.input :nombre_razon_social, label: t("Nombre o Razón Social") %>
-    <%= f.input :primer_apellido %>
+    <%= f.input :nif_comprador, label: t( "NIF Comprador" ) %>
+    <%= f.input :nombre_razon_social, label: t("Nombre o Razon Social") %>
+    <%= f.input :primer_apellido, label: "* Primer apellido" %>
     <%= f.input :segundo_apellido %>
   </div>
   <div class="span4">

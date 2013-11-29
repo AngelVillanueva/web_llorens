@@ -172,6 +172,33 @@ root.analytics_loaded = false
 @updateScreen = ->
   location.reload(true)
 
+# handle Apellidos for new Justificante request
+@handleNewJustificanteApellidos = ->
+  changeApellidosLabelText()
+  $( 'div.justificante_primer_apellido, div.justificante_segundo_apellido' ).toggle()
+
+@changeApellidosLabelText = ->
+  label = $( '.justificante_nombre_razon_social label' )
+  acc_label = $( '.justificante_nif_comprador label' )
+  now = $( label ).text()
+  switch now
+    when "* Nombre"
+      new_text = "* Razón social"
+      acc_new_text = "* CIF del comprador"
+    when "* Razón social"
+      new_text = "* Nombre"
+      acc_new_text = "* NIF del comprador"
+  $( label ).text( new_text )
+  $( acc_label ).text( acc_new_text )
+
+# take cares of First name as mandatory field just for people (not companies)
+@handleFirstNameIfNotACompany = ->
+  acompany = $( '#imacompany' ).prop( 'checked' )
+  first_name = $( '#justificante_primer_apellido' ).val()
+  if !acompany && !first_name
+    $( '#primer_apellido_modal' ).modal( 'show' )
+    return false
+
 
 
 

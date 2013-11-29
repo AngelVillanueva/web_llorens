@@ -57,6 +57,21 @@ When(/^I submit all the information for a new Justificante for a person$/) do
   click_button "Solicitar justificante"
 end
 
+When(/^I submit all the information for a new Justificante for a person but without first name$/) do
+  visit new_online_justificante_path
+  fill_in "Nif comprador", with: "00000000T"
+  fill_in "justificante_nombre_razon_social", with: "AAA"
+  fill_in "Provincia", with: "AAA"
+  fill_in "Municipio", with: "AAA"
+  fill_in "Direccion", with: "AAA"
+  fill_in "Matricula", with: "AAA"
+  fill_in "Bastidor", with: "AAA"
+  fill_in "Marca", with: "AAA"
+  fill_in "Modelo", with: "AAA"
+  select "Sinapse Consulting S.L.", from: "Cliente"
+  click_button "Solicitar justificante"
+end
+
 When(/^I submit all the information for a new Justificante for a company$/) do
   visit new_online_justificante_path
   check "imacompany"
@@ -187,4 +202,8 @@ end
 Then(/^I should see the newly created justificante$/) do
   expect( page ).to have_selector( 'tr.justificante', count: 1 )
   expect( first( '#justificantes tr.justificante' ) ).to have_selector( 'td', text: "Test justificante".upcase )
+end
+
+Then(/^I should be reminded to fulfill the first name field$/) do
+  expect( page ).to have_selector( '.modal-body p', text: I18n.t( "Primer apellido obligatorio para personas" ) )
 end

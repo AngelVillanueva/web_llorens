@@ -185,5 +185,14 @@ root.analytics_loaded = false
     when "* Razón social" then new_text = "* Nombre"
   $( label ).text( new_text )
 
+# take cares of First name as mandatory field just for people (not companies)
+@handleFirstNameIfNotACompany = ->
+  acompany = $( '#imacompany' ).prop( 'checked' )
+  first_name = $( '#justificante_primer_apellido' ).val()
+  if !acompany && !first_name
+    $( '#primer_apellido_modal' ).modal( 'show' )
+    return false
+
+
 
 

@@ -38,7 +38,7 @@ class Justificante < ActiveRecord::Base
   before_update :assign_hora_entrega, if: :first_time_pdf?
   after_create :send_email_if_weekend
 
-  validates :identificador, :nif_comprador, :nombre_razon_social, :primer_apellido, :segundo_apellido, :provincia, :municipio, :direccion, :matricula, :bastidor, :marca, :modelo, :hora_solicitud, :cliente_id, presence: true
+  validates :identificador, :nif_comprador, :nombre_razon_social, :provincia, :municipio, :direccion, :matricula, :bastidor, :marca, :modelo, :hora_solicitud, :cliente_id, presence: true
 
   #protected
   def assign_hora_solicitud

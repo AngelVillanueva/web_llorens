@@ -16,6 +16,18 @@ end
     Given I am a registered User
     When I submit all the information for a new Justificante
     Then a new Justificante should be created
+@now
+  Scenario: create a new Justificante for a person
+    Given I am a registered User
+    When I submit all the information for a new Justificante for a person
+    Then a new Justificante should be created
+
+@now @javascript
+  Scenario: create a new Justificante for a person
+    Given I am a registered User
+    When I submit all the information for a new Justificante for a company
+    Then a new Justificante should be created
+
 @email
   Scenario Outline: create a new Justificante on Saturday or Sunday implies an email
     Given I am a registered User

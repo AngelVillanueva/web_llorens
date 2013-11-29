@@ -57,8 +57,8 @@ describe Justificante do
       should validate_presence_of :identificador
       should validate_presence_of :nif_comprador
       should validate_presence_of :nombre_razon_social
-      should validate_presence_of :primer_apellido
-      should validate_presence_of :segundo_apellido
+      should_not validate_presence_of :primer_apellido
+      should_not validate_presence_of :segundo_apellido
       should validate_presence_of :provincia
       should validate_presence_of :municipio
       should validate_presence_of :direccion

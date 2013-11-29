@@ -181,8 +181,8 @@ root.analytics_loaded = false
   label = $( '.justificante_nombre_razon_social label' )
   now = $( label ).text()
   switch now
-    when "* Nombre" then new_text = "* Razon social"
-    else new_text = "* Nombre"
+    when "* Nombre" then new_text = "* Razón social"
+    when "* Razón social" then new_text = "* Nombre"
   $( label ).text( new_text )
 
 

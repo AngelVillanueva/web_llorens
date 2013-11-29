@@ -67,7 +67,7 @@ module WebLlorens
     config.assets.version = '1.0'
 
     # Force admin_base precompilation
-    config.assets.precompile += %w( PIE.js )
+    config.assets.precompile += %w( PIE.js rich/base.js )
 
     # Devise reco
     config.assets.initialize_on_precompile = false

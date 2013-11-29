@@ -218,6 +218,10 @@ $(document).ready ->
   $( 'a.filtering' ).click ->
     $( 'tr.filter' ).slideToggle()
 
+  # checkbox "acompany?" for new Justificante
+  $( document ).on 'change', '#imacompany', ->
+    handleNewJustificanteApellidos()
+
   # IE8- rounded borders through PIE.js
   if window.PIE
     $(".pie").each ->

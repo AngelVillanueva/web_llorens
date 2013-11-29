@@ -172,6 +172,18 @@ root.analytics_loaded = false
 @updateScreen = ->
   location.reload(true)
 
+# handle Apellidos for new Justificante request
+@handleNewJustificanteApellidos = ->
+  changeApellidosLabelText()
+  $( 'div.justificante_primer_apellido, div.justificante_segundo_apellido' ).toggle()
+
+@changeApellidosLabelText = ->
+  label = $( '.justificante_nombre_razon_social label' )
+  now = $( label ).text()
+  switch now
+    when "* Nombre" then new_text = "* Razon social"
+    else new_text = "* Nombre"
+  $( label ).text( new_text )
 
 
 

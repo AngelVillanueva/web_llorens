@@ -1,3 +1,14 @@
+<% if justificante.new_record? %>
+  <div class="control-group imacompany offset4">
+    <div class="controls checkbox">
+      <label class="control-label" for="imacompany">
+        <input type="checkbox" name="imacompany" id="imacompany">
+        <%= t( "Solicitud a nombre de empresa" ) %>
+      </label>
+    </div>
+  </div>
+<% end %>
+
 <%= simple_form_for [:online, justificante], html: { class: 'form-horizontal justificantes', multipart: true } do |f| %>
   <%= f.error_notification %>
   <% if justificante.new_record? %>

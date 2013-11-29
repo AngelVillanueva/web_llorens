@@ -179,11 +179,17 @@ root.analytics_loaded = false
 
 @changeApellidosLabelText = ->
   label = $( '.justificante_nombre_razon_social label' )
+  acc_label = $( '.justificante_nif_comprador label' )
   now = $( label ).text()
   switch now
-    when "* Nombre" then new_text = "* Razón social"
-    when "* Razón social" then new_text = "* Nombre"
+    when "* Nombre"
+      new_text = "* Razón social"
+      acc_new_text = "* CIF del comprador"
+    when "* Razón social"
+      new_text = "* Nombre"
+      acc_new_text = "* NIF del comprador"
   $( label ).text( new_text )
+  $( acc_label ).text( acc_new_text )
 
 # take cares of First name as mandatory field just for people (not companies)
 @handleFirstNameIfNotACompany = ->

@@ -36,6 +36,7 @@ class Justificante < ActiveRecord::Base
 
   before_validation :assign_hora_solicitud, on: :create
   before_update :assign_hora_entrega, if: :first_time_pdf?
+  after_create :send_email_if_weekend
 
   validates :identificador, :nif_comprador, :nombre_razon_social, :primer_apellido, :segundo_apellido, :provincia, :municipio, :direccion, :matricula, :bastidor, :marca, :modelo, :hora_solicitud, :cliente_id, presence: true
 
@@ -48,6 +49,11 @@ class Justificante < ActiveRecord::Base
   end
   def first_time_pdf?
     pdf_file_name_was.nil? && !pdf_file_name.nil?
+  end
+  def send_email_if_weekend
+    if [0,6].include? created_at.to_date.wday
+      WeekendMailer.delay.new_justificante
+    end
   end
 
   rails_admin do

@@ -58,6 +58,27 @@ When(/^I access the edit page for a given Justificante$/) do
   visit edit_online_justificante_path(Justificante.first)
 end
 
+When(/^a new Justificante is created during a (.*?)$/) do |weekday|
+  guardia1 = FactoryGirl.create( :guardia )
+  guardia2 = FactoryGirl.create( :guardia )
+  if weekday == "Saturday"
+    some_day = "23-11-2013" # it was a Saturday
+    on_week = 6 # wday for Saturday is 6
+  elsif weekday == "Sunday"
+    some_day = "24-11-2013" # it was a Sunday
+    on_week = 0 # wday for Sunday is 0
+  elsif weekday == "Monday"
+    some_day = "25-11-2013" # it was a Sunday
+    on_week = 1 # wday for Sunday is 0
+  elsif weekday == "Friday"
+    some_day = "29-11-2013" # it was a Sunday
+    on_week = 5 # wday for Sunday is 0
+  end
+  fecha = Date.parse( some_day ) 
+  justificante = FactoryGirl.create( :justificante, created_at: fecha, cliente: Usuario.first.clientes.first )
+  Justificante.last.created_at.to_date.wday.should eql on_week
+end
+
 Then(/^a new Justificante should (not )?be created$/) do |negation|
   if negation
     Justificante.all.count.should eql( 0 )
@@ -129,4 +150,9 @@ end
 Then(/^I should be able to edit the Justificante$/) do
   page.should have_title( I18n.t( "Editar Justificante Profesional" ) )
   page.should have_selector( "form.justificantes" )
+end
+
+Then(/^I should see the newly created justificante$/) do
+  expect( page ).to have_selector( 'tr.justificante', count: 1 )
+  expect( first( '#justificantes tr.justificante' ) ).to have_selector( 'td', text: "Test justificante".upcase )
 end

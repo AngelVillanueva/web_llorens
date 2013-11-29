@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131126154520) do
+ActiveRecord::Schema.define(:version => 20131127113935) do
 
   create_table "api_keys", :force => true do |t|
     t.string   "access_token"
@@ -86,6 +86,14 @@ ActiveRecord::Schema.define(:version => 20131126154520) do
   add_index "expedientes", ["has_incidencia"], :name => "index_expedientes_on_has_incidencia"
   add_index "expedientes", ["id", "type"], :name => "index_expedientes_on_id_and_type"
   add_index "expedientes", ["llorens_cliente_id"], :name => "index_expedientes_on_llorens_cliente_id"
+
+  create_table "guardias", :force => true do |t|
+    t.string   "email"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "guardias", ["email"], :name => "index_guardias_on_email"
 
   create_table "informes", :force => true do |t|
     t.string   "matricula"

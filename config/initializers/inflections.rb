@@ -18,4 +18,5 @@ ActiveSupport::Inflector.inflections do |inflect|
  inflect.irregular 'transferencia', 'transferencias'
  inflect.irregular 'organizacion', 'organizaciones'
  inflect.irregular 'notificacion', 'notificaciones'
+ inflect.irregular 'guardia', 'guardias'
 end

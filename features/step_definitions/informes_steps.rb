@@ -58,6 +58,27 @@ When(/^I access the edit page for a given Informe$/) do
   visit edit_online_informe_path(informe)
 end
 
+When(/^a new Informe is created during a (.*?)$/) do |weekday|
+  guardia1 = FactoryGirl.create( :guardia )
+  guardia2 = FactoryGirl.create( :guardia )
+  if weekday == "Saturday"
+    some_day = "23-11-2013" # it was a Saturday
+    on_week = 6 # wday for Saturday is 6
+  elsif weekday == "Sunday"
+    some_day = "24-11-2013" # it was a Sunday
+    on_week = 0 # wday for Sunday is 0
+  elsif weekday == "Monday"
+    some_day = "25-11-2013" # it was a Sunday
+    on_week = 1 # wday for Sunday is 0
+  elsif weekday == "Friday"
+    some_day = "29-11-2013" # it was a Sunday
+    on_week = 5 # wday for Sunday is 0
+  end
+  fecha = Date.parse( some_day ) 
+  informe = FactoryGirl.create( :informe, created_at: fecha, cliente: Usuario.first.clientes.first )
+  Informe.last.created_at.to_date.wday.should eql on_week
+end
+
 Then(/^I should see a list of the Informes$/) do
   page.should have_title( I18n.t( "Informes de trafico" ) )
   usuario = Usuario.find_by_nombre( "Angel" )
@@ -131,4 +152,9 @@ end
 Then(/^I should be able to edit the Informe$/) do
   page.should have_title( I18n.t( "Editar Informe Trafico" ) )
   page.should have_selector( "form.edit_informe" )
+end
+
+Then(/^I should see the newly created informe$/) do
+  expect( page ).to have_selector( 'tr.informe', count: 1 )
+  expect( first( '#informes tr.informe' ) ).to have_selector( 'td', text: "Test informe".upcase )
 end

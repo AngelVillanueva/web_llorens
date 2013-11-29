@@ -1,8 +1,10 @@
 class ContactMailer < ActionMailer::Base
   if Rails.env.production?
-    recipients = ["info@sinapse.es", "jbrugada@gestoriallorens.com"]
+    recipients = [ "info@sinapse.es", "jbrugada@gestoriallorens.com" ]
+  elsif Rails.env.test?
+    recipients = [ "employee@llorens.com" ]
   else
-    recipients = ["info@sinapse.es"]
+    recipients = [ "info@sinapse.es" ]
   end
   default to: Proc.new { recipients },
     from: "gestoriallorens@gestoriallorens.com"

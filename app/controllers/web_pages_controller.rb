@@ -47,12 +47,7 @@ class WebPagesController < ApplicationController
     params
   end
   def send_contact_emails contact_data
-    if current_usuario.role?("admin")
-      ContactMailer.delay.contact_confirmation(contact_data)
-      ContactMailer.delay.agradecimiento(contact_data)
-    else
-      ContactMailer.contact_confirmation(contact_data).deliver
-      ContactMailer.agradecimiento(contact_data).deliver
-    end
+    ContactMailer.delay.contact_confirmation(contact_data)
+    ContactMailer.delay.agradecimiento(contact_data)
   end
 end

@@ -31,3 +31,10 @@ Feature: Contact Form
     Given I am a User
     When I try to submit the contact form without checking the TOS box
     Then I should see an error message
+@now @email @javascript
+  Scenario: a complete contact request submission should generate two emails
+    Given I am a User
+    When I submit the form with all the fields
+    Then I should not see an error message
+      And "employee@llorens.com" should receive an email
+      And "requester@example.com" should receive an email

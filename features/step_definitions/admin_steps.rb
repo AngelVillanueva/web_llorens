@@ -34,6 +34,11 @@ Given(/^I am a registered User with no role$/) do
   user.norole?
 end
 
+When(/^I access the admin panel$/) do
+  visit root_path
+  find( "li.administrator a" ).click
+end
+
 When(/^I create an Aviso in the admin panel$/) do
   visit rails_admin.dashboard_path
   find( "li[data-model=aviso] a" ).click
@@ -90,4 +95,8 @@ end
 Then(/^the Aviso should be deleted$/) do 
   current_usuario = Usuario.first
   current_usuario.avisos.caducados.count.should eql 0
+end
+
+Then(/^I should see the Matriculaciones menu link$/) do
+  page.should have_css( "li[data-model=matriculacion] a" )
 end

@@ -15,7 +15,7 @@ RailsAdmin.config do |config|
   config.current_user_method { current_usuario } # auto-generated
 
   # Can Can initializer
-  config.authorize_with :cancan
+  config.authorize_with :cancan, AdminAbility
 
   # If you want to track changes on your models:
   # config.audit_with :history, 'Usuario'

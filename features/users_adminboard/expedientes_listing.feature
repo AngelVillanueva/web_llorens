@@ -11,7 +11,7 @@ Scenario: Matriculaciones index
   Given I am a registered User with some Expedientes
   When I access the Matriculaciones index page
   Then I should see a list of the Matriculaciones
-@current
+
 Scenario: Matriculaciones index should not show Observaciones
   Given I am a registered User with some Expedientes
   When I access the Matriculaciones index page
@@ -27,7 +27,7 @@ Scenario: Transferencias index
   Given I am a registered User with some Expedientes
   When I access the Transferencias index page
   Then I should see a list of the Transferencias
-@current
+
 Scenario: Transferencias index should not show Observaciones
   Given I am a registered User with some Expedientes
   When I access the Transferencias index page

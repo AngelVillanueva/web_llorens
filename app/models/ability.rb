@@ -16,7 +16,6 @@ class Ability
         can :manage, Justificante, cliente_id: usuario.cliente_ids
         can :manage, Informe, cliente_id: usuario.cliente_ids 
     end
-    cannot :history, :all
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)

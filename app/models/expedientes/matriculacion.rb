@@ -48,32 +48,84 @@ class Matriculacion < Expediente
         active false
       end
       field :type
-      field :identificador
-      field :matricula
-      field :bastidor
-      field :cliente
+      field :identificador do
+        read_only do
+          # controller bindings is available here. Example:
+          bindings[:controller].current_usuario.role? "employee"
+        end
+      end
+      field :matricula do
+        read_only do
+          # controller bindings is available here. Example:
+          bindings[:controller].current_usuario.role? "employee"
+        end
+      end
+      field :bastidor do
+        read_only do
+          # controller bindings is available here. Example:
+          bindings[:controller].current_usuario.role? "employee"
+        end
+      end
+      field :cliente do
+        read_only do
+          # controller bindings is available here. Example:
+          bindings[:controller].current_usuario.role? "employee"
+        end
+      end
       field :llorens_cliente_id do
         label I18n.t("llorens_cliente_id")
+        read_only do
+          # controller bindings is available here. Example:
+          bindings[:controller].current_usuario.role? "employee"
+        end
       end
-      field :comprador
+      field :comprador do
+        read_only do
+          # controller bindings is available here. Example:
+          bindings[:controller].current_usuario.role? "employee"
+        end
+      end
       field :vendedor do
         group :advanced
+        read_only do
+          # controller bindings is available here. Example:
+          bindings[:controller].current_usuario.role? "employee"
+        end
       end
-      field :marca
-      field :modelo
+      field :marca do
+        read_only do
+          # controller bindings is available here. Example:
+          bindings[:controller].current_usuario.role? "employee"
+        end
+      end
+      field :modelo do
+        read_only do
+          # controller bindings is available here. Example:
+          bindings[:controller].current_usuario.role? "employee"
+        end
+      end
       field :fecha_alta do
         date_format :default
+        read_only do
+          # controller bindings is available here. Example:
+          bindings[:controller].current_usuario.role? "employee"
+        end
       end
       field :fecha_entra_trafico do
         date_format :default
         group :advanced
+        read_only do
+          # controller bindings is available here. Example:
+          bindings[:controller].current_usuario.role? "employee"
+        end
       end
       field :fecha_facturacion do
         date_format :default
         group :advanced
-      end
-      field :observaciones do
-        group :advanced
+        read_only do
+          # controller bindings is available here. Example:
+          bindings[:controller].current_usuario.role? "employee"
+        end
       end
       field :pdf_file_name do
         label I18n.t("PDF matricula")

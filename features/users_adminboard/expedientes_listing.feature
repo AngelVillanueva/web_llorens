@@ -11,6 +11,11 @@ Scenario: Matriculaciones index
   Given I am a registered User with some Expedientes
   When I access the Matriculaciones index page
   Then I should see a list of the Matriculaciones
+@current
+Scenario: Matriculaciones index should not show Observaciones
+  Given I am a registered User with some Expedientes
+  When I access the Matriculaciones index page
+  Then I should not see Observaciones in the list of the Matriculaciones
 
 Scenario: Matriculaciones index just show the PDF link if the document is on the server
   Given I am a registered User with some Expedientes
@@ -22,6 +27,11 @@ Scenario: Transferencias index
   Given I am a registered User with some Expedientes
   When I access the Transferencias index page
   Then I should see a list of the Transferencias
+@current
+Scenario: Transferencias index should not show Observaciones
+  Given I am a registered User with some Expedientes
+  When I access the Transferencias index page
+  Then I should not see Observaciones in the list of the Transferencias
 
 Scenario: Users can see just the Expedientes from their Clientes
   Given I am a registered User with some Expedientes

@@ -1,4 +1,3 @@
-@current
 Feature: Avisos created from the admin panel
   As an admin user
   In order to let my customers know when something important happens

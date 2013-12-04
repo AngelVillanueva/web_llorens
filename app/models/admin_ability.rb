@@ -11,5 +11,6 @@ class AdminAbility
       can :dashboard # panel de administracion
       can :manage, Matriculacion
     end
+    cannot :history, :all
   end
 end

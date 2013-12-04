@@ -180,6 +180,22 @@ Then(/^I should see a list of the Matriculaciones$/) do
   end
 end
 
+Then(/^I should not see Observaciones in the list of the Matriculaciones$/) do
+  page.should have_title( "Listado de Matriculaciones" )
+  matriculaciones = Matriculacion.all.each do |matriculacion|
+    page.should have_selector( 'td', text: matriculacion.matricula.upcase )
+  end
+  page.should_not have_selector( 'th', text: I18n.t( "Observaciones" ) )
+end
+
+Then(/^I should not see Observaciones in the list of the Transferencias$/) do
+  page.should have_title( "Listado de Transferencias" )
+  transferencias = Transferencia.all.each do |transferencia|
+    page.should have_selector( 'td', text: transferencia.matricula.upcase )
+  end
+  page.should_not have_selector( 'th', text: I18n.t( "Observaciones" ) )
+end
+
 Then(/^I should see a list of the Transferencias$/) do
   page.should have_title( "Listado de Transferencias" )
   transferencias = Transferencia.all.each do |transferencia|

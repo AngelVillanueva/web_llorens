@@ -22,8 +22,8 @@
             <% if admin_menu %>
               <% if current_usuario %>
                   <li><%= link_to t("Area usuarios"), online_root_path, class: 'root' %></li>
-                  <% if current_usuario.role? "admin" %>
-                      <li><%= link_to t("Admin"), rails_admin_path, class: 'admin' %></li>
+                  <% unless current_usuario.norole? %>
+                      <li class="administrator"><%= link_to t("Admin"), rails_admin_path, class: 'admin' %></li>
                   <% end %>
                   <li>
                       <%= link_to t("Sign out"),

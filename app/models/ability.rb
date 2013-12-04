@@ -1,16 +1,16 @@
 class Ability
+  # this file manage rules for Area Usuarios. RailsAdmin rules are in admin_ability.rb
   include CanCan::Ability
 
   def initialize(usuario)
     # Admin users
     if usuario.role? "admin"
-        can :access, :rails_admin # panel de administracion
-        can :dashboard # panel de administracion
         can :manage, :all
     elsif usuario.role? "employee"
         can :manage, Expediente
         can :manage, Justificante
         can :manage, Informe
+    # Common users
     elsif usuario
         can :manage, Expediente, cliente_id: usuario.cliente_ids
         can :manage, Justificante, cliente_id: usuario.cliente_ids

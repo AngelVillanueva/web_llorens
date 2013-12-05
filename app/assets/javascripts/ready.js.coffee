@@ -82,7 +82,7 @@ $(document).ready ->
         { type: "select", values: [ 'PDF Pendiente', 'Ver PDF' ] }
       ]
     )
-    $('tr.filter:first').slideUp("slow")
+    $('tr.filter:first').hide()
 
   # transferencias
   if ( $( '#expedientes.transferencia' ).length )

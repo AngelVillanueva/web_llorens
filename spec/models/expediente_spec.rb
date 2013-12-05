@@ -49,6 +49,7 @@ describe Expediente do
     it { should respond_to :observaciones }
     it { should respond_to :incidencia }
     it { should respond_to :has_incidencia }
+    it { should respond_to :has_documentos }
     it { should respond_to :type }
     it { should respond_to :llorens_cliente_id }
     it { should belong_to :cliente }

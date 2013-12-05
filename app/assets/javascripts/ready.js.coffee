@@ -58,7 +58,7 @@ $(document).ready ->
   if ( $( '#expedientes.matriculacion' ).length )
     createDataTable(
       'expedientes',
-      [ [ 0, "desc" ] ],
+      [],
       [
         null,
         null,
@@ -82,7 +82,7 @@ $(document).ready ->
         { type: "select", values: [ 'PDF Pendiente', 'Ver PDF' ] }
       ]
     )
-    $('tr.filter:first').slideUp("slow")
+    $('tr.filter:first').hide()
 
   # transferencias
   if ( $( '#expedientes.transferencia' ).length )

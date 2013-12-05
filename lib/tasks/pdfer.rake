@@ -11,7 +11,8 @@ namespace :pdfer do
       else
         the_pdf_file = "#{Rails.root}/app/assets/pdfs/expedientes/#{folder_name(exp.type)}#{exp.identificador}.pdf"
       end
-      puts File.exist? the_pdf_file 
+      exp.has_documentos = File.exist? the_pdf_file
+      exp.save!
     end
   end
 

@@ -4,7 +4,7 @@
 namespace :pdfer do
 
   desc 'Looking for PDFs'
-  task :match => :environment do
+  task :match_all => :environment do
     Expediente.all.each do |exp|
       if Rails.env.production?
       the_pdf_file = "#{Rails.root}/public/assets/expedientes/#{folder_name(exp.type)}#{exp.identificador}.pdf"
@@ -16,12 +16,25 @@ namespace :pdfer do
     end
   end
 
-  task :testing => :environment do
-    puts "ok"
+  task :match_empty => :environment do
+    matched = 0
+    Expediente.where(has_documentos: !true).each do |exp|
+      if Rails.env.production?
+      the_pdf_file = "#{Rails.root}/public/assets/expedientes/#{folder_name(exp.type)}#{exp.identificador}.pdf"
+      else
+        the_pdf_file = "#{Rails.root}/app/assets/pdfs/expedientes/#{folder_name(exp.type)}#{exp.identificador}.pdf"
+      end
+      exp.has_documentos = File.exist? the_pdf_file
+      exp.save!
+      if File.exist? the_pdf_file
+        matched = matched + 1
+      end
+    end
+    puts "matched at #{Time.now}: #{matched}"
   end
 
   desc 'Run all pdfers'
-  task :all => [:match]
+  task :all => [:match_empty]
   
   task :default => :all
 

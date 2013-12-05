@@ -10,6 +10,7 @@ end
 @pdf
 Scenario: Generating the PDF
   Given I am a registered User with some Expedientes
+    And some of the Expedientes have documents attached
     And I visit the Matriculacion index page
   When I follow a PDF link
   Then I should see a PDF document

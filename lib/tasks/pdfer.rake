@@ -16,6 +16,10 @@ namespace :pdfer do
     end
   end
 
+  task :testing => :environment do
+    puts "ok"
+  end
+
   desc 'Run all pdfers'
   task :all => [:match]
   

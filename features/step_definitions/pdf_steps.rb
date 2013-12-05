@@ -1,3 +1,9 @@
+Given(/^some of the Expedientes have documents attached$/) do
+  exp = Expediente.first
+  exp.has_documentos = true
+  exp.save!
+end
+
 When(/^I follow a PDF link$/) do
   first('tbody tr').click_link "Ver PDF"
 end

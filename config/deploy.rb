@@ -1,5 +1,8 @@
 require "bundler/capistrano"
 require "delayed/recipes" #added for delayed job
+# added for whenever:
+set :whenever_command, "bundle exec whenever"
+require "whenever/capistrano"
 
 server "82.223.75.65", :web, :app, :db, primary: true
 

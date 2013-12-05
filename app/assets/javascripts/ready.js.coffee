@@ -58,7 +58,7 @@ $(document).ready ->
   if ( $( '#expedientes.matriculacion' ).length )
     createDataTable(
       'expedientes',
-      [ [ 0, "desc" ] ],
+      [],
       [
         null,
         null,

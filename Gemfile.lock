@@ -48,7 +48,7 @@ GEM
     afm (0.2.0)
     annotate (2.5.0)
       rake
-    arel (3.0.2)
+    arel (3.0.3)
     awesome_print (1.1.0)
     bcrypt-ruby (3.1.2)
     better_errors (0.8.0)
@@ -61,6 +61,7 @@ GEM
     builder (3.0.4)
     bullet (4.6.0)
       uniform_notifier
+    callsite (0.0.11)
     cancan (1.6.10)
     capistrano (2.15.5)
       highline
@@ -162,7 +163,7 @@ GEM
     jquery-ui-rails (3.0.1)
       jquery-rails
       railties (>= 3.1.0)
-    json (1.8.0)
+    json (1.8.1)
     kaminari (0.14.1)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -181,13 +182,14 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    meta_request (0.2.1)
+    meta_request (0.2.8)
+      callsite
       rack-contrib
-      rails
+      railties
     method_source (0.8.1)
-    mime-types (1.25)
+    mime-types (1.25.1)
     mini_portile (0.5.0)
-    multi_json (1.8.1)
+    multi_json (1.8.2)
     nested_form (0.3.2)
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
@@ -402,7 +404,7 @@ DEPENDENCIES
   jquery-ui-rails (~> 3.0.1)
   launchy (~> 2.3.0)
   lol_dba (~> 1.5.0)
-  meta_request (= 0.2.1)
+  meta_request
   newrelic_rpm
   paperclip (~> 3.0)
   pdf-reader (~> 1.3.3)

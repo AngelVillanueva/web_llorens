@@ -55,7 +55,7 @@ group :development do
   gem 'awesome_print', '1.1.0' # cool console object output
   gem 'better_errors', '0.8.0' # cool error info pages in development. Trace last error also by navigating to 0.0.0.0:3000/__better_errors
   gem 'binding_of_caller', '0.7.1' # cool error info pages in development
-  gem 'meta_request', '0.2.1' # rails_panel chrome extension.
+  gem 'meta_request' # rails_panel chrome extension.
   gem 'sextant', '0.2.3' # Navigate to 0.0.0.0:3000/rails/routes to see routes in the browser
   gem 'quiet_assets', '~> 1.0.2' # Get rid of loading assets info in development log
   gem 'ruby_gntp', '~> 0.3.4' # Growl with Bullet

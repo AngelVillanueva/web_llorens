@@ -14,7 +14,7 @@ namespace :fakefeed do
   desc 'Feeding Clientes'
   task :matriculaciones => :environment do
     Matriculacion.delete_all
-    5.times do
+    5000.times do
       Matriculacion.create!(
         identificador: "#{Faker::Lorem.characters(3).upcase}-#{Faker::Lorem.characters(3).upcase}",
         matricula: Faker::Lorem.characters(6).upcase,

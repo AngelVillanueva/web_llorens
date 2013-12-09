@@ -6,6 +6,13 @@ class Online::ExpedientesController < OnlineController
   expose( :expediente_type ) { params[:type].constantize }
   expose( :expediente, attributes: :expediente_params )
 
+  def index
+    respond_to do |format|
+      format.html
+      format.json { render json: ExpedientesDatatable.new( view_context, expediente_type, current_ability ) }
+    end
+  end
+
   def create
     if expediente.save
       redirect_to(expediente)

@@ -56,7 +56,7 @@ $(document).ready ->
   ###
   # matriculaciones
   if ( $( '#expedientes.matriculacion' ).length )
-    createDataTable(
+    createRemoteDataTable(
       'expedientes',
       [],
       [

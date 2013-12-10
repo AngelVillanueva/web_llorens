@@ -83,7 +83,16 @@ class ExpedientesDatatable
       if params[p].present?
         searched = params[p]
         column = @columns[i]
-        expedientes = expedientes.where("#{column} ilike :search", search: "%#{searched}%" ) unless searched == "~"
+        if column.include? "fecha"
+          lapse = searched.split("~")
+          unless lapse[1].nil?
+            f1 = lapse[0].to_date
+            f2 = lapse[1].to_date
+            expedientes = expedientes.where( "#{column} between :f1 and :f2", f1: f1, f2:f2 ) unless (searched.empty? || searched == "~")
+          end
+        else
+          expedientes = expedientes.where("#{column} ilike :search", search: "%#{searched}%" ) unless (searched.empty? || searched == "~")
+        end
       end
     end
     expedientes
@@ -107,5 +116,10 @@ class ExpedientesDatatable
       columns = %w[clientes.nombre]
     end
     columns
+  end
+
+  def clean(string_search, chars="~")
+    chars = Regexp.escape(chars)
+    string_search.gsub(/\A[#{chars}]+|[#{chars}]+\Z/, "")
   end
 end

@@ -204,6 +204,18 @@ module ApplicationHelper
       t( "Aviso" )
     end
   end
+  # returns the content of the Expedientes Matricula cell
+  def matricula_cell_whole( expediente )
+    concat matricula_cell_matricula expediente
+    if expediente_type? expediente, 'matriculacion'
+      concat matricula_cell_pdf expediente
+      concat matricula_cell_actions expediente
+    elsif expediente.incidencia && !expediente.incidencia.empty?
+      concat matricula_cell_incidencia expediente
+    elsif Transferencia.no_incidenciable
+      concat content_tag( 'i', nil, title: t( "Documentacion correcta" ), class: "noincidencia icon icon-circle")
+    end
+  end
   # returns the content of the Expedientes Documentos cell
   def documentos_cell( expediente )
     if expediente.has_documentos

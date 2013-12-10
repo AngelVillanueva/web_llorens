@@ -1,5 +1,5 @@
 class ExpedientesDatatable
-  delegate :params, :h, :link_to, :documentos_cell, to: :@view
+  delegate :params, :h, :link_to, :matricula_cell_whole, :documentos_cell, to: :@view
 
   def initialize(view, type, current_ability)
     @view = view
@@ -21,7 +21,7 @@ class ExpedientesDatatable
     expedientes.map do |expediente|
       [
         expediente.cliente.nombre,
-        expediente.matricula,
+        matricula_cell_whole( expediente ),
         expediente.bastidor,
         expediente.comprador,
         expediente.modelo,

@@ -5,6 +5,7 @@ class ExpedientesDatatable
     @view = view
     @type = type
     @current_ability = current_ability
+    @columns = type_columns
   end
 
   def as_json(options = {})
@@ -56,11 +57,20 @@ class ExpedientesDatatable
   end
 
   def sort_column
-    columns = %w[clientes.nombre matricula bastidor comprador modelo fecha_alta fecha_sale_trafico has_documentos]
-    columns[params[:iSortCol_0].to_i]
+    @columns[params[:iSortCol_0].to_i]
   end
 
   def sort_direction
     params[:sSortDir_0] == "desc" ? "desc" : "asc"
+  end
+
+  def type_columns
+    case @type.to_s
+    when "Matriculacion"
+      columns = %w[clientes.nombre matricula bastidor comprador modelo fecha_alta fecha_sale_trafico has_documentos]
+    when "Transferencia"
+      columns = %w[clientes.nombre]
+    end
+    columns
   end
 end

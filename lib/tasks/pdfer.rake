@@ -18,7 +18,7 @@ namespace :pdfer do
 
   task :match_empty => :environment do
     matched = 0
-    Expediente.where(has_documentos: !true).each do |exp|
+    Expediente.where(has_documentos: [false, nil]).each do |exp|
       if Rails.env.production?
       the_pdf_file = "#{Rails.root}/public/assets/expedientes/#{folder_name(exp.type)}#{exp.identificador}.pdf"
       else

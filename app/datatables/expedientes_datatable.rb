@@ -1,5 +1,5 @@
 class ExpedientesDatatable
-  delegate :params, :h, :link_to, :number_to_currency, to: :@view
+  delegate :params, :h, :link_to, :documentos_cell, to: :@view
 
   def initialize(view, type, current_ability)
     @view = view
@@ -27,7 +27,7 @@ class ExpedientesDatatable
         expediente.modelo,
         expediente.fecha_alta,
         expediente.fecha_sale_trafico,
-        expediente.has_documentos
+        documentos_cell( expediente )
       ]
     end
   end

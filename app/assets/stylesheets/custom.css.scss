@@ -88,11 +88,11 @@ td.icon {
   min-width: 50px;
 }
 @media (min-width: 780px) {
-  td.icon .icon:hover {
+  td.icon span.icon:hover, a.icon .icon:hover {
     font-size: 20px;
   }
 }
-td.icon a span {
+td.icon a span, a.icon span {
   padding: 0 10px;
 }
 @media (min-width: 780px) {

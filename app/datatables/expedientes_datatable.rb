@@ -83,7 +83,10 @@ class ExpedientesDatatable
       if params[p].present?
         searched = params[p]
         column = @columns[i]
-        if column.include? "fecha"
+        if column == "has_documentos"
+          filter = searched == "Ver PDF" ? "TRUE" : "FALSE"
+          expedientes = expedientes.where("#{column} IS #{filter}")
+        elsif column.include? "fecha"
           lapse = searched.split("~")
           unless lapse[1].nil?
             f1 = lapse[0].to_date

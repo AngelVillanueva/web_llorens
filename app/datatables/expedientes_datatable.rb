@@ -38,7 +38,7 @@ class ExpedientesDatatable
   end
 
   def fetch_expedientes
-    expedientes = @type.scoped.accessible_by( @current_ability ).page( page ).per( per_page )
+    expedientes = @type.unscoped.includes(:cliente).accessible_by( @current_ability ).page( page ).per( per_page )
     if params[:sSearch].present?
       expedientes = expedientes.where("bastidor like :search or comprador like :search or modelo like :search", search: "%#{params[:sSearch]}%")
     end

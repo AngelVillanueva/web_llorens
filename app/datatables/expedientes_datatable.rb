@@ -46,7 +46,7 @@ class ExpedientesDatatable
       expedientes = global_search expedientes
     end
     # if column search refine results
-    column_search expedientes
+    expedientes = column_search expedientes
     # sort if requested
     if params[:iSortCol_0].present?
       expedientes = expedientes.order("#{sort_column} #{sort_direction}")
@@ -74,10 +74,18 @@ class ExpedientesDatatable
     searched = params[:sSearch]
     searching = @global_search_columns.join(" ilike :search or ")
     searching << " ilike :search"
-    expedientes = expedientes.where(searching, search: "%#{searched}%")
+    expedientes = expedientes.where(searching, search: "%#{searched}%" )
   end
 
   def column_search expedientes
+    for i in 0..@columns.count
+      p = ("sSearch_" + i.to_s ).to_sym
+      if params[p].present?
+        searched = params[p]
+        column = @columns[i]
+        expedientes = expedientes.where("#{column} ilike :search", search: "%#{searched}%" ) unless searched == "~"
+      end
+    end
     expedientes
   end
 

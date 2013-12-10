@@ -27,8 +27,8 @@ class ExpedientesDatatable
         expediente.bastidor,
         expediente.comprador,
         expediente.modelo,
-        expediente.fecha_alta,
-        expediente.fecha_sale_trafico,
+        I18n.l(expediente.fecha_alta),
+        I18n.l(expediente.fecha_sale_trafico),
         documentos_cell( expediente )
       ]
     end
@@ -92,7 +92,7 @@ class ExpedientesDatatable
   def type_columns
     case @type.to_s
     when "Matriculacion"
-      columns = %w[clientes.nombre matricula bastidor comprador modelo fecha_alta fecha_sale_trafico has_documentos]
+      columns = %w[clientes.nombre matricula bastidor comprador modelo fecha_alta fecha_facturacion has_documentos]
     when "Transferencia"
       columns = %w[clientes.nombre]
     end

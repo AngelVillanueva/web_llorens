@@ -39,7 +39,7 @@ class ExpedientesDatatable
   def fetch_expedientes
     #expedientes = Expediente.includes(:cliente).order("#{sort_column} #{sort_direction}")
     #expedientes = expedientes.page(page).per(per_page)
-    expedientes = @type.scoped.accessible_by( @current_ability ).page( params[ :page ] ).per( 10 )
+    expedientes = @type.scoped.accessible_by( @current_ability ).page( page ).per( per_page )
     if params[:sSearch].present?
       expedientes = expedientes.where("bastidor like :search or comprador like :search or modelo like :search", search: "%#{params[:sSearch]}%")
     end

@@ -37,11 +37,12 @@ class ExpedientesDatatable
   end
 
   def fetch_expedientes
-    #expedientes = Expediente.includes(:cliente).order("#{sort_column} #{sort_direction}")
-    #expedientes = expedientes.page(page).per(per_page)
     expedientes = @type.scoped.accessible_by( @current_ability ).page( page ).per( per_page )
     if params[:sSearch].present?
       expedientes = expedientes.where("bastidor like :search or comprador like :search or modelo like :search", search: "%#{params[:sSearch]}%")
+    end
+    if params[:iSortCol_0].present?
+      expedientes = expedientes.order("#{sort_column} #{sort_direction}")
     end
     expedientes
   end
@@ -55,7 +56,7 @@ class ExpedientesDatatable
   end
 
   def sort_column
-    columns = %w[bastidor comprador]
+    columns = %w[clientes.nombre matricula bastidor comprador modelo fecha_alta fecha_sale_trafico has_documentos]
     columns[params[:iSortCol_0].to_i]
   end
 

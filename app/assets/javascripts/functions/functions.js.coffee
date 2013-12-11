@@ -171,6 +171,11 @@ root.analytics_loaded = false
             "sFileName": excelname + ".xls",
             "mColumns": exportcolumns,
             "sCharSet": "utf16le"
+          },
+          {
+            "sExtends": "download",
+            "sButtonText": "Download CSV",
+            "sUrl": oTable.data('csv')
           }
 
         ]
@@ -189,7 +194,7 @@ root.analytics_loaded = false
   $button.children('span').remove()
   $('<i class="icon icon-save icon-2x"/>').appendTo($button)
   $button.removeClass('btn').appendTo('.tools ul li:last')
-  $('.dataTables_wrapper').children('div.row:first').remove()
+  #$('.dataTables_wrapper').children('div.row:first').remove()
   $('li.tooltip-xls').tooltip({'title': 'Exportar Excel'})
 
 

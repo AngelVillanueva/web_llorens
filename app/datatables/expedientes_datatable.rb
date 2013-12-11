@@ -18,6 +18,16 @@ class ExpedientesDatatable
     }
   end
 
+  def to_csv(options = {})
+    # CSV.generate(options) do |csv|
+    #   csv << @columns
+    #   expedientes("csv").each do |expediente|
+    #     csv << expediente.attributes.values_at(*@columns)
+    #   end
+    # end
+    expedientes("csv")
+  end
+
   private
   def data
     expedientes.map do |expediente|
@@ -34,13 +44,17 @@ class ExpedientesDatatable
     end
   end
 
-  def expedientes
-    expedientes ||= fetch_expedientes
+  def expedientes(format=nil)
+    expedientes ||= fetch_expedientes(format)
   end
 
-  def fetch_expedientes
+  def fetch_expedientes(format=nil)
     # fetch expedientes on page load
-    expedientes = @type.unscoped.includes(:cliente).accessible_by( @current_ability ).page( page ).per( per_page )
+    if format == "csv"
+      expedientes = @type.unscoped.includes(:cliente).accessible_by( @current_ability )
+    else
+      expedientes = @type.unscoped.includes(:cliente).accessible_by( @current_ability ).page( page ).per( per_page )
+    end
     # if global search refine results
     if params[:sSearch].present?
       expedientes = global_search expedientes

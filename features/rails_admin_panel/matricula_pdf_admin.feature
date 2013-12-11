@@ -1,4 +1,3 @@
-@current
 Feature: Matricula PDF managed from the admin panel
   As an employee
   In order to quickly complete the Matriculacion information

@@ -37,7 +37,6 @@ Feature: Avisos created from the admin panel
     When I visit the application home page
     Then I should not see the Aviso
 
-
   Scenario: Avisos with an expired maximum date should be deleted as well
     Given I am a registered User with no role
       And there is one Aviso created
@@ -74,3 +73,19 @@ Feature: Avisos created from the admin panel
     When I visit the application home page
     Then I should see the first Aviso
       And I should be able to see the second Aviso also
+
+  Scenario: Avisos should be shown just once per session
+    Given I am a registered User
+      And there is one Aviso created
+    When I visit the application home page per second time during the same session
+    Then I should not see the Aviso
+
+@wip @javascript
+  Scenario: Not seen Avisos should be shown when visit the home page per second time 
+    Given I am a registered User
+      And there are two Avisos created
+    When I visit the application home page
+    Then I should see the first Aviso
+      And I should be able to close the Aviso
+    When I visit the application home page
+    Then I should be able to see the second Aviso

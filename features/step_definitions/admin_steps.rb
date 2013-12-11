@@ -55,6 +55,13 @@ When(/^I visit the application home page and log in$/) do
   first( "input[type=submit]" ).click
 end
 
+When(/^I visit the application home page per second time during the same session$/) do
+  step "I visit the application home page"
+  step "I should see the Aviso"
+  visit download_path
+  visit online_root_path
+end
+
 Then(/^the Aviso should be created$/) do
   Aviso.count.should eql 1
   Aviso.first.contenido.should eql "Importante aviso"
@@ -89,7 +96,12 @@ Then(/^I should be able to see the second Aviso also$/) do
   first( "button[data-toggle=modal]" ).click
   page.should_not have_selector( '.modal-body', text: Aviso.first.contenido )
   page.should have_selector( 'h3', text: I18n.t( "Aviso" ) )
-  page.should have_selector( '.modal-body', text: Aviso.last.titular )
+  page.should have_selector( '.modal-body', text: Aviso.last.contenido )
+end
+
+Then(/^I should be able to see the second Aviso$/) do
+  page.should have_selector( 'h3', text: I18n.t( "Aviso" ) )
+  page.should have_selector( '.modal-body', text: Aviso.last.contenido )
 end
 
 Then(/^the Aviso should be deleted$/) do 

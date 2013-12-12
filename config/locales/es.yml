@@ -362,3 +362,5 @@ es:
   Opcional 365 dias por defecto: "Fecha en la que dejará de mostrarse en cualquier caso. Si se deja en blanco será 1 año desde hoy; esta fecha se impone a los Días visible."
   Primer apellido obligatorio para personas: "El campo PRIMER APELLIDO es obligatorio a menos que se trate de una empresa."
   Campo obligatorio: "Campo obligatorio"
+  Estado: "Estado"
+  Finalizado: "Finalizado"

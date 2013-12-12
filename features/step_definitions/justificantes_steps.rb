@@ -179,7 +179,7 @@ Then(/^I should (not )?see the list of all the Justificantes from my Organizacio
 end
 
 Then(/^I should see the list of the Justificantes updated and sorted without reloading the page$/) do
-  using_wait_time 11 do
+  using_wait_time 20 do
     expect( page ).to have_selector( 'tr.justificante', count: 3 )
     expect( first( '#justificantes tr.justificante' ) ).to have_selector( 'td', text: "Nuevo justificante interno" )
   end

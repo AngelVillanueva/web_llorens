@@ -32,7 +32,7 @@ class Justificante < ActiveRecord::Base
   has_attached_file :pdf,
     :path => ":rails_root/uploads/:class/:id/:basename.:extension",
     :url => "/online/justificantes/:id/download"
-  default_scope includes(:cliente).order('created_at DESC')
+  default_scope includes(:cliente).order('pdf_file_name DESC, created_at DESC')
 
   before_validation :assign_hora_solicitud, on: :create
   before_update :assign_hora_entrega, if: :first_time_pdf?

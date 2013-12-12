@@ -34,11 +34,14 @@
       <%= justificante.modelo %>
     </td>
     <td class="hidden"><%= justificante.updated_at.to_i %></td>
-    <td class="printable" data-titular="Hora solicitud">
+    <td class="printable hidden" data-titular="Hora solicitud">
       <%= l justificante.hora_solicitud, format: "%d/%m %H:%M" unless justificante.hora_solicitud.nil? %>
     </td>
-    <td class="printable" data-titular="Hora entrega">
+    <td class="printable hidden" data-titular="Hora entrega">
       <%= l justificante.hora_entrega, format: "%d/%m %H:%M" unless justificante.hora_entrega.nil? %>
+    </td>
+    <td class="printable" data-titular="Estado">
+      <%= justificante.pdf_file_name.nil? ? t("En curso") : t("Finalizado") %>
     </td>
     <td class="icon">
       <% unless justificante.pdf_file_name.nil? %>

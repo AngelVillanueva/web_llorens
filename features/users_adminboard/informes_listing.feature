@@ -44,7 +44,7 @@ Feature: Informes listing
       When I access the Informes index page
       Then I should see a list of all the Informes
 
-  @javascript 
+  @javascript @reload
   Scenario: the list of Informes is auto updated via ajax
     Given I am a registered User with some Informes
     When I access the Informes index page

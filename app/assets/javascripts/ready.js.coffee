@@ -120,7 +120,7 @@ $(document).ready ->
   if ( $( '#justificantes' ).length )
     createDataTable(
       'justificantes',
-      [ [ 12, "desc" ] ],
+      [],
       [
         null,
         null,
@@ -139,10 +139,11 @@ $(document).ready ->
         {"sType": "uniDate"},
         null,
         null,
+        null,
         null
         ],
       "Justificantes_Llorens",
-      [0,1,2,3,4,5,6,10,11,13,14], 
+      [0,1,2,3,4,5,6,10,11,14], 
       [
         { type: "text" },
         { type: "text" },
@@ -160,18 +161,19 @@ $(document).ready ->
         { type: "date-range" },
         { type: "date-range" },
         null,
+        null,
+        null,
         null
       ]
     )
     $('tr.filter:first').hide()
-    $( '.new' ).fadeIn(); # reveal new records
-    setTimeout(updateJustificantes, 10000) # fired polling for new records
+    setTimeout(updateJustificantesNewVersion, 5000) # fired polling for new records
   
   # informes
   if ( $( '#informes' ).length )
     createDataTable(
       'informes',
-      [ [ 4, "desc" ] ],
+      [],
       [
         null,
         null,
@@ -198,8 +200,7 @@ $(document).ready ->
       ]
     )
     $('tr.filter:first').hide()
-    $( '.new' ).fadeIn(); # reveal new records
-    setTimeout(updateInformes, 10000) # fired polling for new records
+    setTimeout(updateInformesNewVersion, 5000) # fired polling for new records
 
   # search link in Tools div
   $( 'a.search' ).click ->

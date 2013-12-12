@@ -1,5 +1,6 @@
 # RailsAdmin config file. Generated on June 13, 2013 02:36
 # See github.com/sferik/rails_admin for more informations
+require Rails.root.join('lib', 'rails_admin_print.rb')
 
 RailsAdmin.config do |config|
 
@@ -37,6 +38,17 @@ RailsAdmin.config do |config|
 
   # Label methods for model instances:
   config.label_methods << :nombre # Default is [:name, :title]
+
+  # register custom 'print' action
+  config.actions do
+    dashboard
+    index
+    new
+    show
+    print
+    edit
+    delete
+  end
 
 
   ################  Model configuration  ################

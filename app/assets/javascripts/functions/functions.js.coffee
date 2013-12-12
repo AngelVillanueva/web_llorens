@@ -40,20 +40,28 @@ root.analytics_loaded = false
   injectAnalytics() unless analytics_loaded
 
 # polling Justificantes table data
-@updateJustificantes = ->
-    if( $('tr.justificante').length )
-      after = $('tr.justificante:eq(0)').attr('data-time')
-      $.getScript('/online/justificantes.js?after=' + after)
-      setTimeout(updateJustificantes, 10000)
-      setInterval(updateScreen, 15000)
+# @updateJustificantes = ->
+#     if( $('tr.justificante').length )
+#       after = $('tr.justificante:eq(0)').attr('data-time')
+#       $.getScript('/online/justificantes.js?after=' + after)
+#       setTimeout(updateJustificantes, 10000)
+#       setInterval(updateScreen, 15000)
+
+@updateJustificantesNewVersion = ->
+  if( $('tr.justificante').length )
+    setInterval(updateScreen, 10000)
 
 # polling Informes table data
-@updateInformes = ->
-    if( $('tr.informe').length )
-      after = $('tr.informe:eq(0)').attr('data-time')
-      $.getScript('/online/informes.js?after=' + after)
-      setTimeout(updateInformes, 10000)
-      setInterval(updateScreen, 15000)
+# @updateInformes = ->
+#     if( $('tr.informe').length )
+#       after = $('tr.informe:eq(0)').attr('data-time')
+#       $.getScript('/online/informes.js?after=' + after)
+#       setTimeout(updateInformes, 10000)
+#       setInterval(updateScreen, 15000)
+
+@updateInformesNewVersion = ->
+  if( $('tr.informe').length )
+    setInterval(updateScreen, 10000)
 
 # datepicker localization (es)
 @configureDatePicker = ->

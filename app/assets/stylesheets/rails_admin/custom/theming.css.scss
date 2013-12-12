@@ -5,3 +5,7 @@
 .onlyread .help-block {
   color: #ddd;
 }
+
+td.empty, .table-striped tbody > tr:nth-child(odd) > td.empty {
+  background-color: #ff0066;
+}

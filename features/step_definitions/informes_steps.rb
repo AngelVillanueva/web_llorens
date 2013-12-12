@@ -122,7 +122,7 @@ Then(/^I should see a list of all the Informes$/) do
 end
 
 Then(/^I should see the list of the Informes updated and sorted without reloading the page$/) do
-  using_wait_time 11 do
+  using_wait_time 20 do
     expect( page ).to have_selector( 'tr.informe', count: 3 )
     expect( first( '#informes tr.informe' ) ).to have_selector( 'td', text: "Nuevo informe interno".upcase)
   end

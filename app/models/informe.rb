@@ -33,6 +33,26 @@ class Informe < ActiveRecord::Base
   end
 
   rails_admin do
+    list do
+      sort_by :pdf_file_name
+      field :id
+      field :matricula
+      field :pdf_file_name do
+        sort_reverse true
+        pretty_value do
+          css_class("empty#{value.to_s[0]}")
+          value
+        end
+      end
+      field :identificador
+      field :solicitante
+      field :cliente_id
+      field :created_at
+      field :updated_at
+      field :pdf_content_type
+      field :pdf_file_size
+      field :pdf_updated_at
+    end
     edit do
       group :advanced do
         label I18n.t("Advanced")

@@ -59,6 +59,7 @@ class Justificante < ActiveRecord::Base
   rails_admin do
     list do
       sort_by :pdf_file_name, :hora_solicitud
+      field :id
       field :identificador
       field :matricula
       field :pdf_file_name do

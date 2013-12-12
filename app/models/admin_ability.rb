@@ -12,6 +12,8 @@ class AdminAbility
       can :manage, Matriculacion
       can :manage, Justificante
     end
+    cannot :print, :all
+    can :print, Justificante
     cannot :history, :all
   end
 end

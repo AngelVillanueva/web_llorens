@@ -63,7 +63,10 @@ class Justificante < ActiveRecord::Base
       field :matricula
       field :pdf_file_name do
         sort_reverse true
-        css_class "empty"
+        pretty_value do
+          css_class("empty#{value.to_s[0]}")
+          value
+        end
       end
       field :hora_solicitud do
         sort_reverse false

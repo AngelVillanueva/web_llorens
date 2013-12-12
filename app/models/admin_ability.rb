@@ -11,9 +11,11 @@ class AdminAbility
       can :dashboard # panel de administracion
       can :manage, Matriculacion
       can :manage, Justificante
+      can :manage, Informe
     end
     cannot :print, :all
     can :print, Justificante
+    can :print, Informe
     cannot :history, :all
   end
 end

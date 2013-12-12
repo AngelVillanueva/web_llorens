@@ -1,4 +1,3 @@
-@current
 Feature: Justificante PDF managed from the admin panel
   As an employee
   In order to quickly complete the Justificante information

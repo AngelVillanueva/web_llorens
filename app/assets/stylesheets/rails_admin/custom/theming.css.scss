@@ -6,6 +6,6 @@
   color: #ddd;
 }
 
-td.empty {
+td.empty, .table-striped tbody > tr:nth-child(odd) > td.empty {
   background-color: #ff0066;
 }

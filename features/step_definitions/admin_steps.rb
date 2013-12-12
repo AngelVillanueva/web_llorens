@@ -116,3 +116,7 @@ end
 Then(/^I should see the Justificantes menu link$/) do
   page.should have_css( "li[data-model=justificante] a" )
 end
+
+Then(/^I should see the Informes menu link$/) do
+  page.should have_css( "li[data-model=informe] a" )
+end

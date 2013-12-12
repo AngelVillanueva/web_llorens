@@ -118,8 +118,8 @@ module RailsAdmin
       actions.map do |action|
         wording = wording_for(:menu, action)
         # Sinapse -> open edit in new tab to allow keeping applied filters
-        targeted = action.key.to_s == 'edit' ? '_blank' : ''
-        clase = action.pjax? && action.key.to_s != 'edit' ? 'pjax' : ''
+        targeted = action.key.to_s == 'edit' || action.key.to_s == 'print' ? '_blank' : ''
+        clase = action.pjax? && action.key.to_s != 'edit' && action.key.to_s != 'print' ? 'pjax' : ''
         # end of Sinapse
         %{
           <li title="#{wording if only_icon}" rel="#{'tooltip' if only_icon}" class="icon #{action.key}_#{parent}_link #{'active' if current_action?(action)}">

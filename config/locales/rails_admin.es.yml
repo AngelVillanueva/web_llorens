@@ -70,6 +70,12 @@ es:
         breadcrumb: "Nuevo"
         link: "Agregar un nuevo %{model_label}"
         done: "creado"
+      print:
+        title: "Imprimir %{model_label}"
+        menu: "Imprimir"
+        breadcrumb: "Imprimir"
+        link: "Imprimir un %{model_label}"
+        done: "impreso"
       edit:
         title: "Editar %{model_label} '%{object_label}'"
         menu: "Editar"

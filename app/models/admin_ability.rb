@@ -10,6 +10,7 @@ class AdminAbility
       can :access, :rails_admin # panel de administracion
       can :dashboard # panel de administracion
       can :manage, Matriculacion
+      can :manage, Justificante
     end
     cannot :history, :all
   end

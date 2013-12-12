@@ -57,13 +57,17 @@ class Justificante < ActiveRecord::Base
   end
 
   rails_admin do
-    edit do
-      group :advanced do
-        label I18n.t("Advanced")
-        active false
-      end
+    list do
+      sort_by :pdf_file_name, :hora_solicitud
       field :identificador
       field :matricula
+      field :pdf_file_name do
+        sort_reverse true
+        css_class "empty"
+      end
+      field :hora_solicitud do
+        sort_reverse false
+      end
       field :bastidor
       field :marca
       field :modelo
@@ -74,22 +78,125 @@ class Justificante < ActiveRecord::Base
       field :direccion
       field :municipio
       field :provincia
-      field :pdf_file_name do
-        label I18n.t("PDF file name")
-        read_only true
-        group :advanced
+      field :cliente
+      field :hora_entrega
+    end
+    edit do
+      group :advanced do
+        label I18n.t("Advanced")
+        active false
+      end
+      field :identificador do
+        read_only do
+          # controller bindings is available here. Example:
+          bindings[:controller].current_usuario.role? "employee"
+        end
+      end
+      field :matricula do
+        read_only do
+          # controller bindings is available here. Example:
+          bindings[:controller].current_usuario.role? "employee"
+        end
       end
       field :pdf, :paperclip do
         label I18n.t("PDF")
-        group :advanced
       end
-      field :cliente
+      field :pdf_file_name do
+        label I18n.t("PDF file name")
+        read_only true
+      end
+      field :bastidor do
+        group :advanced
+        read_only do
+          # controller bindings is available here. Example:
+          bindings[:controller].current_usuario.role? "employee"
+        end
+      end
+      field :marca do
+        group :advanced
+        read_only do
+          # controller bindings is available here. Example:
+          bindings[:controller].current_usuario.role? "employee"
+        end
+      end
+      field :modelo do
+        group :advanced
+        read_only do
+          # controller bindings is available here. Example:
+          bindings[:controller].current_usuario.role? "employee"
+        end
+      end
+      field :nif_comprador do
+        group :advanced
+        read_only do
+          # controller bindings is available here. Example:
+          bindings[:controller].current_usuario.role? "employee"
+        end
+      end
+      field :nombre_razon_social do
+        group :advanced
+        read_only do
+          # controller bindings is available here. Example:
+          bindings[:controller].current_usuario.role? "employee"
+        end
+      end
+      field :primer_apellido do
+        group :advanced
+        read_only do
+          # controller bindings is available here. Example:
+          bindings[:controller].current_usuario.role? "employee"
+        end
+      end
+      field :segundo_apellido do
+        group :advanced
+        read_only do
+          # controller bindings is available here. Example:
+          bindings[:controller].current_usuario.role? "employee"
+        end
+      end
+      field :direccion do
+        group :advanced
+        read_only do
+          # controller bindings is available here. Example:
+          bindings[:controller].current_usuario.role? "employee"
+        end
+      end
+      field :municipio do
+        group :advanced
+        read_only do
+          # controller bindings is available here. Example:
+          bindings[:controller].current_usuario.role? "employee"
+        end
+      end
+      field :provincia do
+        group :advanced
+        read_only do
+          # controller bindings is available here. Example:
+          bindings[:controller].current_usuario.role? "employee"
+        end
+      end
+      field :cliente do
+        group :advanced
+        read_only do
+          # controller bindings is available here. Example:
+          bindings[:controller].current_usuario.role? "employee"
+        end
+      end
       field :hora_solicitud do
+        group :advanced
         date_format :default
+        read_only do
+          # controller bindings is available here. Example:
+          bindings[:controller].current_usuario.role? "employee"
+        end
       end
       field :hora_entrega do
         date_format :default
         group :advanced
+        read_only do
+          # controller bindings is available here. Example:
+          bindings[:controller].current_usuario.role? "employee"
+        end
       end
     end
   end

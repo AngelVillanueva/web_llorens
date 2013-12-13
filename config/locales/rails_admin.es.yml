@@ -75,6 +75,7 @@ es:
         menu: "Imprimir"
         breadcrumb: "Imprimir"
         link: "Imprimir un %{model_label}"
+        bulk_link: "Imprimir seleccionados"
         done: "impreso"
       edit:
         title: "Editar %{model_label} '%{object_label}'"

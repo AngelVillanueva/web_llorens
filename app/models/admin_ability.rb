@@ -13,9 +13,6 @@ class AdminAbility
       can :manage, Justificante
       can :manage, Informe
     end
-    cannot :print, :all
-    can :print, Justificante
-    can :print, Informe
     cannot :history, :all
   end
 end

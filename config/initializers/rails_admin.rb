@@ -45,10 +45,20 @@ RailsAdmin.config do |config|
     index
     new
     show
-    print
+    print do
+      visible do
+        # Make it visible only for Justificantes + Informes model.
+        bindings[:abstract_model].model.to_s.in? %w[Justificante Informe]
+      end
+    end
     edit
     delete
   end
+
+  # config.publish do
+  #   # Make it visible only for Justificantes + Informes model.
+  #   bindings[:abstract_model].model.to_s == "Justificante"
+  # end
 
 
   ################  Model configuration  ################

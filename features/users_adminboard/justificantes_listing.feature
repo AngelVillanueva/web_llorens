@@ -48,8 +48,8 @@ Feature: Justificantes listing
       When I access the Justificantes index page
       Then I should see a list of all the Justificantes
 
+# test disabled due to long waiting time = 4 minutes
   @javascript @reload @wip
-  # test disabled due to long waiting time = 4 minutes
     Scenario: the list of Justificantes is auto updated via ajax
       Given I am a registered User with some Justificantes
       When I access the Justificantes index page

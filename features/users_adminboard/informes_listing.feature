@@ -43,15 +43,16 @@ Feature: Informes listing
         And there are also Informes from other Clientes
       When I access the Informes index page
       Then I should see a list of all the Informes
-
-  @javascript @reload
+      
+# test disabled due to long waiting time = 4 minutes
+  @javascript @reload @wip
   Scenario: the list of Informes is auto updated via ajax
     Given I am a registered User with some Informes
     When I access the Informes index page
       And another Informe from my Cliente is added
     Then I should see the list of the Informes updated and sorted without reloading the page
 
-  @javascript
+  @javascript @filter
   Scenario: Users can filter by date
     Given I am a registered User with some Informes
       And one new Informe was created yesterday

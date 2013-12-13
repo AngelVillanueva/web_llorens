@@ -3,9 +3,11 @@ selected = clase.find(params[:bulk_ids])
 
 prawn_document do |pdf|
   pdf.text clase.to_s.pluralize.upcase, :style => :bold, :size => 16
-  selected.each do |objeto|
+  pdf.move_down 20
+  selected.each_with_index do |objeto, index|
     case clase.to_s
     when "Justificante"
+      per_page = 3
       pdf.text "Cliente: " + objeto.cliente.nombre.to_s
       pdf.text "Matricula: " + objeto.matricula.to_s
       pdf.text "Bastidor: " + objeto.bastidor.to_s
@@ -27,6 +29,7 @@ prawn_document do |pdf|
         pdf.text "Estado: finalizado"
       end
     when "Informe"
+      per_page = 7
       pdf.text "Cliente: " + objeto.cliente.nombre.to_s
       pdf.text "Matricula: " + objeto.matricula.to_s
       pdf.text "Solicitante: " + objeto.solicitante.to_s
@@ -46,6 +49,18 @@ prawn_document do |pdf|
     else
       pdf.text clase.to_s + " no existe o no puede imprimirse."
     end
-  pdf.text "-----------------------------------"
+    pdf.text "-----------------------------------"
+    if (index + 1) % per_page == 0
+      pdf.start_new_page
+    end
   end
+  string = "página <page> de <total>"
+  # Green page numbers 1 to 11
+    options = { :at => [pdf.bounds.right - 150, 0],
+     :width => 150,
+     :align => :right,
+     :page_filter => (1..11),
+     :start_count_at => 1,
+     :color => "0088cc" }
+  pdf.number_pages string, options
 end

@@ -10,6 +10,9 @@ prawn_document do |pdf|
     pdf.text "Bastidor: " + objeto.bastidor.to_s
     pdf.text "NIF-CIF: " + objeto.nif_comprador.to_s
     pdf.text "Nombre o Razon Social: " + objeto.nombre_razon_social.to_s
+    unless objeto.primer_apellido.to_s.empty? && objeto.segundo_apellido.to_s.empty?
+      pdf.text "Apellidos: " + objeto.primer_apellido.to_s + ' ' + objeto.segundo_apellido.to_s
+    end
     pdf.text "Municipio: " + objeto.municipio.to_s
     pdf.text "Provincia: " + objeto.provincia.to_s
     pdf.text "Direccion: " + objeto.direccion.to_s

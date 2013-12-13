@@ -57,7 +57,7 @@ Scenario: Employee users can see all Expedientes
   When I access the Matriculaciones index page
   Then I should see a list of the Matriculaciones
   
-@javascript
+@javascript @filter
 Scenario: Users can filter by date
   Given I am a registered User with some Expedientes
     And one new Transferencia was created yesterday

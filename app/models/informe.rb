@@ -58,17 +58,30 @@ class Informe < ActiveRecord::Base
         label I18n.t("Advanced")
         active false
       end
-      field :matricula
-      field :solicitante
-      field :cliente
-      field :pdf_file_name do
-        label I18n.t("PDF file name")
-        read_only true
-        group :advanced
+      field :matricula do
+        read_only do
+          # controller bindings is available here. Example:
+          bindings[:controller].current_usuario.role? "employee"
+        end
+      end
+      field :solicitante do
+        read_only do
+          # controller bindings is available here. Example:
+          bindings[:controller].current_usuario.role? "employee"
+        end
+      end
+      field :cliente do
+        read_only do
+          # controller bindings is available here. Example:
+          bindings[:controller].current_usuario.role? "employee"
+        end
       end
       field :pdf, :paperclip do
         label I18n.t("PDF")
-        group :advanced
+      end
+      field :pdf_file_name do
+        label I18n.t("PDF file name")
+        read_only true
       end
     end
   end

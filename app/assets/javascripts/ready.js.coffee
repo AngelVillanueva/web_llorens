@@ -200,7 +200,7 @@ $(document).ready ->
       ]
     )
     $('tr.filter:first').hide()
-    setTimeout(updateInformesNewVersion, 5000) # fired polling for new records
+    setTimeout(updateInformesNewVersion, 240000) # fired polling for new records
 
   # search link in Tools div
   $( 'a.search' ).click ->

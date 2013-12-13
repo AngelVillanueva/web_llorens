@@ -49,7 +49,7 @@ root.analytics_loaded = false
 
 @updateJustificantesNewVersion = ->
   if( $('tr.justificante').length )
-    setInterval(updateScreen, 10000)
+    setInterval(updateScreen, 240000)
 
 # polling Informes table data
 # @updateInformes = ->
@@ -61,7 +61,7 @@ root.analytics_loaded = false
 
 @updateInformesNewVersion = ->
   if( $('tr.informe').length )
-    setInterval(updateScreen, 10000)
+    setInterval(updateScreen, 240000)
 
 # datepicker localization (es)
 @configureDatePicker = ->

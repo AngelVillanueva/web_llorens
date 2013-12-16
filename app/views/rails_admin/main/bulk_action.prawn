@@ -51,7 +51,7 @@ prawn_document do |pdf|
     end
     pdf.text "-----------------------------------"
     if (index + 1) % per_page == 0
-      pdf.start_new_page
+      pdf.start_new_page if index +1 < selected.count
     end
   end
   string = "página <page> de <total>"

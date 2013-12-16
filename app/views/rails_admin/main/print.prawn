@@ -35,7 +35,14 @@ prawn_document do |pdf|
     else
       pdf.text "Estado: finalizado"
     end
+    # no vale la pena complicarlo tanto porque luego hay que adaptarlo a cada caso
+    # objeto.attributes.each do |attr_name, attr_value|
+    #   if attr_name.to_s.in? %w[cliente matricula solicitante created_at]
+    #     pdf.text attr_name.to_s.capitalize + ": " + attr_value.to_s
+    #   end
+    # end
+    # pdf.text objeto.attributes["matricula"].to_s
   else
-    pdf.text clase.to_s + " no existe"
+    pdf.text clase.to_s + " no existe o no puede imprimirse."
   end
 end

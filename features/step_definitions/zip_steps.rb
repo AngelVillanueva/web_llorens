@@ -33,3 +33,7 @@ Then(/^the matching Matriculaciones should be updated with their temporary pdfs$
   expect( m3.pdf.to_s ).to eql( "/pdfs/original/missing.png" )
   m3.pdf_file_size.should be nil
 end
+
+Then(/^the bundle should be marked as unbundled$/) do
+  ZipMatricula.last.expandido.should eql true
+end

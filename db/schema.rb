@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131217095747) do
+ActiveRecord::Schema.define(:version => 20131217153529) do
 
   create_table "api_keys", :force => true do |t|
     t.string   "access_token"
@@ -208,12 +208,13 @@ ActiveRecord::Schema.define(:version => 20131217095747) do
   add_index "usuarios", ["reset_password_token"], :name => "index_usuarios_on_reset_password_token", :unique => true
 
   create_table "zip_matriculas", :force => true do |t|
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
     t.string   "zip_file_name"
     t.string   "zip_content_type"
     t.integer  "zip_file_size"
     t.datetime "zip_updated_at"
+    t.boolean  "expandido",        :default => false
   end
 
 end

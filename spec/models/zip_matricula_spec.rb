@@ -18,6 +18,7 @@ describe ZipMatricula do
   subject { zip_matricula }
 
   it { should respond_to :zip }
+  it { should respond_to :expandido }
   it { should validate_presence_of :zip }
   it { should be_valid }
 end

@@ -19,3 +19,4 @@ Feature: temporary Matricula pdfs for Matriculaciones could be uploaded in a zip
       And I have created a new zipped bundled of temporary matricula pdfs
     When I unzip the bundle
     Then the matching Matriculaciones should be updated with their temporary pdfs
+      And the bundle should be marked as unbundled

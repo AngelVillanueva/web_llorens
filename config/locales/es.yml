@@ -198,6 +198,8 @@ es:
     errors:
       <<: *errors
     attributes:
+      created_at: "creación"
+      updated_at: "actualizado en"
       usuario:
         password: "Contraseña"
         current_password: "Contraseña actual"

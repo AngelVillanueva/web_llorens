@@ -38,6 +38,8 @@ module RailsAdmin
                   not_found << file.to_s
                 end
               end
+              object.expandido = true
+              object.save!
               zipfile.count == found ? tipo = "success" : tipo = "alert"
               flash[tipo.to_sym] = create_message( zipfile.count, found, not_found )
               redirect_to back_or_index

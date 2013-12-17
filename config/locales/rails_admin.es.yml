@@ -77,6 +77,13 @@ es:
         link: "Imprimir un %{model_label}"
         bulk_link: "Imprimir seleccionados"
         done: "impreso"
+      assign_zips:
+        title: "Asignar pdfs %{model_label}"
+        menu: "Asignar pdfs"
+        breadcrumb: "Asignar pdfs"
+        link: "Asignar pdfs para %{model_label}"
+        bulk_link: "Asignar pdfs en seleccionados"
+        done: "PDFs asignados"  
       edit:
         title: "Editar %{model_label} '%{object_label}'"
         menu: "Editar"

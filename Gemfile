@@ -29,6 +29,7 @@ gem 'Ascii85', '~> 1.0.1' # or pdf-reader will fail
 gem 'pdf-reader', '~> 1.3.3' # pdf reading
 gem "rghost", '~> 0.9.3' # needed to skip the first page, prawn fails
 gem 'paperclip', '~> 3.0' # file attachment
+gem 'rubyzip', '>= 1.0.0' # will load new rubyzip version
 ### USER & PERMISSIONS MANAGEMENT
 # Devise
 gem 'devise_security_extension', git: 'git://github.com/phatworx/devise_security_extension.git' # for password_expirable
@@ -68,7 +69,7 @@ group :test do
   gem 'rspec-rails', '~> 2.13.1'
   gem 'shoulda-matchers', '~> 2.1.0'
   gem 'capybara', '~> 2.1.0'
-  gem 'selenium-webdriver', '~> 2.35.1'
+  gem 'selenium-webdriver'
   gem 'cucumber-rails', '1.3.1', require: false
   gem 'database_cleaner', '0.9.1'
   gem 'factory_girl_rails', '4.2.1'

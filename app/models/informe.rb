@@ -44,11 +44,13 @@ class Informe < ActiveRecord::Base
           value
         end
       end
-      field :identificador
+      field :created_at do
+        label "Solicitado el"
+      end
       field :solicitante
-      field :cliente_id
-      field :created_at
+      field :identificador
       field :updated_at
+      field :cliente_id
       field :pdf_content_type
       field :pdf_file_size
       field :pdf_updated_at

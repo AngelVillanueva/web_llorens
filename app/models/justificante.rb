@@ -39,6 +39,7 @@ class Justificante < ActiveRecord::Base
   after_create :send_email_if_weekend
 
   validates :identificador, :nif_comprador, :nombre_razon_social, :provincia, :municipio, :direccion, :matricula, :bastidor, :marca, :modelo, :hora_solicitud, :cliente_id, presence: true
+  validates :nif_comprador, nif: true
 
   #protected
   def assign_hora_solicitud

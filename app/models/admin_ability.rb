@@ -12,6 +12,7 @@ class AdminAbility
       can :manage, Matriculacion
       can :manage, Justificante
       can :manage, Informe
+      can :manage, ZipMatricula
     end
     cannot :history, :all
   end

@@ -1,6 +1,7 @@
 # RailsAdmin config file. Generated on June 13, 2013 02:36
 # See github.com/sferik/rails_admin for more informations
 require Rails.root.join('lib', 'rails_admin_print.rb')
+require Rails.root.join('lib', 'rails_admin_assign_zips.rb')
 
 RailsAdmin.config do |config|
 
@@ -49,6 +50,12 @@ RailsAdmin.config do |config|
       visible do
         # Make it visible only for Justificantes + Informes model.
         bindings[:abstract_model].model.to_s.in? %w[Justificante Informe]
+      end
+    end
+    assign_zips do
+      visible do
+        # Make it visible only for Justificantes + Informes model.
+        bindings[:abstract_model].model.to_s.in? %w[ZipMatricula]
       end
     end
     edit

@@ -25,6 +25,7 @@
 #  pdf_updated_at      :datetime
 #  incidencia          :text
 #  has_incidencia      :boolean
+#  has_documentos      :boolean          default(FALSE), not null
 #
 
 class Expediente < ActiveRecord::Base

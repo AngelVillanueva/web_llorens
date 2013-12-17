@@ -30,18 +30,6 @@ namespace :ziper do
   task :default => :all
 
   ## Aux methods
-  def folder_name(type)
-    case type
-    when "Matriculacion"
-      folder_name = "TU-MATRICULACIONES/"
-    when "Transferencia"
-      folder_name = "TR-TRANSFERENCIAS/"
-    else
-      folder_name = ""
-    end
-    folder_name
-  end
-
   def num_bastidor nombre_pdf
     m = /[_][A-Z0-9]{17}/.match(nombre_pdf).to_s
     unless m.empty?

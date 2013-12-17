@@ -83,4 +83,8 @@ FactoryGirl.define do
   factory :guardia do
     sequence( :email ) { |n| "email#{n}@llorens.com" }
   end
+
+  factory :zip_matricula do
+    zip File.new( "#{Rails.root}/spec/fixtures/my.zip" )
+  end
 end

@@ -14,8 +14,10 @@
 require 'spec_helper'
 
 describe ZipMatricula do
-  let( :zip_matricula ) { ZipMatricula.new }
+  let( :zip_matricula ) { FactoryGirl.create( :zip_matricula ) }
+  subject { zip_matricula }
 
   it { should respond_to :zip }
+  it { should validate_presence_of :zip }
   it { should be_valid }
 end

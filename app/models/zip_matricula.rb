@@ -14,13 +14,6 @@
 class ZipMatricula < ActiveRecord::Base
   has_attached_file :zip,
     :path => ":rails_root/uploads/:class/:id/:basename.:extension"
-  #before_create :generate_access_token
+  validates :zip, presence: true
   
-private
-  
-  # def generate_access_token
-  #   begin
-  #     self.access_token = SecureRandom.hex
-  #   end while self.class.exists?(access_token: access_token)
-  # end
 end

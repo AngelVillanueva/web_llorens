@@ -31,17 +31,34 @@ class ExpedientesDatatable
 
   private
   def data
-    expedientes.map do |expediente|
-      [
-        expediente.cliente.nombre,
-        matricula_cell_whole( expediente ),
-        expediente.bastidor,
-        expediente.comprador,
-        expediente.modelo,
-        I18n.l(expediente.fecha_alta),
-        I18n.l(expediente.fecha_sale_trafico),
-        documentos_cell( expediente )
-      ]
+    case @type.to_s
+    when "Matriculacion"
+      expedientes.map do |expediente|
+        [
+          expediente.cliente.nombre,
+          matricula_cell_whole( expediente ),
+          expediente.bastidor,
+          expediente.comprador,
+          expediente.modelo,
+          I18n.l(expediente.fecha_alta),
+          I18n.l(expediente.fecha_sale_trafico),
+          documentos_cell( expediente )
+        ]
+      end
+    when "Transferencia"
+      expedientes.map do |expediente|
+        [
+          expediente.cliente.nombre,
+          matricula_cell_whole( expediente ),
+          expediente.comprador,
+          expediente.vendedor,
+          expediente.marca,
+          I18n.l(expediente.fecha_alta),
+          I18n.l(expediente.fecha_sale_trafico),
+          expediente.dias_tramite,
+          documentos_cell( expediente )
+        ]
+      end
     end
   end
 
@@ -121,7 +138,7 @@ class ExpedientesDatatable
     when "Matriculacion"
       columns = %w[clientes.nombre matricula bastidor comprador modelo fecha_alta fecha_facturacion has_documentos]
     when "Transferencia"
-      columns = %w[clientes.nombre]
+      columns = %w[clientes.nombre matricula comprador vendedor marca fecha_alta fecha_facturacion has_documentos]
     end
     columns
   end
@@ -131,7 +148,7 @@ class ExpedientesDatatable
     when "Matriculacion"
       columns = %w[clientes.nombre matricula bastidor comprador modelo]
     when "Transferencia"
-      columns = %w[clientes.nombre]
+      columns = %w[clientes.nombre matricula comprador vendedor marca]
     end
     columns
   end

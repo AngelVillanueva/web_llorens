@@ -86,7 +86,7 @@ $(document).ready ->
 
   # transferencias
   if ( $( '#expedientes.transferencia' ).length )
-    createDataTable(
+    createRemoteDataTable(
       'expedientes',
       [],
       [

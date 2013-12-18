@@ -2,6 +2,9 @@ input[type='text'], select, .new_pw input {
   height: 30px;
 }
 
+a.pie, a.pie:hover {
+  cursor: pointer;
+}
 
 .table-wrapper {
   padding: 10px;

@@ -209,7 +209,7 @@ $(document).ready ->
 
   # move 'Export to Excel' functionality
   if TableTools.fnGetMasters().length
-    moveExportExcelButton()
+    moveExportButton()
 
   # printThis binding
   $( 'a.filtering' ).click ->

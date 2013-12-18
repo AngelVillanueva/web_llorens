@@ -172,14 +172,7 @@ root.analytics_loaded = false
           "sInfoFiltered": "(filtrado de _MAX_ total entradas)"
       },
       "oTableTools": {
-        "aButtons": [
-          {
-            "sExtends":    "xls",
-            "sButtonText": "Exportar a Excel",
-            "sFileName": excelname + ".xls",
-            "mColumns": exportcolumns,
-            "sCharSet": "utf16le"
-          },
+        "aButtons": [ 
           {
             "sExtends": "download",
             "sButtonText": "Download CSV",
@@ -194,16 +187,18 @@ root.analytics_loaded = false
       aoColumns: filtercolumns
     })
 
-# move Export to Excel Button to Tools div
-@moveExportExcelButton = ->
-  $button = $('a.DTTT_button_xls')
+# move Export to Excel/CSV Button to Tools div
+@moveExportButton = ->
+  #$button = $('a.DTTT_button_xls')
+  $button = $('a.DTTT_button_text')
   $('<li class="tooltip-xls"/>').appendTo('.tools ul')
   $button.addClass('pie')
   $button.children('span').remove()
+  $button.children('undefined').remove()
   $('<i class="icon icon-save icon-2x"/>').appendTo($button)
   $button.removeClass('btn').appendTo('.tools ul li:last')
-  #$('.dataTables_wrapper').children('div.row:first').remove()
-  $('li.tooltip-xls').tooltip({'title': 'Exportar Excel'})
+  $('.dataTables_wrapper').children('div.row:first').remove()
+  $('li.tooltip-xls').tooltip({'title': 'Exportar CSV'})
 
 
 # print a table row

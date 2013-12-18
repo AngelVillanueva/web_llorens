@@ -26,7 +26,17 @@ $(document).ready ->
   $('a[rel*="tooltip"]').tooltip({ 'placement': 'top' })
 
   #popover init
-  $('a[data-toggle*="popover"]').popover({ 'placement': 'top' })
+  #$('a[data-toggle*="popover"]').popover({ 'placement': 'top' })
+
+  popOverSettings =
+    trigger: 'hover',
+    placement: 'top',
+    container: 'body',
+    html: true,
+    selector: 'a.incidencia'
+      
+
+  $('body').popover(popOverSettings)
 
   #modal alert init
   if ( $( '.modal' ) ).length

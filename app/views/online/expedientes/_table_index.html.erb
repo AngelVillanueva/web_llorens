@@ -1,4 +1,4 @@
-<table id="expedientes" class="row pull-right table table-condensed table-bordered table-striped top_filtered expedientes <%= expediente_type?(expediente, 'matriculacion') ? 'matriculacion' : 'transferencia' %>" data-source="<%= online_expedientes_url(format: "json", type: expediente_type) %>" data-csv="<%= online_expedientes_url(format: "xls", type: expediente_type) %>">
+<table id="expedientes" class="row pull-right table table-condensed table-bordered table-striped top_filtered expedientes <%= expediente_type?(expediente, 'matriculacion') ? 'matriculacion' : 'transferencia' %>" data-source="<%= online_expedientes_url(format: "json", type: expediente_type) %>" data-csv="<%= online_expedientes_url(format: "csv", type: expediente_type) %>">
   <thead>
     <tr class="filter">
       <th><%= t("Cliente") %></th>

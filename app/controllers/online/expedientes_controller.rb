@@ -10,10 +10,9 @@ class Online::ExpedientesController < OnlineController
     respond_to do |format|
       format.html
       format.json { render json: ExpedientesDatatable.new( view_context, expediente_type, current_ability ) }
-      #format.xls { @expedientesxls = Expediente.find([8500, 8501])}
-      format.xls do
-        headers["Content-Disposition"] = "attachment; filename=\"#{expediente_type}_Llorens_#{Time.now.strftime("%d_%m-%Y_%H-%M-%S")}.xls\""
-        @expedientesxls = ExpedientesDatatable.new( view_context, expediente_type, current_ability ).to_csv(col_sep: "\t")
+      format.csv do
+        headers["Content-Disposition"] = "attachment; filename=\"#{expediente_type}_Llorens_#{Time.now.strftime("%d_%m-%Y_%H-%M-%S")}.csv\""
+        render text: ExpedientesDatatable.new( view_context, expediente_type, current_ability ).to_csv
       end
     end
   end

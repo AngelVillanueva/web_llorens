@@ -14,8 +14,8 @@ namespace :fakefeed do
   desc 'Feeding Clientes'
   task :matriculaciones => :environment do
     Matriculacion.delete_all
-    5000.times do
-      Matriculacion.create!(
+    3500.times do
+      m = Matriculacion.create!(
         identificador: "#{Faker::Lorem.characters(3).upcase}-#{Faker::Lorem.characters(3).upcase}",
         matricula: Faker::Lorem.characters(6).upcase,
         bastidor: Faker::Lorem.characters(17).upcase,
@@ -29,6 +29,8 @@ namespace :fakefeed do
         observaciones: Faker::Lorem.sentence,
         cliente: Cliente.all.sample
       )
+      m.created_at = Random.new.rand(100).days.ago.to_date
+      m.save!
     end
   end
 

@@ -7,6 +7,8 @@
       search: 'expedientes',
       reload: expediente.type %>
 
+  <% paginate expedientes %>
+
   <div class="row">
     <%= render 'table_index', expedientes: expedientes %>
   </div>

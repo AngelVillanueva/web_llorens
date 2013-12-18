@@ -2,9 +2,21 @@ class Online::ExpedientesController < OnlineController
   load_and_authorize_resource
   before_filter :authorize_edition, only: :edit
   #expose( :expedientes ) { Expediente.accessible_by( current_ability ) }
-  expose( :expedientes ) { expediente_type.scoped.accessible_by( current_ability ) }
+  expose( :expedientes ) { expediente_type.scoped.accessible_by( current_ability ).page( params[ :page ] ).per( 10 ) }
   expose( :expediente_type ) { params[:type].constantize }
   expose( :expediente, attributes: :expediente_params )
+
+  def index
+    respond_to do |format|
+      format.html
+      format.json { render json: ExpedientesDatatable.new( view_context, expediente_type, current_ability ) }
+      #format.xls { @expedientesxls = Expediente.find([8500, 8501])}
+      format.xls do
+        headers["Content-Disposition"] = "attachment; filename=\"#{expediente_type}_Llorens_#{Time.now.strftime("%d_%m-%Y_%H-%M-%S")}.xls\""
+        @expedientesxls = ExpedientesDatatable.new( view_context, expediente_type, current_ability ).to_csv(col_sep: "\t")
+      end
+    end
+  end
 
   def create
     if expediente.save

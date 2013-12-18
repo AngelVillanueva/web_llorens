@@ -75,20 +75,6 @@ module ApplicationHelper
     end
   end
 
-          # <% if expediente.matricula %>
-          #   <%= expediente.matricula.upcase %>
-          #   <% unless current_usuario.norole? %>
-          #     <%= link_to t( "edit_matricula_PDF" ), edit_online_matriculacion_path( expediente ) %>
-          #   <% end %>
-          # <% else %>
-          #   <% unless current_usuario.norole? %>
-          #     <%= link_to t( "add_matricula_PDF" ), edit_online_matriculacion_path( expediente ) %>
-          #   <% end %>
-          # <% end %>
-          # <% if expediente.pdf_file_name && File.exist?(expediente.pdf.path) %>
-          #   <%= link_to t( "PDF matricula" ), expediente.pdf.url, target: "blank" %>
-          # <% end %>
-
   def matricula_cell_matricula expediente
     matricula = expediente.matricula ? expediente.matricula.upcase : t( "Pendiente_html" )
   end
@@ -216,6 +202,31 @@ module ApplicationHelper
       aviso.titular.empty? ? t( "Aviso" ) : aviso.titular
     else
       t( "Aviso" )
+    end
+  end
+  # returns the content of the Expedientes Matricula cell
+  def matricula_cell_whole( expediente )
+    content_tag( 'div' ) do
+      concat matricula_cell_matricula expediente
+      if expediente_type? expediente, 'matriculacion'
+        concat matricula_cell_pdf expediente
+        concat matricula_cell_actions expediente
+      elsif expediente.incidencia && !expediente.incidencia.empty?
+        concat matricula_cell_incidencia expediente
+      elsif Transferencia.no_incidenciable
+        concat content_tag( 'i', nil, title: t( "Documentacion correcta" ), class: "noincidencia icon icon-circle")
+      end
+    end
+  end
+  # returns the content of the Expedientes Documentos cell
+  def documentos_cell( expediente )
+    if expediente.has_documentos
+      link_to pdf_path( expediente ), target: '_blank', class: 'icon' do
+        concat content_tag( 'span', t( "Ver PDF" ) )
+        concat content_tag( 'i', nil, class: 'icon icon-file' )
+      end
+    else
+      content_tag( 'span', t( "PDF Pendiente" ), class: 'pendiente' )
     end
   end
 

@@ -151,6 +151,49 @@ root.analytics_loaded = false
       aoColumns: filtercolumns
     })
 
+# create remote DataTable
+@createRemoteDataTable = ( selector, sortcolumn, columntypes, excelname, exportcolumns, filtercolumns ) ->
+  oTable = $( '#' + selector )
+  if ( oTable.length )
+    oTable.dataTable({
+      "sDom": "<'row'<'span6'T><'span6 pull-right'>r>t<'row-fluid'<'span6'i><'span6'p>>",
+      "sPaginationType": "bootstrap",
+      "aaSorting": sortcolumn,
+      "aoColumns": columntypes,
+      "bProcessing": true,
+      "bServerSide": true,
+      "sAjaxSource": oTable.data('source'),
+      "oLanguage": {
+          "sSearch": "Buscar en la tabla",
+          "sLengthMenu": "Mostrar _MENU_ entradas por página",
+          "sZeroRecords": "Lo siento, no hay resultados",
+          "sInfo": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
+          "sInfoEmpty": "Mostrando 0 a 0 de 0 entradas",
+          "sInfoFiltered": "(filtrado de _MAX_ total entradas)"
+      },
+      "oTableTools": {
+        "aButtons": [
+          {
+            "sExtends":    "xls",
+            "sButtonText": "Exportar a Excel",
+            "sFileName": excelname + ".xls",
+            "mColumns": exportcolumns,
+            "sCharSet": "utf16le"
+          },
+          {
+            "sExtends": "download",
+            "sButtonText": "Download CSV",
+            "sUrl": oTable.data('csv')
+          }
+
+        ]
+      }
+    }).columnFilter({
+      sPlaceHolder: "head:before",
+      sRangeFormat: "De {from} a {to}",
+      aoColumns: filtercolumns
+    })
+
 # move Export to Excel Button to Tools div
 @moveExportExcelButton = ->
   $button = $('a.DTTT_button_xls')
@@ -159,7 +202,7 @@ root.analytics_loaded = false
   $button.children('span').remove()
   $('<i class="icon icon-save icon-2x"/>').appendTo($button)
   $button.removeClass('btn').appendTo('.tools ul li:last')
-  $('.dataTables_wrapper').children('div.row:first').remove()
+  #$('.dataTables_wrapper').children('div.row:first').remove()
   $('li.tooltip-xls').tooltip({'title': 'Exportar Excel'})
 
 

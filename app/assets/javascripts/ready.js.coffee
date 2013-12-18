@@ -56,7 +56,7 @@ $(document).ready ->
   ###
   # matriculaciones
   if ( $( '#expedientes.matriculacion' ).length )
-    createDataTable(
+    createRemoteDataTable(
       'expedientes',
       [],
       [
@@ -72,7 +72,7 @@ $(document).ready ->
       "Matriculaciones_Llorens",
       [0,1,2,3,4,5,6,7], 
       [
-        { type: "select" },
+        { type: "text" },
         { type: "text" },
         { type: "text" },
         { type: "text" },

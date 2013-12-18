@@ -80,7 +80,8 @@ $(document).ready ->
         { type: "date-range" },
         { type: "date-range" },
         { type: "select", values: [ 'PDF Pendiente', 'Ver PDF' ] }
-      ]
+      ],
+      [5,6]
     )
     $('tr.filter:first').hide()
 
@@ -112,7 +113,8 @@ $(document).ready ->
         { type: "date-range" },
         { type: "select" },
         { type: "select", values: [ 'PDF Pendiente', 'Ver PDF' ] }
-      ]
+      ],
+      [5,6]
     )
     $('tr.filter:first').hide()
   

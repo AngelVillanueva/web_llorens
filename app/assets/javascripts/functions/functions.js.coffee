@@ -152,7 +152,7 @@ root.analytics_loaded = false
     })
 
 # create remote DataTable
-@createRemoteDataTable = ( selector, sortcolumn, columntypes, excelname, exportcolumns, filtercolumns ) ->
+@createRemoteDataTable = ( selector, sortcolumn, columntypes, excelname, exportcolumns, filtercolumns, datecolumns=[] ) ->
   oTable = $( '#' + selector )
   if ( oTable.length )
     oTable.dataTable({
@@ -176,7 +176,9 @@ root.analytics_loaded = false
           {
             "sExtends": "download",
             "sButtonText": "Download CSV",
-            "sUrl": oTable.data('csv')
+            "sUrl": oTable.data('csv'),
+            "sInputName": selector,
+            "sExtraData": datecolumns
           }
 
         ]

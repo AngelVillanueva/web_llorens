@@ -19,13 +19,14 @@ class ExpedientesDatatable
   end
 
   def to_csv(options = {})
-    # CSV.generate(options) do |csv|
-    #   csv << @columns
-    #   expedientes("csv").each do |expediente|
-    #     csv << expediente.attributes.values_at(*@columns)
-    #   end
-    # end
-    expedientes("csv")
+    CSV.generate(options) do |csv|
+      csv << formatted( @columns )
+      expedientes("csv").each do |expediente|
+        campos = expediente.attributes.values_at(*@columns)
+        campos[0] = expediente.cliente.nombre
+        csv << campos.take( campos.size - 1 )
+      end
+    end
   end
 
   private
@@ -133,6 +134,10 @@ class ExpedientesDatatable
       columns = %w[clientes.nombre]
     end
     columns
+  end
+
+  def formatted columns
+    columns.take(columns.size - 1).map(&:capitalize).join("-").gsub( "Clientes.nombre", "Cliente" ).split("-")
   end
 
   def clean(string_search, chars="~")

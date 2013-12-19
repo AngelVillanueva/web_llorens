@@ -8,7 +8,7 @@
       search: 'justificantes' %>
 
   <div class="row">
-    <table id="justificantes" class="row pull-right table table-condensed table-bordered table-striped top_filtered justificantes" data-source="<%= online_justificantes_url(format: "json") %>" data-csv="<%= online_justificantes_url(format: "csv") %>">
+    <table id="justificantes" class="row pull-right table table-condensed table-bordered table-striped top_filtered justificantes" data-source="<%= online_justificantes_url(format: "json") %>" data-csv="<%= online_justificantes_url(format: "csv") %>?">
   <thead>
     <tr class="filter">
       <th><%= t("Cliente") %></th>

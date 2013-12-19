@@ -20,9 +20,11 @@ class JustificantesDatatable
   def to_csv(options = {})
     CSV.generate(options) do |csv|
       csv << formatted( @columns )
-      expedientes("csv").each do |expediente|
-        campos = expediente.attributes.values_at(*@columns)
-        campos[0] = expediente.cliente.nombre
+      justificantes("csv").each do |justificante|
+        campos = justificante.attributes.values_at(*@columns)
+        campos[0] = justificante.cliente.nombre
+        campos[12] = I18n.l( campos[12], format: "%d/%m/%Y %H:%m")
+        campos[13].nil? ? campos[13] = I18n.t( "Pendiente" ) : campos[13] = I18n.l( campos[13], format: "%d/%m/%Y %H:%m")
         csv << campos.take( campos.size - 1 )
       end
     end
@@ -44,8 +46,8 @@ class JustificantesDatatable
         justificante.direccion,
         justificante.marca,
         justificante.modelo,
-        justificante.hora_solicitud,
-        justificante.hora_entrega,
+        I18n.l( justificante.hora_solicitud, format: "%d/%m/%Y %H:%m" ),
+        I18n.l( justificante.hora_entrega, format: "%d/%m/%Y %H:%m" ),
         estado_cell( justificante ),
         pdf_link_cell( justificante ),
         edit_link_cell( justificante ),

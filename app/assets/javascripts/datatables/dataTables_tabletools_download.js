@@ -25,6 +25,7 @@ TableTools.BUTTONS.download = {
                 oParams = oParams.concat( parametro );
             }
         }
+        // end of Sinapse
         var iframe = document.createElement('iframe');
         iframe.style.height = "0px";
         iframe.style.width = "0px";

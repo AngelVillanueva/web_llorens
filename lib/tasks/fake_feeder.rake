@@ -56,7 +56,7 @@ namespace :fakefeed do
   
   task :justificantes => :environment do
     Justificante.delete_all
-    10.times do
+    25.times do
       j = Justificante.create(
         identificador: "#{Faker::Lorem.characters(3).upcase}-#{Faker::Lorem.characters(3).upcase}",
         nif_comprador: "00000000T",
@@ -74,6 +74,11 @@ namespace :fakefeed do
       )
       j.created_at = Time.at( rand * ( Time.now.to_f - 1.year.ago.to_f ) + 1.year.ago.to_f )
       j.hora_solicitud = j.created_at
+      j.save!
+    end
+    js = Justificante.all
+    js.sample(10).each do |j|
+      j.pdf = File.new("#{Rails.root}/spec/fixtures/test-J.pdf")
       j.save!
     end
   end

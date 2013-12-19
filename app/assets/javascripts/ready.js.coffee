@@ -182,7 +182,7 @@ $(document).ready ->
   
   # informes
   if ( $( '#informes' ).length )
-    createDataTable(
+    createRemoteDataTable(
       'informes',
       [],
       [
@@ -206,7 +206,8 @@ $(document).ready ->
         null,
         null,
         null
-      ]
+      ],
+      []
     )
     setTimeout(updateInformesNewVersion, 240000) # fired polling for new records
 

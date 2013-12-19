@@ -1,5 +1,5 @@
 class InformesDatatable
-  delegate :params, :h, :link_to, :estado_cell, :pdf_link_cell, :edit_link_cell, :print_link_cell, to: :@view
+  delegate :params, :h, :link_to, :estado_cell, :pdf_link_cell_not_empty, :edit_link_cell_i, :print_link_cell, to: :@view
 
   def initialize(view, current_ability)
     @view = view
@@ -37,7 +37,7 @@ class InformesDatatable
         informe.cliente.nombre,
         informe.matricula,
         informe.solicitante,
-        informe.fecha_solicitud.nil? ? "" : I18n.l( informe.fecha_solicitud, format: "%d/%m/%Y %H:%m" ),
+        I18n.l( informe.created_at, format: "%d/%m/%Y %H:%m" ),
         estado_cell( informe ),
         pdf_link_cell_not_empty( informe ),
         edit_link_cell_i( informe ),
@@ -102,7 +102,7 @@ class InformesDatatable
         if column == "pdf_file_name"
           filter = searched == "Finalizado" ? "NOT NULL" : "NULL"
           informes = informes.where("#{column} IS #{filter}")
-        elsif column.include? "fecha"
+        elsif column.include? "created"
           lapse = searched.split("~")
           unless lapse[1].nil?
             f1 = lapse[0].to_date
@@ -118,7 +118,7 @@ class InformesDatatable
   end
 
   def columns
-    columns = %w[clientes.nombre matricula solicitante fecha_solicitud pdf_file_name]
+    columns = %w[clientes.nombre matricula solicitante created_at pdf_file_name]
   end
 
   def global_search_columns

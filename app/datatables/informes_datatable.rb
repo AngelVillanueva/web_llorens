@@ -20,12 +20,12 @@ class InformesDatatable
   def to_csv(options = {})
     CSV.generate(options) do |csv|
       csv << formatted( @columns )
-      justificantes("csv").each do |justificante|
-        campos = justificante.attributes.values_at(*@columns)
-        campos[0] = justificante.cliente.nombre
-        campos[12] = I18n.l( campos[12], format: "%d/%m/%Y %H:%m")
-        campos[13].nil? ? campos[13] = I18n.t( "Pendiente" ) : campos[13] = I18n.l( campos[13], format: "%d/%m/%Y %H:%m")
-        csv << campos.take( campos.size - 1 )
+      informes("csv").each do |informe|
+        campos = informe.attributes.values_at(*@columns)
+        campos[0] = informe.cliente.nombre
+        campos[3] = I18n.l( campos[3], format: "%d/%m/%Y %H:%m")
+        campos[4].nil? ? campos[4] = I18n.t( "En curso" ) : campos[4] = I18n.t( "Finalizado" )
+        csv << campos
       end
     end
   end
@@ -126,7 +126,7 @@ class InformesDatatable
   end
 
   def formatted columns
-    columns.take(columns.size - 1).map(&:capitalize).join("-").gsub( "Clientes.nombre", "Cliente" ).split("-")
+    columns.map(&:capitalize).join("-").gsub( "Clientes.nombre", "Cliente" ).gsub( "Created_at", "Fecha solicitud" ).gsub( "Pdf_file_name", "Estado" ).split("-")
   end
 
   def clean(string_search, chars="~")

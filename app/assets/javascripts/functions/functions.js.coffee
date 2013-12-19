@@ -202,6 +202,9 @@ root.analytics_loaded = false
       "bServerSide": true,
       "sAjaxSource": oTable.data('source'),
       "fnRowCallback": ( nRow, aData, iDisplayIndex ) ->
+        $(nRow).addClass('justificante');
+        #if aData[16] == ''
+        $(nRow).addClass('new') if aData[16]==null
         $('td', nRow).slice(0,16).addClass('printable')
         $('td:eq(12)', nRow).removeClass('printable')
         $('td', nRow).slice(7,15).addClass('hidden')

@@ -229,5 +229,31 @@ module ApplicationHelper
       content_tag( 'span', t( "PDF Pendiente" ), class: 'pendiente' )
     end
   end
+  # returns the content of the Justificantes Estado cell
+  def estado_cell( justificante )
+    justificante.pdf_file_name.nil? ? t("En curso") : t("Finalizado")
+  end
+  # returns the content of the Justificantes pdf_link cell
+  def pdf_link_cell( justificante )
+    unless justificante.pdf_file_name.nil?
+      link_to justificante.pdf.url, title: "PDF", target: 'blank' do
+          content_tag( 'i', nil, class: 'icon icon-file' )
+       end
+    end
+  end
+  # returns the content of the Justificantes edit_link cell
+  def edit_link_cell( justificante )
+    unless current_usuario.norole?
+      link_to edit_online_justificante_path(justificante), title: "Editar" do
+        content_tag( 'i', nil, class: 'icon icon-edit toedit' )
+      end
+    end
+  end
+  # returns the content of the Justificantes print_link cell
+  def print_link_cell( justificante )
+    link_to '#', class: "printLink" do
+      content_tag( 'i', nil, class: 'icon icon-print' )
+    end
+  end
 
 end

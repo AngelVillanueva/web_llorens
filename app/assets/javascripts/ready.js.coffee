@@ -193,7 +193,6 @@ $(document).ready ->
         null,
         null,
         null,
-        null,
         null
         ],
       "Informes_Llorens",
@@ -203,7 +202,6 @@ $(document).ready ->
         { type: "text" },
         { type: "text" },
         { type: "date-range" },
-        null,
         { type: "select" },
         null,
         null,

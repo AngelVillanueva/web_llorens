@@ -3,7 +3,6 @@
   <td class="printable" data-titular="Matricula"><%= informe.matricula.upcase %></td>
   <td class="printable" data-titular="Solicitante"><%= informe.solicitante %></td>
   <td class="printable" data-titular="Fecha solicitud"><%= l informe.created_at, format: "%d/%m/%Y" %></td>
-  <td class="hidden"><%= informe.updated_at.to_i %></td>
   <td class="printable" data-titular="Finalizado">
     <%= estado_cell(informe) %>
   </td>

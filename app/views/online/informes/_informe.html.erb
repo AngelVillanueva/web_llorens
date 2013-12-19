@@ -4,27 +4,17 @@
   <td class="printable" data-titular="Solicitante"><%= informe.solicitante %></td>
   <td class="printable" data-titular="Fecha solicitud"><%= l informe.created_at, format: "%d/%m/%Y" %></td>
   <td class="hidden"><%= informe.updated_at.to_i %></td>
-  <td class="printable" data-titular="Finalizado"><%= informe.pdf_file_name.nil? && t("En curso") || t('Si') %></td>
+  <td class="printable" data-titular="Finalizado">
+    <%= estado_cell(informe) %>
+  </td>
   <td class="icon">
-    <% unless informe.pdf_file_name.nil? %>
-      <%= link_to informe.pdf.url, target: 'blank' do %>
-        <span><%= "Ver PDF" %></span>
-        <i class="icon icon-file"></i>
-      <% end %>
-    <% else %>
-      <%= t("pendiente") %>
-    <% end %>
+    <%= pdf_link_cell_not_empty(informe) %>
   </td>
   <td class="icon">
     <span></span>
-    <% unless current_usuario.norole? %>
-      <%= link_to edit_online_informe_path(informe) do %>
-          <span class="toedit"><%= edit_pdf_label informe %></span>
-          <i class="icon icon-edit"></i>
-      <% end %>
-    <% end %>
+    <%= edit_link_cell_i(informe) %>
   </td>
   <td>
-    <a href="#" class="printLink"><i class="icon icon-print"></i></a>
+    <%= print_link_cell(informe) %>
   </td>
 </tr>

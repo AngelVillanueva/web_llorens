@@ -39,8 +39,8 @@ class InformesDatatable
         informe.solicitante,
         informe.fecha_solicitud.nil? ? "" : I18n.l( informe.fecha_solicitud, format: "%d/%m/%Y %H:%m" ),
         estado_cell( informe ),
-        pdf_link_cell( informe ),
-        edit_link_cell( informe ),
+        pdf_link_cell_not_empty( informe ),
+        edit_link_cell_i( informe ),
         print_link_cell( informe )
       ]
     end

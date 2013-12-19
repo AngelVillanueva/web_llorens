@@ -210,7 +210,6 @@ $(document).ready ->
         null
       ]
     )
-    $('tr.filter:first').hide()
     setTimeout(updateInformesNewVersion, 240000) # fired polling for new records
 
   # search link in Tools div

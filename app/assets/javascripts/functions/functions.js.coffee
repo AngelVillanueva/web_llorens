@@ -296,7 +296,7 @@ root.analytics_loaded = false
 
 # print a table row
 @printRow = (row) ->
-  tipo = $( 'h2.section_header span:eq(0)' ).text().toUpperCase()
+  tipo = $( 'h2.section_header span:eq(0)' ).text().split(" ")[0].toUpperCase()
   $( '<div id="toPrint" class="printable" />' ).appendTo( 'body' )
   $( '<h3>Resumen para Imprimir</h3><hr/><h4>' + tipo + '</h4>' ).appendTo( '#toPrint' )
   $( '<ul id="printList" />' ).appendTo( '#toPrint' )

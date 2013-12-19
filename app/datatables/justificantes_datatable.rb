@@ -1,0 +1,133 @@
+class JustificantesDatatable
+  delegate :params, :h, :link_to, :estado_cell, :pdf_link_cell, :edit_link_cell, :print_link_cell, to: :@view
+
+  def initialize(view, current_ability)
+    @view = view
+    @current_ability = current_ability
+    @columns = columns
+    @global_search_columns = global_search_columns
+  end
+
+  def as_json(options = {})
+    {
+      sEcho: params[:sEcho].to_i,
+      iTotalRecords: Justificante.count,
+      iTotalDisplayRecords: justificantes.total_count,
+      aaData: data
+    }
+  end
+
+  def to_csv(options = {})
+    CSV.generate(options) do |csv|
+      csv << formatted( @columns )
+      expedientes("csv").each do |expediente|
+        campos = expediente.attributes.values_at(*@columns)
+        campos[0] = expediente.cliente.nombre
+        csv << campos.take( campos.size - 1 )
+      end
+    end
+  end
+
+  private
+  def data
+    justificantes.map do |justificante|
+      [
+        justificante.cliente.nombre,
+        justificante.matricula,
+        justificante.bastidor,
+        justificante.nif_comprador,
+        justificante.nombre_razon_social,
+        justificante.primer_apellido,
+        justificante.segundo_apellido,
+        justificante.municipio,
+        justificante.provincia,
+        justificante.direccion,
+        justificante.marca,
+        justificante.modelo,
+        justificante.updated_at,
+        justificante.hora_solicitud,
+        justificante.hora_entrega,
+        estado_cell( justificante ),
+        pdf_link_cell( justificante ),
+        edit_link_cell( justificante ),
+        print_link_cell( justificante)
+      ]
+    end
+  end
+
+  def justificantes(format=nil)
+    justificantes ||= fetch_justificantes(format)
+  end
+
+  def fetch_justificantes(format=nil)
+    # fetch expedientes on page load
+    if format == "csv"
+      justificantes = Justificante.unscoped.includes(:cliente).accessible_by( @current_ability )
+    else
+      justificantes = Justificante.includes(:cliente).accessible_by( @current_ability ).page( page ).per( per_page )
+    end
+    # if global search refine results
+    if params[:sSearch].present?
+      justificantes = global_search justificantes
+    end
+    # if column search refine results
+    justificantes = column_search justificantes
+    # sort if requested
+    if params[:iSortCol_0].present?
+      justificantes = justificantes.unscoped.order("#{sort_column} #{sort_direction}")
+    end
+    justificantes
+  end
+
+  def page
+    params[:iDisplayStart].to_i/per_page + 1
+  end
+
+  def per_page
+    params[:iDisplayLength].to_i > 0 ? params[:iDisplayLength].to_i : 10
+  end
+
+  def sort_column
+    @columns[params[:iSortCol_0].to_i]
+  end
+
+  def sort_direction
+    params[:sSortDir_0] == "desc" ? "desc" : "asc"
+  end
+
+  def global_search justificantes
+    searched = params[:sSearch]
+    searching = @global_search_columns.join(" ilike :search or ")
+    searching << " ilike :search"
+    justificantes = justificantes.where(searching, search: "%#{searched}%" )
+  end
+
+  def column_search justificantes
+    for i in 0..@columns.count
+      p = ("sSearch_" + i.to_s ).to_sym
+      if params[p].present?
+        searched = params[p]
+        column = @columns[i]
+        justificantes = justificantes.where("#{column} ilike :search", search: "%#{searched}%" ) unless (searched.empty? || searched == "~")
+      end
+    end
+    justificantes
+  end
+
+  def columns
+    columns = %w[clientes.nombre matricula bastidor nif_comprador nombre_razon_social primer_apellido segundo_apellido municipio provincia direccion marca modelo updated_at hora_solicitud hora_entrega pdf_file_name]
+  end
+
+  def global_search_columns
+    columns = %w[clientes.nombre matricula bastidor nif_comprador nombre_razon_social primer_apellido segundo_apellido municipio provincia direccion marca modelo]
+  end
+
+  def formatted columns
+    columns.take(columns.size - 1).map(&:capitalize).join("-").gsub( "Clientes.nombre", "Cliente" ).split("-")
+  end
+
+  def clean(string_search, chars="~")
+    chars = Regexp.escape(chars)
+    string_search.gsub(/\A[#{chars}]+|[#{chars}]+\Z/, "")
+  end
+end

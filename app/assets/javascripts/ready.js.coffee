@@ -128,7 +128,7 @@ $(document).ready ->
   
   # justificantes
   if ( $( '#justificantes' ).length )
-    createDataTable(
+    createRemoteJustificantesDataTable(
       'justificantes',
       [],
       [
@@ -174,9 +174,9 @@ $(document).ready ->
         null,
         null,
         null
-      ]
+      ],
+      []
     )
-    $('tr.filter:first').hide()
     setTimeout(updateJustificantesNewVersion, 5000) # fired polling for new records
   
   # informes

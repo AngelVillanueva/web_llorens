@@ -55,6 +55,9 @@ $(document).ready ->
   $( 'a.printLink').click ->
     printRow( $( this ).parent('td').parent('tr') )
 
+  $('body').on 'click','a.printLink', ->
+    printRow( $( this ).parent('td').parent('tr') )
+
   # prepare the content if a table
   if ( $( 'table' ).length )
     configureDatePicker() # datepicker localization (es)

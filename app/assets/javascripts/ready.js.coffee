@@ -182,7 +182,7 @@ $(document).ready ->
   
   # informes
   if ( $( '#informes' ).length )
-    createRemoteDataTable(
+    createRemoteInformesDataTable(
       'informes',
       [],
       [

@@ -236,6 +236,50 @@ root.analytics_loaded = false
       aoColumns: filtercolumns
     })
 
+# create remote DataTable for Justificantes
+@createRemoteInformesDataTable = ( selector, sortcolumn, columntypes, excelname, exportcolumns, filtercolumns, datecolumns=[] ) ->
+  oTable = $( '#' + selector )
+  if ( oTable.length )
+    oTable.dataTable({
+      "sDom": "<'row'<'span6'T><'span6 pull-right'>r>t<'row-fluid'<'span6'i><'span6'p>>",
+      "sPaginationType": "bootstrap",
+      "aaSorting": sortcolumn,
+      "aoColumns": columntypes,
+      "bProcessing": true,
+      "bServerSide": true,
+      "sAjaxSource": oTable.data('source'),
+      "fnRowCallback": ( nRow, aData, iDisplayIndex ) ->
+        $(nRow).addClass('informe');
+        $(nRow).addClass('new') if aData[5]=="Pendiente"
+        $('td', nRow).slice(0,5).addClass('printable')
+        $('td', nRow).slice(5,7).addClass('icon')
+        return nRow
+      "oLanguage": {
+          "sSearch": "Buscar en la tabla",
+          "sLengthMenu": "Mostrar _MENU_ entradas por página",
+          "sZeroRecords": "Lo siento, no hay resultados",
+          "sInfo": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
+          "sInfoEmpty": "Mostrando 0 a 0 de 0 entradas",
+          "sInfoFiltered": "(filtrado de _MAX_ total entradas)"
+      },
+      "oTableTools": {
+        "aButtons": [ 
+          {
+            "sExtends": "download",
+            "sButtonText": "Download CSV",
+            "sUrl": oTable.data('csv'),
+            "sInputName": selector,
+            "sExtraData": datecolumns
+          }
+
+        ]
+      }
+    }).columnFilter({
+      sPlaceHolder: "head:before",
+      sRangeFormat: "De {from} a {to}",
+      aoColumns: filtercolumns
+    })
+
 # move Export to Excel/CSV Button to Tools div
 @moveExportButton = ->
   #$button = $('a.DTTT_button_xls')

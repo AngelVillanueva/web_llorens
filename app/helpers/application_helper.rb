@@ -248,7 +248,7 @@ module ApplicationHelper
           content_tag( 'i', nil, class: 'icon icon-file' )
        end
     else
-      t( "pendiente ")
+      t( "Pendiente")
     end
   end
   # returns the content of the Justificantes edit_link cell

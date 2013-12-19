@@ -204,12 +204,11 @@ root.analytics_loaded = false
       "fnRowCallback": ( nRow, aData, iDisplayIndex ) ->
         $(nRow).addClass('justificante');
         #if aData[16] == ''
-        $(nRow).addClass('new') if aData[16]==null
-        $('td', nRow).slice(0,16).addClass('printable')
-        $('td:eq(12)', nRow).removeClass('printable')
-        $('td', nRow).slice(7,15).addClass('hidden')
+        $(nRow).addClass('new') if aData[15]==null
+        $('td', nRow).slice(0,15).addClass('printable')
+        $('td', nRow).slice(7,14).addClass('hidden')
         $('td', nRow).slice(10,12).removeClass('hidden').addClass('hideie8')
-        $('td', nRow).slice(16,18).addClass('icon')
+        $('td', nRow).slice(15,17).addClass('icon')
         return nRow
       "oLanguage": {
           "sSearch": "Buscar en la tabla",
@@ -257,8 +256,9 @@ root.analytics_loaded = false
   $( '<div id="toPrint" class="printable" />' ).appendTo( 'body' )
   $( '<h3>Resumen para Imprimir</h3><hr/><h4>' + tipo + '</h4>' ).appendTo( '#toPrint' )
   $( '<ul id="printList" />' ).appendTo( '#toPrint' )
-  $( row ).children('td.printable').each ->
-    titular = $( this ).attr( 'data-titular' )
+  $( row ).children('td.printable').each (i) ->
+    #titular = $( this ).attr( 'data-titular' )
+    titular = $( "#"+ tipo.toLowerCase() + " tr.titles th:eq(" + i + ")").text()
     contenido = $( this ).html()
     $( '<li><span class="titular">' + titular + ':</span><span class="contenido">' + contenido + '</span></li>').appendTo( '#printList' )
   $( '#toPrint' ).printThis()

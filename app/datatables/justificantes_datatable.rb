@@ -44,7 +44,6 @@ class JustificantesDatatable
         justificante.direccion,
         justificante.marca,
         justificante.modelo,
-        justificante.updated_at,
         justificante.hora_solicitud,
         justificante.hora_entrega,
         estado_cell( justificante ),
@@ -115,7 +114,7 @@ class JustificantesDatatable
   end
 
   def columns
-    columns = %w[clientes.nombre matricula bastidor nif_comprador nombre_razon_social primer_apellido segundo_apellido municipio provincia direccion marca modelo updated_at hora_solicitud hora_entrega pdf_file_name]
+    columns = %w[clientes.nombre matricula bastidor nif_comprador nombre_razon_social primer_apellido segundo_apellido municipio provincia direccion marca modelo hora_solicitud hora_entrega pdf_file_name]
   end
 
   def global_search_columns

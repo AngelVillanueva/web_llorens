@@ -33,7 +33,6 @@
     <td class="printable hideie8" data-titular="Modelo">
       <%= justificante.modelo %>
     </td>
-    <td class="hidden"><%= justificante.updated_at.to_i %></td>
     <td class="printable hidden" data-titular="Hora solicitud">
       <%= l justificante.hora_solicitud, format: "%d/%m %H:%M" unless justificante.hora_solicitud.nil? %>
     </td>

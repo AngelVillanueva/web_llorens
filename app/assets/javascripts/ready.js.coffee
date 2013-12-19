@@ -147,7 +147,6 @@ $(document).ready ->
         null,
         null,
         null,
-        null,
         {"sType": "uniDate"},
         {"sType": "uniDate"},
         null,
@@ -156,7 +155,7 @@ $(document).ready ->
         null
         ],
       "Justificantes_Llorens",
-      [0,1,2,3,4,5,6,10,11,14], 
+      [0,1,2,3,4,5,6,10,11,12], 
       [
         { type: "text" },
         { type: "text" },
@@ -170,7 +169,6 @@ $(document).ready ->
         null,
         { type: "select" },
         { type: "text" },
-        null,
         { type: "date-range" },
         { type: "date-range" },
         null,

@@ -93,7 +93,7 @@ class InformesDatatable
     justificantes = justificantes.where(searching, search: "%#{searched}%" )
   end
 
-  def column_search justificantes
+  def column_search informes
     for i in 0..@columns.count
       p = ("sSearch_" + i.to_s ).to_sym
       if params[p].present?
@@ -114,7 +114,7 @@ class InformesDatatable
         end
       end
     end
-    justificantes
+    informes
   end
 
   def columns

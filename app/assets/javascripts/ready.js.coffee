@@ -198,11 +198,11 @@ $(document).ready ->
       "Informes_Llorens",
       [0,1,2,3,5], 
       [
-        { type: "select" },
+        { type: "text" },
         { type: "text" },
         { type: "text" },
         { type: "date-range" },
-        { type: "select" },
+        { type: "select", values: [ 'Finalizado', 'En curso' ] },
         null,
         null,
         null

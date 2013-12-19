@@ -4,6 +4,17 @@ class Online::InformesController < OnlineController
   expose( :informes ) { Informe.scoped.accessible_by( current_ability ).page( params[ :page ] ).per( 10 ) }
   expose( :informe, attributes: :informe_params )
 
+  def index
+    respond_to do |format|
+      format.html
+      format.json { render json: InformesDatatable.new( view_context, current_ability ) }
+      format.csv do
+        headers["Content-Disposition"] = "attachment; filename=\"Informes_Llorens_#{Time.now.strftime("%d_%m-%Y_%H-%M-%S")}.csv\""
+        render text: InformesDatatable.new( view_context, current_ability ).to_csv
+      end
+    end
+  end
+
   def create
     if informe.save
       flash[:success] = "Nuevo informe creado correctamente"

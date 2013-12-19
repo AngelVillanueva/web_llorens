@@ -93,7 +93,6 @@ $(document).ready ->
       ],
       [5,6]
     )
-    $('tr.filter:first').hide()
 
   # transferencias
   if ( $( '#expedientes.transferencia' ).length )
@@ -126,7 +125,6 @@ $(document).ready ->
       ],
       [5,6]
     )
-    $('tr.filter:first').hide()
   
   # justificantes
   if ( $( '#justificantes' ).length )

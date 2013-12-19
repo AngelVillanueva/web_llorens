@@ -85,7 +85,7 @@ namespace :fakefeed do
 
   task :informes => :environment do
     Informe.delete_all
-    10.times do
+    45.times do
       i = Informe.create(
         identificador: "#{Faker::Lorem.characters(3).upcase}-#{Faker::Lorem.characters(3).upcase}",
         solicitante: Faker::Name.name,
@@ -93,6 +93,11 @@ namespace :fakefeed do
         cliente: Cliente.all.sample
       )
       i.created_at = Time.at( rand * ( Time.now.to_f - 1.year.ago.to_f ) + 1.year.ago.to_f )
+      i.save!
+    end
+    is = Informe.all
+    is.sample(10).each do |i|
+      i.pdf = File.new("#{Rails.root}/spec/fixtures/test-I.pdf")
       i.save!
     end
   end

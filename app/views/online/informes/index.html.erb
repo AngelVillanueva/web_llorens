@@ -9,15 +9,14 @@
       search: 'informes' %>
 
   <div class="row">
-    <table id="informes" class="row pull-right table table-bordered table-striped table-condensed informe_traficos top_filtered">
+    <table id="informes" class="row pull-right table table-bordered table-striped table-condensed informe_traficos top_filtered" data-source="<%= online_informes_url(format: "json") %>" data-csv="<%= online_informes_url(format: "csv") %>?">
       <thead>
         <tr class="filter">
           <th>Cliente</th>
           <th>Matrícula</th>
           <th>Solicitante</th>
           <th>Fecha solicitud</th>
-          <th class="hidden"></th>
-          <th>Finalizado</th>
+          <th>Estado</th>
           <th></th>
           <th></th>
           <th></th>
@@ -27,8 +26,7 @@
           <th>Matrícula</th>
           <th>Solicitante</th>
           <th>Fecha solicitud</th>
-          <th class="hidden"></th>
-          <th>Finalizado</th>
+          <th>Estado</th>
           <th>Documentos</th>
           <th colspan="2" class="centered">Acciones</th>
         </tr>

@@ -1,4 +1,4 @@
-<table id="expedientes" class="row pull-right table table-condensed table-bordered table-striped top_filtered expedientes <%= expediente_type?(expediente, 'matriculacion') ? 'matriculacion' : 'transferencia' %>">
+<table id="expedientes" class="row pull-right table table-condensed table-bordered table-striped top_filtered expedientes <%= expediente_type?(expediente, 'matriculacion') ? 'matriculacion' : 'transferencia' %>" data-source="<%= online_expedientes_url(format: "json", type: expediente_type) %>" data-csv="<%= online_expedientes_url(format: "csv", type: expediente_type) %>">
   <thead>
     <tr class="filter">
       <th><%= t("Cliente") %></th>
@@ -93,14 +93,7 @@
           </td>
         <% end %>
         <td class="icon">
-          <% if expediente.has_documentos %>
-            <%= link_to pdf_path(expediente), target: 'blank' do %>
-              <span><%= "Ver PDF" %></span>
-              <i class="icon icon-file"></i>
-            <% end %>
-          <% else %>
-            <span class="pendiente"><%= t("PDF Pendiente") %></span>
-          <% end %>
+          <%= documentos_cell expediente %>
         </td>
       </tr>
     <% end %>

@@ -46,14 +46,23 @@ class Informe < ActiveRecord::Base
       end
       field :created_at do
         label "Solicitado el"
+        pretty_value do
+          I18n.l( value, format: "%d/%m/%Y %H:%M" )
+        end
+      end
+      field :pdf_updated_at do
+        label "PDF subido el"
+        pretty_value do
+          css_class("empty#{value.to_s[0]}")
+          I18n.l( value, format: "%d/%m/%Y %H:%M" ) unless value.nil?
+        end
       end
       field :solicitante
-      field :identificador
       field :updated_at
       field :cliente_id
       field :pdf_content_type
       field :pdf_file_size
-      field :pdf_updated_at
+      field :identificador
     end
     edit do
       group :advanced do

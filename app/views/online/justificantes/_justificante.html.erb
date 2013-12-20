@@ -33,7 +33,6 @@
     <td class="printable hideie8" data-titular="Modelo">
       <%= justificante.modelo %>
     </td>
-    <td class="hidden"><%= justificante.updated_at.to_i %></td>
     <td class="printable hidden" data-titular="Hora solicitud">
       <%= l justificante.hora_solicitud, format: "%d/%m %H:%M" unless justificante.hora_solicitud.nil? %>
     </td>
@@ -41,23 +40,15 @@
       <%= l justificante.hora_entrega, format: "%d/%m %H:%M" unless justificante.hora_entrega.nil? %>
     </td>
     <td class="printable" data-titular="Estado">
-      <%= justificante.pdf_file_name.nil? ? t("En curso") : t("Finalizado") %>
+      <%= estado_cell( justificante ) %>
     </td>
     <td class="icon">
-      <% unless justificante.pdf_file_name.nil? %>
-        <%= link_to justificante.pdf.url, title: "PDF", target: 'blank' do %>
-          <i class="icon icon-file"></i>
-        <% end %>
-      <% end %>
+      <%= pdf_link_cell( justificante ) %>
     </td>
     <td class="icon">
-      <% unless current_usuario.norole? %>
-        <%= link_to edit_online_justificante_path(justificante), title: "Editar" do %>
-            <i class="icon icon-edit toedit"></i>
-        <% end %>
-      <% end %>
+      <%= edit_link_cell( justificante ) %>
     </td>
     <td>
-    <a href="#" class="printLink"><i class="icon icon-print"></i></a>
-  </td>
+      <%= print_link_cell( justificante ) %>
+    </td>
   </tr>

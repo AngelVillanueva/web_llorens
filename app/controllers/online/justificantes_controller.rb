@@ -1,16 +1,20 @@
 class Online::JustificantesController < OnlineController
   load_and_authorize_resource except: [:new, :create]
   before_filter :authorize_edition, only: :edit
-  expose( :justificantes ) do
-    if params[:after]
-      timing = Time.at(params[:after].to_i + 1)
-      Justificante.scoped.accessible_by( current_ability ).where("pdf_file_name IS NULL").where("updated_at > ?", timing)
-    else
-      Justificante.scoped.accessible_by( current_ability )
-    end
-  end
+  expose( :justificantes ) { Justificante.scoped.accessible_by( current_ability ).page( params[ :page ] ).per( 10 ) }
   expose( :justificante, attributes: :justificante_params )
 
+
+  def index
+    respond_to do |format|
+      format.html
+      format.json { render json: JustificantesDatatable.new( view_context, current_ability ) }
+      format.csv do
+        headers["Content-Disposition"] = "attachment; filename=\"Justificantes_Llorens_#{Time.now.strftime("%d_%m-%Y_%H-%M-%S")}.csv\""
+        render text: JustificantesDatatable.new( view_context, current_ability ).to_csv
+      end
+    end
+  end
 
   def create
     if justificante.save

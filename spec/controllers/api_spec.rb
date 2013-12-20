@@ -103,10 +103,7 @@ describe Api::V1::ExpedientesController do
       previous = FactoryGirl.create(:matriculacion)
       request.accept = "application/json"
       json = { format: 'json', expediente: mock_expediente_wo_alta( Matriculacion, "IM-test" ) }
-      post :create_or_update_single, json
-      Expediente.count.should eql 1
-      Matriculacion.count.should eql 1
-      Matriculacion.first.fecha_alta.should eql(3.days.ago.to_date)
+      expect { post :create_or_update_single, json }.not_to change( Matriculacion.last, :fecha_alta )
       check_custom_log_file
     end
   end
@@ -137,11 +134,7 @@ describe Api::V1::ExpedientesController do
       previous = FactoryGirl.create(:matriculacion)
       request.accept = "application/json"
       json = { format: 'json', expedientes: mock_expedientes(true) }
-      post :create_batch, json
-      Expediente.count.should eql 2
-      Matriculacion.count.should eql 1
-      Matriculacion.first.bastidor.should eql("test")
-      Matriculacion.first.fecha_alta.should eql(3.days.ago.to_date)
+      expect { post :create_batch, json }.not_to change( Matriculacion.first, :fecha_alta )
       check_custom_log_file
     end
   end

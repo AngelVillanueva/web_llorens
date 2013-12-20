@@ -1,15 +1,19 @@
 class Online::InformesController < OnlineController
   load_and_authorize_resource except: [:new, :create]
   before_filter :authorize_edition, only: :edit
-  expose( :informes ) do
-    if params[:after]
-      timing = Time.at(params[:after].to_i + 1)
-      Informe.scoped.accessible_by( current_ability ).where("pdf_file_name IS NULL").where("updated_at > ?", timing)
-    else
-      Informe.scoped.accessible_by( current_ability )
+  expose( :informes ) { Informe.scoped.accessible_by( current_ability ).page( params[ :page ] ).per( 10 ) }
+  expose( :informe, attributes: :informe_params )
+
+  def index
+    respond_to do |format|
+      format.html
+      format.json { render json: InformesDatatable.new( view_context, current_ability ) }
+      format.csv do
+        headers["Content-Disposition"] = "attachment; filename=\"Informes_Llorens_#{Time.now.strftime("%d_%m-%Y_%H-%M-%S")}.csv\""
+        render text: InformesDatatable.new( view_context, current_ability ).to_csv
+      end
     end
   end
-  expose( :informe, attributes: :informe_params )
 
   def create
     if informe.save

@@ -158,7 +158,7 @@ When(/^I try to add a PDF for those Matriculaciones but fails$/) do
 end
 
 When(/^I click in the Incidencia icon$/) do
-  first( '.incidencia' ).hover
+  find( '.incidencia' ).hover
 end
 
 Then(/^I should see a list of the Expedientes$/) do
@@ -170,7 +170,7 @@ end
 
 Then(/^I should see just the Transferencia created yesterday$/) do
   page.should have_selector( 'td', text: "Test yesterday".upcase )
-  page.should have_selector( 'tr.expediente', count: 1 )
+  page.should have_selector( 'table#expedientes tbody tr', count: 1 )
 end
 
 Then(/^I should see a list of the Matriculaciones$/) do

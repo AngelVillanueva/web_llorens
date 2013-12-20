@@ -75,20 +75,6 @@ module ApplicationHelper
     end
   end
 
-          # <% if expediente.matricula %>
-          #   <%= expediente.matricula.upcase %>
-          #   <% unless current_usuario.norole? %>
-          #     <%= link_to t( "edit_matricula_PDF" ), edit_online_matriculacion_path( expediente ) %>
-          #   <% end %>
-          # <% else %>
-          #   <% unless current_usuario.norole? %>
-          #     <%= link_to t( "add_matricula_PDF" ), edit_online_matriculacion_path( expediente ) %>
-          #   <% end %>
-          # <% end %>
-          # <% if expediente.pdf_file_name && File.exist?(expediente.pdf.path) %>
-          #   <%= link_to t( "PDF matricula" ), expediente.pdf.url, target: "blank" %>
-          # <% end %>
-
   def matricula_cell_matricula expediente
     matricula = expediente.matricula ? expediente.matricula.upcase : t( "Pendiente_html" )
   end
@@ -117,7 +103,7 @@ module ApplicationHelper
   end
 
   def matricula_cell_incidencia expediente
-    link_to '#', class: "incidencia", 'data-toggle' => 'popover', 'data-content' => expediente.incidencia, 'data-original-title' => I18n.t("Incidencia"), 'data-trigger' => 'hover' do
+    link_to '#', class: "incidencia", 'data-toggle' => 'popover', 'data-content' => expediente.incidencia, 'data-original-title' => I18n.t("Incidencia"), 'data-trigger' => 'hover', 'data-placement' => 'top'  do
       content_tag( 'i', nil, class: 'icon icon-info-sign' )
     end
   end
@@ -216,6 +202,77 @@ module ApplicationHelper
       aviso.titular.empty? ? t( "Aviso" ) : aviso.titular
     else
       t( "Aviso" )
+    end
+  end
+  # returns the content of the Expedientes Matricula cell
+  def matricula_cell_whole( expediente )
+    content_tag( 'div' ) do
+      concat matricula_cell_matricula expediente
+      if expediente_type? expediente, 'matriculacion'
+        concat matricula_cell_pdf expediente
+        concat matricula_cell_actions expediente
+      elsif expediente.incidencia && !expediente.incidencia.empty?
+        concat matricula_cell_incidencia expediente
+      elsif Transferencia.no_incidenciable
+        concat content_tag( 'i', nil, title: t( "Documentacion correcta" ), class: "noincidencia icon icon-circle")
+      end
+    end
+  end
+  # returns the content of the Expedientes Documentos cell
+  def documentos_cell( expediente )
+    if expediente.has_documentos
+      link_to pdf_path( expediente ), target: '_blank', class: 'icon' do
+        concat content_tag( 'span', t( "Ver PDF" ) )
+        concat content_tag( 'i', nil, class: 'icon icon-file' )
+      end
+    else
+      content_tag( 'span', t( "PDF Pendiente" ), class: 'pendiente' )
+    end
+  end
+  # returns the content of the Justificantes / Informes Estado cell
+  def estado_cell( object )
+    object.pdf_file_name.nil? ? t("En curso") : t("Finalizado")
+  end
+  # returns the content of the Justificantes pdf_link cell
+  def pdf_link_cell( justificante )
+    unless justificante.pdf_file_name.nil?
+      link_to justificante.pdf.url, title: "PDF", target: 'blank' do
+          content_tag( 'i', nil, class: 'icon icon-file' )
+       end
+    end
+  end
+  # returns the content of the Informes pdf_link cell
+  def pdf_link_cell_not_empty( informe )
+    unless informe.pdf_file_name.nil?
+      link_to informe.pdf.url, title: "PDF", target: 'blank' do
+          content_tag( 'i', nil, class: 'icon icon-file' )
+       end
+    else
+      t( "Pendiente")
+    end
+  end
+  # returns the content of the Justificantes edit_link cell
+  def edit_link_cell( justificante )
+    unless current_usuario.norole?
+      link_to edit_online_justificante_path(justificante), title: "Editar" do
+        content_tag( 'i', nil, class: 'icon icon-edit toedit' )
+      end
+    end
+  end
+  # returns the content of the Informes edit_link cell
+  def edit_link_cell_i( informe )
+    unless current_usuario.norole?
+      link_to edit_online_informe_path(informe), title: "Editar" do
+        concat content_tag( 'span', t( "Incluir PDF" ), class: 'toedit' ) if informe.pdf_file_name.nil?
+        concat content_tag( 'span', t( "Cambiar PDF" ), class: 'toedit' ) unless informe.pdf_file_name.nil?
+        concat content_tag( 'i', nil, class: 'icon icon-edit toedit' )
+      end
+    end
+  end
+  # returns the content of the Justificantes print_link cell
+  def print_link_cell( justificante )
+    link_to '#', class: "printLink" do
+      content_tag( 'i', nil, class: 'icon icon-print' )
     end
   end
 

@@ -39,7 +39,7 @@ end
       And the one with Incidencia is older
     When I access the Transferencias index page
     Then the Transferencia with Incidencia should appear the first one
-@javascript
+@javascript @popover
   Scenario: the Incidencia icon should show the detail on click
     Given there is an Incidencia in the page
     When I click in the Incidencia icon

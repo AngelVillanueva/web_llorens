@@ -8,7 +8,7 @@
       search: 'justificantes' %>
 
   <div class="row">
-    <table id="justificantes" class="row pull-right table table-condensed table-bordered table-striped top_filtered justificantes">
+    <table id="justificantes" class="row pull-right table table-condensed table-bordered table-striped top_filtered justificantes" data-source="<%= online_justificantes_url(format: "json") %>" data-csv="<%= online_justificantes_url(format: "csv") %>?">
   <thead>
     <tr class="filter">
       <th><%= t("Cliente") %></th>
@@ -23,7 +23,6 @@
       <th class="hidden"></th>
       <th class="hideie8"><%= t("Marca") %></th>
       <th class="hideie8"><%= t("Modelo") %></th>
-      <th class="hidden"></th>
       <th class="hidden"><%= t("Hora solicitud") %></th>
       <th class="hidden"><%= t("Hora entrega") %></th>
       <th></th>
@@ -39,12 +38,11 @@
       <th><%= t("Nombre o razon") %></th>
       <th><%= t("Primer apellido") %></th>
       <th><%= t("Segundo apellido") %></th>
-      <th class="hidden"></th>
-      <th class="hidden"></th>
-      <th class="hidden"></th>
+      <th class="hidden"><%= t("Municipio") %></th>
+      <th class="hidden"><%= t("Provincia") %></th>
+      <th class="hidden"><%= t("Direccion") %></th>
       <th class="hideie8"><%= t("Marca") %></th>
       <th class="hideie8"><%= t("Modelo") %></th>
-      <th class="hidden"></th>
       <th class="hidden"><%= t("Hora solicitud") %></th>
       <th class="hidden"><%= t("Hora entrega") %></th>
       <th><%= t("Estado") %></th>

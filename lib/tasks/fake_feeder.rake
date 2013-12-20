@@ -14,8 +14,8 @@ namespace :fakefeed do
   desc 'Feeding Clientes'
   task :matriculaciones => :environment do
     Matriculacion.delete_all
-    5000.times do
-      Matriculacion.create!(
+    3500.times do
+      m = Matriculacion.create!(
         identificador: "#{Faker::Lorem.characters(3).upcase}-#{Faker::Lorem.characters(3).upcase}",
         matricula: Faker::Lorem.characters(6).upcase,
         bastidor: Faker::Lorem.characters(17).upcase,
@@ -29,6 +29,8 @@ namespace :fakefeed do
         observaciones: Faker::Lorem.sentence,
         cliente: Cliente.all.sample
       )
+      m.created_at = Random.new.rand(100).days.ago.to_date
+      m.save!
     end
   end
 
@@ -54,7 +56,7 @@ namespace :fakefeed do
   
   task :justificantes => :environment do
     Justificante.delete_all
-    10.times do
+    25.times do
       j = Justificante.create(
         identificador: "#{Faker::Lorem.characters(3).upcase}-#{Faker::Lorem.characters(3).upcase}",
         nif_comprador: "00000000T",
@@ -74,11 +76,16 @@ namespace :fakefeed do
       j.hora_solicitud = j.created_at
       j.save!
     end
+    js = Justificante.all
+    js.sample(10).each do |j|
+      j.pdf = File.new("#{Rails.root}/spec/fixtures/test-J.pdf")
+      j.save!
+    end
   end
 
   task :informes => :environment do
     Informe.delete_all
-    10.times do
+    45.times do
       i = Informe.create(
         identificador: "#{Faker::Lorem.characters(3).upcase}-#{Faker::Lorem.characters(3).upcase}",
         solicitante: Faker::Name.name,
@@ -86,6 +93,11 @@ namespace :fakefeed do
         cliente: Cliente.all.sample
       )
       i.created_at = Time.at( rand * ( Time.now.to_f - 1.year.ago.to_f ) + 1.year.ago.to_f )
+      i.save!
+    end
+    is = Informe.all
+    is.sample(10).each do |i|
+      i.pdf = File.new("#{Rails.root}/spec/fixtures/test-I.pdf")
       i.save!
     end
   end

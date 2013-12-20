@@ -151,26 +151,162 @@ root.analytics_loaded = false
       aoColumns: filtercolumns
     })
 
-# move Export to Excel Button to Tools div
-@moveExportExcelButton = ->
-  $button = $('a.DTTT_button_xls')
+# create remote DataTable
+@createRemoteDataTable = ( selector, sortcolumn, columntypes, excelname, exportcolumns, filtercolumns, datecolumns=[] ) ->
+  oTable = $( '#' + selector )
+  if ( oTable.length )
+    oTable.dataTable({
+      "sDom": "<'row'<'span6'T><'span6 pull-right'>r>t<'row-fluid'<'span6'i><'span6'p>>",
+      "sPaginationType": "bootstrap",
+      "aaSorting": sortcolumn,
+      "aoColumns": columntypes,
+      "bProcessing": true,
+      "bServerSide": true,
+      "sAjaxSource": oTable.data('source'),
+      "fnRowCallback": ( nRow, aData, iDisplayIndex ) ->
+        $(nRow).addClass('expediente');
+        $('td', nRow).slice(1,2).addClass('matricula')
+        $('td:last', nRow).addClass('icon')
+        return nRow
+      "oLanguage": {
+          "sSearch": "Buscar en la tabla",
+          "sLengthMenu": "Mostrar _MENU_ entradas por página",
+          "sZeroRecords": "Lo siento, no hay resultados",
+          "sInfo": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
+          "sInfoEmpty": "Mostrando 0 a 0 de 0 entradas",
+          "sInfoFiltered": "(filtrado de _MAX_ total entradas)"
+      },
+      "oTableTools": {
+        "aButtons": [ 
+          {
+            "sExtends": "download",
+            "sButtonText": "Download CSV",
+            "sUrl": oTable.data('csv'),
+            "sInputName": selector,
+            "sExtraData": datecolumns
+          }
+
+        ]
+      }
+    }).columnFilter({
+      sPlaceHolder: "head:before",
+      sRangeFormat: "De {from} a {to}",
+      aoColumns: filtercolumns
+    })
+
+# create remote DataTable for Justificantes
+@createRemoteJustificantesDataTable = ( selector, sortcolumn, columntypes, excelname, exportcolumns, filtercolumns, datecolumns=[] ) ->
+  oTable = $( '#' + selector )
+  if ( oTable.length )
+    oTable.dataTable({
+      "sDom": "<'row'<'span6'T><'span6 pull-right'>r>t<'row-fluid'<'span6'i><'span6'p>>",
+      "sPaginationType": "bootstrap",
+      "aaSorting": sortcolumn,
+      "aoColumns": columntypes,
+      "bProcessing": true,
+      "bServerSide": true,
+      "sAjaxSource": oTable.data('source'),
+      "fnRowCallback": ( nRow, aData, iDisplayIndex ) ->
+        $(nRow).addClass('justificante');
+        $(nRow).addClass('new') if aData[15]==null
+        $('td', nRow).slice(0,15).addClass('printable')
+        $('td', nRow).slice(7,14).addClass('hidden')
+        $('td', nRow).slice(10,12).removeClass('hidden').addClass('hideie8')
+        $('td', nRow).slice(15,17).addClass('icon')
+        return nRow
+      "oLanguage": {
+          "sSearch": "Buscar en la tabla",
+          "sLengthMenu": "Mostrar _MENU_ entradas por página",
+          "sZeroRecords": "Lo siento, no hay resultados",
+          "sInfo": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
+          "sInfoEmpty": "Mostrando 0 a 0 de 0 entradas",
+          "sInfoFiltered": "(filtrado de _MAX_ total entradas)"
+      },
+      "oTableTools": {
+        "aButtons": [ 
+          {
+            "sExtends": "download",
+            "sButtonText": "Download CSV",
+            "sUrl": oTable.data('csv'),
+            "sInputName": selector,
+            "sExtraData": datecolumns
+          }
+
+        ]
+      }
+    }).columnFilter({
+      sPlaceHolder: "head:before",
+      sRangeFormat: "De {from} a {to}",
+      aoColumns: filtercolumns
+    })
+
+# create remote DataTable for Justificantes
+@createRemoteInformesDataTable = ( selector, sortcolumn, columntypes, excelname, exportcolumns, filtercolumns, datecolumns=[] ) ->
+  oTable = $( '#' + selector )
+  if ( oTable.length )
+    oTable.dataTable({
+      "sDom": "<'row'<'span6'T><'span6 pull-right'>r>t<'row-fluid'<'span6'i><'span6'p>>",
+      "sPaginationType": "bootstrap",
+      "aaSorting": sortcolumn,
+      "aoColumns": columntypes,
+      "bProcessing": true,
+      "bServerSide": true,
+      "sAjaxSource": oTable.data('source'),
+      "fnRowCallback": ( nRow, aData, iDisplayIndex ) ->
+        $(nRow).addClass('informe');
+        $(nRow).addClass('new') if aData[5]=="Pendiente"
+        $('td', nRow).slice(0,5).addClass('printable')
+        $('td', nRow).slice(5,7).addClass('icon')
+        return nRow
+      "oLanguage": {
+          "sSearch": "Buscar en la tabla",
+          "sLengthMenu": "Mostrar _MENU_ entradas por página",
+          "sZeroRecords": "Lo siento, no hay resultados",
+          "sInfo": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
+          "sInfoEmpty": "Mostrando 0 a 0 de 0 entradas",
+          "sInfoFiltered": "(filtrado de _MAX_ total entradas)"
+      },
+      "oTableTools": {
+        "aButtons": [ 
+          {
+            "sExtends": "download",
+            "sButtonText": "Download CSV",
+            "sUrl": oTable.data('csv'),
+            "sInputName": selector,
+            "sExtraData": datecolumns
+          }
+
+        ]
+      }
+    }).columnFilter({
+      sPlaceHolder: "head:before",
+      sRangeFormat: "De {from} a {to}",
+      aoColumns: filtercolumns
+    })
+
+# move Export to Excel/CSV Button to Tools div
+@moveExportButton = ->
+  #$button = $('a.DTTT_button_xls')
+  $button = $('a.DTTT_button_text')
   $('<li class="tooltip-xls"/>').appendTo('.tools ul')
   $button.addClass('pie')
   $button.children('span').remove()
+  $button.children('undefined').remove()
   $('<i class="icon icon-save icon-2x"/>').appendTo($button)
   $button.removeClass('btn').appendTo('.tools ul li:last')
   $('.dataTables_wrapper').children('div.row:first').remove()
-  $('li.tooltip-xls').tooltip({'title': 'Exportar Excel'})
+  $('li.tooltip-xls').tooltip({'title': 'Exportar CSV'})
 
 
 # print a table row
 @printRow = (row) ->
-  tipo = $( row ).attr( 'class' ).split( ' ' )[0].toUpperCase()
+  tipo = $( 'h2.section_header span:eq(0)' ).text().split(" ")[0].toUpperCase()
   $( '<div id="toPrint" class="printable" />' ).appendTo( 'body' )
   $( '<h3>Resumen para Imprimir</h3><hr/><h4>' + tipo + '</h4>' ).appendTo( '#toPrint' )
   $( '<ul id="printList" />' ).appendTo( '#toPrint' )
-  $( row ).children('td.printable').each ->
-    titular = $( this ).attr( 'data-titular' )
+  $( row ).children('td.printable').each (i) ->
+    #titular = $( this ).attr( 'data-titular' )
+    titular = $( "#"+ tipo.toLowerCase() + " tr.titles th:eq(" + i + ")").text()
     contenido = $( this ).html()
     $( '<li><span class="titular">' + titular + ':</span><span class="contenido">' + contenido + '</span></li>').appendTo( '#printList' )
   $( '#toPrint' ).printThis()

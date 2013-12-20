@@ -25,8 +25,15 @@ $(document).ready ->
   #tooltip init
   $('a[rel*="tooltip"]').tooltip({ 'placement': 'top' })
 
-  #popover init
-  $('a[data-toggle*="popover"]').popover({ 'placement': 'top' })
+  # popover binding
+  popOverSettings =
+    trigger: 'hover',
+    container: 'body',
+    html: true,
+    selector: 'a.incidencia'
+      
+
+  $('body').popover(popOverSettings)
 
   #modal alert init
   if ( $( '.modal' ) ).length
@@ -45,6 +52,9 @@ $(document).ready ->
   $( 'a.printLink').click ->
     printRow( $( this ).parent('td').parent('tr') )
 
+  $('body').on 'click','a.printLink', ->
+    printRow( $( this ).parent('td').parent('tr') )
+
   # prepare the content if a table
   if ( $( 'table' ).length )
     configureDatePicker() # datepicker localization (es)
@@ -56,7 +66,7 @@ $(document).ready ->
   ###
   # matriculaciones
   if ( $( '#expedientes.matriculacion' ).length )
-    createDataTable(
+    createRemoteDataTable(
       'expedientes',
       [],
       [
@@ -72,7 +82,7 @@ $(document).ready ->
       "Matriculaciones_Llorens",
       [0,1,2,3,4,5,6,7], 
       [
-        { type: "select" },
+        { type: "text" },
         { type: "text" },
         { type: "text" },
         { type: "text" },
@@ -80,13 +90,13 @@ $(document).ready ->
         { type: "date-range" },
         { type: "date-range" },
         { type: "select", values: [ 'PDF Pendiente', 'Ver PDF' ] }
-      ]
+      ],
+      [5,6]
     )
-    $('tr.filter:first').hide()
 
   # transferencias
   if ( $( '#expedientes.transferencia' ).length )
-    createDataTable(
+    createRemoteDataTable(
       'expedientes',
       [],
       [
@@ -112,17 +122,16 @@ $(document).ready ->
         { type: "date-range" },
         { type: "select" },
         { type: "select", values: [ 'PDF Pendiente', 'Ver PDF' ] }
-      ]
+      ],
+      [5,6]
     )
-    $('tr.filter:first').hide()
   
   # justificantes
   if ( $( '#justificantes' ).length )
-    createDataTable(
+    createRemoteJustificantesDataTable(
       'justificantes',
       [],
       [
-        null,
         null,
         null,
         null,
@@ -143,7 +152,7 @@ $(document).ready ->
         null
         ],
       "Justificantes_Llorens",
-      [0,1,2,3,4,5,6,10,11,14], 
+      [0,1,2,3,4,5,6,10,11,12], 
       [
         { type: "text" },
         { type: "text" },
@@ -157,21 +166,20 @@ $(document).ready ->
         null,
         { type: "select" },
         { type: "text" },
-        null,
         { type: "date-range" },
         { type: "date-range" },
         null,
         null,
         null,
         null
-      ]
+      ],
+      []
     )
-    $('tr.filter:first').hide()
     setTimeout(updateJustificantesNewVersion, 5000) # fired polling for new records
   
   # informes
   if ( $( '#informes' ).length )
-    createDataTable(
+    createRemoteInformesDataTable(
       'informes',
       [],
       [
@@ -182,24 +190,22 @@ $(document).ready ->
         null,
         null,
         null,
-        null,
         null
         ],
       "Informes_Llorens",
       [0,1,2,3,5], 
       [
-        { type: "select" },
+        { type: "text" },
         { type: "text" },
         { type: "text" },
         { type: "date-range" },
-        null,
-        { type: "select" },
+        { type: "select", values: [ 'Finalizado', 'En curso' ] },
         null,
         null,
         null
-      ]
+      ],
+      []
     )
-    $('tr.filter:first').hide()
     setTimeout(updateInformesNewVersion, 240000) # fired polling for new records
 
   # search link in Tools div
@@ -209,7 +215,7 @@ $(document).ready ->
 
   # move 'Export to Excel' functionality
   if TableTools.fnGetMasters().length
-    moveExportExcelButton()
+    moveExportButton()
 
   # printThis binding
   $( 'a.filtering' ).click ->

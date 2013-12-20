@@ -72,6 +72,15 @@ class Justificante < ActiveRecord::Base
       end
       field :hora_solicitud do
         sort_reverse false
+        pretty_value do
+          I18n.l( value, format: "%d/%m/%Y %H:%m")
+        end
+      end
+      field :hora_entrega do
+        pretty_value do
+          css_class("empty#{value.to_s[0]}")
+          I18n.l( value, format: "%d/%m/%Y %H:%m") unless value.nil?
+        end
       end
       field :bastidor
       field :marca
@@ -84,7 +93,6 @@ class Justificante < ActiveRecord::Base
       field :municipio
       field :provincia
       field :cliente
-      field :hora_entrega
     end
     edit do
       group :advanced do

@@ -75,10 +75,7 @@ class JustificantesDatatable
     end
     # if column search refine results
     justificantes = column_search justificantes
-    # sort if requested
-    # if params[:iSortCol_0].present?
-    #   justificantes = justificantes.unscoped.order("#{sort_column} #{sort_direction}")
-    # end
+    # return justificantes
     justificantes
   end
 

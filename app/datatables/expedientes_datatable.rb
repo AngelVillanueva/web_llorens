@@ -81,10 +81,7 @@ class ExpedientesDatatable
     end
     # if column search refine results
     expedientes = column_search expedientes
-    # sort if requested
-    # if params[:iSortCol_0].present?
-    #   expedientes = expedientes.unscoped.order("#{sort_column} #{sort_direction}")
-    # end
+    # return expedientes
     expedientes
   end
 

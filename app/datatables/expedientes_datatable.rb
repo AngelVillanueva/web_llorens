@@ -70,6 +70,8 @@ class ExpedientesDatatable
     # fetch expedientes on page load
     if format == "csv"
       expedientes = @type.unscoped.includes(:cliente).accessible_by( @current_ability )
+    elsif params[:iSortCol_0].present?
+      expedientes = @type.unscoped.includes(:cliente).accessible_by( @current_ability ).order("#{sort_column} #{sort_direction}").page( page ).per( per_page )
     else
       expedientes = @type.includes(:cliente).accessible_by( @current_ability ).page( page ).per( per_page )
     end
@@ -80,9 +82,9 @@ class ExpedientesDatatable
     # if column search refine results
     expedientes = column_search expedientes
     # sort if requested
-    if params[:iSortCol_0].present?
-      expedientes = expedientes.unscoped.order("#{sort_column} #{sort_direction}")
-    end
+    # if params[:iSortCol_0].present?
+    #   expedientes = expedientes.unscoped.order("#{sort_column} #{sort_direction}")
+    # end
     expedientes
   end
 

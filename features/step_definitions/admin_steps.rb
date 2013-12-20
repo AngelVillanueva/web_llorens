@@ -34,6 +34,13 @@ Given(/^I am a registered User with no role$/) do
   user.norole?
 end
 
+Given(/^the admin user has reordered them$/) do
+  recent_aviso = Aviso.unscoped.order("created_at desc").last
+  old_aviso = Aviso.unscoped.order("created_at desc").first
+  recent_aviso.sorting_order = 2
+  recent_aviso.save!
+end
+
 When(/^I access the admin panel$/) do
   visit root_path
   find( "li.administrator a" ).click

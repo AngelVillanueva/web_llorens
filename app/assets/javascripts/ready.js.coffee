@@ -120,7 +120,7 @@ $(document).ready ->
         { type: "text" },
         { type: "date-range" },
         { type: "date-range" },
-        { type: "text" },
+        null,
         { type: "select", values: [ 'PDF Pendiente', 'Ver PDF' ] }
       ],
       [5,6]

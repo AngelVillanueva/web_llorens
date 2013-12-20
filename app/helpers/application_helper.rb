@@ -263,7 +263,9 @@ module ApplicationHelper
   def edit_link_cell_i( informe )
     unless current_usuario.norole?
       link_to edit_online_informe_path(informe), title: "Editar" do
-        content_tag( 'i', nil, class: 'icon icon-edit toedit' )
+        concat content_tag( 'span', t( "Incluir PDF" ), class: 'toedit' ) if informe.pdf_file_name.nil?
+        concat content_tag( 'span', t( "Cambiar PDF" ), class: 'toedit' ) unless informe.pdf_file_name.nil?
+        concat content_tag( 'i', nil, class: 'icon icon-edit toedit' )
       end
     end
   end

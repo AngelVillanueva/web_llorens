@@ -53,7 +53,8 @@ class Informe < ActiveRecord::Base
       field :pdf_updated_at do
         label "PDF subido el"
         pretty_value do
-          value.nil? ? "-" : I18n.l( value, format: "%d/%m/%Y %H:%M" )
+          css_class("empty#{value.to_s[0]}")
+          I18n.l( value, format: "%d/%m/%Y %H:%M" ) unless value.nil?
         end
       end
       field :solicitante

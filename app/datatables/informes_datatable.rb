@@ -23,7 +23,7 @@ class InformesDatatable
       informes("csv").each do |informe|
         campos = informe.attributes.values_at(*@columns)
         campos[0] = informe.cliente.nombre
-        campos[3] = I18n.l( campos[3], format: "%d/%m/%Y %H:%m")
+        campos[3] = I18n.l( campos[3], format: "%d/%m/%Y")
         campos[4].nil? ? campos[4] = I18n.t( "En curso" ) : campos[4] = I18n.t( "Finalizado" )
         csv << campos
       end
@@ -37,7 +37,7 @@ class InformesDatatable
         informe.cliente.nombre,
         informe.matricula,
         informe.solicitante,
-        I18n.l( informe.created_at, format: "%d/%m/%Y %H:%m" ),
+        I18n.l( informe.created_at, format: "%d/%m/%Y" ),
         estado_cell( informe ),
         pdf_link_cell_not_empty( informe ),
         edit_link_cell_i( informe ),
@@ -105,8 +105,8 @@ class InformesDatatable
         elsif column.include? "created"
           lapse = searched.split("~")
           unless lapse[1].nil?
-            f1 = lapse[0].to_date
-            f2 = lapse[1].to_date
+            f1 = lapse[0].to_date.beginning_of_day
+            f2 = lapse[1].to_date.end_of_day
             informes = informes.where( "#{column} between :f1 and :f2", f1: f1, f2:f2 ) unless (searched.empty? || searched == "~")
           end
         else

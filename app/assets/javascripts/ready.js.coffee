@@ -86,7 +86,7 @@ $(document).ready ->
         { type: "text" },
         { type: "text" },
         { type: "text" },
-        { type: "select" },
+        { type: "text" },
         { type: "date-range" },
         { type: "date-range" },
         { type: "select", values: [ 'PDF Pendiente', 'Ver PDF' ] }
@@ -113,14 +113,14 @@ $(document).ready ->
       "Transferencias_Llorens",
       [0,1,2,3,4,5,6,7,8], 
       [
-        { type: "select" },
         { type: "text" },
         { type: "text" },
         { type: "text" },
-        { type: "select" },
+        { type: "text" },
+        { type: "text" },
         { type: "date-range" },
         { type: "date-range" },
-        { type: "select" },
+        { type: "text" },
         { type: "select", values: [ 'PDF Pendiente', 'Ver PDF' ] }
       ],
       [5,6]
@@ -164,7 +164,7 @@ $(document).ready ->
         null,
         null,
         null,
-        { type: "select" },
+        { type: "text" },
         { type: "text" },
         { type: "date-range" },
         { type: "date-range" },

@@ -25,12 +25,9 @@ $(document).ready ->
   #tooltip init
   $('a[rel*="tooltip"]').tooltip({ 'placement': 'top' })
 
-  #popover init
-  #$('a[data-toggle*="popover"]').popover({ 'placement': 'top' })
-
+  # popover binding
   popOverSettings =
     trigger: 'hover',
-    placement: 'top',
     container: 'body',
     html: true,
     selector: 'a.incidencia'

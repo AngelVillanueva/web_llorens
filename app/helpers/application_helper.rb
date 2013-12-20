@@ -103,7 +103,7 @@ module ApplicationHelper
   end
 
   def matricula_cell_incidencia expediente
-    link_to '#', class: "incidencia", 'data-toggle' => 'popover', 'data-content' => expediente.incidencia, 'data-original-title' => I18n.t("Incidencia"), 'data-trigger' => 'hover' do
+    link_to '#', class: "incidencia", 'data-toggle' => 'popover', 'data-content' => expediente.incidencia, 'data-original-title' => I18n.t("Incidencia"), 'data-trigger' => 'hover', 'data-placement' => 'top'  do
       content_tag( 'i', nil, class: 'icon icon-info-sign' )
     end
   end

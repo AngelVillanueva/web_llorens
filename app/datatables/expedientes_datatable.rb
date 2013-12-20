@@ -138,7 +138,7 @@ class ExpedientesDatatable
     when "Matriculacion"
       columns = %w[clientes.nombre matricula bastidor comprador modelo fecha_alta fecha_facturacion has_documentos]
     when "Transferencia"
-      columns = %w[clientes.nombre matricula comprador vendedor marca fecha_alta fecha_facturacion has_documentos]
+      columns = %w[clientes.nombre matricula comprador vendedor marca fecha_alta fecha_facturacion updated_at has_documentos]
     end
     columns
   end

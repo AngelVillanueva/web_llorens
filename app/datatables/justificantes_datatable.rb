@@ -64,6 +64,8 @@ class JustificantesDatatable
     # fetch expedientes on page load
     if format == "csv"
       justificantes = Justificante.unscoped.includes(:cliente).accessible_by( @current_ability )
+    elsif params[:iSortCol_0].present? # sort if requested
+      justificantes = Justificante.unscoped.includes(:cliente).accessible_by( @current_ability ).order("#{sort_column} #{sort_direction}").page( page ).per( per_page )
     else
       justificantes = Justificante.includes(:cliente).accessible_by( @current_ability ).page( page ).per( per_page )
     end
@@ -74,9 +76,9 @@ class JustificantesDatatable
     # if column search refine results
     justificantes = column_search justificantes
     # sort if requested
-    if params[:iSortCol_0].present?
-      justificantes = justificantes.unscoped.order("#{sort_column} #{sort_direction}")
-    end
+    # if params[:iSortCol_0].present?
+    #   justificantes = justificantes.unscoped.order("#{sort_column} #{sort_direction}")
+    # end
     justificantes
   end
 

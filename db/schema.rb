@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131217153529) do
+ActiveRecord::Schema.define(:version => 20131220162155) do
 
   create_table "api_keys", :force => true do |t|
     t.string   "access_token"
@@ -20,10 +20,12 @@ ActiveRecord::Schema.define(:version => 20131217153529) do
   end
 
   create_table "avisos", :force => true do |t|
-    t.text    "contenido"
-    t.string  "titular"
-    t.date    "fecha_de_caducidad"
-    t.integer "dias_visible_desde_ultimo_login"
+    t.text     "contenido"
+    t.string   "titular"
+    t.date     "fecha_de_caducidad"
+    t.integer  "dias_visible_desde_ultimo_login"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "clientes", :force => true do |t|

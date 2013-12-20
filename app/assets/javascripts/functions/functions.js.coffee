@@ -163,6 +163,11 @@ root.analytics_loaded = false
       "bProcessing": true,
       "bServerSide": true,
       "sAjaxSource": oTable.data('source'),
+      "fnRowCallback": ( nRow, aData, iDisplayIndex ) ->
+        $(nRow).addClass('expediente');
+        $('td', nRow).slice(1,2).addClass('matricula')
+        $('td:last', nRow).addClass('icon')
+        return nRow
       "oLanguage": {
           "sSearch": "Buscar en la tabla",
           "sLengthMenu": "Mostrar _MENU_ entradas por página",
@@ -203,7 +208,6 @@ root.analytics_loaded = false
       "sAjaxSource": oTable.data('source'),
       "fnRowCallback": ( nRow, aData, iDisplayIndex ) ->
         $(nRow).addClass('justificante');
-        #if aData[16] == ''
         $(nRow).addClass('new') if aData[15]==null
         $('td', nRow).slice(0,15).addClass('printable')
         $('td', nRow).slice(7,14).addClass('hidden')

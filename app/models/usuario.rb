@@ -79,6 +79,33 @@ class Usuario < ActiveRecord::Base
   end
 
   rails_admin do
+    list do
+      field :id
+      field :email
+      field :nombre
+      field :apellidos
+      field :organizacion
+      field :role do
+        pretty_value do
+          value.nil? ? "usuario" : value
+        end
+      end
+      field :created_at do
+        label "Creado"
+      end
+      field :updated_at do
+        label "Actualizado"
+      end
+      field :password_changed_at do
+        label "Password cambiado el"
+      end
+      field :notificaciones
+      field :avisos
+      field :sign_in_count
+      field :current_sign_in_at
+      field :reset_password_sent_at
+      field :remember_created_at
+    end
     edit do
       group :advanced do
         label I18n.t("Advanced")

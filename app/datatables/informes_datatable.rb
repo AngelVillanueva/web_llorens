@@ -54,6 +54,8 @@ class InformesDatatable
     # fetch expedientes on page load
     if format == "csv"
       informes = Informe.unscoped.includes(:cliente).accessible_by( @current_ability )
+    elsif params[:iSortCol_0].present? # sort if requested
+      informes = Informe.unscoped.includes(:cliente).accessible_by( @current_ability ).order("#{sort_column} #{sort_direction}").page( page ).per( per_page )
     else
       informes = Informe.includes(:cliente).accessible_by( @current_ability ).page( page ).per( per_page )
     end
@@ -63,10 +65,7 @@ class InformesDatatable
     end
     # if column search refine results
     informes = column_search informes
-    # sort if requested
-    if params[:iSortCol_0].present?
-      informes = informes.unscoped.order("#{sort_column} #{sort_direction}")
-    end
+    # return informes
     informes
   end
 
@@ -118,7 +117,7 @@ class InformesDatatable
   end
 
   def columns
-    columns = %w[clientes.nombre matricula solicitante created_at pdf_file_name]
+    columns = %w[clientes.nombre matricula solicitante created_at pdf_file_name pdf_file_name]
   end
 
   def global_search_columns

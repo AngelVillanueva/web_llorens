@@ -14,7 +14,7 @@ class ContactMailer < ActionMailer::Base
   #
   #   en.contact_mailer.contact_confirmation.subject
   #
-  def contact_confirmation contact_params
+  def contact_confirmation contact_params, r
     @contact_params = contact_params
     if contact_params[:acepta_privacidad]
       @privacidad = t("Privacidad ok")
@@ -22,7 +22,7 @@ class ContactMailer < ActionMailer::Base
       @privacidad = t("Privacidad no ok")
     end
 
-    mail subject: t("Solicitud")
+    mail to: r, subject: t("Solicitud")
   end
   def agradecimiento contact_params
     mail to: contact_params[:email], subject: t("Confirmado")

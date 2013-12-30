@@ -53,7 +53,10 @@ class Justificante < ActiveRecord::Base
   end
   def send_email_if_weekend
     if [0,6].include? created_at.to_date.wday
-      WeekendMailer.delay.new_justificante
+      recipients = Guardia.pluck(:email)
+      recipients.each do |r|
+        WeekendMailer.delay.new_justificante(r)
+      end
     end
   end
 

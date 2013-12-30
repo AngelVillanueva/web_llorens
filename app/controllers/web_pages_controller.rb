@@ -47,7 +47,19 @@ class WebPagesController < ApplicationController
     params
   end
   def send_contact_emails contact_data
-    ContactMailer.delay.contact_confirmation(contact_data)
+    delivery_addresses.each do |r|
+      ContactMailer.delay.contact_confirmation(contact_data, r)
+    end
     ContactMailer.delay.agradecimiento(contact_data)
+  end
+  def delivery_addresses
+    if Rails.env.production?
+      recipients = [ "info@sinapse.es", "jbrugada@gestoriallorens.com" ]
+    elsif Rails.env.test?
+      recipients = [ "employee@llorens.com", "employee2@llorens.com" ]
+    else
+      recipients = [ "info@sinapse.es" ]
+    end
+    recipients
   end
 end

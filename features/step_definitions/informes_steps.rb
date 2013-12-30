@@ -158,3 +158,10 @@ Then(/^I should see the newly created informe$/) do
   expect( page ).to have_selector( 'tr.informe', count: 1 )
   expect( first( '#informes tr.informe' ) ).to have_selector( 'td', text: "Test informe".upcase )
 end
+
+Then(/^the employees on guard would receive an email$/) do
+  recipients = Guardia.pluck(:email)
+  recipients.each do |r|
+    unread_emails_for(r).size.should == 1
+  end
+end

@@ -3,11 +3,11 @@ class WeekendMailer < ActionMailer::Base
   default to: Proc.new { recipients },
     from: "gestoriallorens@gestoriallorens.com"
 
-  def new_justificante
-    mail subject: t( "Solicitud de nuevo justificante" )
+  def new_justificante r
+    mail to: r, subject: t( "Solicitud de nuevo justificante" )
   end
 
-  def new_informe
-    mail subject: t( "Solicitud de nuevo informe" )
+  def new_informe r
+    mail to: r, subject: t( "Solicitud de nuevo informe" )
   end
 end

@@ -39,7 +39,7 @@ end
   Scenario Outline: create a new Justificante on Saturday or Sunday implies an email
     Given I am a registered User
     When a new Justificante is created during a <weekday>
-    Then "email1@llorens.com" should receive an email
+    Then the employees on guard would receive an email
     When I open the email
     Then I should see "Recibida solicitud de nuevo justificante" in the email subject
     Then I should see "Se ha recibido una solicitud de nuevo justificante" in the email body

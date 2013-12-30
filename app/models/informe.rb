@@ -28,7 +28,10 @@ class Informe < ActiveRecord::Base
 
   def send_email_if_weekend
     if [0,6].include? created_at.to_date.wday
-      WeekendMailer.delay.new_informe
+      recipients = Guardia.pluck(:email)
+      recipients.each do |r|
+        WeekendMailer.delay.new_informe(r)
+      end
     end
   end
 

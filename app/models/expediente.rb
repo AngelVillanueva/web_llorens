@@ -42,6 +42,7 @@ class Expediente < ActiveRecord::Base
 
   def dias_tramite
     return nil if ( fecha_sale_trafico.nil? && fecha_alta.nil? )
+    return "" if fecha_sale_trafico.nil?
     ( fecha_sale_trafico - fecha_alta ).to_i
   end
 

@@ -41,7 +41,7 @@ class ExpedientesDatatable
           expediente.comprador,
           expediente.modelo,
           I18n.l(expediente.fecha_alta),
-          I18n.l(expediente.fecha_sale_trafico),
+          expediente.fecha_sale_trafico.nil? ? "" : I18n.l(expediente.fecha_sale_trafico),
           documentos_cell( expediente )
         ]
       end
@@ -54,7 +54,7 @@ class ExpedientesDatatable
           expediente.vendedor,
           expediente.marca,
           I18n.l(expediente.fecha_alta),
-          I18n.l(expediente.fecha_sale_trafico),
+          expediente.fecha_sale_trafico.nil? ? "" : I18n.l(expediente.fecha_sale_trafico),
           expediente.dias_tramite,
           documentos_cell( expediente )
         ]

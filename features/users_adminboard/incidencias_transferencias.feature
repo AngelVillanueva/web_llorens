@@ -42,5 +42,12 @@ end
 @javascript @popover
   Scenario: the Incidencia icon should show the detail on click
     Given there is an Incidencia in the page
-    When I click in the Incidencia icon
+    When I hover over the Incidencia icon
     Then I should see the Incidencia detail
+@javascript @popover @now
+  Scenario: a solved Incidencia should show the solving date as well
+    Given there is an Incidencia in the page
+      And that Incidencia has been solved
+    When I hover over the Incidencia icon
+    Then I should see the Incidencia detail
+      And I should see the solving date

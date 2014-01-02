@@ -49,6 +49,7 @@ describe Expediente do
     it { should respond_to :dias_tramite }
     it { should respond_to :observaciones }
     it { should respond_to :incidencia }
+    it { should respond_to :fecha_resolucion_incidencia }
     it { should respond_to :has_incidencia }
     it { should respond_to :has_documentos }
     it { should respond_to :type }

@@ -74,6 +74,13 @@ Given(/^there is an Incidencia in the page$/) do
   step "I access the Transferencias index page"
 end
 
+Given(/^that Incidencia has been solved$/) do
+  t = Transferencia.last
+  t.fecha_resolucion_incidencia = Date.today
+  t.save!
+  visit online_transferencias_path
+end
+
 When(/^I submit all the information for a new Expediente$/) do
   visit new_expediente_path
   fill_in "Identificador", with: "IM1"
@@ -158,6 +165,10 @@ When(/^I try to add a PDF for those Matriculaciones but fails$/) do
 end
 
 When(/^I click in the Incidencia icon$/) do
+  find( '.incidencia' ).click
+end
+
+When(/^I hover over the Incidencia icon$/) do
   find( '.incidencia' ).hover
 end
 
@@ -312,5 +323,10 @@ Then(/^the Transferencia with Incidencia should appear the first one$/) do
 end
 
 Then(/^I should see the Incidencia detail$/) do
+  page.should have_content( Transferencia.first.incidencia )
+end
+
+Then(/^I should see the solving date$/) do
+  page.should have_content( I18n.t( "Incidencia solucionada" ) )
   page.should have_content( Transferencia.first.incidencia )
 end

@@ -509,3 +509,25 @@ h2.renew + p {
 strong.solved {
   color: #08c;
 }
+
+.legend ul {
+  list-style: none;
+  margin-top: 10px;
+  opacity: 0.5;
+  li {
+    display: inline-block;
+    padding-right: 10px;
+    i {
+      color: #0f0;
+      &.icon-info-sign {
+        color: #f00;
+      }
+      &.icon-check {
+        color: #08c;
+      }
+    }
+  &.title {
+    font-weight: bold;
+  }
+  }
+}

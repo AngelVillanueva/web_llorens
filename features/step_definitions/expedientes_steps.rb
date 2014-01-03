@@ -74,6 +74,33 @@ Given(/^there is an Incidencia in the page$/) do
   step "I access the Transferencias index page"
 end
 
+Given(/^that Incidencia has been solved$/) do
+  t = Transferencia.last
+  t.fecha_resolucion_incidencia = Date.today
+  t.save!
+  visit online_transferencias_path
+end
+
+Given(/^there was a previous Expediente with unsolved Incidencia in the page$/) do
+  cliente = Cliente.first
+  t_prev = FactoryGirl.create( :transferencia, matricula: "Test de incidencia pendiente", cliente: cliente )
+  t_prev.incidencia = "Incidencia pendiente"
+  t_prev.save!
+end
+
+Given(/^there is a new, more recent Expediente with an Incidencia in the page$/) do
+  cliente = Cliente.first
+  t_recent = FactoryGirl.create( :transferencia, matricula: "Recent", cliente: cliente )
+  t_recent.incidencia = "Incidencia no pendiente"
+  t_recent.save!
+end
+
+Given(/^that more recent Incidencia has been solved$/) do
+  t_recent = Transferencia.where( matricula: "Recent" ).first
+  t_recent.fecha_resolucion_incidencia = Date.today
+  t_recent.save!
+end
+
 When(/^I submit all the information for a new Expediente$/) do
   visit new_expediente_path
   fill_in "Identificador", with: "IM1"
@@ -158,7 +185,23 @@ When(/^I try to add a PDF for those Matriculaciones but fails$/) do
 end
 
 When(/^I click in the Incidencia icon$/) do
+  find( '.incidencia' ).click
+end
+
+When(/^I hover over the Incidencia icon$/) do
   find( '.incidencia' ).hover
+end
+
+When(/^another Incidencia is added to that Expediente$/) do
+  t = Transferencia.last
+  t.incidencia = t.incidencia + ". Pero no es Orlando"
+  t.save!
+end
+
+When(/^the previous Fecha Resolucion is cleared$/) do
+  t = Transferencia.last
+  t.fecha_resolucion_incidencia = nil
+  t.save!
 end
 
 Then(/^I should see a list of the Expedientes$/) do
@@ -313,4 +356,33 @@ end
 
 Then(/^I should see the Incidencia detail$/) do
   page.should have_content( Transferencia.first.incidencia )
+end
+
+Then(/^I should see the whole Incidencia detail$/) do
+  page.should have_content( "tomate, quate" )
+  page.should have_content( "Pero no es Orlando" )
+end
+
+Then(/^I should (not )?see the solving date$/) do |negation|
+  unless negation
+    page.should have_content( I18n.t( "Incidencia solucionada" ) )
+    page.should have_content( Transferencia.first.incidencia )
+  else
+    page.should_not have_content( I18n.t( "Incidencia solucionada" ) )
+    page.should have_content( Transferencia.first.incidencia )
+  end
+end
+
+Then(/^that previous Expediente should appear at the top of the list$/) do
+  visit online_transferencias_path
+  first( 'td.matricula' ).text.should eql "Test de incidencia pendiente".upcase
+end
+
+Then(/^that more recent Expediente should appear at the top of the list$/) do
+  visit online_transferencias_path
+  first( 'td.matricula' ).text.should eql "Recent".upcase
+end
+
+Then(/^the unsolved Incidencia should appear at the top of the list$/) do
+  first( 'td.matricula' ).text.should eql "Test de incidencia pendiente".upcase
 end

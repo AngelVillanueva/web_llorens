@@ -42,5 +42,35 @@ end
 @javascript @popover
   Scenario: the Incidencia icon should show the detail on click
     Given there is an Incidencia in the page
-    When I click in the Incidencia icon
+    When I hover over the Incidencia icon
     Then I should see the Incidencia detail
+@javascript @popover
+  Scenario: a solved Incidencia should show the solving date as well
+    Given there is an Incidencia in the page
+      And that Incidencia has been solved
+    When I hover over the Incidencia icon
+    Then I should see the Incidencia detail
+      And I should see the solving date
+@javascript @popover
+  Scenario: a solved but reopened Incidencia should not show the solving date
+    Given there is an Incidencia in the page
+      And that Incidencia has been solved
+    When I hover over the Incidencia icon
+    Then I should see the Incidencia detail
+      And I should see the solving date
+    When another Incidencia is added to that Expediente
+      And the previous Fecha Resolucion is cleared
+      And I access the Transferencias index page
+      And I hover over the Incidencia icon
+    Then I should see the whole Incidencia detail
+      But I should not see the solving date
+@now
+  Scenario: an unsolved Incidencia should appear in the list above than solved ones
+    Given there is an Incidencia in the page
+      And there was a previous Expediente with unsolved Incidencia in the page
+    Then that previous Expediente should appear at the top of the list
+    And there is a new, more recent Expediente with an Incidencia in the page
+    Then that more recent Expediente should appear at the top of the list
+    When that more recent Incidencia has been solved
+      And I access the Transferencias index page
+    Then the unsolved Incidencia should appear at the top of the list

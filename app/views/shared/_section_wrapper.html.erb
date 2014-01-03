@@ -13,6 +13,16 @@
     </ul>
     
   </div>
+  <% if defined? reload && reload == "Transferencia" %>
+    <div class="legend">
+      <ul>
+        <li class="title"><%= t("Leyenda") %>:</li>
+        <li><i class="icon icon-circle"></i><%= t("Documentacion correcta_long") %></li>
+        <li><i class="icon icon-info-sign"></i><%= t("Incidencia pendiente") %></li>
+        <li><i class="icon icon-check"></i><%= t("Incidencia solucionada_short") %></li>
+      </ul>
+    </div>
+  <% end %>
   <% if defined? search %>
     <div class="dataTables_filter pull-right" id='<%= "#{search}" %>_filter'>
         <input type="text" aria-controls="<%= "#{search}" %>" placeholder="<%= t("Buscar en la tabla") %>">

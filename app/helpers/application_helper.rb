@@ -107,10 +107,10 @@ module ApplicationHelper
       d_content = expediente.incidencia
       d_icon = "icon-info-sign"
     else
-      d_content = expediente.incidencia + ". " + I18n.t( "Incidencia solucionada" ) + expediente.fecha_resolucion_incidencia.to_s
+      d_content = expediente.incidencia + ". <p><strong class='solved'>" + I18n.t( "Incidencia solucionada" ) + I18n.l( expediente.fecha_resolucion_incidencia ) + "</strong></p>"
       d_icon = "icon-check"
     end
-    link_to '#', class: "incidencia", 'data-toggle' => 'popover', 'data-content' => d_content, 'data-original-title' => I18n.t("Incidencia"), 'data-trigger' => 'hover', 'data-placement' => 'top'  do
+    link_to '#', class: "incidencia", 'data-html' => 'true', 'data-toggle' => 'popover', 'data-content' => d_content, 'data-original-title' => I18n.t("Incidencia"), 'data-trigger' => 'hover', 'data-placement' => 'top'  do
       content_tag( 'i', nil, class: "icon #{d_icon}" )
     end
   end

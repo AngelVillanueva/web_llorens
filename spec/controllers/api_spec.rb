@@ -175,6 +175,34 @@ describe Api::V1::ExpedientesController do
       check_custom_log_file
     end
   end
+  describe "when an Incidencia is sent with solving date" do
+    it "should return successful response" do
+      request.accept = "application/json"
+      json = { format: 'json', expediente: mock_expediente( Transferencia ) }
+      post :create_or_update_single, json
+      response.should be_success
+      Expediente.count.should eql 1
+      Transferencia.count.should eql 1
+      t = Transferencia.first
+      t.incidencia.should eql ("Hay tomate")
+      t.fecha_resolucion_incidencia.should eql Date.today
+      check_custom_log_file
+    end
+  end
+  describe "when multiple Expedientes are sent and one Incidencia is sent with solving date" do
+    it "should return successful response" do
+      request.accept = "application/json"
+      json = { format: 'json', expedientes: mock_expedientes }
+      post :create_batch, json
+      response.should be_success
+      Expediente.count.should eql 2
+      Transferencia.count.should eql 1
+      t = Transferencia.first
+      t.incidencia.should eql ("Hay tomate")
+      t.fecha_resolucion_incidencia.should eql Date.today
+      check_custom_log_file
+    end
+  end
 end
 
 private
@@ -195,6 +223,7 @@ private
     expediente[:cliente_id] = cliente.llorens_cliente_id
     expediente[:observaciones] = "AAA"
     expediente[:incidencia] = "Hay tomate"
+    expediente[:fecha_resolucion_incidencia] = Date.today
     expediente
   end
   def mock_bad_expediente kind

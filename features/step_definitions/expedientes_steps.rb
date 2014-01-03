@@ -81,6 +81,26 @@ Given(/^that Incidencia has been solved$/) do
   visit online_transferencias_path
 end
 
+Given(/^there was a previous Expediente with unsolved Incidencia in the page$/) do
+  cliente = Cliente.first
+  t_prev = FactoryGirl.create( :transferencia, matricula: "Test de incidencia pendiente", cliente: cliente )
+  t_prev.incidencia = "Incidencia pendiente"
+  t_prev.save!
+end
+
+Given(/^there is a new, more recent Expediente with an Incidencia in the page$/) do
+  cliente = Cliente.first
+  t_recent = FactoryGirl.create( :transferencia, matricula: "Recent", cliente: cliente )
+  t_recent.incidencia = "Incidencia no pendiente"
+  t_recent.save!
+end
+
+Given(/^that more recent Incidencia has been solved$/) do
+  t_recent = Transferencia.where( matricula: "Recent" ).first
+  t_recent.fecha_resolucion_incidencia = Date.today
+  t_recent.save!
+end
+
 When(/^I submit all the information for a new Expediente$/) do
   visit new_expediente_path
   fill_in "Identificador", with: "IM1"
@@ -351,4 +371,18 @@ Then(/^I should (not )?see the solving date$/) do |negation|
     page.should_not have_content( I18n.t( "Incidencia solucionada" ) )
     page.should have_content( Transferencia.first.incidencia )
   end
+end
+
+Then(/^that previous Expediente should appear at the top of the list$/) do
+  visit online_transferencias_path
+  first( 'td.matricula' ).text.should eql "Test de incidencia pendiente".upcase
+end
+
+Then(/^that more recent Expediente should appear at the top of the list$/) do
+  visit online_transferencias_path
+  first( 'td.matricula' ).text.should eql "Recent".upcase
+end
+
+Then(/^the unsolved Incidencia should appear at the top of the list$/) do
+  first( 'td.matricula' ).text.should eql "Test de incidencia pendiente".upcase
 end

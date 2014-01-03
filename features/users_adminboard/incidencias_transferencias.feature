@@ -44,10 +44,23 @@ end
     Given there is an Incidencia in the page
     When I hover over the Incidencia icon
     Then I should see the Incidencia detail
-@javascript @popover @now
+@javascript @popover @prev
   Scenario: a solved Incidencia should show the solving date as well
     Given there is an Incidencia in the page
       And that Incidencia has been solved
     When I hover over the Incidencia icon
     Then I should see the Incidencia detail
       And I should see the solving date
+@javascript @popover @now
+  Scenario: a solved but reopened Incidencia should not show the solving date
+    Given there is an Incidencia in the page
+      And that Incidencia has been solved
+    When I hover over the Incidencia icon
+    Then I should see the Incidencia detail
+      And I should see the solving date
+    When another Incidencia is added to that Expediente
+      And the previous Fecha Resolucion is cleared
+      And I access the Transferencias index page
+      And I hover over the Incidencia icon
+    Then I should see the whole Incidencia detail
+      But I should not see the solving date

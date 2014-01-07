@@ -65,9 +65,17 @@ describe Aviso do
     end
   end
 
-  describe "a new Aviso should change the sorting_order of all the rest if needed" do
-    it "should change the sorting_order chaing" do
+  describe "a new Aviso with no sorting_order should change the sorting_order of all the rest if needed" do
+    it "should change the sorting_order of all the chain" do
       expect { new_aviso = FactoryGirl.create( :aviso ) }.to change{ aviso.reload.sorting_order }.by(1)
+    end
+  end
+
+  describe "a new Aviso with sorting_order should change the sorting_order of all the affected avisos" do
+    it "should change the sorting_order of just part of the chain" do
+      expect { new_aviso = FactoryGirl.create( :aviso ) }.to change{ aviso.reload.sorting_order }.by(1)
+      expect { newer_aviso = FactoryGirl.create( :aviso, sorting_order: 2 ) }.to change{ aviso.reload.sorting_order }.by(1)
+      expect { newest_aviso = FactoryGirl.create( :aviso, sorting_order: 4) }.to_not change { aviso.reload.sorting_order }.by(1)
     end
   end
 

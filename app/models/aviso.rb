@@ -91,6 +91,12 @@ class Aviso < ActiveRecord::Base
         a.save!
       end
       self.sorting_order = 1
+    else
+      affected_avisos = Aviso.where( "sorting_order >= ?", sorting_order )
+      affected_avisos.each do |aa|
+        aa.sorting_order = aa.sorting_order + 1
+        aa.save!
+      end
     end
   end
 

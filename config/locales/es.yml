@@ -367,3 +367,5 @@ es:
   Estado: "Estado"
   Finalizado: "Finalizado"
   Formato matricula zip - ayuda: "Requerido. El nombre de cada PDF contenido en el zip debe contener el número de bastidor precedido de un guión bajo (_). Ej: xx_UU15SDA4550075095.pdf ó xx_UU15SDA4550075095_yyy.pdf"
+  Sorting order: "Orden"
+  Order help: "Si se deja en blanco aparecerá el primero. Desplaza al resto de avisos para ocupar el lugar que se le defina."

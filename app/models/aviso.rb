@@ -20,6 +20,7 @@ class Aviso < ActiveRecord::Base
 
   after_create :create_notificaciones
   before_save :assign_caducidad
+  before_save :assign_sorting_order
 
   rails_admin do
     list do
@@ -81,6 +82,16 @@ class Aviso < ActiveRecord::Base
   def assign_caducidad
     self.fecha_de_caducidad = 1.year.from_now if fecha_de_caducidad.nil?
     self.dias_visible_desde_ultimo_login = 7 if dias_visible_desde_ultimo_login.nil?
+  end
+
+  def assign_sorting_order
+    if sorting_order.nil?
+      Aviso.all.each do |a|
+        a.sorting_order = a.sorting_order + 1
+        a.save!
+      end
+      self.sorting_order = 1
+    end
   end
 
 end

@@ -104,7 +104,7 @@ end
 Then(/^I should be able to see the second Aviso also$/) do
   first( "button[data-toggle=modal]" ).click
   page.should_not have_selector( '.modal-body', text: Aviso.first.contenido )
-  page.should have_selector( 'h3', text: I18n.t( "Aviso" ) )
+  page.should have_selector( 'h3', text: Aviso.last.titular )
   page.should have_selector( '.modal-body', text: Aviso.last.contenido )
 end
 

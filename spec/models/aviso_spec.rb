@@ -59,6 +59,18 @@ describe Aviso do
     end
   end
 
+  describe "a new Aviso is auto-assigned with the first available sorting_order if not informed" do
+    it "should be the first" do
+      aviso.sorting_order.should eql 1
+    end
+  end
+
+  describe "a new Aviso should change the sorting_order of all the rest if needed" do
+    it "should change the sorting_order chaing" do
+      expect { new_aviso = FactoryGirl.create( :aviso ) }.to change{ aviso.reload.sorting_order }.by(1)
+    end
+  end
+
   describe "a destroyed Aviso should also destroy the related Notificaciones" do
     it "should destroy the related" do
       expect( usuario1 ).to be_valid

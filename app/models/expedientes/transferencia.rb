@@ -60,6 +60,13 @@ class Transferencia < Expediente
       field :fecha_alta do
         date_format :default
       end
+      field :incidencia do
+        read_only true
+      end
+      field :fecha_resolucion_incidencia do
+        read_only true
+        label I18n.t("Fecha resolucion")
+      end
       field :fecha_entra_trafico do
         date_format :default
         group :advanced

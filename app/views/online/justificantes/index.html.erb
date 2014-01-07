@@ -5,7 +5,8 @@
       header_text: t("Justificantes"),
       linked_pdf: nil,
       new_link: 'justificantes',
-      search: 'justificantes' %>
+      search: 'justificantes',
+      legend: nil %>
 
   <div class="row">
     <table id="justificantes" class="row pull-right table table-condensed table-bordered table-striped top_filtered justificantes" data-source="<%= online_justificantes_path(format: "json") %>" data-csv="<%= online_justificantes_path(format: "csv") %>?">

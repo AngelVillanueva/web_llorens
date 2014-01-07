@@ -6,7 +6,8 @@
       header_text: t("Informes de trafico"),
       linked_pdf: nil,
       new_link: 'informes',
-      search: 'informes' %>
+      search: 'informes',
+      legend: nil %>
 
   <div class="row">
     <table id="informes" class="row pull-right table table-bordered table-striped table-condensed informe_traficos top_filtered" data-source="<%= online_informes_path(format: "json") %>" data-csv="<%= online_informes_path(format: "csv") %>?">

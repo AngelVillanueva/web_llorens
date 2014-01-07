@@ -12,6 +12,7 @@
 class Aviso < ActiveRecord::Base
   has_many :notificaciones, dependent: :destroy
   has_many :usuarios, through: :notificaciones
+  default_scope order( "sorting_order ASC" )
   scope :vivos,  lambda{ where( "fecha_de_caducidad IS NULL OR fecha_de_caducidad > ?", Date.today ) }
   scope :caducados, lambda{ where( "fecha_de_caducidad < ?", Date.today ) }
 
@@ -19,15 +20,20 @@ class Aviso < ActiveRecord::Base
 
   after_create :create_notificaciones
   before_save :assign_caducidad
+  before_save :assign_sorting_order
 
   rails_admin do
     list do
+      sort_by :sorting_order
       field :id
       field :titular
       field :contenido do
         pretty_value do
           value.html_safe
         end
+      end
+      field :sorting_order do
+        label I18n.t( "Sorting order" )
       end
       field :fecha_de_caducidad
       field :dias_visible_desde_ultimo_login do
@@ -45,6 +51,9 @@ class Aviso < ActiveRecord::Base
       field :dias_visible_desde_ultimo_login do
         label I18n.t( "Dias visible corto")
       end
+      field :sorting_order do
+        label I18n.t( "Sorting order" )
+      end
       field :usuarios
       field :notificaciones
     end
@@ -58,6 +67,10 @@ class Aviso < ActiveRecord::Base
       end
       field :contenido, :rich_editor do
         help I18n.t( "Requerido" )
+      end
+      field :sorting_order do
+        label I18n.t( "Sorting order" )
+        help I18n.t( "Order help" )
       end
       field :dias_visible_desde_ultimo_login do
         label I18n.t( "Dias visible" )
@@ -80,6 +93,22 @@ class Aviso < ActiveRecord::Base
   def assign_caducidad
     self.fecha_de_caducidad = 1.year.from_now if fecha_de_caducidad.nil?
     self.dias_visible_desde_ultimo_login = 7 if dias_visible_desde_ultimo_login.nil?
+  end
+
+  def assign_sorting_order
+    if sorting_order.nil?
+      Aviso.all.each do |a|
+        a.sorting_order = a.sorting_order.nil? ? 1 : a.sorting_order + 1
+        a.save!
+      end
+      self.sorting_order = 1
+    else
+      affected_avisos = Aviso.where( "sorting_order >= ?", sorting_order )
+      affected_avisos.each do |aa|
+        aa.sorting_order = aa.sorting_order + 1
+        aa.save!
+      end
+    end
   end
 
 end

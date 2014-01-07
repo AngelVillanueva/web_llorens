@@ -21,6 +21,7 @@ describe Aviso do
     it { should respond_to :titular }
     it { should respond_to :contenido }
     it { should respond_to :fecha_de_caducidad }
+    it { should respond_to :sorting_order }
     it { should respond_to :notificaciones }
     it { should respond_to :usuarios }
 
@@ -55,6 +56,26 @@ describe Aviso do
       expect( usuario2 ).to be_valid
       expect( Usuario.count ).to eql(2)
       expect { new_aviso = FactoryGirl.create( :aviso ) }.to change{ Notificacion.count }.by(2)
+    end
+  end
+
+  describe "a new Aviso is auto-assigned with the first available sorting_order if not informed" do
+    it "should be the first" do
+      aviso.sorting_order.should eql 1
+    end
+  end
+
+  describe "a new Aviso with no sorting_order should change the sorting_order of all the rest if needed" do
+    it "should change the sorting_order of all the chain" do
+      expect { new_aviso = FactoryGirl.create( :aviso ) }.to change{ aviso.reload.sorting_order }.by(1)
+    end
+  end
+
+  describe "a new Aviso with sorting_order should change the sorting_order of all the affected avisos" do
+    it "should change the sorting_order of just part of the chain" do
+      expect { new_aviso = FactoryGirl.create( :aviso ) }.to change{ aviso.reload.sorting_order }.by(1)
+      expect { newer_aviso = FactoryGirl.create( :aviso, sorting_order: 2 ) }.to change{ aviso.reload.sorting_order }.by(1)
+      expect { newest_aviso = FactoryGirl.create( :aviso, sorting_order: 4) }.to_not change { aviso.reload.sorting_order }.by(1)
     end
   end
 

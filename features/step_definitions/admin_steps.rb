@@ -34,6 +34,15 @@ Given(/^I am a registered User with no role$/) do
   user.norole?
 end
 
+Given(/^the admin user has reordered them$/) do
+  recent_aviso = Aviso.where(contenido: "Texto del segundo aviso").first
+  old_aviso = Aviso.where(titular: "De: Quevedo" ).first
+  old_aviso.sorting_order = 1
+  old_aviso.save!
+  recent_aviso.sorting_order = 2
+  recent_aviso.save!
+end
+
 When(/^I access the admin panel$/) do
   visit root_path
   find( "li.administrator a" ).click
@@ -60,6 +69,13 @@ When(/^I visit the application home page per second time during the same session
   step "I should see the Aviso"
   visit download_path
   visit online_root_path
+end
+
+When(/^I create a new Aviso with the same sorting_order than a previous Aviso$/) do
+  aviso_3 = FactoryGirl.create( :aviso, titular: "Debe ser el 4" )
+  aviso_2 = FactoryGirl.create( :aviso, titular: "Debe ser el 3" )
+  aviso_1 = FactoryGirl.create( :aviso, titular: "Debe ser el 1")
+  new_aviso = FactoryGirl.create( :aviso, titular: "Debe ser el 2", sorting_order: 2)
 end
 
 Then(/^the Aviso should be created$/) do
@@ -95,7 +111,7 @@ end
 Then(/^I should be able to see the second Aviso also$/) do
   first( "button[data-toggle=modal]" ).click
   page.should_not have_selector( '.modal-body', text: Aviso.first.contenido )
-  page.should have_selector( 'h3', text: I18n.t( "Aviso" ) )
+  page.should have_selector( 'h3', text: Aviso.last.titular )
   page.should have_selector( '.modal-body', text: Aviso.last.contenido )
 end
 
@@ -107,6 +123,24 @@ end
 Then(/^the Aviso should be deleted$/) do 
   current_usuario = Usuario.first
   current_usuario.avisos.caducados.count.should eql 0
+end
+
+Then(/^I should see the Avisos in the admin user defined order$/) do
+  Aviso.count.should eql 2
+  Aviso.first.sorting_order.should eql 1
+  Aviso.last.sorting_order.should eql 2
+end
+
+Then(/^the previous Aviso should change its sorting_order by (\d+)$/) do |arg1|
+  Aviso.where(titular: "Debe ser el 3").first.sorting_order.should eql 3
+end
+
+Then(/^all the following Avisos should also change its sorting_order by (\d+)$/) do |arg1|
+  Aviso.where(titular: "Debe ser el 4").first.sorting_order.should eql 4
+end
+
+Then(/^the non affected Avisos should not change its sorting_order$/) do
+  Aviso.where(titular: "Debe ser el 1").first.sorting_order.should eql 1
 end
 
 Then(/^I should see the Matriculaciones menu link$/) do

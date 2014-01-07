@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140102195007) do
+ActiveRecord::Schema.define(:version => 20140107150744) do
 
   create_table "api_keys", :force => true do |t|
     t.string   "access_token"
@@ -26,7 +26,10 @@ ActiveRecord::Schema.define(:version => 20140102195007) do
     t.integer  "dias_visible_desde_ultimo_login"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "sorting_order"
   end
+
+  add_index "avisos", ["sorting_order"], :name => "index_avisos_on_sorting_order"
 
   create_table "clientes", :force => true do |t|
     t.string  "nombre"

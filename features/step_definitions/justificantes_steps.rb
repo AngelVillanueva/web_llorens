@@ -127,11 +127,7 @@ When(/^a new Justificante is created during a (.*?)$/) do |weekday|
 end
 
 Then(/^a new Justificante should (not )?be created$/) do |negation|
-  if negation
-    Justificante.all.count.should eql( 0 )
-  else
-    Justificante.all.count.should eql( 1 )
-  end
+  expect( page ).to have_selector( 'tr.justificante', count: negation ? 0 : 1 )
 end
 
 Then(/^I should see a list of the Justificantes$/) do

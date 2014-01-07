@@ -1,4 +1,3 @@
-@current
 Feature: Informe PDF managed from the admin panel
   As an employee
   In order to quickly complete the Informe information

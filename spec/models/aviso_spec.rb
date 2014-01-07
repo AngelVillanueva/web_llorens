@@ -21,6 +21,7 @@ describe Aviso do
     it { should respond_to :titular }
     it { should respond_to :contenido }
     it { should respond_to :fecha_de_caducidad }
+    it { should respond_to :sorting_order }
     it { should respond_to :notificaciones }
     it { should respond_to :usuarios }
 

@@ -37,6 +37,8 @@ end
 Given(/^the admin user has reordered them$/) do
   recent_aviso = Aviso.unscoped.order("created_at desc").last
   old_aviso = Aviso.unscoped.order("created_at desc").first
+  old_aviso.sorting_order = 1
+  old_aviso.save!
   recent_aviso.sorting_order = 2
   recent_aviso.save!
 end
@@ -114,6 +116,13 @@ end
 Then(/^the Aviso should be deleted$/) do 
   current_usuario = Usuario.first
   current_usuario.avisos.caducados.count.should eql 0
+end
+
+Then(/^I should see the Avisos in the admin user defined order$/) do
+  #Aviso.first.contenido.should_not eql ("Texto del segundo aviso")
+  Aviso.count.should eql 2
+  Aviso.first.sorting_order.should eql 1
+  Aviso.last.sorting_order.should eql 2
 end
 
 Then(/^I should see the Matriculaciones menu link$/) do

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131220162155) do
+ActiveRecord::Schema.define(:version => 20140107150744) do
 
   create_table "api_keys", :force => true do |t|
     t.string   "access_token"
@@ -26,7 +26,10 @@ ActiveRecord::Schema.define(:version => 20131220162155) do
     t.integer  "dias_visible_desde_ultimo_login"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "sorting_order"
   end
+
+  add_index "avisos", ["sorting_order"], :name => "index_avisos_on_sorting_order"
 
   create_table "clientes", :force => true do |t|
     t.string  "nombre"
@@ -70,8 +73,8 @@ ActiveRecord::Schema.define(:version => 20131220162155) do
     t.date     "fecha_alta"
     t.date     "fecha_entra_trafico"
     t.date     "fecha_facturacion"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
+    t.datetime "created_at",                                     :null => false
+    t.datetime "updated_at",                                     :null => false
     t.text     "observaciones"
     t.string   "type"
     t.integer  "cliente_id"
@@ -82,7 +85,8 @@ ActiveRecord::Schema.define(:version => 20131220162155) do
     t.datetime "pdf_updated_at"
     t.text     "incidencia"
     t.boolean  "has_incidencia"
-    t.boolean  "has_documentos",      :default => false, :null => false
+    t.boolean  "has_documentos",              :default => false, :null => false
+    t.date     "fecha_resolucion_incidencia"
   end
 
   add_index "expedientes", ["cliente_id"], :name => "index_expedientes_on_cliente_id"

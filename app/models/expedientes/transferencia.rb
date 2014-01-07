@@ -38,6 +38,36 @@ class Transferencia < Expediente
   end
 
   rails_admin do
+    list do
+      field :id
+      field :identificador
+      field :matricula
+      field :bastidor
+      field :incidencia
+      field :fecha_resolucion_incidencia do
+        date_format :default
+      end
+      field :comprador
+      field :vendedor
+      field :marca
+      field :modelo
+      field :fecha_alta do
+        date_format :default
+      end
+      field :fecha_entra_trafico do
+        date_format :default
+      end
+      field :fecha_facturacion do
+        date_format :default
+      end
+      field :created_at
+      field :updated_at
+      field :cliente
+      field :llorens_cliente_id
+      field :pdf_file_name
+      field :has_incidencia
+      field :has_documentos
+    end
     edit do
       group :advanced do
         label I18n.t("Advanced")
@@ -59,6 +89,13 @@ class Transferencia < Expediente
       field :modelo
       field :fecha_alta do
         date_format :default
+      end
+      field :incidencia do
+        read_only true
+      end
+      field :fecha_resolucion_incidencia do
+        read_only true
+        label I18n.t("Fecha resolucion")
       end
       field :fecha_entra_trafico do
         date_format :default

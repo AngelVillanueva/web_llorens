@@ -26,14 +26,14 @@ class Aviso < ActiveRecord::Base
     list do
       sort_by :sorting_order
       field :id
+      field :sorting_order do
+        label I18n.t( "Sorting order" )
+      end
       field :titular
       field :contenido do
         pretty_value do
           value.html_safe
         end
-      end
-      field :sorting_order do
-        label I18n.t( "Sorting order" )
       end
       field :fecha_de_caducidad
       field :dias_visible_desde_ultimo_login do

@@ -79,6 +79,16 @@ describe Aviso do
     end
   end
 
+  describe "a saved Aviso with unchanged sorting_order should not affect the chain" do
+    it "should not touch the chain" do
+      aviso_1 = FactoryGirl.create( :aviso, sorting_order: 1 )
+      aviso_2 = FactoryGirl.create( :aviso, sorting_order: 2 )
+      aviso_3 = FactoryGirl.create( :aviso, sorting_order: 3 )
+      expect { aviso_1.save! }.to_not change{ aviso_2.reload.sorting_order }
+      expect { aviso_1.save! }.to_not change{ aviso_3.reload.sorting_order }    
+    end
+  end
+
   describe "a destroyed Aviso should also destroy the related Notificaciones" do
     it "should destroy the related" do
       expect( usuario1 ).to be_valid

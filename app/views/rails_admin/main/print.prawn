@@ -18,8 +18,8 @@ prawn_document do |pdf|
     pdf.text "Direccion: " + objeto.direccion.to_s
     pdf.text "Marca: " + objeto.marca.to_s
     pdf.text "Modelo: " + objeto.modelo.to_s
-    pdf.text "Hora solicitud: " + I18n.l(objeto.hora_solicitud, format: "%d/%m/%Y %H:%S") unless objeto.hora_solicitud.nil?
-    pdf.text "Hora entrega: " + I18n.l(objeto.hora_entrega, format: "%d/%m/%Y %H:%S") unless objeto.hora_entrega.nil?
+    pdf.text "Hora solicitud: " + I18n.l(objeto.hora_solicitud, format: "%d/%m/%Y %H:%M") unless objeto.hora_solicitud.nil?
+    pdf.text "Hora entrega: " + I18n.l(objeto.hora_entrega, format: "%d/%m/%Y %H:%M") unless objeto.hora_entrega.nil?
     if objeto.hora_entrega.nil?
       pdf.text "Estado: pendiente"
     else

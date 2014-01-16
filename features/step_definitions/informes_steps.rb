@@ -79,6 +79,10 @@ When(/^a new Informe is created during a (.*?)$/) do |weekday|
   Informe.last.created_at.to_date.wday.should eql on_week
 end
 
+When(/^I am going to create a new Informe$/) do
+  visit new_online_informe_path
+end
+
 Then(/^I should see a list of the Informes$/) do
   page.should have_title( I18n.t( "Informes de trafico" ) )
   usuario = Usuario.find_by_nombre( "Angel" )
@@ -164,4 +168,8 @@ Then(/^the employees on guard would receive an email$/) do
   recipients.each do |r|
     unread_emails_for(r).size.should == 1
   end
+end
+
+Then(/^I should see the current server Time as H:m$/) do
+  page.should have_selector( "div#clock" )
 end

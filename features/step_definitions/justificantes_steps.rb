@@ -126,6 +126,10 @@ When(/^a new Justificante is created during a (.*?)$/) do |weekday|
   Justificante.last.created_at.to_date.wday.should eql on_week
 end
 
+When(/^I am going to create a new Justificante$/) do
+  visit new_online_justificante_path
+end
+
 Then(/^a new Justificante should (not )?be created$/) do |negation|
   expect( page ).to have_selector( 'tr.justificante', count: negation ? 0 : 1 )
 end

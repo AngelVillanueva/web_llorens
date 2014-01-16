@@ -530,3 +530,27 @@ strong.solved {
   }
   }
 }
+
+.jqclock {
+  color: #08c;
+  font-size: 1.5em;
+  font-weight: bold;
+  padding-right: 10px;
+}
+@media (min-width: 490px) and (max-width: 779px) {
+  .jqclock {
+    font-size: 1em;
+    padding-right: 0;
+  }
+}
+@media (max-width: 489px) {
+  .jqclock {
+    position: relative;
+    font-size: 1em;
+  }
+  .clocktime {
+    position: absolute;
+    right: -100;
+    top: 20;
+  }
+}

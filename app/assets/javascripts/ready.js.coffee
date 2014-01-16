@@ -45,6 +45,16 @@ $(document).ready ->
     -> $( this ).html( $( this ).attr('class').split(' ')[0] )
   )
 
+  # jqClock initialisation for https://github.com/Lwangaman/jQuery-Clock-Plugin
+  serverTime = new Date( $( '.tools' ).attr( 'data-jcstart' ) * 1000 )
+  $("div#clock").clock(
+      { 
+        "calendar": "false",
+        "langSet":"es",
+        "timestamp": serverTime
+      }
+    )
+
   # printThis binding
   $( 'a.print' ).click ->
     $( $(this).attr( 'data-print-area' ) ).printThis()

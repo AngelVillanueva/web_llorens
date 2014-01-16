@@ -16,6 +16,11 @@ end
     Given I am a registered User
     When I submit all the information for a new Informe
     Then a new Informe should be created
+@clock
+  Scenario: new Informe form shows the current server Time
+    Given I am a registered User
+    When I am going to create a new Informe
+    Then I should see the current server Time as H:m
 @email
   Scenario Outline: create a new Informe on Saturday or Sunday implies an email
     Given I am a registered User

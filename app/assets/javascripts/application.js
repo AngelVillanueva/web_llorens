@@ -23,6 +23,7 @@
 //= require datatables/dataTables_add_tr
 //= require datatables/dataTables_tabletools_download
 //= require lightbox/bootstrap-lightbox
+//= require clock/jqClock.min
 //= require theme/theme
 //= require development/development
 //= require functions/functions

@@ -21,6 +21,11 @@ end
     Given I am a registered User
     When I submit all the information for a new Justificante for a person
     Then a new Justificante should be created
+@clock
+  Scenario: new Justificante form shows the current server Time
+    Given I am a registered User
+    When I am going to create a new Justificante
+    Then I should see the current server Time as H:m
 
 @javascript
   Scenario: create a new Justificante for a person

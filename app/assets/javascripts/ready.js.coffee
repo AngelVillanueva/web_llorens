@@ -46,8 +46,13 @@ $(document).ready ->
   )
 
   # jqClock initialisation for https://github.com/Lwangaman/jQuery-Clock-Plugin
+  serverTime = new Date( $( '.tools' ).attr( 'data-jcstart' ) * 1000 )
   $("div#clock").clock(
-      { "calendar": "false", "langSet":"es" }
+      { 
+        "calendar": "false",
+        "langSet":"es",
+        "timestamp": serverTime
+      }
     )
 
   # printThis binding

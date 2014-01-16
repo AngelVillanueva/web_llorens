@@ -2,6 +2,9 @@
   <%= section_header header_text, current_usuario.organizacion.nombre %>
   <div class="tools">
      <ul>
+        <% if defined? clock %>
+          <li><div id="clock"></div></li>
+        <% end %>
         <li><%= tool_link_to_home %></li>
         <% if defined? reload %><li><%= tool_link_to_reload reload %></li><% end %>
         <% if defined? index_link %><li><%= tool_link_to_table index_link %></li><% end %>

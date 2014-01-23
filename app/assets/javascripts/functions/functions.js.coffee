@@ -228,9 +228,10 @@ root.analytics_loaded = false
           {
             "sExtends": "download",
             "sButtonText": "Download CSV",
-            "sUrl": oTable.data('csv'),
+            "sUrl": oTable.data('xls'), # use 'csv' to export in CSV instead of XLS
             "sInputName": selector,
-            "sExtraData": datecolumns
+            "sExtraData": datecolumns,
+            "sCharSet": "utf16le"
           }
 
         ]

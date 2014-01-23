@@ -9,7 +9,7 @@
       legend: nil %>
 
   <div class="row">
-    <table id="justificantes" class="row pull-right table table-condensed table-bordered table-striped top_filtered justificantes" data-source="<%= online_justificantes_path(format: "json") %>" data-csv="<%= online_justificantes_path(format: "csv") %>?">
+    <table id="justificantes" class="row pull-right table table-condensed table-bordered table-striped top_filtered justificantes" data-source="<%= online_justificantes_path(format: "json") %>" data-csv="<%= online_justificantes_path(format: "csv") %>?" data-xls="<%= online_justificantes_path(format: "xls") %>?">
   <thead>
     <tr class="filter">
       <th><%= t("Cliente") %></th>

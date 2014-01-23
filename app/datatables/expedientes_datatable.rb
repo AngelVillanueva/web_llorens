@@ -24,6 +24,8 @@ class ExpedientesDatatable
       expedientes("csv").each do |expediente|
         campos = expediente.attributes.values_at(*@columns)
         campos[0] = expediente.cliente.nombre
+        campos[5] = I18n.l( campos[5], format: "%d/%m/%Y")
+        campos[6].nil? ? campos[6] = "" : campos[6] = I18n.l( campos[6], format: "%d/%m/%Y")
         csv << campos.take( campos.size - 1 )
       end
     end

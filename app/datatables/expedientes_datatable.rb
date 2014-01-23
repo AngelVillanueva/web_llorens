@@ -24,6 +24,9 @@ class ExpedientesDatatable
       expedientes("csv").each do |expediente|
         campos = expediente.attributes.values_at(*@columns)
         campos[0] = expediente.cliente.nombre
+        if @type.to_s == "Transferencia"
+          campos[6].nil? ? campos[7] = "" : campos[7] = (campos[6] - campos[5]).to_i
+        end
         campos[5] = I18n.l( campos[5], format: "%d/%m/%Y")
         campos[6].nil? ? campos[6] = "" : campos[6] = I18n.l( campos[6], format: "%d/%m/%Y")
         csv << campos.take( campos.size - 1 )
@@ -155,7 +158,12 @@ class ExpedientesDatatable
   end
 
   def formatted columns
-    columns.take(columns.size - 1).map(&:capitalize).join("-").gsub( "Clientes.nombre", "Cliente" ).split("-")
+    case @type.to_s
+    when "Matriculacion"
+      columns.take(columns.size - 1).map(&:capitalize).join("-").gsub( "Clientes.nombre", "Cliente" ).split("-")
+    when "Transferencia"
+      columns.take(columns.size - 1).map(&:capitalize).join("-").gsub( "Clientes.nombre", "Cliente" ).gsub( "Updated_at", "Dias tramite" ).split("-")
+    end
   end
 
   def clean(string_search, chars="~")

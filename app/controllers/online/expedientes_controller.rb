@@ -14,6 +14,7 @@ class Online::ExpedientesController < OnlineController
         headers["Content-Disposition"] = "attachment; filename=\"#{expediente_type}_Llorens_#{Time.now.strftime("%d_%m-%Y_%H-%M-%S")}.csv\""
         render text: ExpedientesDatatable.new( view_context, expediente_type, current_ability ).to_csv
       end
+      format.xls { send_data ExpedientesDatatable.new( view_context, expediente_type, current_ability ).to_csv(col_sep: "\t") }
     end
   end
 

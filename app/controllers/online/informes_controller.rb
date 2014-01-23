@@ -12,6 +12,10 @@ class Online::InformesController < OnlineController
         headers["Content-Disposition"] = "attachment; filename=\"Informes_Llorens_#{Time.now.strftime("%d_%m-%Y_%H-%M-%S")}.csv\""
         render text: InformesDatatable.new( view_context, current_ability ).to_csv
       end
+      format.xls do
+        xls_name = "Informes_Llorens_#{Time.now.strftime("%d_%m-%Y_%H-%M-%S")}.xls"
+        send_data InformesDatatable.new( view_context, current_ability ).to_csv(col_sep: "\t"), type: "text/xls; header=present", disposition: "attachment; filename=#{xls_name}", filename: xls_name
+      end
     end
   end
 

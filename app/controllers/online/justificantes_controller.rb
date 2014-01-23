@@ -13,6 +13,10 @@ class Online::JustificantesController < OnlineController
         headers["Content-Disposition"] = "attachment; filename=\"Justificantes_Llorens_#{Time.now.strftime("%d_%m-%Y_%H-%M-%S")}.csv\""
         render text: JustificantesDatatable.new( view_context, current_ability ).to_csv
       end
+      format.xls do
+        xls_name = "Justificantes_Llorens_#{Time.now.strftime("%d_%m-%Y_%H-%M-%S")}.xls"
+        send_data JustificantesDatatable.new( view_context, current_ability ).to_csv(col_sep: "\t"), type: "text/xls; header=present", disposition: "attachment; filename=#{xls_name}", filename: xls_name
+      end
     end
   end
 

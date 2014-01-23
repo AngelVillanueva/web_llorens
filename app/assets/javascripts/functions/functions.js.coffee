@@ -181,9 +181,10 @@ root.analytics_loaded = false
           {
             "sExtends": "download",
             "sButtonText": "Download CSV",
-            "sUrl": oTable.data('csv'),
+            "sUrl": oTable.data('xls'), # use 'csv' to export in CSV instead of XLS
             "sInputName": selector,
-            "sExtraData": datecolumns
+            "sExtraData": datecolumns,
+            "sCharSet": "utf16le"
           }
 
         ]
@@ -227,9 +228,10 @@ root.analytics_loaded = false
           {
             "sExtends": "download",
             "sButtonText": "Download CSV",
-            "sUrl": oTable.data('csv'),
+            "sUrl": oTable.data('xls'), # use 'csv' to export in CSV instead of XLS
             "sInputName": selector,
-            "sExtraData": datecolumns
+            "sExtraData": datecolumns,
+            "sCharSet": "utf16le"
           }
 
         ]
@@ -240,7 +242,7 @@ root.analytics_loaded = false
       aoColumns: filtercolumns
     })
 
-# create remote DataTable for Justificantes
+# create remote DataTable for Informes
 @createRemoteInformesDataTable = ( selector, sortcolumn, columntypes, excelname, exportcolumns, filtercolumns, datecolumns=[] ) ->
   oTable = $( '#' + selector )
   if ( oTable.length )
@@ -271,9 +273,10 @@ root.analytics_loaded = false
           {
             "sExtends": "download",
             "sButtonText": "Download CSV",
-            "sUrl": oTable.data('csv'),
+            "sUrl": oTable.data('xls'), # use 'csv' to export in CSV instead of XLS
             "sInputName": selector,
-            "sExtraData": datecolumns
+            "sExtraData": datecolumns,
+            "sCharSet": "utf16le"
           }
 
         ]

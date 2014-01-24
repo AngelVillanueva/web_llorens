@@ -9,6 +9,7 @@
 #  zip_content_type :string(255)
 #  zip_file_size    :integer
 #  zip_updated_at   :datetime
+#  expandido        :boolean          default(FALSE)
 #
 
 require 'spec_helper'

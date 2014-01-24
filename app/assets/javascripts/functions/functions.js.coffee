@@ -298,7 +298,7 @@ root.analytics_loaded = false
   $('<i class="icon icon-save icon-2x"/>').appendTo($button)
   $button.removeClass('btn').appendTo('.tools ul li:last')
   $('.dataTables_wrapper').children('div.row:first').remove()
-  $('li.tooltip-xls').tooltip({'title': 'Exportar CSV'})
+  $('li.tooltip-xls').tooltip({'title': 'Exportar XLS'})
 
 
 # print a table row

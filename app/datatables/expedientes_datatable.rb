@@ -25,6 +25,9 @@ class ExpedientesDatatable
         campos = expediente.attributes.values_at(*@columns)
         campos[0] = expediente.cliente.nombre
         if @type.to_s == "Transferencia"
+          # empty Incidencia value if already solved
+          campos[8] = "" unless campos[7].nil?
+          # substitute fecha_resolucion_incidencia value for dias_tramite calculation
           campos[6].nil? ? campos[7] = "" : campos[7] = (campos[6] - campos[5]).to_i
         end
         campos[5] = I18n.l( campos[5], format: "%d/%m/%Y")
@@ -142,7 +145,7 @@ class ExpedientesDatatable
     when "Matriculacion"
       columns = %w[clientes.nombre matricula bastidor comprador modelo fecha_alta fecha_facturacion has_documentos]
     when "Transferencia"
-      columns = %w[clientes.nombre matricula comprador vendedor marca fecha_alta fecha_facturacion updated_at has_documentos]
+      columns = %w[clientes.nombre matricula comprador vendedor marca fecha_alta fecha_facturacion fecha_resolucion_incidencia has_documentos]
     end
     columns
   end
@@ -162,7 +165,14 @@ class ExpedientesDatatable
     when "Matriculacion"
       columns.take(columns.size - 1).map(&:capitalize).join("-").gsub( "Clientes.nombre", "Cliente" ).split("-")
     when "Transferencia"
-      columns.take(columns.size - 1).map(&:capitalize).join("-").gsub( "Clientes.nombre", "Cliente" ).gsub( "Updated_at", "Dias tramite" ).split("-")
+      # take last element to re-insert later
+      last = columns.pop
+      # add Transferencia.incidencia
+      columns << "incidencia"
+      # re-insert last column
+      columns << last
+      # format columns
+      columns.take(columns.size - 1).map(&:capitalize).join("-").gsub( "Clientes.nombre", "Cliente" ).gsub( "Fecha_resolucion_incidencia", "Dias tramite" ).split("-")
     end
   end
 

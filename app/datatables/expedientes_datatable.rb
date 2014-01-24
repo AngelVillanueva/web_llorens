@@ -77,7 +77,7 @@ class ExpedientesDatatable
   def fetch_expedientes(format=nil)
     # fetch expedientes on page load
     if format == "csv"
-      expedientes = @type.unscoped.includes(:cliente).accessible_by( @current_ability )
+      expedientes = @type.unscoped.includes(:cliente).accessible_by( @current_ability ).order("#{sort_default}")
     elsif params[:iSortCol_0].present?
       expedientes = @type.unscoped.includes(:cliente).accessible_by( @current_ability ).order("#{sort_column} #{sort_direction}").page( page ).per( per_page )
     else
@@ -99,6 +99,16 @@ class ExpedientesDatatable
 
   def per_page
     params[:iDisplayLength].to_i > 0 ? params[:iDisplayLength].to_i : 10
+  end
+
+  def sort_default
+    case @type.to_s
+    when "Matriculacion"
+      sort_default = "created_at DESC"
+    when "Transferencia"
+      sort_default = "has_incidencia DESC, fecha_resolucion_incidencia DESC, updated_at DESC"
+    end
+    sort_default
   end
 
   def sort_column

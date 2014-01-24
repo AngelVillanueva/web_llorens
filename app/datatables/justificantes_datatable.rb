@@ -63,7 +63,7 @@ class JustificantesDatatable
   def fetch_justificantes(format=nil)
     # fetch expedientes on page load
     if format == "csv"
-      justificantes = Justificante.unscoped.includes(:cliente).accessible_by( @current_ability )
+      justificantes = Justificante.unscoped.includes(:cliente).accessible_by( @current_ability ).order("#{sort_default}")
     elsif params[:iSortCol_0].present? # sort if requested
       justificantes = Justificante.unscoped.includes(:cliente).accessible_by( @current_ability ).order("#{sort_column} #{sort_direction}").page( page ).per( per_page )
     else
@@ -85,6 +85,10 @@ class JustificantesDatatable
 
   def per_page
     params[:iDisplayLength].to_i > 0 ? params[:iDisplayLength].to_i : 10
+  end
+
+  def sort_default
+    "pdf_file_name DESC, created_at DESC"
   end
 
   def sort_column

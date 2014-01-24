@@ -125,7 +125,7 @@ class InformesDatatable
   end
 
   def formatted columns
-    columns.map(&:capitalize).join("-").gsub( "Clientes.nombre", "Cliente" ).gsub( "Created_at", "Fecha solicitud" ).gsub( "Pdf_file_name", "Estado" ).split("-")
+    columns.map(&:capitalize).join("-").gsub( "Clientes.nombre", "Cliente" ).gsub( "Created_at", "Fecha solicitud" ).sub( "Pdf_file_name", "Estado" ).sub( "Pdf_file_name", "Archivo PDF" ).split("-")
   end
 
   def clean(string_search, chars="~")

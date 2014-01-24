@@ -53,7 +53,7 @@ class InformesDatatable
   def fetch_informes(format=nil)
     # fetch expedientes on page load
     if format == "csv"
-      informes = Informe.unscoped.includes(:cliente).accessible_by( @current_ability )
+      informes = Informe.unscoped.includes(:cliente).accessible_by( @current_ability ).order("#{sort_default}")
     elsif params[:iSortCol_0].present? # sort if requested
       informes = Informe.unscoped.includes(:cliente).accessible_by( @current_ability ).order("#{sort_column} #{sort_direction}").page( page ).per( per_page )
     else
@@ -79,6 +79,10 @@ class InformesDatatable
 
   def sort_column
     @columns[params[:iSortCol_0].to_i]
+  end
+
+  def sort_default
+    "pdf_content_type DESC, created_at DESC"
   end
 
   def sort_direction

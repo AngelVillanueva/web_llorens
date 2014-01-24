@@ -7,6 +7,9 @@
 #  titular                         :string(255)
 #  fecha_de_caducidad              :date
 #  dias_visible_desde_ultimo_login :integer
+#  created_at                      :datetime
+#  updated_at                      :datetime
+#  sorting_order                   :integer
 #
 
 require 'spec_helper'

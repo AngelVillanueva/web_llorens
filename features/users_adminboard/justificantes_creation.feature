@@ -66,7 +66,7 @@ end
     |Monday|
     |Tuesday|
 
-@email @guardia @current
+@email @guardia
   Scenario Outline: create a new Justificante on Friday after 17h implies an email
     Given I am a registered User
     When a new Justificante is created a Friday at <moment>

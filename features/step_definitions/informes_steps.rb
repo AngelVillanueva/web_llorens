@@ -79,14 +79,28 @@ When(/^a new Informe is created during a (.*?)$/) do |weekday|
   Informe.last.created_at.to_date.wday.should eql on_week
 end
 
-When(/^a new Informe is created a Friday at (\d+)\.(\d+)$/) do |hour, minute|
+When(/^a new Informe is created a (.*?) at (\d+)\.(\d+)$/) do |day, hour, minute|
   guardia1 = FactoryGirl.create( :guardia )
   guardia2 = FactoryGirl.create( :guardia )
-  a_friday = "31-01-2014"
-  moment = DateTime.parse( a_friday ).change( { hour: hour.to_i, minute: minute.to_i } )
+  case day
+    when "Monday"
+      a_day = "27-01-2014"
+      on_week = 1
+    when "Tuesday"
+      a_day = "28-01-2014"
+      on_week = 2
+    when "Wednesday"
+      a_day = "29-01-2014"
+      on_week = 3
+    when "Thursday"
+      a_day = "30-01-2014"
+      on_week = 4
+    when "Friday"
+      a_day = "31-01-2014"
+      on_week = 5
+  end
+  moment = DateTime.parse( a_day ).change( { hour: hour.to_i, minute: minute.to_i } )
   informe = FactoryGirl.create( :informe, created_at: moment, cliente: Usuario.first.clientes.first )
-  Informe.last.created_at.to_date.wday.should eql 5 #wday for Friday is 5
-  Informe.last.created_at.to_time.hour.should eql hour.to_i
 end
 
 When(/^I am going to create a new Informe$/) do

@@ -79,6 +79,16 @@ When(/^a new Informe is created during a (.*?)$/) do |weekday|
   Informe.last.created_at.to_date.wday.should eql on_week
 end
 
+When(/^a new Informe is created a Friday at (\d+)\.(\d+)$/) do |hour, minute|
+  guardia1 = FactoryGirl.create( :guardia )
+  guardia2 = FactoryGirl.create( :guardia )
+  a_friday = "31-01-2014"
+  moment = DateTime.parse( a_friday ).change( { hour: hour.to_i, minute: minute.to_i } )
+  informe = FactoryGirl.create( :informe, created_at: moment, cliente: Usuario.first.clientes.first )
+  Informe.last.created_at.to_date.wday.should eql 5 #wday for Friday is 5
+  Informe.last.created_at.to_time.hour.should eql hour.to_i
+end
+
 When(/^I am going to create a new Informe$/) do
   visit new_online_informe_path
 end
@@ -163,10 +173,15 @@ Then(/^I should see the newly created informe$/) do
   expect( first( '#informes tr.informe' ) ).to have_selector( 'td', text: "Test informe".upcase )
 end
 
-Then(/^the employees on guard would receive an email$/) do
+Then(/^the employees on guard would (not )?receive an email$/) do |negation|
   recipients = Guardia.pluck(:email)
+  if negation
+    inbox_emails = 0
+  else
+    inbox_emails = 1
+  end
   recipients.each do |r|
-    unread_emails_for(r).size.should == 1
+    unread_emails_for(r).size.should == inbox_emails
   end
 end
 

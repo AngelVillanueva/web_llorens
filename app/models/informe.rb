@@ -38,9 +38,16 @@ class Informe < ActiveRecord::Base
   def informe_new_mailer?
     # send if out_of_the_office enabled
     # else send if weekend (sunday, saturday)
-    true if [0,6].include? created_at.to_date.wday
+    if [0,6].include? created_at.to_date.wday
+      true
     # else send if friday from 5 pm
+    elsif created_at.to_date.wday == 5 && created_at.to_time.hour == 17
+      true
     # else send if monday-thursday from 7 pm
+    # otherwise do not send the email
+    else
+      false
+    end
   end
 
   rails_admin do

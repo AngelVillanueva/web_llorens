@@ -126,14 +126,23 @@ When(/^a new Justificante is created during a (.*?)$/) do |weekday|
   Justificante.last.created_at.to_date.wday.should eql on_week
 end
 
-When(/^a new Justificante is created a Friday at (\d+)\.(\d+)$/) do |hour, minute|
+When(/^a new Justificante is created a (.*?) at (\d+)\.(\d+)$/) do |day, hour, minute|
   guardia1 = FactoryGirl.create( :guardia )
   guardia2 = FactoryGirl.create( :guardia )
-  a_friday = "31-01-2014"
-  moment = DateTime.parse( a_friday ).change( { hour: hour.to_i, minute: minute.to_i } )
+  case day
+    when "Monday"
+      a_day = "27-01-2014"
+    when "Tuesday"
+      a_day = "28-01-2014"
+    when "Wednesday"
+      a_day = "29-01-2014"
+    when "Thursday"
+      a_day = "30-01-2014"
+    when "Friday"
+      a_day = "31-01-2014"
+  end
+  moment = DateTime.parse( a_day ).change( { hour: hour.to_i, minute: minute.to_i } )
   justificante = FactoryGirl.create( :justificante, created_at: moment, cliente: Usuario.first.clientes.first )
-  Justificante.last.created_at.to_date.wday.should eql 5 #wday for Friday is 5
-  Justificante.last.created_at.to_time.hour.should eql hour.to_i
 end
 
 When(/^I am going to create a new Justificante$/) do

@@ -22,17 +22,25 @@ class Informe < ActiveRecord::Base
     :url => "/online/informes/:id/download"
   default_scope includes(:cliente).order('pdf_content_type DESC, created_at DESC')
 
-  after_create :send_email_if_weekend
+  after_create :send_email_if_out_of_the_office
   
   validates :matricula, :solicitante, :cliente_id, presence: true
 
-  def send_email_if_weekend
-    if [0,6].include? created_at.to_date.wday
+  def send_email_if_out_of_the_office
+    if informe_new_mailer?
       recipients = Guardia.pluck(:email)
       recipients.each do |r|
         WeekendMailer.delay.new_informe(r)
       end
     end
+  end
+
+  def informe_new_mailer?
+    # send if out_of_the_office enabled
+    # else send if weekend (sunday, saturday)
+    true if [0,6].include? created_at.to_date.wday
+    # else send if friday from 5 pm
+    # else send if monday-thursday from 7 pm
   end
 
   rails_admin do

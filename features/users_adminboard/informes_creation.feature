@@ -21,7 +21,7 @@ end
     Given I am a registered User
     When I am going to create a new Informe
     Then I should see the current server Time as H:m
-@email
+@email @guardia
   Scenario Outline: create a new Informe on Saturday or Sunday implies an email
     Given I am a registered User
     When a new Informe is created during a <weekday>
@@ -37,7 +37,7 @@ end
     |Saturday|
     |Sunday|
 
-@email
+@email @guardia
   Scenario Outline: create a new Informe any other day does not implies an email
     Given I am a registered User
     When a new Informe is created during a <weekday>

@@ -56,7 +56,11 @@ class Informe < ActiveRecord::Base
     list do
       sort_by :pdf_file_name
       field :id
-      field :matricula
+      field :matricula do
+        pretty_value do
+          value.upcase
+        end
+      end
       field :pdf_file_name do
         sort_reverse true
         pretty_value do

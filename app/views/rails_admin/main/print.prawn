@@ -6,7 +6,7 @@ prawn_document do |pdf|
   case clase.to_s
   when "Justificante"
     pdf.text "Cliente: " + objeto.cliente.nombre.to_s
-    pdf.text "Matricula: " + objeto.matricula.to_s
+    pdf.text "Matricula: " + objeto.matricula.upcase.to_s
     pdf.text "Bastidor: " + objeto.bastidor.to_s
     pdf.text "NIF-CIF: " + objeto.nif_comprador.to_s
     pdf.text "Nombre o Razon Social: " + objeto.nombre_razon_social.to_s
@@ -27,7 +27,7 @@ prawn_document do |pdf|
     end
   when "Informe"
     pdf.text "Cliente: " + objeto.cliente.nombre.to_s
-    pdf.text "Matricula: " + objeto.matricula.to_s
+    pdf.text "Matricula: " + objeto.matricula.upcase.to_s
     pdf.text "Solicitante: " + objeto.solicitante.to_s
     pdf.text "Fecha solicitud: " + I18n.l(objeto.created_at, format: "%d/%m/%Y")
     if objeto.pdf_file_name.nil?

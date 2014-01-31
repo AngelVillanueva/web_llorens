@@ -80,7 +80,11 @@ class Justificante < ActiveRecord::Base
       sort_by :pdf_file_name, :hora_solicitud
       field :id
       field :identificador
-      field :matricula
+      field :matricula do
+        pretty_value do
+          value.upcase
+        end
+      end
       field :pdf_file_name do
         sort_reverse true
         pretty_value do

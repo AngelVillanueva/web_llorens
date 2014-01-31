@@ -35,7 +35,7 @@ class JustificantesDatatable
     justificantes.map do |justificante|
       [
         justificante.cliente.nombre,
-        justificante.matricula,
+        justificante.matricula.upcase,
         justificante.bastidor,
         justificante.nif_comprador,
         justificante.nombre_razon_social,

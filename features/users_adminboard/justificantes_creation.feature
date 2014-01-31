@@ -73,7 +73,7 @@ end
     |17.59|
     |19.35|
 
-@email @guardia @current
+@email @guardia
   Scenario Outline: create a new Justificante any other day after 19h implies an email
     Given I am a registered User
     When a new Justificante is created a <day> at <moment>
@@ -91,7 +91,7 @@ end
     |Wednesday|20.02|
     |Thursday|19.15|
 
-@email @guardia @current
+@email @guardia
   Scenario Outline: create a new Justificante any other day before 19h does not imply an email
     Given I am a registered User
     When a new Justificante is created a <day> at <moment>

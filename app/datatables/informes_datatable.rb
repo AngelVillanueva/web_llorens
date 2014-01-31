@@ -35,7 +35,7 @@ class InformesDatatable
     informes.map do |informe|
       [
         informe.cliente.nombre,
-        informe.matricula,
+        informe.matricula.upcase,
         informe.solicitante,
         I18n.l( informe.created_at, format: "%d/%m/%Y" ),
         estado_cell( informe ),

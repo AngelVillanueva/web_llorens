@@ -68,15 +68,39 @@ When(/^a new Informe is created during a (.*?)$/) do |weekday|
     some_day = "24-11-2013" # it was a Sunday
     on_week = 0 # wday for Sunday is 0
   elsif weekday == "Monday"
-    some_day = "25-11-2013" # it was a Sunday
+    some_day = "25-11-2013" # it was a Monday
     on_week = 1 # wday for Sunday is 0
-  elsif weekday == "Friday"
-    some_day = "29-11-2013" # it was a Sunday
-    on_week = 5 # wday for Sunday is 0
+  elsif weekday == "Tuesday"
+    some_day = "26-11-2013" # it was a Tuesday
+    on_week = 2 # wday for Sunday is 0
   end
   fecha = Date.parse( some_day ) 
   informe = FactoryGirl.create( :informe, created_at: fecha, cliente: Usuario.first.clientes.first )
   Informe.last.created_at.to_date.wday.should eql on_week
+end
+
+When(/^a new Informe is created a (.*?) at (\d+)\.(\d+)$/) do |day, hour, minute|
+  guardia1 = FactoryGirl.create( :guardia )
+  guardia2 = FactoryGirl.create( :guardia )
+  case day
+    when "Monday"
+      a_day = "27-01-2014"
+      on_week = 1
+    when "Tuesday"
+      a_day = "28-01-2014"
+      on_week = 2
+    when "Wednesday"
+      a_day = "29-01-2014"
+      on_week = 3
+    when "Thursday"
+      a_day = "30-01-2014"
+      on_week = 4
+    when "Friday"
+      a_day = "31-01-2014"
+      on_week = 5
+  end
+  moment = DateTime.parse( a_day ).change( { hour: hour.to_i, minute: minute.to_i } )
+  informe = FactoryGirl.create( :informe, created_at: moment, cliente: Usuario.first.clientes.first )
 end
 
 When(/^I am going to create a new Informe$/) do
@@ -163,10 +187,15 @@ Then(/^I should see the newly created informe$/) do
   expect( first( '#informes tr.informe' ) ).to have_selector( 'td', text: "Test informe".upcase )
 end
 
-Then(/^the employees on guard would receive an email$/) do
+Then(/^the employees on guard would (not )?receive an email$/) do |negation|
   recipients = Guardia.pluck(:email)
+  if negation
+    inbox_emails = 0
+  else
+    inbox_emails = 1
+  end
   recipients.each do |r|
-    unread_emails_for(r).size.should == 1
+    unread_emails_for(r).size.should == inbox_emails
   end
 end
 

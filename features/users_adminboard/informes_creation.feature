@@ -45,7 +45,7 @@ end
   Examples:
     |weekday|
     |Monday|
-    |Friday|
+    |Tuesday|
 
 
 @email @guardia

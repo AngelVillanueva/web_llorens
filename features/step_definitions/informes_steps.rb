@@ -68,11 +68,11 @@ When(/^a new Informe is created during a (.*?)$/) do |weekday|
     some_day = "24-11-2013" # it was a Sunday
     on_week = 0 # wday for Sunday is 0
   elsif weekday == "Monday"
-    some_day = "25-11-2013" # it was a Sunday
+    some_day = "25-11-2013" # it was a Monday
     on_week = 1 # wday for Sunday is 0
-  elsif weekday == "Friday"
-    some_day = "29-11-2013" # it was a Sunday
-    on_week = 5 # wday for Sunday is 0
+  elsif weekday == "Tuesday"
+    some_day = "26-11-2013" # it was a Tuesday
+    on_week = 2 # wday for Sunday is 0
   end
   fecha = Date.parse( some_day ) 
   informe = FactoryGirl.create( :informe, created_at: fecha, cliente: Usuario.first.clientes.first )

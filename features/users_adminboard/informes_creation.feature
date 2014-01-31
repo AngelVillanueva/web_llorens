@@ -49,9 +49,9 @@ end
 
 
 @email @guardia
-  Scenario: create a new Informe on Friday after 17h implies an email
+  Scenario Outline: create a new Informe on Friday after 17h implies an email
     Given I am a registered User
-    When a new Informe is created a Friday at 17.01
+    When a new Informe is created a Friday at <moment>
     Then the employees on guard would receive an email
     When I open the email
     Then I should see "Recibida solicitud de nuevo informe" in the email subject
@@ -59,6 +59,11 @@ end
     Then I should see "Puede acceder a la solicitud" in the email body
     When I follow "este enlace" in the email
     Then I should see the newly created informe
+  Examples:
+    |moment|
+    |17.01|
+    |17.44|
+    |18.02|
 
 @email @guardia
   Scenario Outline: create a new Informe on Friday before 17h does not imply an email

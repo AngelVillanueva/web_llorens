@@ -41,7 +41,7 @@ class Informe < ActiveRecord::Base
     if [0,6].include? created_at.to_date.wday
       true
     # else send if friday from 5 pm
-    elsif created_at.to_date.wday == 5 && created_at.to_time.hour == 17
+    elsif created_at.to_date.wday == 5 && created_at.to_time.hour >= 17
       true
     # else send if monday-thursday from 7 pm
     # otherwise do not send the email

@@ -195,6 +195,10 @@ es:
     errors:
       <<: *errors
   activerecord:
+    models:
+      configuration:
+        one: "Configuración"
+        other: "Opciones de configuración"
     errors:
       <<: *errors
     attributes:
@@ -375,3 +379,8 @@ es:
   Fecha resolucion: "Fecha resolución incidencia"
   Sorting order: "Orden"
   Order help: "Si se deja en blanco aparecerá el primero. Desplaza al resto de avisos para ocupar el lugar que se le defina."
+  GLOBAL OPTIONS: "OPCIONES GLOBALES"
+  Option: "Opción"
+  Enabled: "Activado"
+  Created: "Creado"
+  Updated: "Última actualización"

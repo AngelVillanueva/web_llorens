@@ -37,8 +37,7 @@ class Informe < ActiveRecord::Base
 
   def informe_new_mailer?
     # send if out_of_the_office enabled
-    out_of_the_office = Configuration.find_or_create_by_option( "guardia_fuera_de_oficina" )
-    if out_of_the_office.enabled?
+    if configuration_check? "Emails de Guardia permanentes"
       true
     # else send if weekend (sunday, saturday)
     elsif [0,6].include? created_at.to_date.wday
@@ -53,6 +52,11 @@ class Informe < ActiveRecord::Base
     else
       false
     end
+  end
+
+  def configuration_check? option
+    o = Configuration.find_or_create_by_option( option )
+    o.enabled?
   end
 
   rails_admin do

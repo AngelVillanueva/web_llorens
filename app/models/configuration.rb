@@ -10,4 +10,24 @@
 #
 
 class Configuration < ActiveRecord::Base
+
+  rails_admin do
+    list do
+      field :id
+      field :option do
+        label I18n.t( "Option" )
+      end
+      field :enabled do
+        label I18n.t( "Enabled" )
+      end
+      field :created_at do
+        label I18n.t( "Created" )
+      end
+      field :updated_at do
+        label I18n.t( "Updated" )
+      end
+    end
+    edit do
+    end
+  end
 end

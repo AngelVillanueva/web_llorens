@@ -29,8 +29,8 @@ Given(/^one new Informe was created yesterday$/) do
 end
 
 Given(/^the out\-of\-office option is enabled in Guardias$/) do
-  Configuration.find_or_create_by_option( "guardia_fuera_de_oficina" )
-  config_option = Configuration.where( option: "guardia_fuera_de_oficina" ).first
+  Configuration.find_or_create_by_option( "Emails de Guardia permanentes" )
+  config_option = Configuration.where( option: "Emails de Guardia permanentes" ).first
   config_option.enabled = true
   config_option.save!
 end

@@ -83,7 +83,6 @@ RailsAdmin.config do |config|
   # Anyway, here is how RailsAdmin saw your application's models when you ran the initializer:
 
 
-
   ###  Expediente  ###
 
   # config.model 'Expediente' do

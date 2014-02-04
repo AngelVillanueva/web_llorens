@@ -28,6 +28,13 @@ Given(/^one new Informe was created yesterday$/) do
   y_informe = FactoryGirl.create(:informe, matricula: "Test yesterday", cliente: cliente, created_at: 1.day.ago )
 end
 
+Given(/^the out\-of\-office option is enabled in Guardias$/) do
+  Configuration.find_or_create_by_option( "Emails de Guardia permanentes" )
+  config_option = Configuration.where( option: "Emails de Guardia permanentes" ).first
+  config_option.enabled = true
+  config_option.save!
+end
+
 When(/^another Informe from my Cliente is added$/) do
   internal_informe = FactoryGirl.create( :informe, matricula: "Nuevo informe interno",
     cliente: cliente )
@@ -98,6 +105,12 @@ When(/^a new Informe is created a (.*?) at (\d+)\.(\d+)$/) do |day, hour, minute
     when "Friday"
       a_day = "31-01-2014"
       on_week = 5
+    when "Saturday"
+      a_day = "01-02-2014"
+      on_week = 6
+    when "Sunday"
+      a_day = "02-02-2014"
+      on_week = 0
   end
   moment = DateTime.parse( a_day ).change( { hour: hour.to_i, minute: minute.to_i } )
   informe = FactoryGirl.create( :informe, created_at: moment, cliente: Usuario.first.clientes.first )

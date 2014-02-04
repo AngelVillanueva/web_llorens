@@ -94,3 +94,30 @@ end
     |Tuesday|13.44|
     |Wednesday|10.02|
     |Thursday|15.15|
+
+@email @guardia
+  Scenario Outline: create a new Informe implies an email always if out-of-office is enabled
+    Given I am a registered User
+      And the out-of-office option is enabled in Guardias
+    When a new Informe is created a <day> at <moment>
+    Then the employees on guard would receive an email
+    When I open the email
+    Then I should see "Recibida solicitud de nuevo informe" in the email subject
+    Then I should see "Se ha recibido una solicitud de nuevo informe" in the email body
+    Then I should see "Puede acceder a la solicitud" in the email body
+    When I follow "este enlace" in the email
+    Then I should see the newly created informe
+  Examples:
+    |day|moment|
+    |Monday|19.01|
+    |Tuesday|23.44|
+    |Wednesday|20.02|
+    |Thursday|19.15|
+    |Monday|15.01|
+    |Tuesday|13.44|
+    |Wednesday|10.02|
+    |Thursday|09.15|
+    |Friday|14.58|
+    |Friday|18.01|
+    |Saturday|10.00|
+    |Sunday|23.58|

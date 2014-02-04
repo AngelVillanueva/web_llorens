@@ -60,8 +60,10 @@ class Justificante < ActiveRecord::Base
   end
   def justificante_new_mailer?
     # send if out_of_the_office enabled
+    if configuration_check? "Emails de Guardia permanentes"
+      true
     # else send if weekend (sunday, saturday)
-    if [0,6].include? created_at.to_date.wday
+    elsif [0,6].include? created_at.to_date.wday
       true
     # else send if friday from 5 pm
     elsif created_at.to_date.wday == 5 && created_at.to_time.hour >= 17
@@ -73,6 +75,11 @@ class Justificante < ActiveRecord::Base
     else
       false
     end
+  end
+
+  def configuration_check? option
+    o = Configuration.find_or_create_by_option( option )
+    o.enabled?
   end
 
   rails_admin do

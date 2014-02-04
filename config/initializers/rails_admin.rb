@@ -83,9 +83,6 @@ RailsAdmin.config do |config|
   # Anyway, here is how RailsAdmin saw your application's models when you ran the initializer:
 
 
-  config.model "Configuration" do
-    navigation_label I18n.t( 'GLOBAL OPTIONS' )
-  end
   ###  Expediente  ###
 
   # config.model 'Expediente' do

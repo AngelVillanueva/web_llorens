@@ -12,6 +12,7 @@
 class Configuration < ActiveRecord::Base
 
   rails_admin do
+    navigation_label I18n.t( "GLOBAL OPTIONS" )
     list do
       field :id
       field :option do

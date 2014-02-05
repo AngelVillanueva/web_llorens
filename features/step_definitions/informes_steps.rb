@@ -92,27 +92,20 @@ When(/^a new Informe is created a (.*?) at (\d+)\.(\d+)$/) do |day, hour, minute
   case day
     when "Monday"
       a_day = "27-01-2014"
-      on_week = 1
     when "Tuesday"
       a_day = "28-01-2014"
-      on_week = 2
     when "Wednesday"
       a_day = "29-01-2014"
-      on_week = 3
     when "Thursday"
       a_day = "30-01-2014"
-      on_week = 4
     when "Friday"
       a_day = "31-01-2014"
-      on_week = 5
     when "Saturday"
       a_day = "01-02-2014"
-      on_week = 6
     when "Sunday"
       a_day = "02-02-2014"
-      on_week = 0
   end
-  moment = DateTime.parse( a_day ).change( { hour: hour.to_i, minute: minute.to_i } )
+  moment = "#{a_day} #{hour}:#{minute}"
   informe = FactoryGirl.create( :informe, created_at: moment, cliente: Usuario.first.clientes.first )
 end
 

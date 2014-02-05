@@ -145,7 +145,7 @@ When(/^a new Justificante is created a (.*?) at (\d+)\.(\d+)$/) do |day, hour, m
     when "Sunday"
       a_day = "02-02-2014"
   end
-  moment = DateTime.parse( a_day ).change( { hour: hour.to_i, minute: minute.to_i } )
+  moment = "#{a_day} #{hour}:#{minute}"
   justificante = FactoryGirl.create( :justificante, created_at: moment, cliente: Usuario.first.clientes.first )
 end
 

@@ -1,4 +1,5 @@
 class Online::ClientesController < OnlineController
+  load_and_authorize_resource
   expose( :cliente, attributes: :cliente_params )
 
   private

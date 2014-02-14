@@ -32,5 +32,15 @@ describe Online::ClientesController do
       get online_cliente_path( cli )
       response.should be_success
     end
+    it "should return successfull response if I am employee" do
+      org = FactoryGirl.create( :organizacion )
+      cli = FactoryGirl.create( :cliente, organizacion: org )
+      current_usuario = Usuario.first
+      current_usuario.role = "employee"
+      current_usuario.save!
+
+      get online_cliente_path( cli )
+      response.should be_success
+    end
   end
 end

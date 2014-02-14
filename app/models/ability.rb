@@ -10,6 +10,7 @@ class Ability
         can :manage, Expediente
         can :manage, Justificante
         can :manage, Informe
+        can :manage, Cliente
     # Common users
     elsif usuario
         can :manage, Expediente, cliente_id: usuario.cliente_ids

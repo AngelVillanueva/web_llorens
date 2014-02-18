@@ -384,4 +384,6 @@ es:
   Enabled: "Activado"
   Created: "Creado"
   Updated: "Última actualización"
+  Area de: "Área de %{cliente}"
   Remarketing para: "Remarketing para %{cliente}"
+  Vehiculos en stock de: "Vehículos en stock de %{cliente}"

@@ -1,0 +1,12 @@
+<% provide :title, t( "Vehiculos en stock de", cliente: cliente.nombre ) %>
+
+<div class="about_page vista_tabla">
+
+    <div>
+      <table>
+        <thead><tr><th>Matrícula</th></tr></thead>
+        <tbody><%= render stock_vehicles %></tbody>
+      </table>
+    </div>
+
+</div>

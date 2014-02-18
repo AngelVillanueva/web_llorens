@@ -87,4 +87,8 @@ FactoryGirl.define do
   factory :zip_matricula do
     zip File.new( "#{Rails.root}/spec/fixtures/my.zip" )
   end
+
+  factory :stock_vehicle do
+    sequence( :matricula) { |n| "ABC123#{n}" }
+  end
 end

@@ -24,6 +24,7 @@ describe Cliente do
     it { should respond_to :justificantes }
     it { should respond_to :informes }
     it { should belong_to :organizacion }
+    it { should respond_to :stock_vehicles }
   end
   describe "with all fields being mandatory" do
     it "should validate presence of" do

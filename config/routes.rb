@@ -34,7 +34,11 @@ WebLlorens::Application.routes.draw do
       end
     end
     resources :transferencias, :controller => "expedientes", :type => "Transferencia"
-    resources :clientes
+    resources :clientes do
+      member do
+        resources :stock_vehicles
+      end
+    end
   end
 
   namespace :api do

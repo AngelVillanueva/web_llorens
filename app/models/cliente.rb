@@ -15,6 +15,7 @@ class Cliente < ActiveRecord::Base
   has_many :expedientes
   has_many :justificantes
   has_many :informes
+  has_many :stock_vehicles
   validates :nombre, :identificador, :cif, :llorens_cliente_id, :organizacion_id, presence: true
 
   rails_admin do

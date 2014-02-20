@@ -12,8 +12,12 @@
 require 'spec_helper'
 
 describe StockVehicle do
-  let( :vehiculo ) { StockVehicle.new }
+  let( :vehiculo ) { FactoryGirl.create( :stock_vehicle ) }
+  subject { vehiculo }
 
+  it { should respond_to :matricula }
+  it { should validate_presence_of :matricula }
+  it { should validate_uniqueness_of :matricula }
   it { should belong_to :cliente }
   it { should be_valid }
 end

@@ -11,4 +11,5 @@
 
 class StockVehicle < ActiveRecord::Base
   belongs_to :cliente
+  validates :matricula, presence: true, uniqueness: true
 end

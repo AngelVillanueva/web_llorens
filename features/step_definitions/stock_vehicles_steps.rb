@@ -52,3 +52,16 @@ Then(/^I should see the first one as not sold$/) do
     end
   end
 end
+
+Then(/^I should see the second one as sold and with Documentacion Enviada$/) do
+  vehiculos = StockVehicle.unscoped.order("created_at asc")
+  v2 = vehiculos[1]
+  within( 'tr', text: v2.matricula ) do
+    within( 'td.sold' ) do
+      expect( text ).to eql( I18n.t("Vendido") )
+    end
+    within( 'td.sent' ) do
+      expect( text ).to eql( I18n.t( "Si" ) )
+    end
+  end
+end

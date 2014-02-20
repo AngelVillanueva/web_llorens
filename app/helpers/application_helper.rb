@@ -288,5 +288,13 @@ module ApplicationHelper
   def vendido_cell( stock_vehicle )
     stock_vehicle.vendido? && t( "Vendido" ) || t( "En venta" )
   end
+  # returns content of expediente_completo?
+  def completed_cell( stock_vehicle )
+    stock_vehicle.expediente_completo? && t( "Si" ) || t( "No" )
+  end
+  # returns content of documentacion_enviada?
+  def sent_cell( stock_vehicle )
+    stock_vehicle.documentacion_enviada? && t( "Si" ) || t( "No" )
+  end
 
 end

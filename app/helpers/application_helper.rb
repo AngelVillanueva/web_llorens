@@ -283,4 +283,10 @@ module ApplicationHelper
     end
   end
 
+  ## REMARKETING
+  # returns "Vendido" of "En venta" depending on stock_vehicle.vendido? value
+  def vendido_cell( stock_vehicle )
+    stock_vehicle.vendido? && t( "Vendido" ) || t( "En venta" )
+  end
+
 end

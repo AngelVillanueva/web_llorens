@@ -40,6 +40,19 @@ describe StockVehicle do
   it { should be_valid }
 end
 
+describe "default scope for StockVehicle is based on Vendido status" do
+  let( :vehiculo_antiguo ) { FactoryGirl.create( :stock_vehicle ) }
+  let( :vehiculo_nuevo ) { FactoryGirl.create( :stock_vehicle, matricula: "last" )}
+
+  it "returning first the ones no Vendidos" do
+    vehiculo_antiguo.vendido = true
+    vehiculo_antiguo.save!
+    vehiculo_nuevo.vendido = false
+    vehiculo_nuevo.save!
+    StockVehicle.first.matricula.should eql "last"
+  end
+end
+
 describe "a new StockVehicle should have a default Vendido FALSE value" do
   let( :nuevo_vehiculo ) { StockVehicle.new }
   subject { nuevo_vehiculo }

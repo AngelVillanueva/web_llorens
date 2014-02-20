@@ -12,6 +12,7 @@
 class StockVehicle < ActiveRecord::Base
   belongs_to :cliente
   validates :matricula, presence: true, uniqueness: true
+  default_scope includes(:cliente).order('vendido ASC')
 
   def expediente_completo?
     !fecha_expediente_completo.nil?

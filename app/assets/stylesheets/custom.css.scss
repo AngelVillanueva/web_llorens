@@ -340,7 +340,7 @@ a.DTTT_button_xls {
   }
 }
 
-#expedientes, #justificantes, #informes {
+#expedientes, #justificantes, #informes, #stock_vehicles {
   tr.titles {
     background: #333;
     color: white;
@@ -504,6 +504,14 @@ h2.renew + p {
   // color: #a9f5a9;
   color: #0f0;
   float: right;
+}
+
+.missing {
+  color: #f00;
+}
+
+.done {
+  color: #0f0;
 }
 
 strong.solved {

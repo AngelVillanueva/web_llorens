@@ -50,17 +50,20 @@ Then(/^I should see the first one as not sold$/) do
     within( 'td.sold' ) do
       expect( text ).to eql( I18n.t("En venta") )
     end
+    within( 'td.completed' ) do
+      expect( page ).to have_selector( 'i.missing' )
+    end
     within( 'td.sent' ) do
-      expect( text ).to eql( "No" )
+      expect( page ).to have_selector( 'i.missing' )
     end
     within( 'td.received' ) do
-      expect( text ).to eql( "No" )
+      expect( page ).to have_selector( 'i.missing' )
     end
     within( 'td.definitive' ) do
-      expect( text ).to eql( "No" )
+      expect( page ).to have_selector( 'i.missing' )
     end
     within( 'td.finished' ) do
-      expect( text ).to eql( "No" )
+      expect( page ).to have_selector( 'i.missing' )
     end
   end
 end
@@ -72,17 +75,20 @@ Then(/^I should see the second one as sold and with Documentacion Enviada$/) do
     within( 'td.sold' ) do
       expect( text ).to eql( I18n.t("Vendido") )
     end
+    within( 'td.completed' ) do
+      expect( page ).to have_selector( 'i.missing' )
+    end
     within( 'td.sent' ) do
-      expect( text ).to eql( I18n.t( "Si" ) )
+      expect( page ).to have_selector( 'i.done' )
     end
     within( 'td.received' ) do
-      expect( text ).to eql( "No" )
+      expect( page ).to have_selector( 'i.missing' )
     end
     within( 'td.definitive' ) do
-      expect( text ).to eql( "No" )
+      expect( page ).to have_selector( 'i.missing' )
     end
     within( 'td.finished' ) do
-      expect( text ).to eql( "No" )
+      expect( page ).to have_selector( 'i.missing' )
     end
   end
 end
@@ -95,19 +101,19 @@ Then(/^I should see the last one as sold and Finalizado$/) do
       expect( text ).to eql( I18n.t("Vendido") )
     end
     within( 'td.completed' ) do
-      expect( text ).to eql( I18n.t( "Si" ) )
+      expect( page ).to have_selector( 'i.done' )
     end
     within( 'td.sent' ) do
-      expect( text ).to eql( I18n.t( "Si" ) )
+      expect( page ).to have_selector( 'i.done' )
     end
     within( 'td.received' ) do
-      expect( text ).to eql( I18n.t( "Si" ) )
+      expect( page ).to have_selector( 'i.done' )
     end
     within( 'td.definitive' ) do
-      expect( text ).to eql( I18n.t( "Si" ) )
+      expect( page ).to have_selector( 'i.done' )
     end
     within( 'td.finished' ) do
-      expect( text ).to eql( I18n.t( "Si" ) )
+      expect( page ).to have_selector( 'i.done' )
     end
   end
 end

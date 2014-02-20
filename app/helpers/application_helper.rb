@@ -296,5 +296,8 @@ module ApplicationHelper
   def sent_cell( stock_vehicle )
     stock_vehicle.documentacion_enviada? && t( "Si" ) || t( "No" )
   end
-
+  # returns content of finalizado?
+  def finished_cell( stock_vehicle )
+    stock_vehicle.finalizado? && t( "Si" ) || t( "No" )
+  end
 end

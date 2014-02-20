@@ -65,3 +65,16 @@ Then(/^I should see the second one as sold and with Documentacion Enviada$/) do
     end
   end
 end
+
+Then(/^I should see the last one as sold and Finalizado$/) do
+  vehiculos = StockVehicle.unscoped.order("created_at asc")
+  v3 = vehiculos.last
+  within( 'tr', text: v3.matricula ) do
+    within( 'td.sold' ) do
+      expect( text ).to eql( I18n.t("Vendido") )
+    end
+    within( 'td.finished' ) do
+      expect( text ).to eql( I18n.t( "Si" ) )
+    end
+  end
+end

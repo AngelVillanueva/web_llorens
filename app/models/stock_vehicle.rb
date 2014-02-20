@@ -13,6 +13,7 @@ class StockVehicle < ActiveRecord::Base
   belongs_to :cliente
   validates :matricula, presence: true, uniqueness: true
   default_scope order('vendido ASC')
+  paginates_per 10
 
   def expediente_completo?
     !fecha_expediente_completo.nil?

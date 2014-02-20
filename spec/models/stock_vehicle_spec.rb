@@ -21,6 +21,21 @@ describe StockVehicle do
   it { should respond_to :marca }
   it { should respond_to :modelo }
   it { should respond_to :vendido }
+  it { should respond_to :comprador }
+  it { should respond_to :ft }
+  it { should respond_to :pc }
+  it { should respond_to :fecha_itv }
+  it { should respond_to :incidencia }
+  it { should respond_to :fecha_expediente_completo }
+  it { should respond_to :fecha_documentacion_enviada }
+  it { should respond_to :fecha_notificado_cliente }
+  it { should respond_to :particular }
+  it { should respond_to :compra_venta }
+  it { should respond_to :fecha_envio_gestoria }
+  it { should respond_to :baja_exportacion }
+  it { should respond_to :fecha_entregado_david }
+  it { should respond_to :fecha_envio_definitiva }
+  it { should respond_to :observaciones }
   it { should belong_to :cliente }
   it { should be_valid }
 end

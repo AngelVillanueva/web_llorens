@@ -50,6 +50,18 @@ Then(/^I should see the first one as not sold$/) do
     within( 'td.sold' ) do
       expect( text ).to eql( I18n.t("En venta") )
     end
+    within( 'td.sent' ) do
+      expect( text ).to eql( "No" )
+    end
+    within( 'td.received' ) do
+      expect( text ).to eql( "No" )
+    end
+    within( 'td.definitive' ) do
+      expect( text ).to eql( "No" )
+    end
+    within( 'td.finished' ) do
+      expect( text ).to eql( "No" )
+    end
   end
 end
 
@@ -63,6 +75,15 @@ Then(/^I should see the second one as sold and with Documentacion Enviada$/) do
     within( 'td.sent' ) do
       expect( text ).to eql( I18n.t( "Si" ) )
     end
+    within( 'td.received' ) do
+      expect( text ).to eql( "No" )
+    end
+    within( 'td.definitive' ) do
+      expect( text ).to eql( "No" )
+    end
+    within( 'td.finished' ) do
+      expect( text ).to eql( "No" )
+    end
   end
 end
 
@@ -72,6 +93,18 @@ Then(/^I should see the last one as sold and Finalizado$/) do
   within( 'tr', text: v3.matricula ) do
     within( 'td.sold' ) do
       expect( text ).to eql( I18n.t("Vendido") )
+    end
+    within( 'td.completed' ) do
+      expect( text ).to eql( I18n.t( "Si" ) )
+    end
+    within( 'td.sent' ) do
+      expect( text ).to eql( I18n.t( "Si" ) )
+    end
+    within( 'td.received' ) do
+      expect( text ).to eql( I18n.t( "Si" ) )
+    end
+    within( 'td.definitive' ) do
+      expect( text ).to eql( I18n.t( "Si" ) )
     end
     within( 'td.finished' ) do
       expect( text ).to eql( I18n.t( "Si" ) )

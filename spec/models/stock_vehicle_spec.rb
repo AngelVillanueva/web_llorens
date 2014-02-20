@@ -18,6 +18,16 @@ describe StockVehicle do
   it { should respond_to :matricula }
   it { should validate_presence_of :matricula }
   it { should validate_uniqueness_of :matricula }
+  it { should respond_to :marca }
+  it { should respond_to :modelo }
+  it { should respond_to :vendido }
   it { should belong_to :cliente }
   it { should be_valid }
+end
+
+describe "a new StockVehicle should have a default Vendido FALSE value" do
+  let( :nuevo_vehiculo ) { StockVehicle.new }
+  subject { nuevo_vehiculo }
+
+  its( :vendido ) { should eql false }
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140220084733) do
+ActiveRecord::Schema.define(:version => 20140220085349) do
 
   create_table "api_keys", :force => true do |t|
     t.string   "access_token"
@@ -208,9 +208,12 @@ ActiveRecord::Schema.define(:version => 20140220084733) do
 
   create_table "stock_vehicles", :force => true do |t|
     t.string   "matricula"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
     t.integer  "cliente_id"
+    t.string   "marca"
+    t.string   "modelo"
+    t.boolean  "vendido",    :default => false
   end
 
   add_index "stock_vehicles", ["matricula"], :name => "index_stock_vehicles_on_matricula", :unique => true

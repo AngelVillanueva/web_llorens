@@ -14,10 +14,22 @@ Scenario: Stock Vehicle page
   When I access the Remarketing page for the Cliente
   Then I should see a list of my 2 Stock Vehicles
 
-Scenario: Stock Vehicle page
+Scenario: Stock Vehicle page is accessible for admin Users
+  Given I am an admin user
+    And a Cliente I do not belong to has 2 Stock Vehicles 
+  When I access the Remarketing page for the Cliente
+  Then I should see a list of my 2 Stock Vehicles
+
+Scenario: Stock Vehicle page is accessible for employee Users
+  Given I am an employee user
+    And a Cliente I do not belong to has 2 Stock Vehicles 
+  When I access the Remarketing page for the Cliente
+  Then I should see a list of my 2 Stock Vehicles
+
+Scenario: Stock Vehicle page is just to see my own StockVehicles
   Given I am a registered User
     And a Cliente I do not belong to has 2 Stock Vehicles
-  When I access the Remarketing page for the Cliente I do not belong to
+  When I access the Remarketing page for the Cliente
   Then I should not see a list of my 2 Stock Vehicles
 
 Scenario: Stock Vehicle data

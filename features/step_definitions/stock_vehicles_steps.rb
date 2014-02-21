@@ -1,9 +1,4 @@
 When(/^I access the Remarketing page for the Cliente$/) do
-  cliente = Cliente.first
-  visit online_stock_vehicles_path( cliente )
-end
-
-When(/^I access the Remarketing page for the Cliente I do not belong to$/) do
   cliente = Cliente.last
   visit online_stock_vehicles_path( cliente )
 end

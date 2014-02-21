@@ -45,6 +45,10 @@ Given(/^the last vehicle is sold and with status of Finalizado$/) do
   v3.save!
 end
 
+Given(/^I have created a new Xml Vehicle file$/) do
+  step "I upload a xml file containing one or more Stock Vehicles"
+end
+
 When(/^I upload a xml file containing one or more Stock Vehicles$/) do
   athlon = FactoryGirl.create(:cliente, llorens_cliente_id: "4300189329") # este es el codigo de cliente de athlon
   visit rails_admin.dashboard_path
@@ -52,6 +56,10 @@ When(/^I upload a xml file containing one or more Stock Vehicles$/) do
   first( '.new_collection_link a').click
   attach_file "xml_vehicle_xml", "#{Rails.root}/spec/fixtures/my.xml"
   first( "button[type=submit]" ).click
+end
+
+When(/^I process the xml file$/) do
+  find( "li.read_xml_member_link a").click
 end
 
 Then(/^I should (not )?see a list of my (\d+) Stock Vehicles$/) do |negation, quantity|
@@ -154,4 +162,9 @@ end
 
 Then(/^assigned to the right Cliente$/) do
   Cliente.where(llorens_cliente_id: "4300189329").first.stock_vehicles.count.should eql 2
+end
+
+Then(/^the xml file should be marked as processed$/) do
+  xml_file = XmlVehicle.last
+  xml_file.processed.should eql true
 end

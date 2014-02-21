@@ -17,7 +17,7 @@ When(/^I upload a zip file containing one or more temporary matricula pdfs$/) do
 end
 
 When(/^I unzip the bundle$/) do
-  find( "li.assign_zips_member_link a").click
+  find( "li.read_xml_member_link a").click
 end
 
 Then(/^a new zip file with one or more temporary matricula pdfs should be created$/) do

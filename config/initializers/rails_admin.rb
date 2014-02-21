@@ -2,6 +2,7 @@
 # See github.com/sferik/rails_admin for more informations
 require Rails.root.join('lib', 'rails_admin_print.rb')
 require Rails.root.join('lib', 'rails_admin_assign_zips.rb')
+require Rails.root.join('lib', 'rails_admin_read_xml.rb')
 
 RailsAdmin.config do |config|
 
@@ -40,7 +41,7 @@ RailsAdmin.config do |config|
   # Label methods for model instances:
   config.label_methods << :nombre # Default is [:name, :title]
 
-  # register custom 'print' action
+  # register custom 'print', 'assign_zips' and 'process_xmls' actions
   config.actions do
     dashboard
     index
@@ -54,8 +55,14 @@ RailsAdmin.config do |config|
     end
     assign_zips do
       visible do
-        # Make it visible only for Justificantes + Informes model.
+        # Make it visible only for ZipMatricula model.
         bindings[:abstract_model].model.to_s.in? %w[ZipMatricula]
+      end
+    end
+    read_xml do
+      visible do
+        # Make it visible only for XmlVehicle model.
+        bindings[:abstract_model].model.to_s.in? %w[XmlVehicle]
       end
     end
     edit

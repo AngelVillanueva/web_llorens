@@ -83,7 +83,14 @@ es:
         breadcrumb: "Asignar pdfs"
         link: "Asignar pdfs para %{model_label}"
         bulk_link: "Asignar pdfs en seleccionados"
-        done: "PDFs asignados"  
+        done: "PDFs asignados"
+      read_xml:
+        title: "Leer XML"
+        menu: "Leer XML"
+        breadcrumb: "Leer Xml"
+        link: "Leer Xml"
+        bulk_link: "Leer Xmls seleccionados"
+        done: "Xmls leídos"  
       edit:
         title: "Editar %{model_label} '%{object_label}'"
         menu: "Editar"

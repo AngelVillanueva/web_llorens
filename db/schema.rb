@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140221103726) do
+ActiveRecord::Schema.define(:version => 20140221145633) do
 
   create_table "api_keys", :force => true do |t|
     t.string   "access_token"
@@ -217,7 +217,7 @@ ActiveRecord::Schema.define(:version => 20140221103726) do
     t.boolean  "particular",                   :default => false
     t.boolean  "compra_venta",                 :default => false
     t.date     "fecha_envio_gestoria"
-    t.boolean  "baja_exportacion",             :default => true
+    t.boolean  "baja_exportacion",             :default => false
     t.date     "fecha_entregado_david"
     t.date     "fecha_envio_definitiva"
     t.text     "observaciones"
@@ -263,8 +263,9 @@ ActiveRecord::Schema.define(:version => 20140221103726) do
     t.integer  "xml_file_size"
     t.datetime "xml_updated_at"
     t.integer  "cliente_id"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
+    t.boolean  "processed",        :default => false
   end
 
   create_table "zip_matriculas", :force => true do |t|

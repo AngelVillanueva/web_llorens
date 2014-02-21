@@ -91,4 +91,9 @@ FactoryGirl.define do
   factory :stock_vehicle do
     sequence( :matricula) { |n| "ABC123#{n}" }
   end
+
+  factory :xml_vehicle do
+    xml File.new( "#{Rails.root}/spec/fixtures/my.xml" )
+    cliente
+  end
 end

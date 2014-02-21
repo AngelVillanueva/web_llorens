@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140221095919) do
+ActiveRecord::Schema.define(:version => 20140221103726) do
 
   create_table "api_keys", :force => true do |t|
     t.string   "access_token"
@@ -256,6 +256,16 @@ ActiveRecord::Schema.define(:version => 20140221095919) do
   add_index "usuarios", ["organizacion_id"], :name => "index_usuarios_on_organizacion_id"
   add_index "usuarios", ["password_changed_at"], :name => "index_usuarios_on_password_changed_at"
   add_index "usuarios", ["reset_password_token"], :name => "index_usuarios_on_reset_password_token", :unique => true
+
+  create_table "xml_vehicles", :force => true do |t|
+    t.string   "xml_file_name"
+    t.string   "xml_content_type"
+    t.integer  "xml_file_size"
+    t.datetime "xml_updated_at"
+    t.integer  "cliente_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
 
   create_table "zip_matriculas", :force => true do |t|
     t.datetime "created_at",                          :null => false

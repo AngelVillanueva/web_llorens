@@ -392,3 +392,7 @@ es:
   No: "No"
   No existe aun: "Esa página todavía no existe o no es accesible"
   has_remarketing: "Remarketing"
+  REMARKETING: "REMARKETING"
+  Athlon files: "Athlon: archivos"
+  XML - label: "Archivo"
+  Formato athlon xml - ayuda: "Ha de ser un archivo XML con la estructura predefinida"

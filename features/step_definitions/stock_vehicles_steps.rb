@@ -45,6 +45,15 @@ Given(/^the last vehicle is sold and with status of Finalizado$/) do
   v3.save!
 end
 
+When(/^I upload a xml file containing one or more Stock Vehicles$/) do
+  athlon = FactoryGirl.create(:cliente, llorens_cliente_id: "4300189329") # este es el codigo de cliente de athlon
+  visit rails_admin.dashboard_path
+  find( "li[data-model=xml_vehicle] a" ).click
+  first( '.new_collection_link a').click
+  attach_file "xml_vehicle_xml", "#{Rails.root}/spec/fixtures/my.xml"
+  first( "button[type=submit]" ).click
+end
+
 Then(/^I should (not )?see a list of my (\d+) Stock Vehicles$/) do |negation, quantity|
   q = quantity.to_i
   unless negation
@@ -132,4 +141,17 @@ Then(/^I should see the last one as sold and Finalizado$/) do
       expect( page ).to have_selector( 'i.done' )
     end
   end
+end
+
+Then(/^a new xml file with one or more Stock Vehicles should be created$/) do
+  XmlVehicle.count.should eql 1
+  Cliente.where(llorens_cliente_id: "4300189329").first.xml_vehicles.count.should eql 1
+end
+
+Then(/^the new Stock Vehicles should be created$/) do
+  StockVehicle.count.should eql 2 # xml fixture file contains 2 StockVehicles
+end
+
+Then(/^assigned to the right Cliente$/) do
+  Cliente.where(llorens_cliente_id: "4300189329").first.stock_vehicles.count.should eql 2
 end

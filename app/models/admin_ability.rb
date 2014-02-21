@@ -14,6 +14,7 @@ class AdminAbility
       can :manage, Justificante
       can :manage, Informe
       can :manage, ZipMatricula
+      can :manage, XmlVehicle
     end
     cannot :history, :all
   end

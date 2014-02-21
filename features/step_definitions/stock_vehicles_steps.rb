@@ -3,9 +3,22 @@ When(/^I access the Remarketing page for the Cliente$/) do
   visit online_stock_vehicles_path( cliente )
 end
 
+When(/^I access the Remarketing page for the Cliente I do not belong to$/) do
+  cliente = Cliente.last
+  visit online_stock_vehicles_path( cliente )
+end
+
 Given(/^the Cliente I belong to has (\d+) Stock Vehicles$/) do |quantity|
   quantity.to_i.times do |n|
     FactoryGirl.create( :stock_vehicle, cliente: Cliente.first )
+  end
+end
+
+Given(/^a Cliente I do not belong to has (\d+) Stock Vehicles$/) do |quantity|
+  otra_organizacion = FactoryGirl.create( :organizacion )
+  otro_cliente = FactoryGirl.create( :cliente, organizacion: otra_organizacion )
+  quantity.to_i.times do |n|
+    FactoryGirl.create( :stock_vehicle, cliente: otro_cliente )
   end
 end
 
@@ -34,12 +47,17 @@ Given(/^the last vehicle is sold and with status of Finalizado$/) do
   v3.save!
 end
 
-Then(/^I should see a list of my (\d+) Stock Vehicles$/) do |quantity|
+Then(/^I should (not )?see a list of my (\d+) Stock Vehicles$/) do |negation, quantity|
   q = quantity.to_i
-  expect( page ).to have_selector( 'tr.stock', count: q )
-  (q-1).times do |t|
-    matricula = StockVehicle.all[t].matricula
-    expect( page ).to have_selector( 'tr.stock td', text: matricula)
+  unless negation
+    expect( page ).to have_selector( 'tr.stock', count: q )
+    (q-1).times do |t|
+      matricula = StockVehicle.all[t].matricula
+      expect( page ).to have_selector( 'tr.stock td', text: matricula)
+    end
+  else
+    expect( page ).to_not have_selector( 'tr.stock', count: q )
+    expect( page ).to have_selector( '.alert-alert', text: I18n.t( 'unauthorized.manage.all' ) )
   end
 end
 

@@ -14,6 +14,12 @@ Scenario: Stock Vehicle page
   When I access the Remarketing page for the Cliente
   Then I should see a list of my 2 Stock Vehicles
 
+Scenario: Stock Vehicle page
+  Given I am a registered User
+    And a Cliente I do not belong to has 2 Stock Vehicles
+  When I access the Remarketing page for the Cliente I do not belong to
+  Then I should not see a list of my 2 Stock Vehicles
+
 Scenario: Stock Vehicle data
   Given I am a registered User
     And the Cliente I belong to has 3 Stock Vehicles

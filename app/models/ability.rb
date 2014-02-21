@@ -18,7 +18,7 @@ class Ability
         can :manage, Justificante, cliente_id: usuario.cliente_ids
         can :manage, Informe, cliente_id: usuario.cliente_ids
         can :manage, Cliente, id: usuario.cliente_ids
-        can :manage, StockVehicle, cliente_id: usuario.cliente_ids
+        can :manage, StockVehicle, cliente: { :id => usuario.cliente_ids }
     end
     # Define abilities for the passed in user here. For example:
     #

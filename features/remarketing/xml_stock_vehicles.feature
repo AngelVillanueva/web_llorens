@@ -18,5 +18,6 @@ Feature: Stock Vehicles can be uploaded in a xml file
       And I have created a new Xml Vehicle file
     When I process the xml file
     Then the new Stock Vehicles should be created
+      And the user should be informed about the 2 new Stock Vehicles
       And assigned to the right Cliente
       And the xml file should be marked as processed

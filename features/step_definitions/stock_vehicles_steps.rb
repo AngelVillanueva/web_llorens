@@ -168,3 +168,8 @@ Then(/^the xml file should be marked as processed$/) do
   xml_file = XmlVehicle.last
   xml_file.processed.should eql true
 end
+
+Then(/^the user should be informed about the (\d+) new Stock Vehicles$/) do |quantity|
+  q = quantity.to_i
+  expect( page ).to have_selector( '.alert-success', text: "Encontrados y procesados correctamente el total de #{q}" )
+end

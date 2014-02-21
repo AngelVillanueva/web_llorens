@@ -21,8 +21,8 @@ module RailsAdmin
         end
         register_instance_option :controller do
           Proc.new do
-            # load xml file into 'content' variable
             total = 0
+            # load xml file into 'content' variable
             content = Nokogiri::XML(File.open( object.xml.path ))
             # one row per Vehicle node
             rows = content.css("Vehicle")
@@ -44,10 +44,10 @@ module RailsAdmin
                 new_cars = new_cars + 1
               end
             end
-            total == new_cars ? tipo = "success" : tipo = "alert"
-            flash[tipo.to_sym] = create_message( total, new_cars )
             object.processed = true
             object.save!
+            total == new_cars ? tipo = "success" : tipo = "alert"
+            flash[tipo.to_sym] = create_message( total, new_cars )
             redirect_to back_or_index
           end
         end

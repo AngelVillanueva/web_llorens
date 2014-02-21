@@ -52,5 +52,6 @@ class StockVehicle < ActiveRecord::Base
 
   rails_admin do
     navigation_label I18n.t( "REMARKETING")
+    label I18n.t( "Stock Vehicles")
   end
 end

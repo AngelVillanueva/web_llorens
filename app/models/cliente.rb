@@ -23,6 +23,9 @@ class Cliente < ActiveRecord::Base
       group :advanced do
         label I18n.t("Advanced")
         active false
+        field :has_remarketing do
+          label I18n.t( "has_remarketing")
+        end
         field :expedientes
         field :justificantes
         field :informes

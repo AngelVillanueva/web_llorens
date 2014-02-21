@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140220091751) do
+ActiveRecord::Schema.define(:version => 20140221095919) do
 
   create_table "api_keys", :force => true do |t|
     t.string   "access_token"
@@ -37,8 +37,10 @@ ActiveRecord::Schema.define(:version => 20140220091751) do
     t.string  "cif"
     t.integer "organizacion_id"
     t.string  "llorens_cliente_id"
+    t.boolean "has_remarketing",    :default => false
   end
 
+  add_index "clientes", ["has_remarketing"], :name => "index_clientes_on_has_remarketing"
   add_index "clientes", ["llorens_cliente_id"], :name => "index_clientes_on_llorens_cliente_id"
 
   create_table "clientes_usuarios", :id => false, :force => true do |t|

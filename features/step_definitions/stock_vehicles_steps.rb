@@ -4,14 +4,17 @@ When(/^I access the Remarketing page for the Cliente$/) do
 end
 
 Given(/^the Cliente I belong to has (\d+) Stock Vehicles$/) do |quantity|
+  mi_cliente = Cliente.first
+  mi_cliente.has_remarketing = true
+  mi_cliente.save!
   quantity.to_i.times do |n|
-    FactoryGirl.create( :stock_vehicle, cliente: Cliente.first )
+    FactoryGirl.create( :stock_vehicle, cliente: mi_cliente )
   end
 end
 
 Given(/^a Cliente I do not belong to has (\d+) Stock Vehicles$/) do |quantity|
   otra_organizacion = FactoryGirl.create( :organizacion )
-  otro_cliente = FactoryGirl.create( :cliente, organizacion: otra_organizacion )
+  otro_cliente = FactoryGirl.create( :cliente, organizacion: otra_organizacion, has_remarketing: true )
   quantity.to_i.times do |n|
     FactoryGirl.create( :stock_vehicle, cliente: otro_cliente )
   end

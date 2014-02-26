@@ -290,30 +290,30 @@ module ApplicationHelper
   end
   # returns content of expediente_completo?
   def completed_cell( stock_vehicle )
-    stock_vehicle.expediente_completo? && icon_done || icon_missing
+    stock_vehicle.expediente_completo? && icon_done(stock_vehicle.expediente_completo?) || icon_missing(stock_vehicle.expediente_completo?)
   end
   # returns content of documentacion_enviada?
   def sent_cell( stock_vehicle )
-    stock_vehicle.documentacion_enviada? && icon_done || icon_missing
+    stock_vehicle.documentacion_enviada? && icon_done(stock_vehicle.documentacion_enviada?) || icon_missing(stock_vehicle.documentacion_enviada?)
   end
   # returns content of documentacion_recibida?
   def received_cell( stock_vehicle )
-    stock_vehicle.documentacion_recibida? && icon_done || icon_missing
+    stock_vehicle.documentacion_recibida? && icon_done(stock_vehicle.documentacion_recibida?) || icon_missing(stock_vehicle.documentacion_recibida?)
   end
   # returns content of envio_documentacion_definitiva?
   def definitive_cell( stock_vehicle )
-    stock_vehicle.envio_documentacion_definitiva? && icon_done || icon_missing
+    stock_vehicle.envio_documentacion_definitiva? && icon_done(stock_vehicle.envio_documentacion_definitiva?) || icon_missing(stock_vehicle.envio_documentacion_definitiva?)
   end
   # returns content of finalizado?
   def finished_cell( stock_vehicle )
-    stock_vehicle.finalizado? && icon_done || icon_missing
+    stock_vehicle.finalizado? && icon_done(stock_vehicle.finalizado?) || icon_missing(stock_vehicle.finalizado?)
   end
 
   # helpers for Remarketing cells
-  def icon_done
-    content_tag( 'i', nil, class: 'done icon-circle' )
+  def icon_done value
+    content_tag( 'i', "<span>#{value}</span>".html_safe, class: 'done icon-circle' )
   end
-  def icon_missing
-    content_tag( 'i', nil, class: 'missing icon-circle' )
+  def icon_missing value
+    content_tag( 'i', "<span>#{value}</span>".html_safe, class: 'missing icon-circle' )
   end
 end

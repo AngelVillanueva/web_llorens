@@ -514,6 +514,11 @@ h2.renew + p {
   color: #0f0;
 }
 
+.missing span, .done span {
+  position: absolute;
+  visibility: hidden;
+}
+
 strong.solved {
   color: #08c;
 }

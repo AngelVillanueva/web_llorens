@@ -311,9 +311,9 @@ module ApplicationHelper
 
   # helpers for Remarketing cells
   def icon_done value
-    content_tag( 'i', "<span>#{value}</span>".html_safe, class: 'done icon-circle' )
+    content_tag( 'i', "<span>Si</span>".html_safe, class: 'done icon-circle' )
   end
   def icon_missing value
-    content_tag( 'i', "<span>#{value}</span>".html_safe, class: 'missing icon-circle' )
+    content_tag( 'i', "<span>No</span>".html_safe, class: 'missing icon-circle' )
   end
 end

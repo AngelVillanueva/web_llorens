@@ -74,6 +74,21 @@ $(document).ready ->
   ###
   dataTables initialization
   ###
+  # stock vehicles
+  if ( $( '#stock_vehicles' ).length )
+    createSimpleDataTable(
+      'stock_vehicles',
+      [],
+      [
+        { type: "text" },
+        { type: "select", values: ['En venta', 'Vendido'] },
+        { type: "select", values: ['Si', 'No'] },
+        { type: "select", values: ['Si', 'No'] },
+        { type: "select", values: ['Si', 'No'] },
+        { type: "select", values: ['Si', 'No'] },
+        { type: "select", values: ['Si', 'No'] }
+        ]
+      )
   # matriculaciones
   if ( $( '#expedientes.matriculacion' ).length )
     createRemoteDataTable(

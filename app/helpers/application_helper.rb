@@ -308,6 +308,22 @@ module ApplicationHelper
   def finished_cell( stock_vehicle )
     stock_vehicle.finalizado? && icon_done(stock_vehicle.finalizado?) || icon_missing(stock_vehicle.finalizado?)
   end
+  # returns true if at least one Cliente (current_ability) has_remarketing?
+  def remarketing_links?
+    clientes = current_usuario.norole? && current_usuario.organizacion.clientes || Cliente.all
+    clientes.map(&:has_remarketing?).include? true
+  end
+
+  # returns a list of link to the Remarketing page for any Cliente (current_ability) that has_remarketing
+  def remarketing_link_list
+    clientes = current_usuario.norole? && current_usuario.organizacion.clientes || Cliente.all
+    clientes.each do |c|
+      if c.has_remarketing?
+        concat content_tag('li', link_to( c.nombre, online_stock_vehicles_path( c ), class: "remarketing" ) )
+      end
+    end
+    nil
+  end
 
   # helpers for Remarketing cells
   def icon_done value
@@ -315,5 +331,13 @@ module ApplicationHelper
   end
   def icon_missing value
     content_tag( 'i', "<span>No</span>".html_safe, class: 'missing icon-circle' )
+  end
+  def primer_cliente_con_remarketing current_usuario
+    if current_usuario.norole?
+      o = current_usuario.organizacion
+      c = o.clientes.where(has_remarketing: true).first
+    else
+      c = Cliente.where(has_remarketing: true).first
+    end
   end
 end

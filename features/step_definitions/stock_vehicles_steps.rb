@@ -8,6 +8,10 @@ When(/^I access the page to create a new Stock Vehicle for the Cliente$/) do
   visit new_online_stock_vehicle_path( cliente )
 end
 
+When(/^I try to access the Remarketing page for the Cliente$/) do
+  find( "a.remarketing").click
+end
+
 Given(/^the Cliente I belong to has (\d+) Stock Vehicles$/) do |quantity|
   mi_cliente = Cliente.first
   mi_cliente.has_remarketing = true

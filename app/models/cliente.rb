@@ -15,6 +15,8 @@ class Cliente < ActiveRecord::Base
   has_many :expedientes
   has_many :justificantes
   has_many :informes
+  has_many :stock_vehicles
+  has_many :xml_vehicles
   validates :nombre, :identificador, :cif, :llorens_cliente_id, :organizacion_id, presence: true
 
   rails_admin do
@@ -22,6 +24,9 @@ class Cliente < ActiveRecord::Base
       group :advanced do
         label I18n.t("Advanced")
         active false
+        field :has_remarketing do
+          label I18n.t( "has_remarketing")
+        end
         field :expedientes
         field :justificantes
         field :informes

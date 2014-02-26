@@ -103,7 +103,7 @@ end
     |Wednesday|10.02|
     |Thursday|15.15|
 
-@email @guardia @current
+@email @guardia
   Scenario Outline: create a new Justificante implies an email always if out-of-office is enabled
     Given I am a registered User
       And the out-of-office option is enabled in Guardias

@@ -41,7 +41,7 @@ module RailsAdmin
               object.expandido = true
               object.save!
               zipfile.count == found ? tipo = "success" : tipo = "alert"
-              flash[tipo.to_sym] = create_message( zipfile.count, found, not_found )
+              flash[tipo.to_sym] = create_unzip_message( zipfile.count, found, not_found )
               redirect_to back_or_index
             end
           end
@@ -61,7 +61,7 @@ def num_bastidor nombre_pdf
   end
 end
 
-def create_message total, found, not_found
+def create_unzip_message total, found, not_found
   if total == found
     message = "Encontrados y procesados correctamente el total de #{total}."
   elsif total > found

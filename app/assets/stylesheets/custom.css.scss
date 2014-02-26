@@ -340,7 +340,7 @@ a.DTTT_button_xls {
   }
 }
 
-#expedientes, #justificantes, #informes {
+#expedientes, #justificantes, #informes, #stock_vehicles {
   tr.titles {
     background: #333;
     color: white;
@@ -506,6 +506,19 @@ h2.renew + p {
   float: right;
 }
 
+.missing {
+  color: #f00;
+}
+
+.done {
+  color: #0f0;
+}
+
+.missing span, .done span {
+  position: absolute;
+  visibility: hidden;
+}
+
 strong.solved {
   color: #08c;
 }
@@ -553,4 +566,9 @@ strong.solved {
     right: -100;
     top: 20;
   }
+}
+
+ul.remarketing {
+  text-align: center;
+  list-style: none;
 }

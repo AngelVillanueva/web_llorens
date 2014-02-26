@@ -1,0 +1,40 @@
+<% provide :title, t( "Vehiculos en stock de", cliente: cliente.nombre ) %>
+
+<div class="about_page vista_tabla">
+
+  <%= render 'shared/section_wrapper',
+      header_text: t("Vehiculos en stock de", cliente: cliente.nombre),
+      linked_pdf: nil,
+      search: 'stock_vehicles',
+      legend: nil %>
+
+    <%= paginate stock_vehicles if false %>
+    <% # deactivate if dataTables %>
+
+    <div>
+      <table id="stock_vehicles" class="table table-condensed table-bordered table-striped">
+        <thead>
+          <tr class="filter">
+            <th>Matrícula</th>
+            <th>En Venta</th>
+            <th><%= t("Expediente completo") %></th>
+            <th><%= t("Documentación Enviada") %></th>
+            <th><%= t("Documentación Recibida") %></th>
+            <th><%= t("Envío Documentación Definitiva") %></th>
+            <th><%= t("Finalizado") %></th>
+          </tr>
+          <tr class="titles">
+            <th>Matrícula</th>
+            <th>En Venta</th>
+            <th><%= t("Expediente completo") %></th>
+            <th><%= t("Documentación Enviada") %></th>
+            <th><%= t("Documentación Recibida") %></th>
+            <th><%= t("Envío Documentación Definitiva") %></th>
+            <th><%= t("Finalizado") %></th>
+          </tr>
+        </thead>
+        <tbody><%= render stock_vehicles %></tbody>
+      </table>
+    </div>
+
+</div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140204100156) do
+ActiveRecord::Schema.define(:version => 20140221145633) do
 
   create_table "api_keys", :force => true do |t|
     t.string   "access_token"
@@ -37,8 +37,10 @@ ActiveRecord::Schema.define(:version => 20140204100156) do
     t.string  "cif"
     t.integer "organizacion_id"
     t.string  "llorens_cliente_id"
+    t.boolean "has_remarketing",    :default => false
   end
 
+  add_index "clientes", ["has_remarketing"], :name => "index_clientes_on_has_remarketing"
   add_index "clientes", ["llorens_cliente_id"], :name => "index_clientes_on_llorens_cliente_id"
 
   create_table "clientes_usuarios", :id => false, :force => true do |t|
@@ -206,6 +208,41 @@ ActiveRecord::Schema.define(:version => 20140204100156) do
     t.string   "simplified_type",        :default => "file"
   end
 
+  create_table "stock_vehicles", :force => true do |t|
+    t.string   "matricula"
+    t.datetime "created_at",                                      :null => false
+    t.datetime "updated_at",                                      :null => false
+    t.integer  "cliente_id"
+    t.string   "marca"
+    t.string   "modelo"
+    t.boolean  "vendido",                      :default => false
+    t.string   "comprador"
+    t.boolean  "ft",                           :default => false
+    t.boolean  "pc",                           :default => false
+    t.date     "fecha_itv"
+    t.text     "incidencia"
+    t.date     "fecha_expediente_completo"
+    t.date     "fecha_documentacion_enviada"
+    t.date     "fecha_documentacion_recibida"
+    t.date     "fecha_notificado_cliente"
+    t.boolean  "particular",                   :default => false
+    t.boolean  "compra_venta",                 :default => false
+    t.date     "fecha_envio_gestoria"
+    t.boolean  "baja_exportacion",             :default => false
+    t.date     "fecha_entregado_david"
+    t.date     "fecha_envio_definitiva"
+    t.text     "observaciones"
+  end
+
+  add_index "stock_vehicles", ["fecha_documentacion_enviada"], :name => "index_stock_vehicles_on_fecha_documentacion_enviada"
+  add_index "stock_vehicles", ["fecha_documentacion_recibida"], :name => "index_stock_vehicles_on_fecha_documentacion_recibida"
+  add_index "stock_vehicles", ["fecha_entregado_david"], :name => "index_stock_vehicles_on_fecha_entregado_david"
+  add_index "stock_vehicles", ["fecha_envio_definitiva"], :name => "index_stock_vehicles_on_fecha_envio_definitiva"
+  add_index "stock_vehicles", ["fecha_envio_gestoria"], :name => "index_stock_vehicles_on_fecha_envio_gestoria"
+  add_index "stock_vehicles", ["fecha_expediente_completo"], :name => "index_stock_vehicles_on_fecha_expediente_completo"
+  add_index "stock_vehicles", ["fecha_notificado_cliente"], :name => "index_stock_vehicles_on_fecha_notificado_cliente"
+  add_index "stock_vehicles", ["matricula"], :name => "index_stock_vehicles_on_matricula", :unique => true
+
   create_table "the_resources", :force => true do |t|
     t.datetime "password_changed_at"
   end
@@ -236,6 +273,17 @@ ActiveRecord::Schema.define(:version => 20140204100156) do
   add_index "usuarios", ["organizacion_id"], :name => "index_usuarios_on_organizacion_id"
   add_index "usuarios", ["password_changed_at"], :name => "index_usuarios_on_password_changed_at"
   add_index "usuarios", ["reset_password_token"], :name => "index_usuarios_on_reset_password_token", :unique => true
+
+  create_table "xml_vehicles", :force => true do |t|
+    t.string   "xml_file_name"
+    t.string   "xml_content_type"
+    t.integer  "xml_file_size"
+    t.datetime "xml_updated_at"
+    t.integer  "cliente_id"
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
+    t.boolean  "processed",        :default => false
+  end
 
   create_table "zip_matriculas", :force => true do |t|
     t.datetime "created_at",                          :null => false

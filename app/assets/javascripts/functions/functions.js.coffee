@@ -151,6 +151,28 @@ root.analytics_loaded = false
       aoColumns: filtercolumns
     })
 
+# create simple DataTable
+@createSimpleDataTable = ( selector, sortcolumn, filtercolumns ) ->
+  oTable = $( '#' + selector )
+  if ( oTable.length )
+    oTable.dataTable({
+      "sDom": "<'row'<'span6'T><'span6 pull-right'>r>t<'row-fluid'<'span6'i><'span6'p>>",
+      "sPaginationType": "bootstrap",
+      "aaSorting": sortcolumn,
+      "oLanguage": {
+          "sSearch": "Buscar en la tabla",
+          "sLengthMenu": "Mostrar _MENU_ entradas por página",
+          "sZeroRecords": "Lo siento, no hay resultados",
+          "sInfo": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
+          "sInfoEmpty": "Mostrando 0 a 0 de 0 entradas",
+          "sInfoFiltered": "(filtrado de _MAX_ total entradas)"
+        }
+      }).columnFilter({
+      sPlaceHolder: "head:before",
+      sRangeFormat: "De {from} a {to}",
+      aoColumns: filtercolumns
+    })
+
 # create remote DataTable
 @createRemoteDataTable = ( selector, sortcolumn, columntypes, excelname, exportcolumns, filtercolumns, datecolumns=[] ) ->
   oTable = $( '#' + selector )

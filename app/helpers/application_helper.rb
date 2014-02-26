@@ -283,4 +283,61 @@ module ApplicationHelper
     end
   end
 
+  ## REMARKETING
+  # returns "Vendido" of "En venta" depending on stock_vehicle.vendido? value
+  def vendido_cell( stock_vehicle )
+    stock_vehicle.vendido? && t( "Vendido" ) || t( "En venta" )
+  end
+  # returns content of expediente_completo?
+  def completed_cell( stock_vehicle )
+    stock_vehicle.expediente_completo? && icon_done(stock_vehicle.expediente_completo?) || icon_missing(stock_vehicle.expediente_completo?)
+  end
+  # returns content of documentacion_enviada?
+  def sent_cell( stock_vehicle )
+    stock_vehicle.documentacion_enviada? && icon_done(stock_vehicle.documentacion_enviada?) || icon_missing(stock_vehicle.documentacion_enviada?)
+  end
+  # returns content of documentacion_recibida?
+  def received_cell( stock_vehicle )
+    stock_vehicle.documentacion_recibida? && icon_done(stock_vehicle.documentacion_recibida?) || icon_missing(stock_vehicle.documentacion_recibida?)
+  end
+  # returns content of envio_documentacion_definitiva?
+  def definitive_cell( stock_vehicle )
+    stock_vehicle.envio_documentacion_definitiva? && icon_done(stock_vehicle.envio_documentacion_definitiva?) || icon_missing(stock_vehicle.envio_documentacion_definitiva?)
+  end
+  # returns content of finalizado?
+  def finished_cell( stock_vehicle )
+    stock_vehicle.finalizado? && icon_done(stock_vehicle.finalizado?) || icon_missing(stock_vehicle.finalizado?)
+  end
+  # returns true if at least one Cliente (current_ability) has_remarketing?
+  def remarketing_links?
+    clientes = current_usuario.norole? && current_usuario.organizacion.clientes || Cliente.all
+    clientes.map(&:has_remarketing?).include? true
+  end
+
+  # returns a list of link to the Remarketing page for any Cliente (current_ability) that has_remarketing
+  def remarketing_link_list
+    clientes = current_usuario.norole? && current_usuario.organizacion.clientes || Cliente.all
+    clientes.each do |c|
+      if c.has_remarketing?
+        concat content_tag('li', link_to( c.nombre, online_stock_vehicles_path( c ), class: "remarketing" ) )
+      end
+    end
+    nil
+  end
+
+  # helpers for Remarketing cells
+  def icon_done value
+    content_tag( 'i', "<span>Si</span>".html_safe, class: 'done icon-circle' )
+  end
+  def icon_missing value
+    content_tag( 'i', "<span>No</span>".html_safe, class: 'missing icon-circle' )
+  end
+  def primer_cliente_con_remarketing current_usuario
+    if current_usuario.norole?
+      o = current_usuario.organizacion
+      c = o.clientes.where(has_remarketing: true).first
+    else
+      c = Cliente.where(has_remarketing: true).first
+    end
+  end
 end

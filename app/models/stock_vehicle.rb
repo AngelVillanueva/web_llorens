@@ -54,10 +54,73 @@ class StockVehicle < ActiveRecord::Base
     navigation_label I18n.t( "REMARKETING")
     label I18n.t( "Stock Vehicles")
     list do
-      field :id
-      field :cliente
-      field :matricula
-      field :vendido
+      field :id do
+        column_width 50
+      end
+      field :cliente do
+        column_width 100
+      end
+      field :vendido do
+        column_width 75
+      end
+      field :matricula do
+        column_width 100
+      end
+      field :expediente_completo? do
+        column_width 50
+        label I18n.t( "Expediente completo_short")
+        pretty_value do
+          if bindings[:object].expediente_completo?
+            "<i class='icon-circle yes' title='#{I18n.t("Expediente completo")}'></i>".html_safe
+          else
+            "<i class='icon-circle no' title='#{I18n.t("Expediente completo")}'></i>".html_safe
+          end
+        end
+      end
+      field :documentacion_enviada? do
+        column_width 50
+        label I18n.t( "Documentacion enviada_short")
+        pretty_value do
+          if bindings[:object].documentacion_enviada?
+            "<i class='icon-circle yes' title='#{I18n.t("Documentacion enviada")}'></i>".html_safe
+          else
+            "<i class='icon-circle no' title='#{I18n.t("Documentacion enviada")}'></i>".html_safe
+          end
+        end
+      end
+      field :documentacion_recibida? do
+        column_width 50
+        label I18n.t( "Documentacion recibida_short")
+        pretty_value do
+          if bindings[:object].documentacion_recibida?
+            "<i class='icon-circle yes' title='#{I18n.t("Documentacion recibida")}'></i>".html_safe
+          else
+            "<i class='icon-circle no' title='#{I18n.t("Documentacion recibida")}'></i>".html_safe
+          end
+        end
+      end
+      field :envio_documentacion_definitiva? do
+        column_width 50
+        label I18n.t( "Envio documentacion definitiva_short")
+        pretty_value do
+          if bindings[:object].envio_documentacion_definitiva?
+            "<i class='icon-circle yes' title='#{I18n.t("Envio documentacion definitiva")}'></i>".html_safe
+          else
+            "<i class='icon-circle no' title='#{I18n.t("Envio documentacion definitiva")}'></i>".html_safe
+          end
+        end
+      end
+      field :finalizado? do
+        column_width 50
+        label I18n.t( "Finalizado_short")
+        pretty_value do
+          if bindings[:object].finalizado?
+            "<i class='icon-circle yes' title='#{I18n.t("Finalizado")}'></i>".html_safe
+          else
+            "<i class='icon-circle no' title='#{I18n.t("Finalizado")}'></i>".html_safe
+          end
+        end
+      end
       field :marca
       field :modelo
       field :created_at do

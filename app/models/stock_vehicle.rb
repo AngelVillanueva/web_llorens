@@ -53,5 +53,126 @@ class StockVehicle < ActiveRecord::Base
   rails_admin do
     navigation_label I18n.t( "REMARKETING")
     label I18n.t( "Stock Vehicles")
+    list do
+      field :id
+      field :cliente
+      field :matricula
+      field :vendido
+      field :marca
+      field :modelo
+      field :created_at do
+        label I18n.t( "Created" )
+        pretty_value do
+          I18n.l( value, format: "%d/%m/%Y %H:%M" )
+        end
+      end
+      field :updated_at do
+        label I18n.t( "Updated" )
+        pretty_value do
+          I18n.l( value, format: "%d/%m/%Y %H:%M" )
+        end
+      end
+      field :comprador
+      field :ft do
+        label I18n.t( "Ft" )
+      end
+      field :pc
+      field :fecha_itv do
+        label I18n.t( "Fecha itv" )
+        pretty_value do
+          I18n.l( value, format: "%d/%m/%Y" ) unless value.nil?
+        end
+      end
+      field :incidencia
+      field :fecha_expediente_completo do
+        pretty_value do
+          I18n.l( value, format: "%d/%m/%Y" ) unless value.nil?
+        end
+      end
+      field :fecha_documentacion_enviada do
+        pretty_value do
+          I18n.l( value, format: "%d/%m/%Y" ) unless value.nil?
+        end
+      end
+      field :fecha_documentacion_recibida do
+        pretty_value do
+          I18n.l( value, format: "%d/%m/%Y" ) unless value.nil?
+        end
+      end
+      field :fecha_notificado_cliente do
+        pretty_value do
+          I18n.l( value, format: "%d/%m/%Y" ) unless value.nil?
+        end
+      end
+      field :particular
+      field :compra_venta
+      field :fecha_envio_gestoria do
+        pretty_value do
+          I18n.l( value, format: "%d/%m/%Y" ) unless value.nil?
+        end
+      end
+      field :baja_exportacion
+      field :fecha_entregado_david do
+        pretty_value do
+          I18n.l( value, format: "%d/%m/%Y" ) unless value.nil?
+        end
+      end
+      field :fecha_envio_definitiva do
+        pretty_value do
+          I18n.l( value, format: "%d/%m/%Y" ) unless value.nil?
+        end
+      end
+      field :observaciones
+    end
+    edit do
+      field :cliente_id, :hidden do
+        default_value do
+          Cliente.where(llorens_cliente_id: "4300189329").first.id
+        end
+      end
+      field :matricula
+      field :vendido
+      field :marca
+      field :modelo
+      field :comprador
+      field :ft do
+        label I18n.t( "Ft" )
+      end
+      field :pc do
+        label I18n.t( "Pc" )
+      end
+      field :fecha_itv do
+        date_format :default
+        label I18n.t( "Fecha itv" )
+      end
+      field :incidencia
+      field :fecha_expediente_completo do
+        date_format :default
+      end
+      field :fecha_documentacion_enviada do
+        date_format :default
+      end
+      field :fecha_documentacion_recibida do
+        date_format :default
+      end
+      field :fecha_notificado_cliente do
+        date_format :default
+      end
+      field :particular
+      field :compra_venta do
+        label I18n.t( "Compra_venta")
+      end
+      field :fecha_envio_gestoria do
+        date_format :default
+      end
+      field :baja_exportacion
+      field :fecha_entregado_david do
+        date_format :default
+      end
+      field :fecha_envio_definitiva do
+        date_format :default
+      end
+      field :observaciones
+    end
   end
 end

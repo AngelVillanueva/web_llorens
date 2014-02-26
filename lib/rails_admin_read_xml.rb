@@ -46,8 +46,9 @@ module RailsAdmin
             end
             object.processed = true
             object.save!
-            total == new_cars ? tipo = "success" : tipo = "alert"
-            flash[tipo.to_sym] = create_message( total, new_cars )
+            #total == new_cars ? tipo = "success" : tipo = "alert"
+            tipo = "success"
+            flash[tipo.to_sym] = create_xml_message( total, new_cars )
             redirect_to back_or_index
           end
         end
@@ -56,12 +57,13 @@ module RailsAdmin
   end
 end
 
-def create_message total, found
+def create_xml_message total, found
+  simple = true
   if total == 0
     message = "No se han encontrado registros correctos"
-  elsif found == 0
+  elsif !simple && found == 0
     message = "No se han encontrado registros nuevos"
-  elsif total == found
+  elsif simple || total == found 
     message = "Encontrados y procesados correctamente el total de #{total}."
   elsif total > found
     message = "Encontrados y procesados correctamente #{found} de #{total}, pero #{total-found} ya estaban creados o no eran correctos."

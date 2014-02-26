@@ -3,6 +3,11 @@ When(/^I access the Remarketing page for the Cliente$/) do
   visit online_stock_vehicles_path( cliente )
 end
 
+When(/^I access the page to create a new Stock Vehicle for the Cliente$/) do
+  cliente = Cliente.last
+  visit new_online_stock_vehicle_path( cliente )
+end
+
 Given(/^the Cliente I belong to has (\d+) Stock Vehicles$/) do |quantity|
   mi_cliente = Cliente.first
   mi_cliente.has_remarketing = true
@@ -60,6 +65,10 @@ end
 
 When(/^I process the xml file$/) do
   find( "li.read_xml_member_link a").click
+end
+
+When(/^I submit the form with all the information for the new Stock Vehicle$/) do
+  click_button I18n.t( "Crear vehiculo" )
 end
 
 Then(/^I should (not )?see a list of my (\d+) Stock Vehicles$/) do |negation, quantity|

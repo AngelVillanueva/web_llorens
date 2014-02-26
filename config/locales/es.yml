@@ -397,3 +397,6 @@ es:
   XML - label: "Archivo"
   Formato athlon xml - ayuda: "Ha de ser un archivo XML con la estructura predefinida"
   Stock Vehicles: "Athlon: stock de vehículo"
+  Nuevo vehiculo creado: "El vehículo se creó correctamente"
+  Error creando vehiculo: "Hubo un error creando el vehículo. Por favor, inténtelo de nuevo."
+  Crear vehiculo: "Crear vehículo"

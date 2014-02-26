@@ -400,3 +400,5 @@ es:
   Nuevo vehiculo creado: "El vehículo se creó correctamente"
   Error creando vehiculo: "Hubo un error creando el vehículo. Por favor, inténtelo de nuevo."
   Crear vehiculo: "Crear vehículo"
+  Processed: "Procesado"
+  Xml filepath: "Ruta al archivo XML"

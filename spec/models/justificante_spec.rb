@@ -93,4 +93,16 @@ describe Justificante do
       expect{ justificante.update_attributes( { pdf_file_name: "o.pdf" } ) }.to_not change{ justificante }
     end
   end
+  describe "with valid Municipio name on creation" do
+    # let( :bad_justificante ) { FactoryGirl.create( :justificante, municipio: "123" ) }
+    # subject { bad_justificante }
+    
+    # it { should_not be_valid }
+    it "should not be numbers" do
+      expect { FactoryGirl.create( :justificante, municipio: "123" ) }.to raise_exception
+    end
+    it "should not contain numbers" do
+      expect { FactoryGirl.create( :justificante, municipio: "Abr3" ) }.to raise_exception
+    end
+  end
 end

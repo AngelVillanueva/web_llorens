@@ -40,6 +40,7 @@ class Justificante < ActiveRecord::Base
 
   validates :identificador, :nif_comprador, :nombre_razon_social, :provincia, :municipio, :direccion, :matricula, :bastidor, :marca, :modelo, :hora_solicitud, :cliente_id, presence: true
   validates :nif_comprador, nif: true
+  validates_format_of :municipio, :with => /^[[:alpha:]\s'"\-_&@!?()\[\]-]*$/u, :on => :create, :message => I18n.t( "Municipio sin numeros" )
 
   #protected
   def assign_hora_solicitud

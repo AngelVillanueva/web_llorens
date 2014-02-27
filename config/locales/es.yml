@@ -416,3 +416,4 @@ es:
   Envio documentacion definitiva_short: "DEF"
   Finalizado: "Finalizado"
   Finalizado_short: "Fin"
+  Municipio sin numeros: "El nombre del municipio no puede contener números"

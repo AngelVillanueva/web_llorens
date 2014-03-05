@@ -17,6 +17,10 @@ Given(/^I am an employee user$/) do
   login_as( employee, scope: :usuario )
 end
 
+Given(/^I am a remarketing user$/) do
+  login_as( remarketing_employee, scope: :usuario )
+end
+
 Given(/^I am an employee user with some Expedientes$/) do
   login_as( employee, scope: :usuario )
   matriculacion

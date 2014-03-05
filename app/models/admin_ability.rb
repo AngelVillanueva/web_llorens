@@ -14,6 +14,9 @@ class AdminAbility
       can :manage, Justificante
       can :manage, Informe
       can :manage, ZipMatricula
+    elsif usuario.role? "remarketing"
+      can :access, :rails_admin # panel de administracion
+      can :dashboard # panel de administracion
       can :manage, XmlVehicle
       can :manage, StockVehicle
     end

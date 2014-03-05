@@ -186,3 +186,8 @@ Then(/^the user should be informed about the (\d+) new Stock Vehicles$/) do |qua
   q = quantity.to_i
   expect( page ).to have_selector( '.alert-success', text: "Encontrados y procesados correctamente el total de #{q}" )
 end
+
+Then(/^I should not see any link to access a Remarketing page$/) do
+  expect( page ).to_not have_selector( 'ul.remarketing' )
+  expect( page ).to_not have_selector( 'a.remarketing' )
+end

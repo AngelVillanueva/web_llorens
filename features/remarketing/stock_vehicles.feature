@@ -13,14 +13,22 @@ Scenario: Stock Vehicle page
     And the Cliente I belong to has 2 Stock Vehicles
   When I access the Remarketing page for the Cliente
   Then I should see a list of my 2 Stock Vehicles
-# temp disabled for client usuarios
-@wip
+
+
 Scenario: Stock Vehicle page from Online index
   Given I am a registered User
     And the Cliente I belong to has 2 Stock Vehicles
   When I visit the application home page
   When I try to access the Remarketing page for the Cliente
   Then I should see a list of my 2 Stock Vehicles
+
+Scenario: Stock Vehicle page from Online index just for my Organizacion
+  Given I am a registered User
+    And a Cliente I do not belong to has 2 Stock Vehicles
+  When I visit the application home page
+  Then I should not see any link to access a Remarketing page
+    But I access the Remarketing page for the Cliente
+  Then I should not see a list of my 2 Stock Vehicles
 
 Scenario: Stock Vehicle page from Online index for admin users
   Given I am an admin user

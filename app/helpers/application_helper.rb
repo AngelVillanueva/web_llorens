@@ -332,12 +332,12 @@ module ApplicationHelper
   def icon_missing value
     content_tag( 'i', "<span>No</span>".html_safe, class: 'missing icon-circle' )
   end
-  def primer_cliente_con_remarketing current_usuario
-    if current_usuario.norole?
-      o = current_usuario.organizacion
-      c = o.clientes.where(has_remarketing: true).first
-    else
-      c = Cliente.where(has_remarketing: true).first
-    end
-  end
+  # def primer_cliente_con_remarketing current_usuario
+  #   if current_usuario.norole?
+  #     o = current_usuario.organizacion
+  #     c = o.clientes.where(has_remarketing: true).first
+  #   else
+  #     c = Cliente.where(has_remarketing: true).first
+  #   end
+  # end
 end

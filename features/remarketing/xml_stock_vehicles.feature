@@ -8,13 +8,13 @@ Feature: Stock Vehicles can be uploaded in a xml file
   end
 @remarketing @xml
   Scenario: Stock Vehicles can be uploaded bundled in zip file
-    Given I am an employee user
+    Given I am a remarketing user
     When I upload a xml file containing one or more Stock Vehicles
     Then a new xml file with one or more Stock Vehicles should be created
 
 @remarketing @xml
   Scenario: Xml Vehicle files can be processed to assign new Stock Vehicles
-    Given I am an employee user
+    Given I am a remarketing user
       And I have created a new Xml Vehicle file
     When I process the xml file
     Then the new Stock Vehicles should be created

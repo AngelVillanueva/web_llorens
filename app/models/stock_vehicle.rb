@@ -121,6 +121,13 @@ class StockVehicle < ActiveRecord::Base
           end
         end
       end
+      field :particular do
+        column_width 50
+      end
+      field :compra_venta do
+        column_width 50
+        label I18n.t( "Compra_venta_short")
+      end
       field :marca
       field :modelo
       field :created_at do
@@ -157,18 +164,18 @@ class StockVehicle < ActiveRecord::Base
           I18n.l( value, format: "%d/%m/%Y" ) unless value.nil?
         end
       end
-      field :fecha_documentacion_recibida do
-        pretty_value do
-          I18n.l( value, format: "%d/%m/%Y" ) unless value.nil?
-        end
-      end
       field :fecha_notificado_cliente do
         pretty_value do
           I18n.l( value, format: "%d/%m/%Y" ) unless value.nil?
         end
       end
-      field :particular
-      field :compra_venta
+      field :fecha_documentacion_recibida do
+        pretty_value do
+          I18n.l( value, format: "%d/%m/%Y" ) unless value.nil?
+        end
+      end
+      # field :particular
+      # field :compra_venta
       field :fecha_envio_gestoria do
         pretty_value do
           I18n.l( value, format: "%d/%m/%Y" ) unless value.nil?
@@ -195,6 +202,10 @@ class StockVehicle < ActiveRecord::Base
       end
       field :matricula
       field :vendido
+      field :particular
+      field :compra_venta do
+        label I18n.t( "Compra_venta")
+      end
       field :marca
       field :modelo
       field :comprador
@@ -215,15 +226,11 @@ class StockVehicle < ActiveRecord::Base
       field :fecha_documentacion_enviada do
         date_format :default
       end
-      field :fecha_documentacion_recibida do
-        date_format :default
-      end
       field :fecha_notificado_cliente do
         date_format :default
       end
-      field :particular
-      field :compra_venta do
-        label I18n.t( "Compra_venta")
+      field :fecha_documentacion_recibida do
+        date_format :default
       end
       field :fecha_envio_gestoria do
         date_format :default

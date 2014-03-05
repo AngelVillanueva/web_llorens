@@ -406,6 +406,7 @@ es:
   Pc: "PC"
   Fecha itv: "Fecha ITV"
   Compra_venta: "Compra-venta"
+  Compra_venta_short: "C-V"
   Expediente completo: "Expediente completo"
   Documentacion enviada: "Documentación enviada"
   Documentacion recibida: "Documentación recibida"

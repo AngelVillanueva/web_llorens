@@ -60,16 +60,34 @@ describe StockVehicle do
 end
 
 describe "default scope for StockVehicle is based on Vendido status" do
-  let( :vehiculo_antiguo ) { FactoryGirl.create( :stock_vehicle ) }
-  let( :vehiculo_nuevo ) { FactoryGirl.create( :stock_vehicle, matricula: "last" )}
+  let( :vehiculo_antiguo ) { FactoryGirl.create( :stock_vehicle, matricula: "older" ) }
+  let( :vehiculo_nuevo ) { FactoryGirl.create( :stock_vehicle, matricula: "sold" )}
 
   it "returning first the ones no Vendidos" do
-    vehiculo_antiguo.vendido = true
+    vehiculo_antiguo.vendido = false
     vehiculo_antiguo.save!
-    vehiculo_nuevo.vendido = false
+    vehiculo_nuevo.vendido = true
     vehiculo_nuevo.save!
-    StockVehicle.first.matricula.should eql "last"
+    StockVehicle.first.matricula.should eql "sold"
   end
+end
+
+describe "default scope for StockVehicle is Vendidos first and then from older to newer" do
+  let( :vehiculo_1 ) { FactoryGirl.create( :stock_vehicle, matricula: "primero" ) }
+  let( :vehiculo_2 ) { FactoryGirl.create( :stock_vehicle, matricula: "segundo" ) }
+  let( :vehiculo_3 ) { FactoryGirl.create( :stock_vehicle, matricula: "tercero" ) }
+
+  it "should return the right order" do
+    vehiculo_1.vendido = false
+    vehiculo_1.save!
+    vehiculo_2.vendido = true
+    vehiculo_2.save!
+    vehiculo_3.vendido = true
+    vehiculo_3.save!
+    StockVehicle.first.matricula.should eql "segundo"
+    StockVehicle.last.matricula.should eql "primero"
+  end
+
 end
 
 describe "a new StockVehicle should have a default Vendido FALSE value" do

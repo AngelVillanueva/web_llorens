@@ -31,7 +31,7 @@
 class StockVehicle < ActiveRecord::Base
   belongs_to :cliente
   validates :matricula, presence: true, uniqueness: true
-  default_scope order('vendido ASC')
+  default_scope order('vendido DESC, created_at ASC')
   paginates_per 10
 
   def expediente_completo?
@@ -54,6 +54,7 @@ class StockVehicle < ActiveRecord::Base
     navigation_label I18n.t( "REMARKETING")
     label I18n.t( "Stock Vehicles")
     list do
+      sort_by :vendido, :created_at
       field :id do
         column_width 50
       end
@@ -61,6 +62,7 @@ class StockVehicle < ActiveRecord::Base
         column_width 100
       end
       field :vendido do
+        sort_reverse true
         column_width 75
       end
       field :matricula do

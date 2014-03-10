@@ -86,7 +86,8 @@ $(document).ready ->
         { type: "select", values: ['Si', 'No'] },
         { type: "select", values: ['Si', 'No'] },
         { type: "select", values: ['Si', 'No'] },
-        { type: "select", values: ['Si', 'No'] }
+        { type: "select", values: ['Si', 'No'] },
+        null
         ]
       )
   # matriculaciones

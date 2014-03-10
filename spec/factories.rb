@@ -89,7 +89,8 @@ FactoryGirl.define do
   end
 
   factory :stock_vehicle do
-    sequence( :matricula) { |n| "ABC123#{n}" }
+    sequence( :matricula ) { |n| "ABC123#{n}" }
+    sequence( :comprador ) { |n| "Comprador n#{n}" }
   end
 
   factory :xml_vehicle do

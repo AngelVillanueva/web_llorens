@@ -79,3 +79,11 @@ Scenario: Stock Vehicle detail
   When I access the Remarketing page for the Cliente
     And I want to see the second Stock Vehicle data detail
   Then I should see all the attributes of the second Stock Vehicle
+@current @javascript
+Scenario: Stock Vehicle detail with javascript
+  Given I am a registered User
+    And the Cliente I belong to has 2 Stock Vehicles
+  When I access the Remarketing page for the Cliente
+    And I want to see the second Stock Vehicle data detail in the same page
+  Then I should remain in the Stock Vehicles index page
+    And I should see all the attributes of the second Stock Vehicle in the same page

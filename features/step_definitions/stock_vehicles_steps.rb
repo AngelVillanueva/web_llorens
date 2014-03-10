@@ -79,6 +79,12 @@ When(/^I want to see the second Stock Vehicle data detail$/) do
   find( "td.icon:last-child a" ).click
 end
 
+When(/^I want to see the second Stock Vehicle data detail in the same page$/) do
+  within( 'tbody tr:last-child' ) do
+    find( 'td.icon a' ).click
+  end
+end
+
 Then(/^I should (not )?see a list of my (\d+) Stock Vehicles$/) do |negation, quantity|
   q = quantity.to_i
   unless negation
@@ -200,4 +206,12 @@ Then(/^I should see all the attributes of the second Stock Vehicle$/) do
   matricula = StockVehicle.last.matricula
   expect( page ).to have_content( I18n.t "Detalle del vehiculo con matricula", matricula: matricula )
   expect( page ).to have_content( "#{I18n.t('Matricula')}: #{matricula}")
+end
+
+Then(/^I should remain in the Stock Vehicles index page$/) do
+  expect( page ).to have_selector( 'h2.section_header', text: I18n.t("Vehiculos en stock de", cliente: Cliente.last.nombre))
+end
+
+Then(/^I should see all the attributes of the second Stock Vehicle in the same page$/) do
+  expect( page ).to have_content( StockVehicle.last.comprador )
 end

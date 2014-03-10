@@ -419,3 +419,4 @@ es:
   Finalizado_short: "Fin"
   Municipio sin numeros: "El nombre del municipio no puede contener números"
   Detalle del vehiculo con matricula: "Detalle del vehículo con matrícula %{matricula}"
+  Ver detalle: "Ver detalle"

@@ -36,7 +36,7 @@ $(document).ready ->
   $('body').popover(popOverSettings)
 
   #modal alert init
-  if ( $( '.modal' ) ).length
+  if ( $( '.modalAviso' ) ).length
     $( '#aviso1' ).modal( 'show' )
 
   # change text on big buttons (hover)
@@ -255,6 +255,18 @@ $(document).ready ->
   $( document ).on 'submit', '#new_justificante', ->
     handleFirstNameIfNotACompany()
 
+  # Callback for rendering via JSON
+  $('a.vehicle[data-type=json]').bind 'ajax:complete', (event, data, status, xhr) ->
+      #$(this).parents('td').find('.details').html('<div>Title: ' + data.compra_venta + '</div>' +'<div>Body: ' + data.body + '</div>')
+      #console.log data.responseJSON.compra_venta
+      $( '#modalVehicle .modal-header h3' ).html( data.responseJSON.matricula )
+      $( '#modalVehicle .modal-body .pmatricula span' ).html( data.responseJSON.matricula )
+      $( '#modalVehicle .modal-body .pcomprador span' ).html( data.responseJSON.comprador )
+      $( '#modalVehicle .modal-body .pcomprav span' ).html( data.responseJSON.compra_venta )
+      $( '#modalVehicle .modal-body .pmarca span' ).html( data.responseJSON.marca )
+      $( '#modalVehicle .modal-body .pmodelo span' ).html( data.responseJSON.modelo )
+      $( '#modalVehicle' ).modal( 'show' )
+  
   # IE8- rounded borders through PIE.js
   if window.PIE
     $(".pie").each ->

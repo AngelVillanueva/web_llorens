@@ -6,7 +6,7 @@
   
   <% unless session[checkid] %>
     <!-- Modal -->
-    <div id='<%= divid %>' class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby='<% arialabel %>' aria-hidden="true">
+    <div id='<%= divid %>' class="modal modalAviso hide fade" tabindex="-1" role="dialog" aria-labelledby='<% arialabel %>' aria-hidden="true">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
         <h3 id='<% arialabel %>'><%= aviso_titular( aviso ) %></h3>

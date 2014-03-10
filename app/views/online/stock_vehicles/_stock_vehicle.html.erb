@@ -6,5 +6,26 @@
   <td class="received"><%= received_cell( stock_vehicle ) %></td>
   <td class="definitive"><%= definitive_cell( stock_vehicle ) %></td>
   <td class="finished"><%= finished_cell( stock_vehicle ) %></td>
-  <td class="icon"><%= link_to t("Ver detalle"), online_cliente_stock_vehicle_path( cliente, stock_vehicle ), 'data-remote' => true %></td>
+  <td class="icon">
+    <span class="details"></span>
+    <%= link_to t("Ver detalle"), online_cliente_stock_vehicle_path( cliente, stock_vehicle ), class: 'vehicle', 'data-remote' => true, 'data-type' => 'json' %></td>
 </tr>
+
+<!-- Modal -->
+    <div id="modalVehicle" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby='vehicleLabel' aria-hidden="true">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3></h3>
+      </div>
+      <div class="modal-body">
+        <p class="pmatricula"><%= t("Matricula") %>: <span></span></p>
+        <p class="pcomprador"><%= t("Comprador") %>: <span></span></p>
+        <p class="pcomprav"><%= t("Compra_venta") %>: <span></span></p>
+        <p class="pmarca"><%= t("Marca") %>: <span></span></p>
+        <p class="pmodelo"><%= t("Modelo") %>: <span></span></p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true"><%= t("Cerrar") %></button>
+      </div>
+    </div>
+<!-- end of Modal -->

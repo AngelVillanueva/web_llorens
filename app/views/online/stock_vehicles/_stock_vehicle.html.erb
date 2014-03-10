@@ -18,25 +18,29 @@
         <h3></h3>
       </div>
       <div class="modal-body">
-        <p class="pmatricula"><%= t("Matricula") %>: <span></span></p>
-        <p class="pparticular"><%= t("Particular") %>: <span></span></p>
-        <p class="pcomprav"><%= t("Compra_venta") %>: <span></span></p>
-        <p class="pmarca"><%= t("Marca") %>: <span></span></p>
-        <p class="pmodelo"><%= t("Modelo") %>: <span></span></p>
-        <p class="pcomprador"><%= t("Comprador") %>: <span></span></p>
-        <p class="pft"><%= t("Ft") %>: <span></span></p>
-        <p class="ppc"><%= t("Pc") %>: <span></span></p>
-        <p class="pitv"><%= t("Fecha_itv") %>: <span></span></p>
-        <p class="pincidencia"><%= t("Incidencias") %>: <span></span></p>
-        <p class="pfec"><%= t("Fecha_expediente_completo") %>: <span></span></p>
-        <p class="pfde"><%= t("Fecha_documentacion_enviada") %>: <span></span></p>
-        <p class="pfnc"><%= t("Fecha_notificado_cliente") %>: <span></span></p>
-        <p class="pfdr"><%= t("Fecha_documentacion_recibida") %>: <span></span></p>
-        <p class="pfeg"><%= t("Fecha_envio_gestoria") %>: <span></span></p>
-        <p class="pbajae"><%= t("Baja_exportacion") %>: <span></span></p>
-        <p class="pfed"><%= t("Fecha_entregado_david") %>: <span></span></p>
-        <p class="pfedf"><%= t("Fecha_envio_definitiva") %>: <span></span></p>
-        <p class="pobservaciones"><%= t("Observaciones") %>: <span></span></p>
+        <div class="col1">
+          <p class="pmatricula"><strong><%= t("Matricula") %></strong>: <span></span></p>
+          <p class="pparticular"><strong><%= t("Particular") %></strong>: <span></span></p>
+          <p class="pcomprav"><strong><%= t("Compra_venta") %></strong>: <span></span></p>
+          <p class="pmarca"><strong><%= t("Marca") %></strong>: <span></span></p>
+          <p class="pmodelo"><strong><%= t("Modelo") %></strong>: <span></span></p>
+          <p class="pcomprador"><strong><%= t("Comprador") %></strong>: <span></span></p>
+          <p class="pft"><strong><%= t("Ft") %></strong>: <span></span></p>
+          <p class="ppc"><strong><%= t("Pc") %></strong>: <span></span></p>
+          <p class="pitv"><strong><%= t("Fecha_itv") %></strong>: <span></span></p>
+          <p class="pincidencia"><strong><%= t("Incidencia") %></strong>: <span></span></p>
+        </div>
+        <div class="col2">
+          <p class="pfec"><strong><%= t("Fecha_expediente_completo") %></strong>: <span></span></p>
+          <p class="pfde"><strong><%= t("Fecha_documentacion_enviada") %></strong>: <span></span></p>
+          <p class="pfnc"><strong><%= t("Fecha_notificado_cliente") %></strong>: <span></span></p>
+          <p class="pfdr"><strong><%= t("Fecha_documentacion_recibida") %></strong>: <span></span></p>
+          <p class="pfeg"><strong><%= t("Fecha_envio_gestoria") %></strong>: <span></span></p>
+          <p class="pbajae"><strong><%= t("Baja_exportacion") %></strong>: <span></span></p>
+          <p class="pfed"><strong><%= t("Fecha_entregado_david") %></strong>: <span></span></p>
+          <p class="pfedf"><strong><%= t("Fecha_envio_definitiva") %></strong>: <span></span></p>
+          <p class="pobservaciones"><strong><%= t("Observaciones") %></strong>: <span></span></p>
+        </div>
       </div>
       <div class="modal-footer">
         <button class="btn" data-dismiss="modal" aria-hidden="true"><%= t("Cerrar") %></button>

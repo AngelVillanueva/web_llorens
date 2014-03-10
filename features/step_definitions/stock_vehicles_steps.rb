@@ -219,12 +219,12 @@ end
 
 Then(/^I should see all the attributes of the second Stock Vehicle in the same page$/) do
   expect( page ).to have_selector( '.pmatricula', text: StockVehicle.last.matricula )
-  expect( page ).to have_selector( '.pparticular', text: StockVehicle.last.particular )
-  expect( page ).to have_selector( '.pcomprav', text: StockVehicle.last.compra_venta )
+  expect( page ).to have_selector( '.pparticular', text: "" )
+  expect( page ).to have_selector( '.pcomprav', text: "" )
   expect( page ).to have_selector( '.pmarca', text: StockVehicle.last.marca )
   expect( page ).to have_selector( '.pmodelo', text: StockVehicle.last.modelo )
   expect( page ).to have_selector( '.pcomprador', text: StockVehicle.last.comprador )
-  expect( page ).to have_selector( '.pft', text: StockVehicle.last.ft )
+  expect( page ).to have_selector( '.pft', text: "" )
   expect( page ).to have_selector( '.ppc', text: StockVehicle.last.pc )
   expect( page ).to have_selector( '.pitv', text: I18n.l( StockVehicle.last.fecha_itv ) )
   expect( page ).to have_selector( '.pincidencia', text: StockVehicle.last.incidencia )

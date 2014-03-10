@@ -257,15 +257,15 @@ $(document).ready ->
 
   # Callback for rendering via JSON
   $('a.vehicle[data-type=json]').bind 'ajax:complete', (event, data, status, xhr) ->
-      $( '#modalVehicle .modal-header h3' ).html( data.responseJSON.matricula )
+      $( '#modalVehicle .modal-header h3' ).html( "Vehículo matrícula" + " " + data.responseJSON.matricula )
       $( '#modalVehicle .modal-body .pmatricula span' ).html( data.responseJSON.matricula )
-      $( '#modalVehicle .modal-body .pparticular span' ).html( data.responseJSON.compra_venta )
-      $( '#modalVehicle .modal-body .pcomprav span' ).html( data.responseJSON.compra_venta )
+      $( '#modalVehicle .modal-body .pparticular span' ).html( formatBooleano( data.responseJSON.compra_venta ) )
+      $( '#modalVehicle .modal-body .pcomprav span' ).html( formatBooleano( data.responseJSON.compra_venta ) )
       $( '#modalVehicle .modal-body .pmarca span' ).html( data.responseJSON.marca )
       $( '#modalVehicle .modal-body .pmodelo span' ).html( data.responseJSON.modelo )
       $( '#modalVehicle .modal-body .pcomprador span' ).html( data.responseJSON.comprador )
-      $( '#modalVehicle .modal-body .pft span' ).html( data.responseJSON.ft )
-      $( '#modalVehicle .modal-body .ppc span' ).html( data.responseJSON.pc )
+      $( '#modalVehicle .modal-body .pft span' ).html( formatBooleano( data.responseJSON.ft ) )
+      $( '#modalVehicle .modal-body .ppc span' ).html( formatBooleano( data.responseJSON.pc ) )
       $( '#modalVehicle .modal-body .pitv span' ).html( fechaLocal( data.responseJSON.fecha_itv ) )
       $( '#modalVehicle .modal-body .pincidencia span' ).html( data.responseJSON.incidencia )
       $( '#modalVehicle .modal-body .pfec span' ).html( fechaLocal( data.responseJSON.fecha_expediente_completo ) )

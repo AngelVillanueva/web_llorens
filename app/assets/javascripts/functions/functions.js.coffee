@@ -379,5 +379,10 @@ root.analytics_loaded = false
   else
     "Pendiente"
 
+ # returns an icon check if boolean value is true
+ @formatBooleano = (value) ->
+  if value
+    "<i class='icon icon-check'></i>"
+
 
 

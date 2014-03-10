@@ -572,3 +572,21 @@ ul.remarketing {
   text-align: center;
   list-style: none;
 }
+
+.modal-header h3 {
+  color: #08c;
+}
+
+.modal-body p span {
+  padding-left: 7px;
+}
+
+.col1 { float: left; width: 50%; }
+.col2 { float: right; width: 50%; }
+
+@media (max-width: 489px) {
+  .col1, .col2 {
+    float: none;
+    width: auto;
+  }
+}

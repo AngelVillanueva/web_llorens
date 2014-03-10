@@ -12,12 +12,17 @@ When(/^I try to access the Remarketing page for the Cliente$/) do
   find( "a.remarketing").click
 end
 
-Given(/^the Cliente I belong to has (\d+) Stock Vehicles$/) do |quantity|
+Given(/^the Cliente I belong to has (\d+) (complete )?Stock Vehicles$/) do |quantity, status|
   mi_cliente = Cliente.first
   mi_cliente.has_remarketing = true
   mi_cliente.save!
+  if status
+    factory = :stock_vehicle_completo
+  elsif
+    factory = :stock_vehicle
+  end
   quantity.to_i.times do |n|
-    FactoryGirl.create( :stock_vehicle, cliente: mi_cliente )
+    FactoryGirl.create( factory, cliente: mi_cliente )
   end
 end
 
@@ -213,5 +218,23 @@ Then(/^I should remain in the Stock Vehicles index page$/) do
 end
 
 Then(/^I should see all the attributes of the second Stock Vehicle in the same page$/) do
-  expect( page ).to have_content( StockVehicle.last.comprador )
+  expect( page ).to have_selector( '.pmatricula', text: StockVehicle.last.matricula )
+  expect( page ).to have_selector( '.pparticular', text: StockVehicle.last.particular )
+  expect( page ).to have_selector( '.pcomprav', text: StockVehicle.last.compra_venta )
+  expect( page ).to have_selector( '.pmarca', text: StockVehicle.last.marca )
+  expect( page ).to have_selector( '.pmodelo', text: StockVehicle.last.modelo )
+  expect( page ).to have_selector( '.pcomprador', text: StockVehicle.last.comprador )
+  expect( page ).to have_selector( '.pft', text: StockVehicle.last.ft )
+  expect( page ).to have_selector( '.ppc', text: StockVehicle.last.pc )
+  expect( page ).to have_selector( '.pitv', text: StockVehicle.last.fecha_itv )
+  expect( page ).to have_selector( '.pincidencia', text: StockVehicle.last.incidencia )
+  expect( page ).to have_selector( '.pfec', text: StockVehicle.last.fecha_expediente_completo )
+  expect( page ).to have_selector( '.pfde', text: StockVehicle.last.fecha_documentacion_enviada )
+  expect( page ).to have_selector( '.pfnc', text: StockVehicle.last.fecha_notificado_cliente )
+  expect( page ).to have_selector( '.pfdr', text: StockVehicle.last.fecha_documentacion_recibida )
+  expect( page ).to have_selector( '.pfeg', text: StockVehicle.last.fecha_envio_gestoria )
+  expect( page ).to have_selector( '.pbajae', text: StockVehicle.last.baja_exportacion )
+  expect( page ).to have_selector( '.pfed', text: StockVehicle.last.fecha_entregado_david )
+  expect( page ).to have_selector( '.pfedf', text: StockVehicle.last.fecha_envio_definitiva )
+  expect( page ).to have_selector( '.pobservaciones', text: StockVehicle.last.observaciones )
 end

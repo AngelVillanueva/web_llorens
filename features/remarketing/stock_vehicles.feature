@@ -82,7 +82,7 @@ Scenario: Stock Vehicle detail
 @current @javascript
 Scenario: Stock Vehicle detail with javascript
   Given I am a registered User
-    And the Cliente I belong to has 2 Stock Vehicles
+    And the Cliente I belong to has 2 complete Stock Vehicles
   When I access the Remarketing page for the Cliente
     And I want to see the second Stock Vehicle data detail in the same page
   Then I should remain in the Stock Vehicles index page

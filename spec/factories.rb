@@ -111,7 +111,7 @@ FactoryGirl.define do
     fecha_envio_gestoria 1.days.ago
     baja_exportacion false
     fecha_entregado_david Date.today
-    fecha_envio_definitiva Date.today
+    fecha_envio_definitiva nil
     observaciones "Un expediente completado totalmente"
   end
 

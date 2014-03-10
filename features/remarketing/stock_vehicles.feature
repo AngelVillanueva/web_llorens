@@ -13,14 +13,21 @@ Scenario: Stock Vehicle page
     And the Cliente I belong to has 2 Stock Vehicles
   When I access the Remarketing page for the Cliente
   Then I should see a list of my 2 Stock Vehicles
-# temp disabled for client usuarios
-@wip
+
 Scenario: Stock Vehicle page from Online index
   Given I am a registered User
     And the Cliente I belong to has 2 Stock Vehicles
   When I visit the application home page
   When I try to access the Remarketing page for the Cliente
   Then I should see a list of my 2 Stock Vehicles
+
+Scenario: Stock Vehicle page from Online index just for my Organizacion
+  Given I am a registered User
+    And a Cliente I do not belong to has 2 Stock Vehicles
+  When I visit the application home page
+  Then I should not see any link to access a Remarketing page
+    But I access the Remarketing page for the Cliente
+  Then I should not see a list of my 2 Stock Vehicles
 
 Scenario: Stock Vehicle page from Online index for admin users
   Given I am an admin user
@@ -65,3 +72,18 @@ Scenario: Stock Vehicle data
     And I should see the first one as not sold
     And I should see the second one as sold and with Documentacion Enviada
     And I should see the last one as sold and Finalizado
+
+Scenario: Stock Vehicle detail
+  Given I am a registered User
+    And the Cliente I belong to has 2 Stock Vehicles
+  When I access the Remarketing page for the Cliente
+    And I want to see the second Stock Vehicle data detail
+  Then I should see all the attributes of the second Stock Vehicle
+@javascript
+Scenario: Stock Vehicle detail with javascript
+  Given I am a registered User
+    And the Cliente I belong to has 2 complete Stock Vehicles
+  When I access the Remarketing page for the Cliente
+    And I want to see the second Stock Vehicle data detail in the same page
+  Then I should remain in the Stock Vehicles index page
+    And I should see all the attributes of the second Stock Vehicle in the same page

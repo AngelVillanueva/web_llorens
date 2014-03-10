@@ -19,6 +19,9 @@
   def employee
     employee ||= FactoryGirl.create( :usuario, nombre: "semi", role: "employee" )
   end
+  def remarketing_employee
+    remarketing_employee ||= FactoryGirl.create( :usuario, nombre: "partial", role: "remarketing" )
+  end
   def matriculacion
     @matriculacion || FactoryGirl.create( :matriculacion, cliente: cliente )
   end

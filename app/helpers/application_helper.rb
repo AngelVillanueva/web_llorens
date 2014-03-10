@@ -319,7 +319,7 @@ module ApplicationHelper
     clientes = current_usuario.norole? && current_usuario.organizacion.clientes || Cliente.all
     clientes.each do |c|
       if c.has_remarketing?
-        concat content_tag('li', link_to( c.nombre, online_stock_vehicles_path( c ), class: "remarketing" ) )
+        concat content_tag('li', link_to( c.nombre, online_cliente_stock_vehicles_path( c ), class: "remarketing" ) )
       end
     end
     nil
@@ -332,12 +332,12 @@ module ApplicationHelper
   def icon_missing value
     content_tag( 'i', "<span>No</span>".html_safe, class: 'missing icon-circle' )
   end
-  def primer_cliente_con_remarketing current_usuario
-    if current_usuario.norole?
-      o = current_usuario.organizacion
-      c = o.clientes.where(has_remarketing: true).first
-    else
-      c = Cliente.where(has_remarketing: true).first
-    end
-  end
+  # def primer_cliente_con_remarketing current_usuario
+  #   if current_usuario.norole?
+  #     o = current_usuario.organizacion
+  #     c = o.clientes.where(has_remarketing: true).first
+  #   else
+  #     c = Cliente.where(has_remarketing: true).first
+  #   end
+  # end
 end

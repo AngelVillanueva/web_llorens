@@ -143,14 +143,50 @@ Then(/^the non affected Avisos should not change its sorting_order$/) do
   Aviso.where(titular: "Debe ser el 1").first.sorting_order.should eql 1
 end
 
-Then(/^I should see the Matriculaciones menu link$/) do
-  page.should have_css( "li[data-model=matriculacion] a" )
+Then(/^I should (not )?see the Matriculaciones menu link$/) do |negation|
+  if negation
+    page.should_not have_css( "li[data-model=matriculacion] a" )
+  else
+    page.should have_css( "li[data-model=matriculacion] a" )
+  end
 end
 
-Then(/^I should see the Justificantes menu link$/) do
-  page.should have_css( "li[data-model=justificante] a" )
+Then(/^I should (not )?see the Justificantes menu link$/) do |negation|
+  if negation
+    page.should_not have_css( "li[data-model=justificante] a" )
+  else
+    page.should have_css( "li[data-model=justificante] a" )
+  end
 end
 
-Then(/^I should see the Informes menu link$/) do
-  page.should have_css( "li[data-model=informe] a" )
+Then(/^I should (not )?see the Informes menu link$/) do |negation|
+  if negation
+    page.should_not have_css( "li[data-model=informe] a" )
+  else
+    page.should have_css( "li[data-model=informe] a" )
+  end
+end
+
+Then(/^I should (not )?see the ZipMatriculas menu link$/) do |negation|
+  if negation
+    page.should_not have_css( "li[data-model=zip_matricula] a" )
+  else
+    page.should have_css( "li[data-model=zip_matricula] a" )
+  end
+end
+
+Then(/^I should (not )?see the Configuration menu link$/) do |negation|
+  if negation
+    page.should_not have_css( "li[data-model=configuration] a" )
+  else
+    page.should have_css( "li[data-model=configuration] a" )
+  end
+end
+
+Then(/^I should (not )?see the StockVehicles menu link$/) do |negation|
+  if negation
+    page.should_not have_css( "li[data-model=stock_vehicle] a" )
+  else
+    page.should have_css( "li[data-model=stock_vehicle] a" )
+  end
 end

@@ -89,7 +89,30 @@ FactoryGirl.define do
   end
 
   factory :stock_vehicle do
-    sequence( :matricula) { |n| "ABC123#{n}" }
+    sequence( :matricula ) { |n| "ABC123#{n}" }
+  end
+
+
+  factory :stock_vehicle_completo, class: "StockVehicle" do
+    sequence( :matricula ) { |n| "ABC123#{n}" }
+    particular true
+    compra_venta true
+    marca "SEAT"
+    modelo "TOLEDO"
+    sequence( :comprador ) { |n| "Comprador n#{n}" }
+    ft true
+    pc false
+    fecha_itv 1.month.ago
+    incidencia "Hay una incidencia"
+    fecha_expediente_completo 5.days.ago
+    fecha_documentacion_enviada 4.days.ago
+    fecha_notificado_cliente 3.days.ago
+    fecha_documentacion_recibida 2.days.ago
+    fecha_envio_gestoria 1.days.ago
+    baja_exportacion false
+    fecha_entregado_david Date.today
+    fecha_envio_definitiva nil
+    observaciones "Un expediente completado totalmente"
   end
 
   factory :xml_vehicle do

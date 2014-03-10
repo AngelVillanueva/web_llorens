@@ -1,0 +1,13 @@
+<% provide :title, t( "Detalle del vehiculo con matricula", matricula: stock_vehicle.matricula ) %>
+
+<div class="about_page">
+
+  <%= render 'shared/section_wrapper',
+      header_text: t("Detalle del vehiculo con matricula", matricula: stock_vehicle.matricula),
+      linked_pdf: nil,
+      index_link: 'stock_vehicles',
+      legend: nil %>
+
+  <p><%= "#{I18n.t( 'Matricula' )}: #{stock_vehicle.matricula}" %></p>
+
+</div>

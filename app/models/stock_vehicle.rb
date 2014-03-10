@@ -31,7 +31,7 @@
 class StockVehicle < ActiveRecord::Base
   belongs_to :cliente
   validates :matricula, presence: true, uniqueness: true
-  default_scope order('vendido ASC')
+  default_scope order('vendido DESC, created_at ASC')
   paginates_per 10
 
   def expediente_completo?
@@ -54,6 +54,7 @@ class StockVehicle < ActiveRecord::Base
     navigation_label I18n.t( "REMARKETING")
     label I18n.t( "Stock Vehicles")
     list do
+      sort_by :vendido, :created_at
       field :id do
         column_width 50
       end
@@ -61,6 +62,7 @@ class StockVehicle < ActiveRecord::Base
         column_width 100
       end
       field :vendido do
+        sort_reverse true
         column_width 75
       end
       field :matricula do
@@ -121,6 +123,13 @@ class StockVehicle < ActiveRecord::Base
           end
         end
       end
+      field :particular do
+        column_width 50
+      end
+      field :compra_venta do
+        column_width 50
+        label I18n.t( "Compra_venta_short")
+      end
       field :marca
       field :modelo
       field :created_at do
@@ -157,18 +166,18 @@ class StockVehicle < ActiveRecord::Base
           I18n.l( value, format: "%d/%m/%Y" ) unless value.nil?
         end
       end
-      field :fecha_documentacion_recibida do
-        pretty_value do
-          I18n.l( value, format: "%d/%m/%Y" ) unless value.nil?
-        end
-      end
       field :fecha_notificado_cliente do
         pretty_value do
           I18n.l( value, format: "%d/%m/%Y" ) unless value.nil?
         end
       end
-      field :particular
-      field :compra_venta
+      field :fecha_documentacion_recibida do
+        pretty_value do
+          I18n.l( value, format: "%d/%m/%Y" ) unless value.nil?
+        end
+      end
+      # field :particular
+      # field :compra_venta
       field :fecha_envio_gestoria do
         pretty_value do
           I18n.l( value, format: "%d/%m/%Y" ) unless value.nil?
@@ -195,6 +204,10 @@ class StockVehicle < ActiveRecord::Base
       end
       field :matricula
       field :vendido
+      field :particular
+      field :compra_venta do
+        label I18n.t( "Compra_venta")
+      end
       field :marca
       field :modelo
       field :comprador
@@ -215,15 +228,11 @@ class StockVehicle < ActiveRecord::Base
       field :fecha_documentacion_enviada do
         date_format :default
       end
-      field :fecha_documentacion_recibida do
-        date_format :default
-      end
       field :fecha_notificado_cliente do
         date_format :default
       end
-      field :particular
-      field :compra_venta do
-        label I18n.t( "Compra_venta")
+      field :fecha_documentacion_recibida do
+        date_format :default
       end
       field :fecha_envio_gestoria do
         date_format :default

@@ -368,6 +368,21 @@ root.analytics_loaded = false
     $( '#primer_apellido_modal' ).modal( 'show' )
     return false
 
+# returns a date in local formatting (es)
+@fechaLocal = (fecha) ->
+  if fecha
+    a_date = fecha.split( "-" )
+    year = a_date[0]
+    month = a_date[1]
+    day = a_date[2]
+    return day + "/" + month + "/" + year
+  else
+    "Pendiente"
+
+ # returns an icon check if boolean value is true
+ @formatBooleano = (value) ->
+  if value
+    "<i class='icon icon-check'></i>"
 
 
 

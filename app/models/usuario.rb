@@ -41,7 +41,7 @@ class Usuario < ActiveRecord::Base
   validate :clientes_from_same_organizacion
 
   def role_enum
-    %w[admin employee]
+    %w[admin employee remarketing]
   end
 
   def role?(role)

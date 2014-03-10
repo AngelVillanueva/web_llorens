@@ -36,7 +36,7 @@ $(document).ready ->
   $('body').popover(popOverSettings)
 
   #modal alert init
-  if ( $( '.modal' ) ).length
+  if ( $( '.modalAviso' ) ).length
     $( '#aviso1' ).modal( 'show' )
 
   # change text on big buttons (hover)
@@ -86,7 +86,8 @@ $(document).ready ->
         { type: "select", values: ['Si', 'No'] },
         { type: "select", values: ['Si', 'No'] },
         { type: "select", values: ['Si', 'No'] },
-        { type: "select", values: ['Si', 'No'] }
+        { type: "select", values: ['Si', 'No'] },
+        null
         ]
       )
   # matriculaciones
@@ -254,6 +255,30 @@ $(document).ready ->
   $( document ).on 'submit', '#new_justificante', ->
     handleFirstNameIfNotACompany()
 
+  # Callback for rendering via JSON
+  $('a.vehicle[data-type=json]').bind 'ajax:complete', (event, data, status, xhr) ->
+      $( '#modalVehicle .modal-header h3' ).html( "Vehículo matrícula" + " " + data.responseJSON.matricula )
+      $( '#modalVehicle .modal-body .pmatricula span' ).html( data.responseJSON.matricula )
+      $( '#modalVehicle .modal-body .pparticular span' ).html( formatBooleano( data.responseJSON.compra_venta ) )
+      $( '#modalVehicle .modal-body .pcomprav span' ).html( formatBooleano( data.responseJSON.compra_venta ) )
+      $( '#modalVehicle .modal-body .pmarca span' ).html( data.responseJSON.marca )
+      $( '#modalVehicle .modal-body .pmodelo span' ).html( data.responseJSON.modelo )
+      $( '#modalVehicle .modal-body .pcomprador span' ).html( data.responseJSON.comprador )
+      $( '#modalVehicle .modal-body .pft span' ).html( formatBooleano( data.responseJSON.ft ) )
+      $( '#modalVehicle .modal-body .ppc span' ).html( formatBooleano( data.responseJSON.pc ) )
+      $( '#modalVehicle .modal-body .pitv span' ).html( fechaLocal( data.responseJSON.fecha_itv ) )
+      $( '#modalVehicle .modal-body .pincidencia span' ).html( data.responseJSON.incidencia )
+      $( '#modalVehicle .modal-body .pfec span' ).html( fechaLocal( data.responseJSON.fecha_expediente_completo ) )
+      $( '#modalVehicle .modal-body .pfde span' ).html( fechaLocal( data.responseJSON.fecha_documentacion_enviada ) )
+      $( '#modalVehicle .modal-body .pfnc span' ).html( fechaLocal( data.responseJSON.fecha_notificado_cliente ) )
+      $( '#modalVehicle .modal-body .pfdr span' ).html( fechaLocal( data.responseJSON.fecha_documentacion_recibida ) )
+      $( '#modalVehicle .modal-body .pfeg span' ).html( fechaLocal( data.responseJSON.fecha_envio_gestoria ) )
+      $( '#modalVehicle .modal-body .pbajae span' ).html( data.responseJSON.baja_exportacion )
+      $( '#modalVehicle .modal-body .pfed span' ).html( fechaLocal( data.responseJSON.fecha_entregado_david ) )
+      $( '#modalVehicle .modal-body .pfedf span' ).html( fechaLocal( data.responseJSON.fecha_envio_definitiva ) )
+      $( '#modalVehicle .modal-body .pobservaciones span' ).html( data.responseJSON.observaciones )
+      $( '#modalVehicle' ).modal( 'show' )
+  
   # IE8- rounded borders through PIE.js
   if window.PIE
     $(".pie").each ->

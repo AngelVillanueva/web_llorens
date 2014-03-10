@@ -6,6 +6,12 @@ class Online::StockVehiclesController < OnlineController
     expose( :stock_vehicles ) { cliente.stock_vehicles.accessible_by(current_ability)}
   expose( :stock_vehicle, attributes: :stock_vehicle_params )
 
+  def show
+    respond_to do |format|
+      format.html
+      format.json { render json: stock_vehicle }
+    end
+  end
 
   private
   def stock_vehicle_params
@@ -17,7 +23,7 @@ class Online::StockVehiclesController < OnlineController
   end
 
   def check_remarketing
-    cliente = Cliente.find( params[ :id ] )
+    cliente = Cliente.find( params[ :cliente_id ] )
     redirect_to root_path, flash: { :alert => I18n.t( "No existe aun" ) } unless cliente.has_remarketing?
   end
 

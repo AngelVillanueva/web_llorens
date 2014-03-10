@@ -1,23 +1,28 @@
 When(/^I access the Remarketing page for the Cliente$/) do
   cliente = Cliente.last
-  visit online_stock_vehicles_path( cliente )
+  visit online_cliente_stock_vehicles_path( cliente )
 end
 
 When(/^I access the page to create a new Stock Vehicle for the Cliente$/) do
   cliente = Cliente.last
-  visit new_online_stock_vehicle_path( cliente )
+  visit new_online_cliente_stock_vehicle_path( cliente )
 end
 
 When(/^I try to access the Remarketing page for the Cliente$/) do
   find( "a.remarketing").click
 end
 
-Given(/^the Cliente I belong to has (\d+) Stock Vehicles$/) do |quantity|
+Given(/^the Cliente I belong to has (\d+) (complete )?Stock Vehicles$/) do |quantity, status|
   mi_cliente = Cliente.first
   mi_cliente.has_remarketing = true
   mi_cliente.save!
+  if status
+    factory = :stock_vehicle_completo
+  elsif
+    factory = :stock_vehicle
+  end
   quantity.to_i.times do |n|
-    FactoryGirl.create( :stock_vehicle, cliente: mi_cliente )
+    FactoryGirl.create( factory, cliente: mi_cliente )
   end
 end
 
@@ -72,7 +77,17 @@ When(/^I process the xml file$/) do
 end
 
 When(/^I submit the form with all the information for the new Stock Vehicle$/) do
-  click_button I18n.t( "Crear vehiculo" )
+  find( "li.read_xml_member_link a").click
+end
+
+When(/^I want to see the second Stock Vehicle data detail$/) do
+  find( "td.icon:last-child a" ).click
+end
+
+When(/^I want to see the second Stock Vehicle data detail in the same page$/) do
+  within( 'tbody tr:last-child' ) do
+    find( 'td.icon a' ).click
+  end
 end
 
 Then(/^I should (not )?see a list of my (\d+) Stock Vehicles$/) do |negation, quantity|
@@ -185,4 +200,41 @@ end
 Then(/^the user should be informed about the (\d+) new Stock Vehicles$/) do |quantity|
   q = quantity.to_i
   expect( page ).to have_selector( '.alert-success', text: "Encontrados y procesados correctamente el total de #{q}" )
+end
+
+Then(/^I should not see any link to access a Remarketing page$/) do
+  expect( page ).to_not have_selector( 'ul.remarketing' )
+  expect( page ).to_not have_selector( 'a.remarketing' )
+end
+
+Then(/^I should see all the attributes of the second Stock Vehicle$/) do
+  matricula = StockVehicle.last.matricula
+  expect( page ).to have_content( I18n.t "Detalle del vehiculo con matricula", matricula: matricula )
+  expect( page ).to have_content( "#{I18n.t('Matricula')}: #{matricula}")
+end
+
+Then(/^I should remain in the Stock Vehicles index page$/) do
+  expect( page ).to have_selector( 'h2.section_header', text: I18n.t("Vehiculos en stock de", cliente: Cliente.last.nombre))
+end
+
+Then(/^I should see all the attributes of the second Stock Vehicle in the same page$/) do
+  expect( page ).to have_selector( '.pmatricula', text: StockVehicle.last.matricula )
+  expect( page ).to have_selector( '.pparticular', text: "" )
+  expect( page ).to have_selector( '.pcomprav', text: "" )
+  expect( page ).to have_selector( '.pmarca', text: StockVehicle.last.marca )
+  expect( page ).to have_selector( '.pmodelo', text: StockVehicle.last.modelo )
+  expect( page ).to have_selector( '.pcomprador', text: StockVehicle.last.comprador )
+  expect( page ).to have_selector( '.pft', text: "" )
+  expect( page ).to have_selector( '.ppc', text: StockVehicle.last.pc )
+  expect( page ).to have_selector( '.pitv', text: I18n.l( StockVehicle.last.fecha_itv ) )
+  expect( page ).to have_selector( '.pincidencia', text: StockVehicle.last.incidencia )
+  expect( page ).to have_selector( '.pfec', text: I18n.l( StockVehicle.last.fecha_expediente_completo ) )
+  expect( page ).to have_selector( '.pfde', text: I18n.l( StockVehicle.last.fecha_documentacion_enviada ) )
+  expect( page ).to have_selector( '.pfnc', text: I18n.l( StockVehicle.last.fecha_notificado_cliente ) )
+  expect( page ).to have_selector( '.pfdr', text: I18n.l( StockVehicle.last.fecha_documentacion_recibida ) )
+  expect( page ).to have_selector( '.pfeg', text: I18n.l( StockVehicle.last.fecha_envio_gestoria ) )
+  expect( page ).to have_selector( '.pbajae', text: StockVehicle.last.baja_exportacion )
+  expect( page ).to have_selector( '.pfed', text: I18n.l( StockVehicle.last.fecha_entregado_david ) )
+  expect( page ).to have_selector( '.pfedf', text: I18n.t( "Pendiente" ) )
+  expect( page ).to have_selector( '.pobservaciones', text: StockVehicle.last.observaciones )
 end

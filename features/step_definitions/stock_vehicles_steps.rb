@@ -1,11 +1,11 @@
 When(/^I access the Remarketing page for the Cliente$/) do
   cliente = Cliente.last
-  visit online_stock_vehicles_path( cliente )
+  visit online_cliente_stock_vehicles_path( cliente )
 end
 
 When(/^I access the page to create a new Stock Vehicle for the Cliente$/) do
   cliente = Cliente.last
-  visit new_online_stock_vehicle_path( cliente )
+  visit new_online_cliente_stock_vehicle_path( cliente )
 end
 
 When(/^I try to access the Remarketing page for the Cliente$/) do
@@ -72,7 +72,11 @@ When(/^I process the xml file$/) do
 end
 
 When(/^I submit the form with all the information for the new Stock Vehicle$/) do
-  click_button I18n.t( "Crear vehiculo" )
+  find( "li.read_xml_member_link a").click
+end
+
+When(/^I want to see the second Stock Vehicle data detail$/) do
+  find( "td.icon:last-child a" ).click
 end
 
 Then(/^I should (not )?see a list of my (\d+) Stock Vehicles$/) do |negation, quantity|
@@ -190,4 +194,10 @@ end
 Then(/^I should not see any link to access a Remarketing page$/) do
   expect( page ).to_not have_selector( 'ul.remarketing' )
   expect( page ).to_not have_selector( 'a.remarketing' )
+end
+
+Then(/^I should see all the attributes of the second Stock Vehicle$/) do
+  matricula = StockVehicle.last.matricula
+  expect( page ).to have_content( I18n.t "Detalle del vehiculo con matricula", matricula: matricula )
+  expect( page ).to have_content( "#{I18n.t('Matricula')}: #{matricula}")
 end

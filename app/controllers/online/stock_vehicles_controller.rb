@@ -17,7 +17,7 @@ class Online::StockVehiclesController < OnlineController
   end
 
   def check_remarketing
-    cliente = Cliente.find( params[ :id ] )
+    cliente = Cliente.find( params[ :cliente_id ] )
     redirect_to root_path, flash: { :alert => I18n.t( "No existe aun" ) } unless cliente.has_remarketing?
   end
 

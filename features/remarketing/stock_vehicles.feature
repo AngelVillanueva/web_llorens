@@ -14,7 +14,6 @@ Scenario: Stock Vehicle page
   When I access the Remarketing page for the Cliente
   Then I should see a list of my 2 Stock Vehicles
 
-
 Scenario: Stock Vehicle page from Online index
   Given I am a registered User
     And the Cliente I belong to has 2 Stock Vehicles
@@ -73,3 +72,10 @@ Scenario: Stock Vehicle data
     And I should see the first one as not sold
     And I should see the second one as sold and with Documentacion Enviada
     And I should see the last one as sold and Finalizado
+@current
+Scenario: Stock Vehicle detail
+  Given I am a registered User
+    And the Cliente I belong to has 2 Stock Vehicles
+  When I access the Remarketing page for the Cliente
+    And I want to see the second Stock Vehicle data detail
+  Then I should see all the attributes of the second Stock Vehicle

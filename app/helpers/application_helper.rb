@@ -319,7 +319,7 @@ module ApplicationHelper
     clientes = current_usuario.norole? && current_usuario.organizacion.clientes || Cliente.all
     clientes.each do |c|
       if c.has_remarketing?
-        concat content_tag('li', link_to( c.nombre, online_stock_vehicles_path( c ), class: "remarketing" ) )
+        concat content_tag('li', link_to( c.nombre, online_cliente_stock_vehicles_path( c ), class: "remarketing" ) )
       end
     end
     nil

@@ -35,9 +35,9 @@ WebLlorens::Application.routes.draw do
     end
     resources :transferencias, :controller => "expedientes", :type => "Transferencia"
     resources :clientes do
-      member do
+      #member do
         resources :stock_vehicles
-      end
+      #end
     end
   end
 

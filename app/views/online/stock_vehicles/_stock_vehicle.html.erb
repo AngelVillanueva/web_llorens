@@ -6,4 +6,5 @@
   <td class="received"><%= received_cell( stock_vehicle ) %></td>
   <td class="definitive"><%= definitive_cell( stock_vehicle ) %></td>
   <td class="finished"><%= finished_cell( stock_vehicle ) %></td>
+  <td class="icon"><%= link_to t("Ver detalle"), online_cliente_stock_vehicle_path( cliente, stock_vehicle ) %></td>
 </tr>

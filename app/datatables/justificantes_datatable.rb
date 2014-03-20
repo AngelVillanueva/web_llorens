@@ -88,7 +88,7 @@ class JustificantesDatatable
   end
 
   def sort_default
-    "pdf_file_name DESC, created_at DESC"
+    "pending_pdf DESC, updated_at DESC"
   end
 
   def sort_column

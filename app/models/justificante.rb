@@ -32,9 +32,10 @@ class Justificante < ActiveRecord::Base
   has_attached_file :pdf,
     :path => ":rails_root/uploads/:class/:id/:basename.:extension",
     :url => "/online/justificantes/:id/download"
-  default_scope includes(:cliente).order('pdf_file_name DESC, created_at DESC')
+  default_scope includes(:cliente).order('pending_pdf DESC, updated_at DESC')
 
   before_validation :assign_hora_solicitud, on: :create
+  before_save :check_pdf!
   before_update :assign_hora_entrega, if: :first_time_pdf?
   after_create :send_email_if_out_of_the_office
 
@@ -82,6 +83,11 @@ class Justificante < ActiveRecord::Base
   def configuration_check? option
     o = Configuration.find_or_create_by_option( option )
     o.enabled?
+  end
+
+  def check_pdf!
+    pdf_file_name.nil? ? self.pending_pdf = true : self.pending_pdf = false
+    nil
   end
 
   rails_admin do

@@ -49,6 +49,7 @@ describe Justificante do
     it { should respond_to :hora_solicitud }
     it { should respond_to :hora_entrega }
     it { should respond_to :pdf }
+    it { should respond_to :pending_pdf? }
     it { should respond_to :cliente }
     it { should be_valid }
   end
@@ -94,15 +95,39 @@ describe Justificante do
     end
   end
   describe "with valid Municipio name on creation" do
-    # let( :bad_justificante ) { FactoryGirl.create( :justificante, municipio: "123" ) }
-    # subject { bad_justificante }
-    
-    # it { should_not be_valid }
     it "should not be numbers" do
       expect { FactoryGirl.create( :justificante, municipio: "123" ) }.to raise_exception
     end
     it "should not contain numbers" do
       expect { FactoryGirl.create( :justificante, municipio: "Abr3" ) }.to raise_exception
+    end
+  end
+  describe "with default scope based on pending pdfs and updated time" do
+    let(:j1) { FactoryGirl.create(:justificante) }
+    let(:j2) { FactoryGirl.create(:justificante) }
+    let(:j3) { FactoryGirl.create(:justificante) }
+    let(:a_pdf) { File.new( "#{Rails.root}/spec/fixtures/test-J.pdf" ) }
+    let(:other_pdf) { File.new( "#{Rails.root}/spec/fixtures/test-I.pdf" ) }
+    it "should sort pending Justificantes first" do
+      j1.pdf = other_pdf
+      j1.save!
+      j2.pdf = a_pdf
+      j2.save!
+      j3.save!
+      Justificante.first.pending_pdf.should eql true
+      Justificante.last.pending_pdf.should eql false
+      Justificante.first.should eql j3
+      Justificante.last.should eql j1
+    end
+    it "should sort not pending Justificantes by updated time" do
+      j2.pdf = a_pdf
+      j2.save!
+      j3.save!
+      j1.save!
+      Justificante.first.pending_pdf.should eql true
+      Justificante.last.pending_pdf.should eql false
+      Justificante.first.should eql j1
+      Justificante.last.should eql j2
     end
   end
 end

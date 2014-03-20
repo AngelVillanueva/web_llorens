@@ -56,7 +56,7 @@ FactoryGirl.define do
   end
   factory :justificante do
     identificador "J-test"
-    nif_comprador "00000000T"
+    nif_comprador "07567174J"
     nombre_razon_social "John E."
     primer_apellido "Cessitounj"
     segundo_apellido "Ustificante"

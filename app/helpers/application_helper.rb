@@ -308,6 +308,10 @@ module ApplicationHelper
   def finished_cell( stock_vehicle )
     stock_vehicle.finalizado? && icon_done(stock_vehicle.finalizado?) || icon_missing(stock_vehicle.finalizado?)
   end
+  # returns a link to see the vehicle detail
+  def detail_cell( stock_vehicle )
+    link_to( I18n.t( "Ver detalle" ), root_path, class: 'vehicle', 'data-remote' => true, 'data-type' => 'json' )
+  end
   # returns true if at least one Cliente (current_ability) has_remarketing?
   def remarketing_links?
     clientes = current_usuario.norole? && current_usuario.organizacion.clientes || Cliente.all

@@ -12,11 +12,11 @@
     <% # deactivate if dataTables %>
 
     <div>
-      <table id="stock_vehicles" class="table table-condensed table-bordered table-striped">
+      <table id="stock_vehicles" class="table table-condensed table-bordered table-striped" data-source="<%= online_cliente_stock_vehicles_path( cliente, format: "json" ) %>">
         <thead>
           <tr class="filter">
             <th>Matrícula</th>
-            <th>En Venta</th>
+            <th>Estado</th>
             <th><%= t("Expediente completo") %></th>
             <th><%= t("Documentación Enviada") %></th>
             <th><%= t("Documentación Recibida") %></th>
@@ -26,7 +26,7 @@
           </tr>
           <tr class="titles">
             <th>Matrícula</th>
-            <th>En Venta</th>
+            <th>Estado</th>
             <th><%= t("Expediente completo") %></th>
             <th><%= t("Documentación Enviada") %></th>
             <th><%= t("Documentación Recibida") %></th>

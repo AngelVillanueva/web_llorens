@@ -74,22 +74,22 @@ $(document).ready ->
   ###
   dataTables initialization
   ###
-  # stock vehicles
-  if ( $( '#stock_vehicles' ).length )
-    createSimpleDataTable(
-      'stock_vehicles',
-      [],
-      [
-        { type: "text" },
-        { type: "select", values: ['En venta', 'Vendido'] },
-        { type: "select", values: ['Si', 'No'] },
-        { type: "select", values: ['Si', 'No'] },
-        { type: "select", values: ['Si', 'No'] },
-        { type: "select", values: ['Si', 'No'] },
-        { type: "select", values: ['Si', 'No'] },
-        null
-        ]
-      )
+  # stock vehicles (not remote and disabled due to remote version)
+  # if ( $( '#stock_vehicles' ).length )
+  #   createSimpleDataTable(
+  #     'stock_vehicles',
+  #     [],
+  #     [
+  #       { type: "text" },
+  #       { type: "select", values: ['En venta', 'Vendido'] },
+  #       { type: "select", values: ['Si', 'No'] },
+  #       { type: "select", values: ['Si', 'No'] },
+  #       { type: "select", values: ['Si', 'No'] },
+  #       { type: "select", values: ['Si', 'No'] },
+  #       { type: "select", values: ['Si', 'No'] },
+  #       null
+  #       ]
+  #     )
   # matriculaciones
   if ( $( '#expedientes.matriculacion' ).length )
     createRemoteDataTable(
@@ -234,6 +234,23 @@ $(document).ready ->
     )
     setTimeout(updateInformesNewVersion, 240000) # fired polling for new records
 
+  # stock_vehicles (remote version)
+  if ( $( '#stock_vehicles' ).length )
+    createRemoteVehiclesDataTable(
+      'stock_vehicles',
+      [],
+      [
+        { type: "text" },
+        { type: "select", values: ['En venta', 'Vendido'] },
+        { type: "select", values: ['Si', 'No'] },
+        { type: "select", values: ['Si', 'No'] },
+        { type: "select", values: ['Si', 'No'] },
+        { type: "select", values: ['Si', 'No'] },
+        { type: "select", values: ['Si', 'No'] },
+        null
+        ]
+      )
+
   # search link in Tools div
   $( 'a.search' ).click ->
     $( '.dataTables_filter' ).slideToggle()
@@ -255,7 +272,31 @@ $(document).ready ->
   $( document ).on 'submit', '#new_justificante', ->
     handleFirstNameIfNotACompany()
 
-  # Callback for rendering via JSON
+  # Callback for rendering via JSON (versión remote dataTables, using 'on' to bind also dinamically created links)
+  $("#stock_vehicles").on 'ajax:complete', 'a.vehicle[data-type=json]', (event, data, status, xhr) ->
+    $( '#modalVehicle .modal-header h3' ).html( "Vehículo matrícula" + " " + data.responseJSON.matricula )
+    $( '#modalVehicle .modal-body .pmatricula span' ).html( data.responseJSON.matricula )
+    $( '#modalVehicle .modal-body .pparticular span' ).html( formatBooleano( data.responseJSON.compra_venta ) )
+    $( '#modalVehicle .modal-body .pcomprav span' ).html( formatBooleano( data.responseJSON.compra_venta ) )
+    $( '#modalVehicle .modal-body .pmarca span' ).html( data.responseJSON.marca )
+    $( '#modalVehicle .modal-body .pmodelo span' ).html( data.responseJSON.modelo )
+    $( '#modalVehicle .modal-body .pcomprador span' ).html( data.responseJSON.comprador )
+    $( '#modalVehicle .modal-body .pft span' ).html( formatBooleano( data.responseJSON.ft ) )
+    $( '#modalVehicle .modal-body .ppc span' ).html( formatBooleano( data.responseJSON.pc ) )
+    $( '#modalVehicle .modal-body .pitv span' ).html( fechaLocal( data.responseJSON.fecha_itv ) )
+    $( '#modalVehicle .modal-body .pincidencia span' ).html( data.responseJSON.incidencia )
+    $( '#modalVehicle .modal-body .pfec span' ).html( fechaLocal( data.responseJSON.fecha_expediente_completo ) )
+    $( '#modalVehicle .modal-body .pfde span' ).html( fechaLocal( data.responseJSON.fecha_documentacion_enviada ) )
+    $( '#modalVehicle .modal-body .pfnc span' ).html( fechaLocal( data.responseJSON.fecha_notificado_cliente ) )
+    $( '#modalVehicle .modal-body .pfdr span' ).html( fechaLocal( data.responseJSON.fecha_documentacion_recibida ) )
+    $( '#modalVehicle .modal-body .pfeg span' ).html( fechaLocal( data.responseJSON.fecha_envio_gestoria ) )
+    $( '#modalVehicle .modal-body .pbajae span' ).html( data.responseJSON.baja_exportacion )
+    $( '#modalVehicle .modal-body .pfed span' ).html( fechaLocal( data.responseJSON.fecha_entregado_david ) )
+    $( '#modalVehicle .modal-body .pfedf span' ).html( fechaLocal( data.responseJSON.fecha_envio_definitiva ) )
+    $( '#modalVehicle .modal-body .pobservaciones span' ).html( data.responseJSON.observaciones )
+    $( '#modalVehicle' ).modal( 'show' )
+
+  # Callback for rendering via JSON (not remote versión, not used right now)
   $('a.vehicle[data-type=json]').bind 'ajax:complete', (event, data, status, xhr) ->
       $( '#modalVehicle .modal-header h3' ).html( "Vehículo matrícula" + " " + data.responseJSON.matricula )
       $( '#modalVehicle .modal-body .pmatricula span' ).html( data.responseJSON.matricula )

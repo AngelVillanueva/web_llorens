@@ -3,8 +3,15 @@ class Online::StockVehiclesController < OnlineController
   load_and_authorize_resource :stock_vehicle, through: :cliente
   expose( :cliente )
   #expose( :stock_vehicles ) { cliente.stockvehicles.accessible_by( current_ability ).page( params[ :page ] ) } # commented until dataTables -> remote
-    expose( :stock_vehicles ) { cliente.stock_vehicles.accessible_by(current_ability)}
+    expose( :stock_vehicles ) { cliente.stock_vehicles.accessible_by(current_ability).page( params[ :page ] ).per( 10 ) }
   expose( :stock_vehicle, attributes: :stock_vehicle_params )
+
+  def index
+    respond_to do |format|
+      format.html
+      format.json { render json: StockVehiclesDatatable.new( view_context, current_ability, cliente ) }
+    end
+  end
 
   def show
     respond_to do |format|

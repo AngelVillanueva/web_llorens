@@ -87,3 +87,14 @@ Scenario: Stock Vehicle detail with javascript
     And I want to see the second Stock Vehicle data detail in the same page
   Then I should remain in the Stock Vehicles index page
     And I should see all the attributes of the second Stock Vehicle in the same page
+@javascript @remote
+ Scenario: Stock Vehicle listing as remote dataTable
+   Given I am a registered User
+     And the Cliente I belong to has 25 complete Stock Vehicles
+   When I access the Remarketing page for the Cliente
+  Then I should see a list of 10 Stock Vehicles
+     And the list should be a remote dataTable
+     And I should see a link to see the next 10 Stock Vehicles
+  When I click that link
+  Then I should see the next 10 Stock Vehicles
+    And the first one should be the 11th vehicle

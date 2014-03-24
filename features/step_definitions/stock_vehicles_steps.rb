@@ -273,8 +273,10 @@ Then(/^I should see the next (\d+) Stock Vehicles$/) do |quantity|
   expect( page ).to have_selector( 'tr.stock', count: q )
 end
 
-Then(/^the first one should be the (\d+)th vehicle$/) do |arg1|
+Then(/^the first one should be the (\d+)th vehicle$/) do |ordinal|
+  vehicle = StockVehicle.all[ordinal.to_i - 1]
+  plaking = vehicle.matricula
   within( 'tr.stock:first-child' ) do
-    expect( page ).to have_selector( 'td', text: "ABC12311" )
+    expect( page ).to have_selector( 'td', text: plaking )
   end
 end

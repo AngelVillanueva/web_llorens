@@ -173,6 +173,41 @@ root.analytics_loaded = false
       aoColumns: filtercolumns
     })
 
+# create simple remote DataTable for Stock Vehicles
+@createRemoteVehiclesDataTable = ( selector, sortcolumn, filtercolumns ) ->
+  oTable = $( '#' + selector )
+  if ( oTable.length )
+    oTable.dataTable({
+      "sDom": "<'row'<'span6'T><'span6 pull-right'>r>t<'row-fluid'<'span6'i><'span6'p>>",
+      "sPaginationType": "bootstrap",
+      "aaSorting": sortcolumn,
+      "bProcessing": true,
+      "bServerSide": true,
+      "sAjaxSource": oTable.data('source'),
+      "fnRowCallback": ( nRow, aData, iDisplayIndex ) ->
+        $(nRow).addClass('stock');
+        $('td', nRow).slice(1,2).addClass('sold')
+        $('td', nRow).slice(2,3).addClass('completed')
+        $('td', nRow).slice(3,4).addClass('sent')
+        $('td', nRow).slice(4,5).addClass('received')
+        $('td', nRow).slice(5,6).addClass('definitive')
+        $('td', nRow).slice(6,7).addClass('finished')
+        $('td:last', nRow).addClass('icon')
+        return nRow
+      "oLanguage": {
+          "sSearch": "Buscar en la tabla",
+          "sLengthMenu": "Mostrar _MENU_ entradas por página",
+          "sZeroRecords": "Lo siento, no hay resultados",
+          "sInfo": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
+          "sInfoEmpty": "Mostrando 0 a 0 de 0 entradas",
+          "sInfoFiltered": "(filtrado de _MAX_ total entradas)"
+        }
+      }).columnFilter({
+      sPlaceHolder: "head:before",
+      sRangeFormat: "De {from} a {to}",
+      aoColumns: filtercolumns
+    })
+
 # create remote DataTable
 @createRemoteDataTable = ( selector, sortcolumn, columntypes, excelname, exportcolumns, filtercolumns, datecolumns=[] ) ->
   oTable = $( '#' + selector )

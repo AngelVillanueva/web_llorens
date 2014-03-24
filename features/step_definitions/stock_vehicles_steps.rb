@@ -90,6 +90,14 @@ When(/^I want to see the second Stock Vehicle data detail in the same page$/) do
   end
 end
 
+When(/^I click that link$/) do
+  within( '.dataTables_paginate' ) do
+    within( 'ul li:nth-child(3)' ) do
+      find( 'a' ).click
+    end
+  end
+end
+
 Then(/^I should (not )?see a list of my (\d+) Stock Vehicles$/) do |negation, quantity|
   q = quantity.to_i
   unless negation
@@ -101,6 +109,15 @@ Then(/^I should (not )?see a list of my (\d+) Stock Vehicles$/) do |negation, qu
   else
     expect( page ).to_not have_selector( 'tr.stock', count: q )
     expect( page ).to have_selector( '.alert-alert', text: I18n.t( 'unauthorized.manage.all' ) )
+  end
+end
+
+Then(/^I should (not )?see a list of (\d+) Stock Vehicles$/) do |negation, quantity|
+  q = quantity.to_i
+  unless negation
+    expect( page ).to have_selector( 'tr.stock', count: q )
+  else
+    expect( page ).to_not have_selector( 'tr.stock', count: q )
   end
 end
 
@@ -237,4 +254,27 @@ Then(/^I should see all the attributes of the second Stock Vehicle in the same p
   expect( page ).to have_selector( '.pfed', text: I18n.l( StockVehicle.last.fecha_entregado_david ) )
   expect( page ).to have_selector( '.pfedf', text: I18n.t( "Pendiente" ) )
   expect( page ).to have_selector( '.pobservaciones', text: StockVehicle.last.observaciones )
+end
+
+Then(/^the list should be a remote dataTable$/) do
+  c = Cliente.first
+  expect( page ).to have_selector( '.dataTable' )
+  expect( page ).to have_css( "*[data-source='/online/clientes/#{c.id}/stock_vehicles.json']")
+end
+
+Then(/^I should see a link to see the next (\d+) Stock Vehicles$/) do |arg1|
+  within( '.dataTables_paginate' ) do
+      expect( page ).to have_selector( 'a[href="#"]', text: 2 )
+  end
+end
+
+Then(/^I should see the next (\d+) Stock Vehicles$/) do |quantity|
+  q = quantity.to_i
+  expect( page ).to have_selector( 'tr.stock', count: q )
+end
+
+Then(/^the first one should be the (\d+)th vehicle$/) do |arg1|
+  within( 'tr.stock:first-child' ) do
+    expect( page ).to have_selector( 'td', text: "ABC12311" )
+  end
 end

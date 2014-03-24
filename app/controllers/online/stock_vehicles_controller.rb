@@ -6,6 +6,13 @@ class Online::StockVehiclesController < OnlineController
     expose( :stock_vehicles ) { cliente.stock_vehicles.accessible_by(current_ability)}
   expose( :stock_vehicle, attributes: :stock_vehicle_params )
 
+  def index
+    respond_to do |format|
+      format.html
+      format.json { render json: stock_vehicles }
+    end
+  end
+
   def show
     respond_to do |format|
       format.html

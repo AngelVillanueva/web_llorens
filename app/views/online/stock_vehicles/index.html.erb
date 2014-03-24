@@ -12,7 +12,7 @@
     <% # deactivate if dataTables %>
 
     <div>
-      <table id="stock_vehicles" class="table table-condensed table-bordered table-striped">
+      <table id="stock_vehicles" class="table table-condensed table-bordered table-striped" data-source="<%= online_cliente_stock_vehicles_path( cliente, format: "json" ) %>">
         <thead>
           <tr class="filter">
             <th>Matrícula</th>

@@ -30,7 +30,7 @@ class Informe < ActiveRecord::Base
     if informe_new_mailer?
       recipients = Guardia.pluck(:email)
       recipients.each do |r|
-        WeekendMailer.delay.new_informe(r)
+        WeekendMailer.delay.new_informe(r, cliente)
       end
     end
   end

@@ -299,7 +299,7 @@ es:
   Puede acceder: "Puede acceder a la solicitud siguiendo "
   este enlace: "este enlace"
   Solicitud de nuevo informe: "Recibida solicitud de nuevo informe"
-  Nuevo informe en Llorens: "Se ha recibido una solicitud de nuevo informe en Llorens online"
+  Nuevo informe en Llorens: "Se ha recibido una solicitud de nuevo informe en Llorens online del cliente %{cliente}"
   Nombre o Razon Social: "Nombre"
   Subir PDF: "Subir PDF"
   Incluir PDF: "Añadir PDF"

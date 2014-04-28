@@ -48,6 +48,7 @@ end
     When I open the email
     Then I should see "Recibida solicitud de nuevo justificante" in the email subject
     Then I should see "Se ha recibido una solicitud de nuevo justificante" in the email body
+    Then I should see "Sinapse Consulting S.L." in the email body
     Then I should see "Puede acceder a la solicitud" in the email body
     When I follow "este enlace" in the email
     Then I should see the newly created justificante
@@ -63,6 +64,7 @@ end
     Then the employees on guard would receive an email
     When I open the email
     Then I should see "Recibida solicitud de nuevo justificante" in the email subject
+    Then I should see "Sinapse Consulting S.L." in the email body
     Then I should see "Se ha recibido una solicitud de nuevo justificante" in the email body
     Then I should see "Puede acceder a la solicitud" in the email body
     When I follow "este enlace" in the email
@@ -81,6 +83,7 @@ end
     When I open the email
     Then I should see "Recibida solicitud de nuevo justificante" in the email subject
     Then I should see "Se ha recibido una solicitud de nuevo justificante" in the email body
+    Then I should see "Sinapse Consulting S.L." in the email body
     Then I should see "Puede acceder a la solicitud" in the email body
     When I follow "este enlace" in the email
     Then I should see the newly created justificante
@@ -112,6 +115,7 @@ end
     When I open the email
     Then I should see "Recibida solicitud de nuevo justificante" in the email subject
     Then I should see "Se ha recibido una solicitud de nuevo justificante" in the email body
+    Then I should see "Sinapse Consulting S.L." in the email body
     Then I should see "Puede acceder a la solicitud" in the email body
     When I follow "este enlace" in the email
     Then I should see the newly created justificante

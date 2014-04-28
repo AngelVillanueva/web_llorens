@@ -294,7 +294,7 @@ es:
   Si: "Sí"
   Solicitar justificante: "Solicitar justificante"
   Solicitud de nuevo justificante: "Recibida solicitud de nuevo justificante"
-  Nuevo justificante en Llorens: "Se ha recibido una solicitud de nuevo justificante en Llorens online"
+  Nuevo justificante en Llorens: "Se ha recibido una solicitud de nuevo justificante en Llorens online del cliente %{cliente}"
   Solicitud a nombre de empresa: "La solicitud de Justificante es a nombre de una empresa"
   Puede acceder: "Puede acceder a la solicitud siguiendo "
   este enlace: "este enlace"

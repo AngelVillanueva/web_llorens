@@ -3,7 +3,8 @@ class WeekendMailer < ActionMailer::Base
   default to: Proc.new { recipients },
     from: "gestoriallorens@gestoriallorens.com"
 
-  def new_justificante r
+  def new_justificante r, cliente
+    @cliente_nombre = cliente.nombre
     mail to: r, subject: t( "Solicitud de nuevo justificante" )
   end
 

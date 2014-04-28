@@ -57,7 +57,7 @@ class Justificante < ActiveRecord::Base
     if justificante_new_mailer?
       recipients = Guardia.pluck(:email)
       recipients.each do |r|
-        WeekendMailer.delay.new_justificante(r)
+        WeekendMailer.delay.new_justificante(r, cliente)
       end
     end
   end

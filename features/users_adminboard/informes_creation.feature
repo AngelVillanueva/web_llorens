@@ -46,6 +46,7 @@ end
     When I open the email
     Then I should see "Recibida solicitud de nuevo informe" in the email subject
     Then I should see "Se ha recibido una solicitud de nuevo informe" in the email body
+    Then I should see "Sinapse Consulting S.L." in the email body
     Then I should see "Puede acceder a la solicitud" in the email body
     When I follow "este enlace" in the email
     Then I should see the newly created informe
@@ -74,6 +75,7 @@ end
     When I open the email
     Then I should see "Recibida solicitud de nuevo informe" in the email subject
     Then I should see "Se ha recibido una solicitud de nuevo informe" in the email body
+    Then I should see "Sinapse Consulting S.L." in the email body
     Then I should see "Puede acceder a la solicitud" in the email body
     When I follow "este enlace" in the email
     Then I should see the newly created informe
@@ -105,6 +107,7 @@ end
     When I open the email
     Then I should see "Recibida solicitud de nuevo informe" in the email subject
     Then I should see "Se ha recibido una solicitud de nuevo informe" in the email body
+    Then I should see "Sinapse Consulting S.L." in the email body
     Then I should see "Puede acceder a la solicitud" in the email body
     When I follow "este enlace" in the email
     Then I should see the newly created informe

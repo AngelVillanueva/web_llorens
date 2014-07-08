@@ -35,6 +35,7 @@ FactoryGirl.define do
     fecha_facturacion 1.day.ago.to_date
     observaciones "Por favor, recoger"
     llorens_cliente_id "444999111"
+    ivtm 30.89
     created_at Matriculacion.matriculable_pdf_date.to_time+1
     cliente
   end

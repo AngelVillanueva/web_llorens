@@ -101,6 +101,18 @@ Given(/^that more recent Incidencia has been solved$/) do
   t_recent.save!
 end
 
+Given(/^one of them has (\d+) as IVTM$/) do |arg1|
+  m = Matriculacion.first
+  m.ivtm = 0
+  m.save!
+end
+
+Given(/^one of them has no IVTM value$/) do
+  m = Matriculacion.first
+  m.ivtm = nil
+  m.save!
+end
+
 When(/^I submit all the information for a new Expediente$/) do
   visit new_expediente_path
   fill_in "Identificador", with: "IM1"
@@ -385,4 +397,13 @@ end
 
 Then(/^the unsolved Incidencia should appear at the top of the list$/) do
   first( 'td.matricula' ).text.should eql "Test de incidencia pendiente".upcase
+end
+
+Then(/^I should (not )?see the IVTM field$/) do |negation|
+  first( 'td.ivtm' ).text.should eql Matriculacion.first.ivtm.to_s unless negation
+end
+
+Then(/^I should the right value for the "(.*?)" IVTM cell$/) do |value|
+  expect( page ).to have_css( ".ivtm", text: /\A0\z/ ) if value == 0
+  expect( page ).to have_css( ".ivtm", text: /\A\z/ ) if value == "empty"
 end

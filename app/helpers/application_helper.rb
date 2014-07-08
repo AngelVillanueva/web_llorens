@@ -285,9 +285,9 @@ module ApplicationHelper
   # returns the content of the Matriculaciones IVTM cell
   def ivtm_cell matriculacion
     case matriculacion.ivtm
-      when 0 then "0"
+      when 0 then number_to_currency(0, precision: 0)
       when nil then ""
-      else matriculacion.ivtm
+      else number_to_currency(matriculacion.ivtm.round(2))
     end
   end
 

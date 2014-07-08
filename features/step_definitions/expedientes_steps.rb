@@ -101,15 +101,10 @@ Given(/^that more recent Incidencia has been solved$/) do
   t_recent.save!
 end
 
-Given(/^one of them has (\d+) as IVTM$/) do |arg1|
+Given(/^one of them has "(.*?)" IVTM$/) do |value|
+  value == "no" ? value = nil : value = value.to_f
   m = Matriculacion.first
-  m.ivtm = 0
-  m.save!
-end
-
-Given(/^one of them has no IVTM value$/) do
-  m = Matriculacion.first
-  m.ivtm = nil
+  m.ivtm = value
   m.save!
 end
 
@@ -400,10 +395,15 @@ Then(/^the unsolved Incidencia should appear at the top of the list$/) do
 end
 
 Then(/^I should (not )?see the IVTM field$/) do |negation|
-  first( 'td.ivtm' ).text.should eql Matriculacion.first.ivtm.to_s unless negation
+  expect( page ).to have_css("td.ivtm", text: Matriculacion.first.ivtm.round(2).to_s.gsub(".", ",")) unless negation
 end
 
 Then(/^I should the right value for the "(.*?)" IVTM cell$/) do |value|
-  expect( page ).to have_css( ".ivtm", text: /\A0\z/ ) if value == 0
-  expect( page ).to have_css( ".ivtm", text: /\A\z/ ) if value == "empty"
+  if value == "0"
+    expect( page ).to have_css( ".ivtm", text: "0")
+  elsif value == "empty"
+    expect( page ).to have_css( ".ivtm", text: "" )
+  else
+    expect( page ).to have_css( ".ivtm", text: "#{Matriculacion.first.ivtm.round(2).to_s.gsub(".", ",")}" )
+  end
 end

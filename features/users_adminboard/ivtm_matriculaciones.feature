@@ -20,12 +20,18 @@ end
 
   Scenario: a 0 IVTM field should show a "0" as a value
     Given I am a registered User with some Expedientes
-      And one of them has 0 as IVTM
+      And one of them has "0" IVTM
     When I access the Matriculaciones index page
     Then I should the right value for the "0" IVTM cell
 
-Scenario: an empty IVTM field should show a "Pendiente" as a value
+  Scenario: an empty IVTM field should show a "Pendiente" as a value
     Given I am a registered User with some Expedientes
-      And one of them has no IVTM value
+      And one of them has "no" IVTM
     When I access the Matriculaciones index page
     Then I should the right value for the "empty" IVTM cell
+
+  Scenario: a regular IVTM field should show its value with two decimal digits
+    Given I am a registered User with some Expedientes
+      And one of them has "38.987" IVTM
+    When I access the Matriculaciones index page
+    Then I should the right value for the "regular" IVTM cell

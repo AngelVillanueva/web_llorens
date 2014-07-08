@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140708090704) do
+ActiveRecord::Schema.define(:version => 20140708111754) do
 
   create_table "api_keys", :force => true do |t|
     t.string   "access_token"
@@ -82,8 +82,8 @@ ActiveRecord::Schema.define(:version => 20140708090704) do
     t.date     "fecha_alta"
     t.date     "fecha_entra_trafico"
     t.date     "fecha_facturacion"
-    t.datetime "created_at",                                     :null => false
-    t.datetime "updated_at",                                     :null => false
+    t.datetime "created_at",                                                                    :null => false
+    t.datetime "updated_at",                                                                    :null => false
     t.text     "observaciones"
     t.string   "type"
     t.integer  "cliente_id"
@@ -94,9 +94,9 @@ ActiveRecord::Schema.define(:version => 20140708090704) do
     t.datetime "pdf_updated_at"
     t.text     "incidencia"
     t.boolean  "has_incidencia"
-    t.boolean  "has_documentos",              :default => false, :null => false
+    t.boolean  "has_documentos",                                             :default => false, :null => false
     t.date     "fecha_resolucion_incidencia"
-    t.decimal  "ivtm"
+    t.decimal  "ivtm",                        :precision => 15, :scale => 2
   end
 
   add_index "expedientes", ["cliente_id"], :name => "index_expedientes_on_cliente_id"

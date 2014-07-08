@@ -1,5 +1,5 @@
 class ExpedientesDatatable
-  delegate :params, :h, :link_to, :matricula_cell_whole, :documentos_cell, to: :@view
+  delegate :params, :h, :link_to, :matricula_cell_whole, :documentos_cell, :ivtm_cell, to: :@view
 
   def initialize(view, type, current_ability)
     @view = view
@@ -136,6 +136,9 @@ class ExpedientesDatatable
         if column == "has_documentos"
           filter = searched == "Ver PDF" ? "TRUE" : "FALSE"
           expedientes = expedientes.where("#{column} IS #{filter}")
+        elsif column == "ivtm"
+          filter = searched.gsub(",", ".").to_f
+          expedientes = expedientes.where("#{column} = ?", filter)
         elsif column.include? "fecha"
           lapse = searched.split("~")
           unless lapse[1].nil?

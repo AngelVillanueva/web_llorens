@@ -26,7 +26,7 @@
     </tr>
     <tr class="titles">
       <th><%= t("Cliente") %></th>
-      <th><%= t("Matricula") %></th>
+      <th class="thmatricula"><%= t("Matricula") %></th>
       <% if expediente_type? expediente, 'matriculacion' %>
         <th><%= t("Bastidor") %></th>
       <% end %>
@@ -41,12 +41,12 @@
       <th><%= t("Alta") %></th>
       <th><%= t("Salida_f") %></th>
       <% if expediente_type? expediente, 'matriculacion' %>
-        <th><%= t("IVTM") %></th>
+        <th class="thivtm"><%= t("IVTM") %></th>
       <% end %>
       <% if expediente_type? expediente, 'transferencia' %>
-        <th><%= t("Tramite_d") %></th>
+        <th class="thdtramite"><%= t("Tramite_d") %></th>
       <% end %>
-      <th><%= t("Documentos") %></th>
+      <th class="thdocs"><%= t("Documentos") %></th>
     </tr>
   </thead>
   <tbody>

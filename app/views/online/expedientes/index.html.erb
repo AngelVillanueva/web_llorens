@@ -1,5 +1,7 @@
 <% provide :title, t("Listado de Expedientes", type: expediente.type.pluralize) %>
 
+<%= render 'shared/avisos', avisos: avisos %>
+
 <div class="about_page vista_tabla">
   <%= render 'shared/section_wrapper',
       header_text: expediente.type.pluralize,

@@ -29,6 +29,18 @@ Feature: Avisos created from the admin panel
       And there is one Aviso created
     When I visit the application home page
     Then I should see the Aviso
+@avisos @avisos2
+  Scenario Outline: users see Avisos in all index pages of Llorens online
+    Given I am a registered User
+      And there is one Aviso created
+    When I visit the <pages> index page
+    Then I should see the Aviso
+    Examples:
+    | pages |
+    | Matriculaciones |
+    | Transferencias  |
+    | Justificantes   |
+    | Informes        |
 @avisos
   Scenario: Avisos with an expired maximum date should not be shown
     Given I am a registered User

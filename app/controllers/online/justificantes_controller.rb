@@ -1,6 +1,7 @@
 class Online::JustificantesController < OnlineController
   load_and_authorize_resource except: [:new, :create]
   before_filter :authorize_edition, only: :edit
+  expose( :avisos ) { current_usuario.avisos.vivos }
   expose( :justificantes ) { Justificante.scoped.accessible_by( current_ability ).page( params[ :page ] ).per( 10 ) }
   expose( :justificante, attributes: :justificante_params )
 

@@ -38,6 +38,10 @@ $(document).ready ->
   #modal alert init
   if ( $( '.modalAviso' ) ).length
     $( '#aviso1' ).modal( 'show' )
+  #new Avisos auto pulled every 10 seconds
+  if ( $( '#opciones' ) ).length
+    setInterval( getAvisos, 5000 )
+
 
   # change text on big buttons (hover)
   $( 'li.new a span' ).hover(

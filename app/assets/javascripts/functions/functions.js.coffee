@@ -419,5 +419,17 @@ root.analytics_loaded = false
   if value
     "<i class='icon icon-check'></i>"
 
-
+ # gets living Avisos for current usuario
+ @getAvisos = ->
+  #$( '<h3>De: Quevedo</h3>' ).prependTo( 'body' )
+  response = $.ajax '/online/avisos',
+    type: 'GET',
+    dataType: 'json',
+    contentType: "application/json",
+    error: (jqXHR, textStatus, errorThrown) ->
+        $('body').append "AJAX Error: #{textStatus}"
+    success: (data, textStatus, jqXHR) ->
+        $.each data.avisos, ( index, aviso ) ->
+          $( '<h3>' + aviso.titular + '</h3>' ).prependTo( 'body' )
+          $( '<div class="modal-body">' + aviso.contenido + '</div>' ).prependTo( 'body' )
 

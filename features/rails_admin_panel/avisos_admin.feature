@@ -29,12 +29,12 @@ Feature: Avisos created from the admin panel
       And there is one Aviso created
     When I visit the application home page
     Then I should see the Aviso
-@avisos @avisos2
+@avisos @avisos2 @javascript
   Scenario: new Avisos should be auto pulled for already connected users
     Given I am a registered User
     When I visit the application home page
       And there is one Aviso created
-    Then I should see the Aviso
+    Then I should see the newly created Aviso
 @avisos
   Scenario: Avisos with an expired maximum date should not be shown
     Given I am a registered User

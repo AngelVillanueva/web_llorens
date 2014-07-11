@@ -16,6 +16,8 @@ WebLlorens::Application.routes.draw do
   namespace :online do
     root to: 'static_pages#home'
 
+    resources :avisos, :only => :index
+
     resources :informes do
       member do
         get 'download'

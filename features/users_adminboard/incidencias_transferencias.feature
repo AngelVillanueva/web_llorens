@@ -64,7 +64,7 @@ end
       And I hover over the Incidencia icon
     Then I should see the whole Incidencia detail
       But I should not see the solving date
-@now
+
   Scenario: an unsolved Incidencia should appear in the list above than solved ones
     Given there is an Incidencia in the page
       And there was a previous Expediente with unsolved Incidencia in the page

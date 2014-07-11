@@ -94,7 +94,7 @@ Then(/^I should (not )?see the Aviso$/) do |negation|
 end
 
 Then(/^I should (not )?see the newly created Aviso$/) do |negation|
-  using_wait_time 5 do
+  using_wait_time 10 do
     if negation
       page.should_not have_selector( 'h3', text: Aviso.first.titular )
       page.should_not have_selector( '.modal-body', text: Aviso.first.contenido )
@@ -200,5 +200,12 @@ Then(/^I should (not )?see the StockVehicles menu link$/) do |negation|
     page.should_not have_css( "li[data-model=stock_vehicle] a" )
   else
     page.should have_css( "li[data-model=stock_vehicle] a" )
+  end
+end
+
+Then(/^if I stay in the same page I should not see the newly created Aviso twice$/) do
+  using_wait_time 10 do
+    expect( page ).to have_css( ".already" )
+    expect( page ).to have_selector( ".modal-body", maximum: 1 )
   end
 end

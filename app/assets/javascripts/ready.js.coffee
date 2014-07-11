@@ -40,7 +40,7 @@ $(document).ready ->
     $( '#aviso1' ).modal( 'show' )
   #new Avisos auto pulled every 10 seconds
   if ( $( '#opciones' ) ).length
-    setInterval( getAvisos, 5000 )
+    setInterval( getAvisos, 3000 )
 
 
   # change text on big buttons (hover)

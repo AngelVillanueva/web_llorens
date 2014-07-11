@@ -35,6 +35,14 @@ Feature: Avisos created from the admin panel
     When I visit the application home page
       And there is one Aviso created
     Then I should see the newly created Aviso
+@avisos @avisos2 @javascript
+  Scenario: new Avisos should be auto pulled just once per page
+    Given I am a registered User
+    When I visit the application home page
+      And there is one Aviso created
+    Then I should see the newly created Aviso
+      And if I stay in the same page I should not see the newly created Aviso twice
+
 @avisos
   Scenario: Avisos with an expired maximum date should not be shown
     Given I am a registered User

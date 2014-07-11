@@ -421,7 +421,6 @@ root.analytics_loaded = false
 
  # gets living Avisos for current usuario
  @getAvisos = ->
-  #$( '<h3>De: Quevedo</h3>' ).prependTo( 'body' )
   response = $.ajax '/online/avisos',
     type: 'GET',
     dataType: 'json',
@@ -430,6 +429,10 @@ root.analytics_loaded = false
         $('body').append "AJAX Error: #{textStatus}"
     success: (data, textStatus, jqXHR) ->
         $.each data.avisos, ( index, aviso ) ->
-          $( '<h3>' + aviso.titular + '</h3>' ).prependTo( 'body' )
-          $( '<div class="modal-body">' + aviso.contenido + '</div>' ).prependTo( 'body' )
+          unless $( '#av' + aviso.id ).length
+            $( '<h3>' + aviso.titular + '</h3>' ).prependTo( 'body' )
+            $( '<div id="av' + aviso.id + '" class="modal-body">' + aviso.contenido + '</div>' ).prependTo( 'body' )
+          else
+            $( '#av' + aviso.id ).addClass('already')
+
 

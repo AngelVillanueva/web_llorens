@@ -430,9 +430,9 @@ root.analytics_loaded = false
     success: (data, textStatus, jqXHR) ->
         $.each data.avisos, ( index, aviso ) ->
           unless $( '#av' + aviso.id ).length
-            $( '<h3>' + aviso.titular + '</h3>' ).prependTo( 'body' )
-            $( '<div id="av' + aviso.id + '" class="modal-body">' + aviso.contenido + '</div>' ).prependTo( 'body' )
-          else
-            $( '#av' + aviso.id ).addClass('already')
+            div = $( '.hide.pulled_aviso:first' )
+            $( div ).children( 'h4' ).html(aviso.titular)
+            $( div ).children( '.contenido' ).html(aviso.contenido)
+            div.removeClass( 'hide' )
 
 

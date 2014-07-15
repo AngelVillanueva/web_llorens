@@ -35,13 +35,30 @@ Feature: Avisos created from the admin panel
     When I visit the application home page
       And there is one Aviso created
     Then I should see the newly created Aviso
-@avisos @avisos2 @javascript
+@avisos @avisos2 @javascript @wip
   Scenario: new Avisos should be auto pulled just once per page
     Given I am a registered User
     When I visit the application home page
       And there is one Aviso created
     Then I should see the newly created Aviso
       And if I stay in the same page I should not see the newly created Aviso twice
+@avisos @avisos2 @javascript @wip
+  Scenario: auto pulled new Avisos should not included the ones shown in the lightbox
+    Given I am a registered User
+      And there is one Aviso created
+    When I visit the application home page
+      And there is one Aviso created
+    Then I should see the newly created Aviso
+      But I should not see the Aviso previously shown in the lightbox
+@avisos @avisos2 @javascript @wip
+  Scenario: auto reload of the page should not cause an Aviso to be lost
+    Given I am a registered User
+    When I visit the Justificantes index page
+      And there is one Aviso created
+    Then I should see the newly created Aviso
+      And if I do not close the Aviso
+      And the page is auto reloaded
+    Then I should see the newly created Aviso
 
 @avisos
   Scenario: Avisos with an expired maximum date should not be shown

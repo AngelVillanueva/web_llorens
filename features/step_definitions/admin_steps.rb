@@ -96,11 +96,11 @@ end
 Then(/^I should (not )?see the newly created Aviso$/) do |negation|
   using_wait_time 10 do
     if negation
-      page.should_not have_selector( 'h3', text: Aviso.first.titular )
-      page.should_not have_selector( '.modal-body', text: Aviso.first.contenido )
+      page.should_not have_selector( 'h4', text: Aviso.first.titular )
+      page.should_not have_selector( '.contenido', text: Aviso.first.contenido )
     else
-      page.should have_selector( 'h3', text: Aviso.first.titular )
-      page.should have_selector( '.modal-body', text: Aviso.first.contenido )
+      page.should have_selector( 'h4', text: Aviso.first.titular )
+      page.should have_selector( '.contenido', text: Aviso.first.contenido )
     end
   end
 end

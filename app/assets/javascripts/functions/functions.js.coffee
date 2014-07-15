@@ -429,13 +429,14 @@ root.analytics_loaded = false
         $('body').append "AJAX Error: #{textStatus}"
     success: (data, textStatus, jqXHR) ->
         $.each data.avisos, ( index, aviso ) ->
-          unless existsCookie( 'av_' + aviso.id )
-            div = $( '.hide .pulled_aviso:first' )
-            div.parent('.row').clone().prependTo('.container .row:first').removeClass('hide')
-            $( div ).children( 'h4' ).html(aviso.titular)
-            $( div ).children( '.contenido' ).html(aviso.contenido)
-            $( div ).attr( 'id', '#av' + aviso.id ).removeClass( 'hide' )
-            setCookiePulledAviso( aviso.id )
+          #unless existsCookie( 'av_' + aviso.id )
+          div = $( '.hide .pulled_aviso:first' )
+          div.parent('.row').clone().prependTo('.container .row:first')
+          div.children( 'h4' ).html(aviso.titular)
+          div.children( '.contenido' ).html(aviso.contenido)
+          div.attr( 'id', '#av' + aviso.id )
+          div.parent('.row').removeClass( 'hide' )
+          #setCookiePulledAviso( aviso.id )
   
   @setCookiePulledAviso = (id) ->
     dcAviso = "av_" + id

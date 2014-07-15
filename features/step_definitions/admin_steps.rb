@@ -2,6 +2,10 @@ Given(/^there is one Aviso created$/) do
   aviso = FactoryGirl.create( :aviso )
 end
 
+Given(/^there is another Aviso created$/) do
+  aviso = FactoryGirl.create( :aviso, titular: nil, contenido: "Texto del segundo aviso" )
+end
+
 Given(/^there is one Aviso created without titular$/) do
   aviso = FactoryGirl.create( :aviso, titular: nil )
 end
@@ -101,6 +105,18 @@ Then(/^I should (not )?see the newly created Aviso$/) do |negation|
     else
       page.should have_selector( 'h4', text: Aviso.first.titular )
       page.should have_selector( '.contenido', text: Aviso.first.contenido )
+    end
+  end
+end
+
+Then(/^I should (not )?see the latest created Aviso$/) do |negation|
+  using_wait_time 10 do
+    if negation
+      page.should_not have_selector( 'h4', text: Aviso.last.titular )
+      page.should_not have_selector( '.contenido', text: Aviso.last.contenido )
+    else
+      page.should have_selector( 'h4', text: Aviso.last.titular )
+      page.should have_selector( '.contenido', text: Aviso.last.contenido )
     end
   end
 end

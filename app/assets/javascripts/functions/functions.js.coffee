@@ -449,23 +449,20 @@ root.analytics_loaded = false
         $('body').append "AJAX Error: #{textStatus}"
       success: (data, textStatus, jqXHR) ->
         unless data.shown == "true" # do not show Avisos that are already in screen
-          showAvisoDiv( aviso )
-          # div = $( '.hide .pulled_aviso:first' )
-          # div.parent('.row').clone().prependTo('.container .row:first')
-          # div.children( 'h4' ).html(aviso.titular)
-          # div.children( '.contenido' ).html(aviso.contenido)
-          # div.attr( 'id', '#av' + aviso.id )
-          # div.parent('.row').removeClass( 'hide' )
-          # changeAvisoStatus( aviso, "true" )
+          showAvisoDiv( aviso ) # show the Aviso
+          changeAvisoStatus( aviso, "true" ) # mark the Aviso as shown
+
   @showAvisoDiv = ( aviso ) ->
-    div = $( '.hide .pulled_aviso:first' )
-    div.parent('.row').clone().prependTo('.container .row:first')
-    div.children( 'h4' ).html(aviso.titular)
-    div.children( '.contenido' ).html(aviso.contenido)
+    # build and show a warning div for a given aviso
+    bare_div = $( '.barebones_aviso.hide:first' )
+    div = bare_div.clone()
+    target_position = $( '#d-policy-disclaimer')
+    target_position.after( div )
+    div.children( '.alert' ).children('h4').html(aviso.titular)
+    div.children( '.alert' ).children( '.contenido' ).html(aviso.contenido)
     div.attr( 'id', '#av' + aviso.id )
-    div.parent('.row').removeClass( 'hide' )
-    changeAvisoStatus( aviso, "true" )
-    
+    div.removeClass( 'hide' )
+
   @changeAvisoStatus = (aviso, status) ->
     # ajax request that marks an Aviso as already shown
     $.ajax "online/avisos/#{aviso.id}/change_shown_status",

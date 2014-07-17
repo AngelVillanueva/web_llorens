@@ -440,7 +440,6 @@ root.analytics_loaded = false
           #   setAvisoAsShown( aviso )
   
   @showIfNotShown = (aviso) ->
-    shown = ""
     # ajax request that returns true if the Aviso is already shown
     shown_request = $.ajax "/online/avisos/#{aviso.id}.json",
       type: 'GET',

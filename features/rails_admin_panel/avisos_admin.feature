@@ -37,7 +37,7 @@ Feature: Avisos created from the admin panel
     Then I should see the newly created Aviso
       And there is another Aviso created
     Then I should see the latest created Aviso
-@avisos @avisos2 @javascript @now
+@avisos @avisos2 @javascript
   Scenario: new Avisos should be auto pulled just once per page
     Given I am a registered User
     When I visit the application home page

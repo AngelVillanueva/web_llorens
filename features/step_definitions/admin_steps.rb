@@ -221,7 +221,15 @@ end
 
 Then(/^if I stay in the same page I should not see the newly created Aviso twice$/) do
   using_wait_time 10 do
-    expect( page ).to have_css( ".already" )
-    expect( page ).to have_selector( ".modal-body", maximum: 1 )
+    expect( page ).to have_selector( ".contenido", maximum: 1 )
+  end
+end
+Then(/^if I stay in the same page$/) do
+  using_wait_time 10 do
+  end
+end
+Then(/^I should not see the newly created Aviso twice$/) do
+  using_wait_time 10 do
+    expect( page ).to have_selector( ".contenido", count: Aviso.count )
   end
 end

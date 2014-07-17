@@ -429,17 +429,48 @@ root.analytics_loaded = false
         $('body').append "AJAX Error: #{textStatus}"
     success: (data, textStatus, jqXHR) ->
         $.each data.avisos, ( index, aviso ) ->
-          #unless existsCookie( 'av_' + aviso.id )
+          showIfNotShown( aviso )
+          # unless alreadyShown( aviso )
+          #   div = $( '.hide .pulled_aviso:first' )
+          #   div.parent('.row').clone().prependTo('.container .row:first')
+          #   div.children( 'h4' ).html(aviso.titular)
+          #   div.children( '.contenido' ).html(aviso.contenido)
+          #   div.attr( 'id', '#av' + aviso.id )
+          #   div.parent('.row').removeClass( 'hide' )
+          #   setAvisoAsShown( aviso )
+  
+  @showIfNotShown = (aviso) ->
+    shown = ""
+    # ajax request that returns true if the Aviso is already shown
+    shown_request = $.ajax "/online/avisos/#{aviso.id}.json",
+      type: 'GET',
+      dataType: 'json',
+      contentType: 'application/json',
+      error: (jqXHR, textStatus, errorThrown) ->
+        $('body').append "AJAX Error: #{textStatus}"
+      success: (data, textStatus, jqXHR) ->
+        shown = data.shown
+        # if shown == "true"
+        #   is_already_shown = true
+        # if shown == "false"
+        #   is_already_shown = false
+        # is_already_shown
+        unless shown == "true"
           div = $( '.hide .pulled_aviso:first' )
           div.parent('.row').clone().prependTo('.container .row:first')
           div.children( 'h4' ).html(aviso.titular)
           div.children( '.contenido' ).html(aviso.contenido)
           div.attr( 'id', '#av' + aviso.id )
           div.parent('.row').removeClass( 'hide' )
-          #setCookiePulledAviso( aviso.id )
-  
-  @setCookiePulledAviso = (id) ->
-    dcAviso = "av_" + id
-    setCookieValue dcAviso
+          setAvisoAsShown( aviso )
 
-
+  @setAvisoAsShown = (aviso) ->
+    # ajax request that marks an Aviso as already shown
+    $.ajax "online/avisos/#{aviso.id}/change_shown_status",
+      type: 'POST',
+      data: JSON.stringify({ "shown": "true" }),
+      dataType: 'json',
+      contentType: "application/json",
+      error: (jqXHR, textStatus, errorThrown) ->
+        $('body').append "AJAX Error: #{textStatus}"
+      success: (data, textStatus, jqXHR) ->

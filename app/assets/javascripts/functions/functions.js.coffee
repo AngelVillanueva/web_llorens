@@ -449,11 +449,6 @@ root.analytics_loaded = false
         $('body').append "AJAX Error: #{textStatus}"
       success: (data, textStatus, jqXHR) ->
         shown = data.shown
-        # if shown == "true"
-        #   is_already_shown = true
-        # if shown == "false"
-        #   is_already_shown = false
-        # is_already_shown
         unless shown == "true"
           div = $( '.hide .pulled_aviso:first' )
           div.parent('.row').clone().prependTo('.container .row:first')
@@ -461,13 +456,13 @@ root.analytics_loaded = false
           div.children( '.contenido' ).html(aviso.contenido)
           div.attr( 'id', '#av' + aviso.id )
           div.parent('.row').removeClass( 'hide' )
-          setAvisoAsShown( aviso )
+          changeAvisoStatus( aviso, "true" )
 
-  @setAvisoAsShown = (aviso) ->
+  @changeAvisoStatus = (aviso, status) ->
     # ajax request that marks an Aviso as already shown
     $.ajax "online/avisos/#{aviso.id}/change_shown_status",
       type: 'POST',
-      data: JSON.stringify({ "shown": "true" }),
+      data: JSON.stringify({ "shown": status }),
       dataType: 'json',
       contentType: "application/json",
       error: (jqXHR, textStatus, errorThrown) ->

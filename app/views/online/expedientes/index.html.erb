@@ -2,7 +2,7 @@
 
 <%= render 'shared/avisos_pulled' %>
 
-<div class="about_page vista_tabla" data-pulltime="3000">
+<div class="about_page vista_tabla" data-pulltime="<%= new_avisos_pulltime %>">
   <%= render 'shared/section_wrapper',
       header_text: expediente.type.pluralize,
       linked_pdf: nil,

@@ -38,7 +38,7 @@ $(document).ready ->
   #modal alert init
   if ( $( '.modalAviso' ) ).length
     $( '#aviso1' ).modal( 'show' )
-  #new Avisos auto pulled every 10 seconds
+  #new Avisos auto pulled every time defined in new_avisos_pulltime helper
   if ( pulltime = $( '.about_page[data-pulltime]' ) ).length
     setInterval(
       getAvisos

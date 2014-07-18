@@ -37,7 +37,7 @@ Feature: Avisos created from the admin panel
     Then I should see the newly created Aviso
       And there is another Aviso created
     Then I should see the latest created Aviso
-@avisos @avisos2 @javascript @now
+@avisos @avisos2 @javascript
   Scenario Outline: new Avisos are pulled in Home and every listing page
     Given I am a registered User
     When I visit <a_selected_page>
@@ -61,13 +61,15 @@ Feature: Avisos created from the admin panel
       And there is another Aviso created
     Then I should see the latest created Aviso
     Then I should not see the newly created Aviso twice
-@avisos @avisos2 @javascript @wip
+@avisos @avisos2 @javascript
   Scenario: auto pulled new Avisos should not included the ones shown in the lightbox
     Given I am a registered User
       And there is one Aviso created
     When I visit the application home page
-      And there is one Aviso created
-    Then I should see the newly created Aviso
+    Then I should see the Aviso
+    When I close the lightbox
+      And there is another Aviso created
+    Then I should see the latest created Aviso
       But I should not see the Aviso previously shown in the lightbox
 @avisos @avisos2 @javascript @wip
   Scenario: auto reload of the page should not cause an Aviso to be lost

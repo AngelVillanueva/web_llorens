@@ -440,7 +440,7 @@ root.analytics_loaded = false
       error: (jqXHR, textStatus, errorThrown) ->
         $('body').append "AJAX Error: #{textStatus}"
       success: (data, textStatus, jqXHR) ->
-        unless data.shown == "true" # do not show Avisos that are already in screen
+        if data.shown == false # do not show Avisos that are already in screen
           showAvisoDiv( aviso ) # show the Aviso
           changeAvisoStatus( aviso, "true" ) # mark the Aviso as shown
 

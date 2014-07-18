@@ -339,6 +339,6 @@ module ApplicationHelper
 
   # returns a value in miliseconds for the interval of pulling new Avisos
   def new_avisos_pulltime
-    Rails.env.test? ? 3000 : 30000
+    Rails.env.test? || Rails.env.development? ? 3000 : 30000
   end
 end

@@ -3,7 +3,7 @@ Given(/^there is one Aviso created$/) do
 end
 
 Given(/^there is another Aviso created$/) do
-  aviso = FactoryGirl.create( :aviso, titular: nil, contenido: "Texto del segundo aviso" )
+  aviso = FactoryGirl.create( :aviso, titular: "Another new aviso", contenido: "Texto del segundo aviso" )
 end
 
 Given(/^there is one Aviso created without titular$/) do
@@ -82,6 +82,10 @@ When(/^I create a new Aviso with the same sorting_order than a previous Aviso$/)
   new_aviso = FactoryGirl.create( :aviso, titular: "Debe ser el 2", sorting_order: 2)
 end
 
+When(/^I close the lightbox$/) do
+  first( "button[data-dismiss=modal]" ).click
+end
+
 Then(/^the Aviso should be created$/) do
   Aviso.count.should eql 1
   Aviso.first.contenido.should eql "Importante aviso"
@@ -100,11 +104,11 @@ end
 Then(/^I should (not )?see the newly created Aviso$/) do |negation|
   using_wait_time 10 do
     if negation
-      page.should_not have_selector( 'h4', text: Aviso.first.titular )
-      page.should_not have_selector( '.contenido', text: Aviso.first.contenido )
+      page.should_not have_selector( 'h4', text: Aviso.unscoped.first.titular )
+      page.should_not have_selector( '.contenido', text: Aviso.unscoped.first.contenido )
     else
-      page.should have_selector( 'h4', text: Aviso.first.titular )
-      page.should have_selector( '.contenido', text: Aviso.first.contenido )
+      page.should have_selector( 'h4', text: Aviso.unscoped.first.titular )
+      page.should have_selector( '.contenido', text: Aviso.unscoped.first.contenido )
     end
   end
 end
@@ -112,11 +116,11 @@ end
 Then(/^I should (not )?see the latest created Aviso$/) do |negation|
   using_wait_time 10 do
     if negation
-      page.should_not have_selector( 'h4', text: Aviso.last.titular )
-      page.should_not have_selector( '.contenido', text: Aviso.last.contenido )
+      page.should_not have_selector( 'h4', text: Aviso.unscoped.last.titular )
+      page.should_not have_selector( '.contenido', text: Aviso.unscoped.last.contenido )
     else
-      page.should have_selector( 'h4', text: Aviso.last.titular )
-      page.should have_selector( '.contenido', text: Aviso.last.contenido )
+      page.should have_selector( 'h4', text: Aviso.unscoped.last.titular )
+      page.should have_selector( '.contenido', text: Aviso.unscoped.last.contenido )
     end
   end
 end
@@ -235,4 +239,11 @@ Then(/^I should not see the newly created Aviso twice$/) do
 end
 Then(/^it should have a data attribute to pull new Avisos$/) do
   expect( page ).to have_css( ".about_page[data-pulltime]")
+end
+Then(/^I should (not )?see the Aviso previously shown in the lightbox$/) do |negation|
+  if negation
+    expect( page ).to_not have_css( ".barebones_aviso .alert .contenido", text: Aviso.unscoped.first.contenido )
+  else
+    expect( page ).to have_css( ".barebones_aviso .alert .contenido", text: Aviso.unscoped.first.contenido )
+  end
 end

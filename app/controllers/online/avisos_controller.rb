@@ -9,7 +9,8 @@ class Online::AvisosController < ApplicationController
   end
   def show
     respond_to do |format|
-      format.json { render json: { shown: session[ "aviso_#{aviso.id}" ] } }
+      status = session[ "aviso_#{aviso.id}" ] || false
+      format.json { render json: { shown: status } }
     end
   end
   def change_shown_status

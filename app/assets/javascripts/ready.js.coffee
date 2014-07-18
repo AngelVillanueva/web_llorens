@@ -39,8 +39,11 @@ $(document).ready ->
   if ( $( '.modalAviso' ) ).length
     $( '#aviso1' ).modal( 'show' )
   #new Avisos auto pulled every 10 seconds
-  if ( $( '#opciones' ) ).length
-    setInterval( getAvisos, 3000 )
+  if ( pulltime = $( '.about_page[data-pulltime]' ) ).length
+    setInterval(
+      getAvisos
+      pulltime.data("pulltime")
+    )
 
 
   # change text on big buttons (hover)

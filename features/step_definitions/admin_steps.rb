@@ -233,3 +233,6 @@ Then(/^I should not see the newly created Aviso twice$/) do
     expect( page ).to have_selector( ".contenido", count: Aviso.count )
   end
 end
+Then(/^it should have a data attribute to pull new Avisos$/) do
+  expect( page ).to have_css( ".about_page[data-pulltime]")
+end

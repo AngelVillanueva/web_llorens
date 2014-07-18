@@ -48,9 +48,9 @@ Feature: Avisos created from the admin panel
     | a_selected_page |
     | the application home page |
     | the Matriculaciones index page |
-    # | the Transferencias index page |
-    # | the Justificantes index page |
-    # | the Informes index page |
+    | the Transferencias index page |
+    | the Justificantes index page |
+    | the Informes index page |
 @avisos @avisos2 @javascript
   Scenario: new Avisos should be auto pulled just once per page
     Given I am a registered User

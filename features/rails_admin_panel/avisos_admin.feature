@@ -29,18 +29,57 @@ Feature: Avisos created from the admin panel
       And there is one Aviso created
     When I visit the application home page
     Then I should see the Aviso
-@avisos @avisos2
-  Scenario Outline: users see Avisos in all index pages of Llorens online
+@avisos @avisos2 @javascript
+  Scenario: new Avisos should be auto pulled for already connected users
+    Given I am a registered User
+    When I visit the application home page
+      And there is one Aviso created
+    Then I should see the newly created Aviso
+      And there is another Aviso created
+    Then I should see the latest created Aviso
+@avisos @avisos2 @javascript
+  Scenario Outline: new Avisos are pulled in Home and every listing page
+    Given I am a registered User
+    When I visit <a_selected_page>
+    Then it should have a data attribute to pull new Avisos
+      And there is one Aviso created
+    Then I should see the newly created Aviso
+    Examples:
+    | a_selected_page |
+    | the application home page |
+    | the Matriculaciones index page |
+    | the Transferencias index page |
+    | the Justificantes index page |
+    | the Informes index page |
+@avisos @avisos2 @javascript
+  Scenario: new Avisos should be auto pulled just once per page
+    Given I am a registered User
+    When I visit the application home page
+      And there is one Aviso created
+    Then I should see the newly created Aviso
+      And if I stay in the same page
+      And there is another Aviso created
+    Then I should see the latest created Aviso
+    Then I should not see the newly created Aviso twice
+@avisos @avisos2 @javascript
+  Scenario: auto pulled new Avisos should not included the ones shown in the lightbox
     Given I am a registered User
       And there is one Aviso created
-    When I visit the <pages> index page
+    When I visit the application home page
     Then I should see the Aviso
-    Examples:
-    | pages |
-    | Matriculaciones |
-    | Transferencias  |
-    | Justificantes   |
-    | Informes        |
+    When I close the lightbox
+      And there is another Aviso created
+    Then I should see the latest created Aviso
+      But I should not see the Aviso previously shown in the lightbox
+@avisos @avisos2 @javascript @now
+  Scenario: auto reload of the page should not cause an Aviso to be lost
+    Given I am a registered User
+    When I visit the Justificantes index page
+      And there is one Aviso created
+    Then I should see the newly created Aviso
+      And if I do not close the Aviso
+      And the page is auto reloaded
+    Then I should see the newly created Aviso
 @avisos
   Scenario: Avisos with an expired maximum date should not be shown
     Given I am a registered User

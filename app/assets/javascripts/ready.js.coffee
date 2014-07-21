@@ -38,6 +38,13 @@ $(document).ready ->
   #modal alert init
   if ( $( '.modalAviso' ) ).length
     $( '#aviso1' ).modal( 'show' )
+  #new Avisos auto pulled every time defined in new_avisos_pulltime helper
+  if ( pulltime = $( '.about_page[data-pulltime]' ) ).length
+    setInterval(
+      getAvisos
+      pulltime.data("pulltime")
+    )
+
 
   # change text on big buttons (hover)
   $( 'li.new a span' ).hover(
@@ -232,7 +239,7 @@ $(document).ready ->
       ],
       []
     )
-    setTimeout(updateInformesNewVersion, 240000) # fired polling for new records
+    setTimeout(updateInformesNewVersion, 5000) # fired polling for new records
 
   # stock_vehicles (remote version)
   if ( $( '#stock_vehicles' ).length )

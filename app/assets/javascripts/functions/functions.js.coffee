@@ -419,5 +419,49 @@ root.analytics_loaded = false
   if value
     "<i class='icon icon-check'></i>"
 
+ # gets living Avisos for current usuario
+ @getAvisos = ->
+  response = $.ajax '/online/avisos',
+    type: 'GET',
+    dataType: 'json',
+    contentType: "application/json",
+    error: (jqXHR, textStatus, errorThrown) ->
+        $('body').append "AJAX Error: #{textStatus}"
+    success: (data, textStatus, jqXHR) ->
+        $.each data.avisos, ( index, aviso ) ->
+          showIfNotShown( aviso ) # show each not-shown Aviso
+  
+  @showIfNotShown = (aviso) ->
+    # ajax request that returns true if the Aviso is already shown
+    shown_request = $.ajax "/online/avisos/#{aviso.id}.json",
+      type: 'GET',
+      dataType: 'json',
+      contentType: 'application/json',
+      error: (jqXHR, textStatus, errorThrown) ->
+        $('body').append "AJAX Error: #{textStatus}"
+      success: (data, textStatus, jqXHR) ->
+        if data.shown == false # do not show Avisos that are already in screen
+          showAvisoDiv( aviso ) # show the Aviso
+          changeAvisoStatus( aviso, "true" ) # mark the Aviso as shown
 
+  @showAvisoDiv = ( aviso ) ->
+    # build and show a warning div for a given aviso
+    bare_div = $( '.barebones_aviso.hide:first' )
+    div = bare_div.clone()
+    target_position = $( '#d-policy-disclaimer')
+    target_position.after( div )
+    div.children( '.alert' ).children('h4').html(aviso.titular)
+    div.children( '.alert' ).children( '.contenido' ).html(aviso.contenido)
+    div.attr( 'id', 'av' + aviso.id )
+    div.removeClass( 'hide' )
 
+  @changeAvisoStatus = (aviso, status) ->
+    # ajax request that marks an Aviso as already shown
+    $.ajax "/online/avisos/#{aviso.id}/change_shown_status",
+      type: 'POST',
+      data: JSON.stringify({ "shown": status }),
+      dataType: 'json',
+      contentType: "application/json",
+      error: (jqXHR, textStatus, errorThrown) ->
+        $('body').append "AJAX Error: #{textStatus}"
+      success: (data, textStatus, jqXHR) ->

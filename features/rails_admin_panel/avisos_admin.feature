@@ -71,7 +71,7 @@ Feature: Avisos created from the admin panel
       And there is another Aviso created
     Then I should see the latest created Aviso
       But I should not see the Aviso previously shown in the lightbox
-@avisos @avisos2 @javascript @wip
+@avisos @avisos2 @javascript @now
   Scenario: auto reload of the page should not cause an Aviso to be lost
     Given I am a registered User
     When I visit the Justificantes index page

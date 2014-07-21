@@ -239,7 +239,7 @@ $(document).ready ->
       ],
       []
     )
-    setTimeout(updateInformesNewVersion, 240000) # fired polling for new records
+    setTimeout(updateInformesNewVersion, 5000) # fired polling for new records
 
   # stock_vehicles (remote version)
   if ( $( '#stock_vehicles' ).length )

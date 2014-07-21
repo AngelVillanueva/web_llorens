@@ -247,3 +247,11 @@ Then(/^I should (not )?see the Aviso previously shown in the lightbox$/) do |neg
     expect( page ).to have_css( ".barebones_aviso .alert .contenido", text: Aviso.unscoped.first.contenido )
   end
 end
+
+Then(/^if I do not close the Aviso$/) do
+  expect( page ).to have_selector( "#av#{Aviso.unscoped.last.id}" )
+end
+
+Then(/^the page is auto reloaded$/) do
+  visit online_justificantes_path
+end

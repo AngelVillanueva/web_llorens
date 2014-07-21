@@ -452,7 +452,7 @@ root.analytics_loaded = false
     target_position.after( div )
     div.children( '.alert' ).children('h4').html(aviso.titular)
     div.children( '.alert' ).children( '.contenido' ).html(aviso.contenido)
-    div.attr( 'id', '#av' + aviso.id )
+    div.attr( 'id', 'av' + aviso.id )
     div.removeClass( 'hide' )
 
   @changeAvisoStatus = (aviso, status) ->

@@ -1,5 +1,5 @@
 class ExpedientesDatatable
-  delegate :params, :h, :link_to, :matricula_cell_whole, :documentos_cell, to: :@view
+  delegate :params, :h, :link_to, :matricula_cell_whole, :documentos_cell, :ivtm_cell, to: :@view
 
   def initialize(view, type, current_ability)
     @view = view
@@ -50,6 +50,7 @@ class ExpedientesDatatable
           expediente.modelo,
           I18n.l(expediente.fecha_alta),
           expediente.fecha_sale_trafico.nil? ? "" : I18n.l(expediente.fecha_sale_trafico),
+          ivtm_cell( expediente ),
           documentos_cell( expediente )
         ]
       end
@@ -135,6 +136,9 @@ class ExpedientesDatatable
         if column == "has_documentos"
           filter = searched == "Ver PDF" ? "TRUE" : "FALSE"
           expedientes = expedientes.where("#{column} IS #{filter}")
+        elsif column == "ivtm"
+          filter = searched.gsub(",", ".").to_f
+          expedientes = expedientes.where("#{column} = ?", filter)
         elsif column.include? "fecha"
           lapse = searched.split("~")
           unless lapse[1].nil?
@@ -153,7 +157,7 @@ class ExpedientesDatatable
   def type_columns
     case @type.to_s
     when "Matriculacion"
-      columns = %w[clientes.nombre matricula bastidor comprador modelo fecha_alta fecha_facturacion has_documentos]
+      columns = %w[clientes.nombre matricula bastidor comprador modelo fecha_alta fecha_facturacion ivtm has_documentos]
     when "Transferencia"
       columns = %w[clientes.nombre matricula comprador vendedor marca fecha_alta fecha_facturacion fecha_resolucion_incidencia has_documentos]
     end

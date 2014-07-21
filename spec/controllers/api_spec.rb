@@ -224,6 +224,7 @@ private
     expediente[:observaciones] = "AAA"
     expediente[:incidencia] = "Hay tomate"
     expediente[:fecha_resolucion_incidencia] = Date.today
+    expediente[:ivtm] = 30.08
     expediente
   end
   def mock_bad_expediente kind

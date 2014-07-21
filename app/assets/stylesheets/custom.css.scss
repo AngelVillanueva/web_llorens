@@ -590,3 +590,18 @@ ul.remarketing {
     width: auto;
   }
 }
+
+.thivtm, .thmatricula {
+  width: 30px;
+}
+.thdtramite { 
+  width: 90px;
+}
+.thdocs { 
+  width: 60px;
+}
+@media (max-width: 489px) {
+  .thivtm, .thmatricula, .thdocs, .thdtramite {
+    width: auto;
+  }
+}

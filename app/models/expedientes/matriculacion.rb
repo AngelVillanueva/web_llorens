@@ -43,7 +43,23 @@ class Matriculacion < Expediente
     end
   end
 
+
   rails_admin do
+    # common configuration for IVTM field, also for created_at & updated_at
+    configure :ivtm do
+      label "IVTM"
+      pretty_value do
+        # use helper to show the formatted value
+        bindings[:view].ivtm_cell( bindings[:object] )
+      end
+    end
+    configure :created_at do
+      label I18n.t( "activerecord.attributes.created_at" ).titleize
+    end
+    configure :updated_at do
+      label I18n.t( "activerecord.attributes.updated_at" ).titleize
+    end
+    # edit/create forms configuration
     edit do
       group :advanced do
         label I18n.t("Advanced")
@@ -111,6 +127,13 @@ class Matriculacion < Expediente
           bindings[:controller].current_usuario.role? "employee"
         end
       end
+      field :ivtm do
+        group :advanced
+        read_only do
+          # controller bindings is available here. Example:
+          bindings[:controller].current_usuario.role? "employee"
+        end
+      end
       field :vendedor do
         group :advanced
         read_only do
@@ -142,6 +165,32 @@ class Matriculacion < Expediente
           bindings[:controller].current_usuario.role? "employee"
         end
       end
+    end
+    # list configuration
+    list do
+      field :id
+      field :identificador
+      field :matricula
+      field :bastidor
+      field :comprador
+      field :vendedor
+      field :marca
+      field :modelo
+      field :fecha_alta
+      field :fecha_entra_trafico
+      field :fecha_facturacion
+      field :ivtm
+      field :created_at
+      field :updated_at
+      field :observaciones
+      field :type
+      field :cliente
+      field :llorens_cliente_id
+      field :pdf
+      field :incidencia
+      field :has_incidencia
+      field :has_documentos
+      field :fecha_resolucion_incidencia
     end
   end
 end

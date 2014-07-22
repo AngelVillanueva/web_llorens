@@ -79,6 +79,7 @@ FactoryGirl.define do
   factory :aviso do
     titular "De: Quevedo"
     contenido "Un soneto me manda hacer Violante, que en mi vida me he visto en tal aprieto. 8 versos dicen que es soneto, burla burlando van los dos primeros."
+    sequence( :created_at ) { |n| (1000-n).hour.ago }
   end
 
   factory :guardia do

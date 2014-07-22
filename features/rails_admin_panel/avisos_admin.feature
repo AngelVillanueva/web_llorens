@@ -89,18 +89,17 @@ Feature: Avisos created from the admin panel
       And I should be able to close the Aviso
     When I visit the application home page
     Then I should be able to see the second Aviso
-@avisos
+@avisos @now
   Scenario: Avisos should be shown following the admin defined order
     Given I am a registered User
       And there are two Avisos created
       And the admin user has reordered them
     When I visit the application home page
     Then I should see the Avisos in the admin user defined order
-@avisos
+@avisos @now @javascript
   Scenario: a new Aviso with informed sorting_order changes the sorting_order of all affected avisos
     Given I am an admin user
-    When I create a new Aviso with the same sorting_order than a previous Aviso
-    Then the previous Aviso should change its sorting_order by 1
-      And all the following Avisos should also change its sorting_order by 1
-      But the non affected Avisos should not change its sorting_order
+    When I create a new Aviso without sorting order
+      And I create a new Aviso with the same sorting_order
+    Then the first Aviso to appear should be the latest Aviso created
 

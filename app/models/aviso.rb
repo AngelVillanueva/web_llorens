@@ -15,23 +15,28 @@
 class Aviso < ActiveRecord::Base
   has_many :notificaciones, dependent: :destroy
   has_many :usuarios, through: :notificaciones
-  default_scope order( "sorting_order ASC" )
+  default_scope order( "sorting_order ASC, created_at DESC" )
   scope :vivos,  lambda{ where( "fecha_de_caducidad IS NULL OR fecha_de_caducidad > ?", Date.today ) }
   scope :caducados, lambda{ where( "fecha_de_caducidad < ?", Date.today ) }
 
   validates :contenido, presence: true
 
   after_create :create_notificaciones
-  before_save :assign_caducidad
-  before_save :assign_sorting_order
+  after_initialize do
+    self.fecha_de_caducidad ||= 1.year.from_now
+    self.dias_visible_desde_ultimo_login ||= 7
+    self.sorting_order ||= 1
+  end
+  before_save :assign_default_values
 
   rails_admin do
     list do
-      sort_by :sorting_order
+      sort_by "sorting_order ASC, created_at"
       field :id
       field :sorting_order do
         label I18n.t( "Sorting order" )
       end
+      field :created_at
       field :titular
       field :contenido do
         pretty_value do
@@ -93,25 +98,10 @@ class Aviso < ActiveRecord::Base
     end
   end
 
-  def assign_caducidad
+  def assign_default_values
     self.fecha_de_caducidad = 1.year.from_now if fecha_de_caducidad.nil?
     self.dias_visible_desde_ultimo_login = 7 if dias_visible_desde_ultimo_login.nil?
-  end
-
-  def assign_sorting_order
-    if sorting_order.nil?
-      Aviso.all.each do |a|
-        a.sorting_order = a.sorting_order.nil? ? 1 : a.sorting_order + 1
-        a.save!
-      end
-      self.sorting_order = 1
-    elsif sorting_order_changed?
-      affected_avisos = Aviso.where( "sorting_order >= ?", sorting_order )
-      affected_avisos.each do |aa|
-        aa.sorting_order = aa.sorting_order + 1
-        aa.save!
-      end
-    end
+    self.sorting_order = 1 if sorting_order.nil?
   end
 
 end

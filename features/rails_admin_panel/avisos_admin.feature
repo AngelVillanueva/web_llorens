@@ -117,27 +117,11 @@ Feature: Avisos created from the admin panel
     Then I should see the Aviso
       And I should be able to close the Aviso
 
-@avisos @avisos2 @javascript
-  Scenario: users can close Avisos when shown
-    Given I am a registered User
-      And there is one Aviso created
-    When I visit the Matriculaciones index page
-    Then I should see the Aviso
-      And I should be able to close the Aviso
-
 @avisos @javascript
   Scenario: users can see all existing Avisos
     Given I am a registered User
       And there are two Avisos created
     When I visit the application home page
-    Then I should see the first Aviso
-      And I should be able to see the second Aviso also
-
-@avisos @avisos2 @javascript
-  Scenario: users can see all existing Avisos
-    Given I am a registered User
-      And there are two Avisos created
-    When I visit the Justificantes index page
     Then I should see the first Aviso
       And I should be able to see the second Aviso also
 
@@ -164,7 +148,7 @@ Feature: Avisos created from the admin panel
       And the admin user has reordered them
     When I visit the application home page
     Then I should see the Avisos in the admin user defined order
-@avisos
+@avisos @sorting
   Scenario: a new Aviso with informed sorting_order changes the sorting_order of all affected avisos
     Given I am an admin user
     When I create a new Aviso with the same sorting_order than a previous Aviso

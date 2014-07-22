@@ -18,7 +18,7 @@ Given(/^the Cliente I belong to has (\d+) (complete )?Stock Vehicles$/) do |quan
   mi_cliente.save!
   if status
     factory = :stock_vehicle_completo
-  elsif
+  else
     factory = :stock_vehicle
   end
   quantity.to_i.times do |n|

@@ -76,6 +76,13 @@ When(/^I visit the application home page per second time during the same session
 end
 
 When(/^I create a new Aviso with the same sorting_order than a previous Aviso$/) do
+  aviso_10 = FactoryGirl.create( :aviso, titular: "Debe ser el 11" )
+  aviso_9 = FactoryGirl.create( :aviso, titular: "Debe ser el 10" )
+  aviso_8 = FactoryGirl.create( :aviso, titular: "Debe ser el 9" )
+  aviso_7 = FactoryGirl.create( :aviso, titular: "Debe ser el 8" )
+  aviso_6 = FactoryGirl.create( :aviso, titular: "Debe ser el 7" )
+  aviso_5 = FactoryGirl.create( :aviso, titular: "Debe ser el 6" )
+  aviso_4 = FactoryGirl.create( :aviso, titular: "Debe ser el 5" )
   aviso_3 = FactoryGirl.create( :aviso, titular: "Debe ser el 4" )
   aviso_2 = FactoryGirl.create( :aviso, titular: "Debe ser el 3" )
   aviso_1 = FactoryGirl.create( :aviso, titular: "Debe ser el 1")

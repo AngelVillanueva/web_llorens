@@ -71,6 +71,14 @@ When(/^I visit the application home page per second time during the same session
   visit online_root_path
 end
 
+When(/^I create a new Aviso without sorting order$/) do
+  my_aviso = FactoryGirl.create( :aviso, sorting_order: nil, titular: "Soy el penultimo Aviso creado" )
+end
+
+When(/^I create a new Aviso with the same sorting_order$/) do
+  newer_aviso = FactoryGirl.create( :aviso, sorting_order: 1, titular: "Soy el ultimo creado" )
+end
+
 When(/^I create a new Aviso with the same sorting_order than a previous Aviso$/) do
   aviso_3 = FactoryGirl.create( :aviso, titular: "Debe ser el 4" )
   aviso_2 = FactoryGirl.create( :aviso, titular: "Debe ser el 3" )
@@ -189,4 +197,15 @@ Then(/^I should (not )?see the StockVehicles menu link$/) do |negation|
   else
     page.should have_css( "li[data-model=stock_vehicle] a" )
   end
+end
+
+Then(/^the first Aviso to appear should be the latest Aviso created$/) do
+  visit online_root_path
+  my_aviso = Aviso.where(titular: "Soy el ultimo creado").first
+  page.should have_selector( 'h3', text: my_aviso.titular )
+  page.should have_selector( '.modal-body', text: my_aviso.contenido )
+  visit rails_admin.dashboard_path
+  find( "li[data-model=aviso] a" ).click
+  cell = first("tr td.titular_field")
+  expect( cell ).to have_content( my_aviso.titular )
 end

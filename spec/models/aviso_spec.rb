@@ -18,6 +18,7 @@ describe Aviso do
   let( :aviso ) { FactoryGirl.create( :aviso ) }
   let( :usuario1 ) { FactoryGirl.create( :usuario ) }
   let( :usuario2 ) { FactoryGirl.create( :usuario, email: "el2@example.com" ) }
+  let( :new_aviso ) { FactoryGirl.create( :aviso, sorting_order: 10 ) }
   subject { aviso }
 
   describe "with valid attributes" do
@@ -68,27 +69,11 @@ describe Aviso do
     end
   end
 
-  describe "a new Aviso with no sorting_order should change the sorting_order of all the rest if needed" do
-    it "should change the sorting_order of all the chain" do
-      expect { new_aviso = FactoryGirl.create( :aviso ) }.to change{ aviso.reload.sorting_order }.by(1)
-    end
-  end
-
-  describe "a new Aviso with sorting_order should change the sorting_order of all the affected avisos" do
-    it "should change the sorting_order of just part of the chain" do
-      expect { new_aviso = FactoryGirl.create( :aviso ) }.to change{ aviso.reload.sorting_order }.by(1)
-      expect { newer_aviso = FactoryGirl.create( :aviso, sorting_order: 2 ) }.to change{ aviso.reload.sorting_order }.by(1)
-      expect { newest_aviso = FactoryGirl.create( :aviso, sorting_order: 4) }.to_not change { aviso.reload.sorting_order }.by(1)
-    end
-  end
-
-  describe "a saved Aviso with unchanged sorting_order should not affect the chain" do
-    it "should not touch the chain" do
+  describe "when two Avisos have the same sorting order" do
+    it "the newer goes first" do
       aviso_1 = FactoryGirl.create( :aviso, sorting_order: 1 )
-      aviso_2 = FactoryGirl.create( :aviso, sorting_order: 2 )
-      aviso_3 = FactoryGirl.create( :aviso, sorting_order: 3 )
-      expect { aviso_1.save! }.to_not change{ aviso_2.reload.sorting_order }
-      expect { aviso_1.save! }.to_not change{ aviso_3.reload.sorting_order }    
+      aviso_2 = FactoryGirl.create( :aviso, sorting_order: 1 )
+      expect( Aviso.first ).to eql aviso_2
     end
   end
 
@@ -96,7 +81,7 @@ describe Aviso do
     it "should destroy the related" do
       expect( usuario1 ).to be_valid
       expect( usuario2 ).to be_valid
-      expect { new_aviso = FactoryGirl.create( :aviso ) }.to change{ Notificacion.count }.by(2)
+      expect { new_aviso }.to change{ Notificacion.count }.by(2)
       expect { Aviso.last.destroy }.to change{ Notificacion.count }.by( -2 )
     end
   end

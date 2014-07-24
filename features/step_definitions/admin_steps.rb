@@ -97,6 +97,12 @@ When(/^I close the Aviso warning$/) do
   first( ".barebones_aviso button.close" ).click
 end
 
+When(/^I check the Aviso status via session$/) do
+  Aviso.count.should eql 1
+  visit online_aviso_path( Aviso.first, format: :json )
+  expect( page.body ).to have_content( "true" )
+end
+
 Then(/^the Aviso should be created$/) do
   Aviso.count.should eql 1
   Aviso.first.contenido.should eql "Importante aviso"
@@ -265,12 +271,4 @@ end
 
 Then(/^the page is auto reloaded$/) do
   visit online_justificantes_path
-end
-
-Then(/^I should not see again the closed Aviso$/) do
-  expect( Aviso.count ).to eql 1
-  aviso_id_string = "av#{Aviso.first.id}"
-  using_wait_time 10 do
-    expect( page ).to_not have_selector( "#{aviso_id_string}" )
-  end
 end

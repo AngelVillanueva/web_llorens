@@ -5,6 +5,7 @@ Shared functions
 root = exports ? this
 root._gaq = [['_setAccount', 'UA-44468535-1'], ['_trackPageview']]
 root.analytics_loaded = false
+root.not_seen_avisos = []
 
 # inject analytics tracking code
 @injectAnalytics = ->
@@ -440,9 +441,10 @@ root.analytics_loaded = false
       error: (jqXHR, textStatus, errorThrown) ->
         $('body').append "AJAX Error: #{textStatus}"
       success: (data, textStatus, jqXHR) ->
-        if data.shown == false # do not show Avisos that are already in screen
+        if data.shown == false # do not show Avisos that are already in screen or shown
           showAvisoDiv( aviso ) # show the Aviso
           changeAvisoStatus( aviso.id, "true" ) # mark the Aviso as shown
+          markAvisoAsNotSeen( aviso.id ) # mark the Aviso as not seen yet
 
   @showAvisoDiv = ( aviso ) ->
     # build and show a warning div for a given aviso
@@ -465,3 +467,12 @@ root.analytics_loaded = false
       error: (jqXHR, textStatus, errorThrown) ->
         $('body').append "AJAX Error: #{textStatus}"
       success: (data, textStatus, jqXHR) ->
+
+  # if the aviso_id is not in the not seen aviso array, push it there
+  @markAvisoAsNotSeen = (aviso_id) ->
+    root.not_seen_avisos.push aviso_id if $.inArray( aviso_id, root.not_seen_avisos) == -1
+
+  # remove aviso_id from the not seen aviso array --> mark Aviso as seen
+  @markAvisoAsSeen = (aviso_id, matriz) ->
+    if $.inArray( aviso_id, matriz)
+      matriz.splice( $.inArray(aviso_id, matriz), 1 );

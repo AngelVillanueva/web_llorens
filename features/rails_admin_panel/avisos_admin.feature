@@ -61,13 +61,14 @@ Feature: Avisos created from the admin panel
       And there is another Aviso created
     Then I should see the latest created Aviso
     Then I should not see the newly created Aviso twice
-@avisos @avisos2 @javascript @now
+@avisos @avisos2 @javascript
   Scenario: auto pulled new Avisos will not be shown again once closed
     Given I am a registered User
     When I visit the application home page
       And there is one Aviso created
     Then I should see the newly created Aviso
     When I close the Aviso warning
+      And I check the Aviso status via session
       And I visit the application home page
     Then I should not see the newly created Aviso
       And I should not see the Aviso
@@ -81,7 +82,8 @@ Feature: Avisos created from the admin panel
       And there is another Aviso created
     Then I should see the latest created Aviso
       But I should not see the Aviso previously shown in the lightbox
-@avisos @avisos2 @javascript @now
+#not sure how to do it without repeating on screen Avisos
+@avisos @avisos2 @javascript @wip
   Scenario: auto reload of the page should not cause an Aviso to be lost
     Given I am a registered User
     When I visit the Justificantes index page
@@ -158,7 +160,7 @@ Feature: Avisos created from the admin panel
       And the admin user has reordered them
     When I visit the application home page
     Then I should see the Avisos in the admin user defined order
-@avisos @sorting
+@avisos @sorting @wip
   Scenario: a new Aviso with informed sorting_order changes the sorting_order of all affected avisos
     Given I am an admin user
     When I create a new Aviso with the same sorting_order than a previous Aviso

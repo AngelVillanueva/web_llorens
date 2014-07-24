@@ -93,6 +93,10 @@ When(/^I close the lightbox$/) do
   first( "button[data-dismiss=modal]" ).click
 end
 
+When(/^I close the Aviso warning$/) do
+  first( ".barebones_aviso button.close" ).click
+end
+
 Then(/^the Aviso should be created$/) do
   Aviso.count.should eql 1
   Aviso.first.contenido.should eql "Importante aviso"
@@ -261,4 +265,12 @@ end
 
 Then(/^the page is auto reloaded$/) do
   visit online_justificantes_path
+end
+
+Then(/^I should not see again the closed Aviso$/) do
+  expect( Aviso.count ).to eql 1
+  aviso_id_string = "av#{Aviso.first.id}"
+  using_wait_time 10 do
+    expect( page ).to_not have_selector( "#{aviso_id_string}" )
+  end
 end

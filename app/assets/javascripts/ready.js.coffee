@@ -44,7 +44,10 @@ $(document).ready ->
       getAvisos
       pulltime.data("pulltime")
     )
-
+  #bind mark an Aviso as shown to the closing button of the Aviso warning
+  $('body').on 'click', '.barebones_aviso button.close', ->
+    aviso_id = $(this).parent('div').parent('div').attr('id').substring(2)
+    changeAvisoStatus( aviso_id, "true" )
 
   # change text on big buttons (hover)
   $( 'li.new a span' ).hover(

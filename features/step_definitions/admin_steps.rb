@@ -2,6 +2,10 @@ Given(/^there is one Aviso created$/) do
   aviso = FactoryGirl.create( :aviso )
 end
 
+Given(/^there is another Aviso created$/) do
+  aviso = FactoryGirl.create( :aviso, titular: "Another new aviso", contenido: "Texto del segundo aviso" )
+end
+
 Given(/^there is one Aviso created without titular$/) do
   aviso = FactoryGirl.create( :aviso, titular: nil )
 end
@@ -80,10 +84,31 @@ When(/^I create a new Aviso with the same sorting_order$/) do
 end
 
 When(/^I create a new Aviso with the same sorting_order than a previous Aviso$/) do
+  aviso_10 = FactoryGirl.create( :aviso, titular: "Debe ser el 11" )
+  aviso_9 = FactoryGirl.create( :aviso, titular: "Debe ser el 10" )
+  aviso_8 = FactoryGirl.create( :aviso, titular: "Debe ser el 9" )
+  aviso_7 = FactoryGirl.create( :aviso, titular: "Debe ser el 8" )
+  aviso_6 = FactoryGirl.create( :aviso, titular: "Debe ser el 7" )
+  aviso_5 = FactoryGirl.create( :aviso, titular: "Debe ser el 6" )
+  aviso_4 = FactoryGirl.create( :aviso, titular: "Debe ser el 5" )
   aviso_3 = FactoryGirl.create( :aviso, titular: "Debe ser el 4" )
   aviso_2 = FactoryGirl.create( :aviso, titular: "Debe ser el 3" )
   aviso_1 = FactoryGirl.create( :aviso, titular: "Debe ser el 1")
   new_aviso = FactoryGirl.create( :aviso, titular: "Debe ser el 2", sorting_order: 2)
+end
+
+When(/^I close the lightbox$/) do
+  first( "button[data-dismiss=modal]" ).click
+end
+
+When(/^I close the Aviso warning$/) do
+  first( ".barebones_aviso button.close" ).click
+end
+
+When(/^I check the Aviso status via session$/) do
+  Aviso.count.should eql 1
+  visit online_aviso_path( Aviso.first, format: :json )
+  expect( page.body ).to have_content( "true" )
 end
 
 Then(/^the Aviso should be created$/) do
@@ -98,6 +123,30 @@ Then(/^I should (not )?see the Aviso$/) do |negation|
   else
     page.should have_selector( 'h3', text: Aviso.first.titular )
     page.should have_selector( '.modal-body', text: Aviso.first.contenido )
+  end
+end
+
+Then(/^I should (not )?see the newly created Aviso$/) do |negation|
+  using_wait_time 10 do
+    if negation
+      page.should_not have_selector( 'h4', text: Aviso.unscoped.first.titular )
+      page.should_not have_selector( '.contenido', text: Aviso.unscoped.first.contenido )
+    else
+      page.should have_selector( 'h4', text: Aviso.unscoped.first.titular )
+      page.should have_selector( '.contenido', text: Aviso.unscoped.first.contenido )
+    end
+  end
+end
+
+Then(/^I should (not )?see the latest created Aviso$/) do |negation|
+  using_wait_time 10 do
+    if negation
+      page.should_not have_selector( 'h4', text: Aviso.unscoped.last.titular )
+      page.should_not have_selector( '.contenido', text: Aviso.unscoped.last.contenido )
+    else
+      page.should have_selector( 'h4', text: Aviso.unscoped.last.titular )
+      page.should have_selector( '.contenido', text: Aviso.unscoped.last.contenido )
+    end
   end
 end
 
@@ -199,6 +248,7 @@ Then(/^I should (not )?see the StockVehicles menu link$/) do |negation|
   end
 end
 
+
 Then(/^the first Aviso to appear should be the latest Aviso created$/) do
   visit online_root_path
   my_aviso = Aviso.where(titular: "Soy el ultimo creado").first
@@ -208,4 +258,36 @@ Then(/^the first Aviso to appear should be the latest Aviso created$/) do
   find( "li[data-model=aviso] a" ).click
   cell = first("tr td.titular_field")
   expect( cell ).to have_content( my_aviso.titular )
+end
+Then(/^if I stay in the same page I should not see the newly created Aviso twice$/) do
+  using_wait_time 10 do
+    expect( page ).to have_selector( ".contenido", maximum: 1 )
+  end
+end
+Then(/^if I stay in the same page$/) do
+  using_wait_time 10 do
+  end
+end
+Then(/^I should not see the newly created Aviso twice$/) do
+  using_wait_time 10 do
+    expect( page ).to have_selector( ".contenido", count: Aviso.count )
+  end
+end
+Then(/^it should have a data attribute to pull new Avisos$/) do
+  expect( page ).to have_css( ".about_page[data-pulltime]")
+end
+Then(/^I should (not )?see the Aviso previously shown in the lightbox$/) do |negation|
+  if negation
+    expect( page ).to_not have_css( ".barebones_aviso .alert .contenido", text: Aviso.unscoped.first.contenido )
+  else
+    expect( page ).to have_css( ".barebones_aviso .alert .contenido", text: Aviso.unscoped.first.contenido )
+  end
+end
+
+Then(/^if I do not close the Aviso$/) do
+  expect( page ).to have_selector( "#av#{Aviso.unscoped.last.id}" )
+end
+
+Then(/^the page is auto reloaded$/) do
+  visit online_justificantes_path
 end

@@ -1,6 +1,8 @@
 <% provide :title, t("Listado de Expedientes", type: expediente.type.pluralize) %>
 
-<div class="about_page vista_tabla">
+<%= render 'shared/avisos_pulled' %>
+
+<div class="about_page vista_tabla" data-pulltime="<%= new_avisos_pulltime %>">
   <%= render 'shared/section_wrapper',
       header_text: expediente.type.pluralize,
       linked_pdf: nil,

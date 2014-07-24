@@ -4,7 +4,7 @@
   <% arialabel = "aviso#{indice}Label" %>
   <% checkid = "aviso_#{aviso.id}".to_sym %>
   
-  <% unless session[checkid] %>
+  <% unless session[checkid] == true || session[checkid] == "true" %>
     <!-- Modal -->
     <div id='<%= divid %>' class="modal modalAviso hide fade" tabindex="-1" role="dialog" aria-labelledby='<% arialabel %>' aria-hidden="true">
       <div class="modal-header">

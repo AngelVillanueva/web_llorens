@@ -2,6 +2,7 @@ class Online::ExpedientesController < OnlineController
   load_and_authorize_resource
   before_filter :authorize_edition, only: :edit
   #expose( :expedientes ) { Expediente.accessible_by( current_ability ) }
+  expose( :avisos ) { current_usuario.avisos.vivos }
   expose( :expedientes ) { expediente_type.scoped.accessible_by( current_ability ).page( params[ :page ] ).per( 10 ) }
   expose( :expediente_type ) { params[:type].constantize }
   expose( :expediente, attributes: :expediente_params )

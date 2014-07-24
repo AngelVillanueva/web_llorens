@@ -37,7 +37,22 @@ $(document).ready ->
 
   #modal alert init
   if ( $( '.modalAviso' ) ).length
-    $( '#aviso1' ).modal( 'show' )
+    $( '.modalAviso' ).first().modal( 'show' )
+  #new Avisos auto pulled every time defined in new_avisos_pulltime helper
+  if ( pulltime = $( '.about_page[data-pulltime]' ) ).length
+    setInterval(
+      getAvisos
+      pulltime.data("pulltime")
+    )
+  #bind mark an Aviso as shown and seen to the closing button of the Aviso warning
+  $('body').on 'click', '.barebones_aviso button.close', ->
+    aviso_id = $(this).parent('div').parent('div').attr('id').substring(2)
+    changeAvisoStatus( aviso_id, "true" ) # mark Aviso as Shown
+    markAvisoAsSeen( aviso_id, not_seen_avisos ) # mark Aviso as Seen
+  #bind mark an Aviso as seen to the closing button of the Aviso modal
+  # $('body').on 'click', '.modalAviso button.close', ->
+  #   aviso_id = $(this).parent('div').parent('div').attr('id').substring(5)
+  #   markAvisoAsSeen( aviso_id, not_seen_avisos ) # mark Aviso as Seen
 
   # change text on big buttons (hover)
   $( 'li.new a span' ).hover(
@@ -234,7 +249,7 @@ $(document).ready ->
       ],
       []
     )
-    setTimeout(updateInformesNewVersion, 240000) # fired polling for new records
+    setTimeout(updateInformesNewVersion, 5000) # fired polling for new records
 
   # stock_vehicles (remote version)
   if ( $( '#stock_vehicles' ).length )

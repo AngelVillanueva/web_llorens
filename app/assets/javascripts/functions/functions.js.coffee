@@ -442,7 +442,7 @@ root.analytics_loaded = false
       success: (data, textStatus, jqXHR) ->
         if data.shown == false # do not show Avisos that are already in screen
           showAvisoDiv( aviso ) # show the Aviso
-          changeAvisoStatus( aviso, "true" ) # mark the Aviso as shown
+          changeAvisoStatus( aviso.id, "true" ) # mark the Aviso as shown
 
   @showAvisoDiv = ( aviso ) ->
     # build and show a warning div for a given aviso
@@ -455,9 +455,9 @@ root.analytics_loaded = false
     div.attr( 'id', 'av' + aviso.id )
     div.removeClass( 'hide' )
 
-  @changeAvisoStatus = (aviso, status) ->
+  @changeAvisoStatus = (aviso_id, status) ->
     # ajax request that marks an Aviso as already shown
-    $.ajax "/online/avisos/#{aviso.id}/change_shown_status",
+    $.ajax "/online/avisos/#{aviso_id}/change_shown_status",
       type: 'POST',
       data: JSON.stringify({ "shown": status }),
       dataType: 'json',

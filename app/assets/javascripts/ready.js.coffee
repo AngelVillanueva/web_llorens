@@ -247,7 +247,7 @@ $(document).ready ->
         null,
         null
       ],
-      []
+      [3]
     )
     setTimeout(updateInformesNewVersion, 5000) # fired polling for new records
 

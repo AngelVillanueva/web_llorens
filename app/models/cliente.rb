@@ -12,9 +12,9 @@
 
 class Cliente < ActiveRecord::Base
   belongs_to :organizacion
-  has_many :expedientes
-  has_many :justificantes
-  has_many :informes
+  has_many :expedientes, dependent: :destroy
+  has_many :justificantes, dependent: :destroy
+  has_many :informes, dependent: :destroy
   has_many :stock_vehicles
   has_many :xml_vehicles
   validates :nombre, :identificador, :cif, :llorens_cliente_id, :organizacion_id, presence: true

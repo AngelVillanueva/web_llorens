@@ -1,6 +1,6 @@
 class ContactMailer < ActionMailer::Base
   if Rails.env.production?
-    recipients = [ "info@sinapse.es", "jbrugada@gestoriallorens.com" ]
+    recipients = [ "jbrugada@gestoriallorens.com" ]
   elsif Rails.env.test?
     recipients = [ "employee@llorens.com" ]
   else

@@ -59,8 +59,8 @@ group :development do
   gem 'meta_request' # rails_panel chrome extension.
   gem 'sextant', '0.2.3' # Navigate to 0.0.0.0:3000/rails/routes to see routes in the browser
   gem 'quiet_assets', '~> 1.0.2' # Get rid of loading assets info in development log
-  gem 'ruby_gntp', '~> 0.3.4' # Growl with Bullet
-  gem 'bullet', '~> 4.6.0' # Advise on n+1 queries
+  #gem 'ruby_gntp', '~> 0.3.4' # Growl with Bullet
+  #gem 'bullet', '~> 4.6.0' # Advise on n+1 queries
   gem 'lol_dba', '~> 1.5.0' # Advise on missing indexes
   #gem 'railroady' # SVG generator for models and associations
 end
@@ -69,7 +69,7 @@ group :test do
   gem 'rspec-rails', '~> 2.13.1'
   gem 'shoulda-matchers', '~> 2.1.0'
   gem 'capybara', '~> 2.1.0'
-  gem 'selenium-webdriver'
+  gem 'selenium-webdriver', '2.44'
   gem 'cucumber-rails', '1.3.1', require: false
   gem 'database_cleaner', '0.9.1'
   gem 'factory_girl_rails', '4.2.1'

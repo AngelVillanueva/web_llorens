@@ -1,0 +1,61 @@
+<% if mandato.new_record? %>
+  <div class="control-group imanuevo offset4">
+    <div class="controls checkbox">
+      <label class="control-label" for="imanuevo">
+        <input type="checkbox" name="imanuevo" id="imanuevo">
+        <%= t( "Solicitud de Mandato nuevo" ) %>
+      </label>
+    </div>
+  </div>
+  <div class="control-group imacompany offset4">
+    <div class="controls checkbox">
+      <label class="control-label" for="imacompany">
+        <input type="checkbox" name="imacompany" id="imacompany">
+        <%= t( "Solicitud de Mandato a nombre de empresa" ) %>
+      </label>
+    </div>
+  </div>
+  <%= render 'shared/primer_apellido' %>
+  <%= render 'shared/representante' %>
+  <%= render 'shared/bastidor' %>
+  <%= render 'shared/matricula' %>
+<% end %>
+
+<%= simple_form_for [:online, mandato], html: { class: 'form-horizontal mandatos', multipart: true } do |f| %>
+  <%= f.error_notification %>
+  <% if mandato.new_record? %>
+  <div class="span4">
+    <%= f.input :identificador, :as => :hidden, :input_html => { :value => Time.now.to_i.to_s } %>
+    <%= f.association :cliente,
+      collection: current_usuario.clientes, label_method: :nombre,
+      value_method: :id, include_blank: false %>
+    <%= f.input :nif_comprador, label: t( "NIF Comprador" ) %>
+    <%= f.input :nombre_razon_social, label: t("Nombre o Razon Social") %>
+    <%= f.input :primer_apellido, label: "* Primer apellido" %>
+    <%= f.input :segundo_apellido %>
+    <%= f.input :repre_nombre, label: "* Nombre Representante" %>
+    <%= f.input :repre_apellido_1, label: "* 1º apell. Representante" %>
+    <%= f.input :repre_apellido_2, label: "2º apell. Representante" %>
+    <%= f.input :nif_representante, label: "* NIF Representante" %>
+  </div>
+  <div class="span4">
+    <%= f.input :telefono , label: t( "Telefono Movil" ) %>
+    <%= f.input :provincia %>
+    <%= f.input :municipio %>
+    <%= f.input :direccion, input_html: { rows: "5" } %>
+  </div>
+  <div class="span4">
+    <%= f.input :matricula, label: "* Matricula" %>
+    <%= f.input :bastidor, label: "* Bastidor" %>
+    <%= f.input :marca %>
+    <%= f.input :modelo %>
+    <%= f.button :submit, t("Solicitar mandato"), class: 'pull-right btn-primary' %>
+  </div>
+  <% else %>
+  <div>
+    <%= t("PDF actual_html", pdf: mandato.pdf_file_name) unless mandato.pdf_file_name.nil? %>
+  </div>
+  <div><%= f.file_field :pdf %></div>
+  <%= f.button :submit, (mandato.new_record? ? t("Solicitar mandato") : t("Subir PDF")), class: 'btn-primary' %>
+  <% end %>
+<% end %>

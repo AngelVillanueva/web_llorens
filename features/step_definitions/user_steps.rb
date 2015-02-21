@@ -71,6 +71,19 @@ Given(/^I am a registered User with some Justificantes$/) do
     cliente: cliente )
 end
 
+Given(/^I am a registered User with no Mandatos$/) do
+  the_org = FactoryGirl.create(:organizacion)
+  one_usuario = FactoryGirl.create(:usuario, organizacion: the_org)
+  login_as( one_usuario, :scope => :usuario )
+end
+
+Given(/^I am a registered User with some Mandatos$/) do
+  login_as( usuario, :scope => :usuario )
+  mandato
+  mandato_2 = FactoryGirl.create( :mandato, matricula: "Otro mandato",
+    cliente: cliente )
+end
+
 Given(/^I am a registered User with some Informes$/) do
   login_as( usuario, :scope => :usuario )
   informe

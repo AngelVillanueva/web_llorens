@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140708111754) do
+ActiveRecord::Schema.define(:version => 20150220172534) do
 
   create_table "api_keys", :force => true do |t|
     t.string   "access_token"
@@ -153,6 +153,40 @@ ActiveRecord::Schema.define(:version => 20140708111754) do
   end
 
   add_index "justificantes", ["cliente_id"], :name => "index_justificantes_on_cliente_id"
+
+  create_table "mandatos", :force => true do |t|
+    t.string   "identificador"
+    t.string   "nif_comprador"
+    t.string   "nombre_razon_social"
+    t.string   "primer_apellido"
+    t.string   "segundo_apellido"
+    t.string   "provincia"
+    t.string   "municipio"
+    t.text     "direccion"
+    t.string   "matricula"
+    t.string   "bastidor"
+    t.string   "marca"
+    t.string   "modelo"
+    t.string   "pdf_file_name"
+    t.string   "pdf_content_type"
+    t.integer  "pdf_file_size"
+    t.date     "pdf_updated_at"
+    t.datetime "hora_solicitud"
+    t.datetime "hora_entrega"
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+    t.string   "telefono"
+    t.string   "secure_token"
+    t.boolean  "pending_code",        :default => true
+    t.string   "repre_nombre"
+    t.string   "repre_apellido_1"
+    t.string   "repre_apellido_2"
+    t.string   "nif_representante"
+    t.integer  "cliente_id"
+    t.boolean  "imacompany",          :default => false
+    t.boolean  "imanuevo",            :default => false
+    t.integer  "count_sms",           :default => 0
+  end
 
   create_table "notificaciones", :force => true do |t|
     t.integer  "aviso_id"

@@ -14,6 +14,7 @@ class Cliente < ActiveRecord::Base
   belongs_to :organizacion
   has_many :expedientes, dependent: :destroy
   has_many :justificantes, dependent: :destroy
+  has_many :mandatos, dependent: :destroy
   has_many :informes, dependent: :destroy
   has_many :stock_vehicles
   has_many :xml_vehicles
@@ -29,6 +30,7 @@ class Cliente < ActiveRecord::Base
         end
         field :expedientes
         field :justificantes
+        field :mandatos
         field :informes
       end
       field :nombre

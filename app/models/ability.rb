@@ -9,6 +9,7 @@ class Ability
     elsif usuario.role? "employee"
         can :manage, Expediente
         can :manage, Justificante
+        can :manage, Mandato
         can :manage, Informe
         can :manage, Cliente
         can :manage, StockVehicle
@@ -16,6 +17,7 @@ class Ability
     elsif usuario
         can :manage, Expediente, cliente_id: usuario.cliente_ids
         can :manage, Justificante, cliente_id: usuario.cliente_ids
+        can :manage, Mandato, cliente_id: usuario.cliente_ids
         can :manage, Informe, cliente_id: usuario.cliente_ids
         can :manage, Cliente, id: usuario.cliente_ids
         can :manage, StockVehicle, cliente: { :id => usuario.cliente_ids }

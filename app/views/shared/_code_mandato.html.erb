@@ -1,0 +1,21 @@
+<!-- Modal -->
+<div id="code_mandato_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby='code_mandato_aviso' aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id='code_mandato_aviso'><%= t( "Validacion de mandato" ) %></h3>
+  </div>
+  <div class="form-validator">
+    <%= simple_form_for [:online, mandato],  html: { class: 'form-horizontal mandatos', multipart: true } do |f| %>
+    <div class="modal-body">
+      <p><%= t( "Introduzca el codigo de validacion" ) %></p>
+      <%= f.input :id, :as => :hidden, :input_html => { :id => "mandato_identificador" } %>
+      <%= f.input :secure_token, label: t("Codigo de validacion") %>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" data-dismiss="modal" aria-hidden="true"><%= t("Cerrar") %></button> 
+      <%= f.button :submit, t("Validar mandato"), class: 'btn-primary' %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<!-- end of Modal -->

@@ -17,4 +17,5 @@ Feature: restricted access
         |      Matriculación (VN)     |
         | Transferencias y bajas (VO) |
         |  Solicitud de Justificantes |
+        |    Solicitud de Mandatos    |
         |    Solicitud de Informes    |

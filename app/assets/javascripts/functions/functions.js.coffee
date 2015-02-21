@@ -52,6 +52,18 @@ root.not_seen_avisos = []
   if( $('tr.justificante').length )
     setInterval(updateScreen, 240000)
 
+# polling Mandatos table data
+# @updateMandatos = ->
+#     if( $('tr.mandato').length )
+#       after = $('tr.mandato:eq(0)').attr('data-time')
+#       $.getScript('/online/mandatos.js?after=' + after)
+#       setTimeout(updateMandatos, 10000)
+#       setInterval(updateScreen, 15000)
+
+@updateMandatosNewVersion = ->
+  if( $('tr.mandato').length )
+    setInterval(updateScreen, 240000)
+
 # polling Informes table data
 # @updateInformes = ->
 #     if( $('tr.informe').length )
@@ -300,6 +312,54 @@ root.not_seen_avisos = []
       aoColumns: filtercolumns
     })
 
+# create remote DataTable for Mandatos
+@createRemoteMandatosDataTable = ( selector, sortcolumn, columntypes, excelname, exportcolumns, filtercolumns, datecolumns=[] ) ->
+  oTable = $( '#' + selector )
+  if ( oTable.length )
+    oTable.dataTable({
+      "sDom": "<'row'<'span6'T><'span6 pull-right'>r>t<'row-fluid'<'span6'i><'span6'p>>",
+      "sPaginationType": "bootstrap",
+      "aaSorting": sortcolumn,
+      "aoColumns": columntypes,
+      "bProcessing": true,
+      "bServerSide": true,
+      "sAjaxSource": oTable.data('source'),
+      "fnRowCallback": ( nRow, aData, iDisplayIndex ) ->
+        $(nRow).addClass('mandato');
+        $(nRow).addClass('new') if aData[15]==null
+        $('td', nRow).slice(0,14).addClass('printable')
+        $('td', nRow).slice(5,13).addClass('hidden')
+        $('td', nRow).slice(8,9).removeClass('hidden')
+        $('td', nRow).slice(9,11).removeClass('hidden').addClass('hideie8')
+        $('td', nRow).slice(14,18).addClass('icon')
+        return nRow
+      "oLanguage": {
+          "sSearch": "Buscar en la tabla",
+          "sLengthMenu": "Mostrar _MENU_ entradas por página",
+          "sZeroRecords": "Lo siento, no hay resultados",
+          "sInfo": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
+          "sInfoEmpty": "Mostrando 0 a 0 de 0 entradas",
+          "sInfoFiltered": "(filtrado de _MAX_ total entradas)"
+      },
+      "oTableTools": {
+        "aButtons": [ 
+          {
+            "sExtends": "download",
+            "sButtonText": "Download CSV",
+            "sUrl": oTable.data('xls'), # use 'csv' to export in CSV instead of XLS
+            "sInputName": selector,
+            "sExtraData": datecolumns,
+            "sCharSet": "utf16le"
+          }
+
+        ]
+      }
+    }).columnFilter({
+      sPlaceHolder: "head:before",
+      sRangeFormat: "De {from} a {to}",
+      aoColumns: filtercolumns
+    })
+
 # create remote DataTable for Informes
 @createRemoteInformesDataTable = ( selector, sortcolumn, columntypes, excelname, exportcolumns, filtercolumns, datecolumns=[] ) ->
   oTable = $( '#' + selector )
@@ -379,10 +439,10 @@ root.not_seen_avisos = []
 
 # handle Apellidos for new Justificante request
 @handleNewJustificanteApellidos = ->
-  changeApellidosLabelText()
+  changeApellidosLabelTextJustificante()
   $( 'div.justificante_primer_apellido, div.justificante_segundo_apellido' ).toggle()
 
-@changeApellidosLabelText = ->
+@changeApellidosLabelTextJustificante = ->
   label = $( '.justificante_nombre_razon_social label' )
   acc_label = $( '.justificante_nif_comprador label' )
   now = $( label ).text()
@@ -396,12 +456,78 @@ root.not_seen_avisos = []
   $( label ).text( new_text )
   $( acc_label ).text( acc_new_text )
 
+# clean for new Mandato fisico
+@cleanNewMandatoFisito = ->
+  $( 'div.mandato_repre_nombre input, div.mandato_repre_apellido_1 input, div.mandato_repre_apellido_2 input, div.mandato_nif_representante input, div.mandato_primer_apellido input, div.mandato_segundo_apellido').val('')
+
+# handle Apellidos for new Mandato request
+@handleNewMandatoApellidos = ->
+  changeApellidosLabelTextMandato()
+  $( 'div.mandato_primer_apellido, div.mandato_segundo_apellido' ).toggle()
+
+# handle Representante for new Mandato request
+@handleNewMandatoRepresentante= ->
+  $( 'div.mandato_repre_nombre, div.mandato_repre_apellido_1, div.mandato_repre_apellido_2, div.mandato_nif_representante' ).toggle()
+
+
+@changeApellidosLabelTextMandato = ->
+  label = $( '.mandato_nombre_razon_social label' )
+  acc_label = $( '.mandato_nif_comprador label' )
+  now = $( label ).text()
+  switch now
+    when "* Nombre"
+      new_text = "* Razón social"
+      acc_new_text = "* CIF del comprador"
+    when "* Razón social"
+      new_text = "* Nombre"
+      acc_new_text = "* NIF del comprador"
+  $( label ).text( new_text )
+  $( acc_label ).text( acc_new_text )
+
+# handle Matricula for new Mandato request
+@handleNewMandatoNewVehicle = ->
+  $( 'div.mandato_matricula, div.mandato_bastidor' ).toggle()
+
 # take cares of First name as mandatory field just for people (not companies)
-@handleFirstNameIfNotACompany = ->
+@handleFirstNameIfNotACompanyJustificante = ->
   acompany = $( '#imacompany' ).prop( 'checked' )
   first_name = $( '#justificante_primer_apellido' ).val()
   if !acompany && !first_name
     $( '#primer_apellido_modal' ).modal( 'show' )
+    return false
+
+# take cares of First name as mandatory field just for people (not companies)
+@handleFirstNameIfNotACompanyMandato = ->
+  acompany = $( '#imacompany' ).prop( 'checked' )
+  first_name = $( '#mandato_primer_apellido' ).val()
+  if !acompany && !first_name
+    $( '#primer_apellido_modal' ).modal( 'show' )
+    return false
+
+# take cares of Bastidor as mandatory field just for new vehicules
+@handleRepresentanteIfACompanyMandato = ->
+  acompany = $( '#imacompany' ).prop( 'checked' )
+  repre_nom = $( '#mandato_repre_nombre' ).val()
+  repre_ap1 = $( '#mandato_repre_apellido_1' ).val()
+  repre_nif = $( '#mandato_nif_representante' ).val()
+  if acompany && (!repre_nom || !repre_ap1 || !repre_nif)
+    $( '#representante_modal' ).modal( 'show' )
+    return false
+
+# take cares of Bastidor as mandatory field just for new vehicules
+@handleBastidorIfANewMandato = ->
+  anuevo = $( '#imanuevo' ).prop( 'checked' )
+  bastidor = $( '#mandato_bastidor' ).val()
+  if anuevo && !bastidor
+    $( '#bastidor_modal' ).modal( 'show' )
+    return false
+
+# take cares of Matricula as mandatory field just for not new vehicules
+@handleMatriculaIfNotANewMandato = ->
+  anuevo = $( '#imanuevo' ).prop( 'checked' )
+  matricula = $( '#mandato_matricula' ).val()
+  if !anuevo && !matricula
+    $( '#matricula_modal' ).modal( 'show' )
     return false
 
 # returns a date in local formatting (es)

@@ -1,0 +1,29 @@
+<% provide :title, t( "Mandato para", n: mandato.matricula ) %>
+
+<div class="about_page">
+  <%= render 'shared/section_wrapper',
+    header_text: t("Mandato profesional para", n: mandato.matricula),
+    index_link: 'mandatos',
+    print_element: 'table#mandato',
+    linked_pdf: !mandato.pdf.url.nil? && mandato || nil %>
+
+  <div class="row with_pdf">
+    <table id="mandato" class="table-condensed table-hover table-bordered">
+      <tbody>
+        <tr><td>Organización</td><td><%= mandato.organizacion.identificador %></td></tr>
+        <tr><td>Matrícula</td><td><%= mandato.matricula %></td></tr>
+        <tr><td>Bastidor</td><td><%= mandato.bastidor %></td></tr>
+        <tr><td>NIF Comprador</td><td><%= mandato.nif_comprador %></td></tr>
+        <tr><td>Nombre o Razón Social</td><td><%= mandato.nombre_razon_social %></td></tr>
+        <tr><td>Primer apellido</td><td><%= mandato.primer_apellido %></td></tr>
+        <tr><td>Segundo apellido</td><td><%= mandato.segundo_apellido %></td></tr>
+        <tr><td>Marca</td><td><%= mandato.marca %></td></tr>
+        <tr><td>Modelo</td><td><%= mandato.modelo %></td></tr>
+        <tr><td>Documentación</td><td><%= link_to t("Ampliar PDF"), mandato.pdf.url %></td></tr>
+      </tbody>
+    </table>
+
+    <iframe class="pdf" src="<%= mandato.pdf.url %>"></iframe>
+  </div>
+
+</div>

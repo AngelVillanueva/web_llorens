@@ -52,6 +52,16 @@
       <hr>
       <p class="description">Solicite un Informe de Tráfico y descárguelo en formato PDF</p>
     </li>
+    <li class="span3 teammate new">
+      <h5><%= link_to new_online_mandato_path do %>
+            <%= content_tag('span', "MD", class: 'MD pie') %>
+            <%= t("Solicitud Mandatos") %>
+          <% end %>
+      </h5>
+      <p>O bien <%= link_to "consulte", online_mandatos_path %> sus Mandatos</p>
+      <hr>
+      <p class="description">Aceptación Mandato de forma online</p>
+    </li>
     </ul>
   </div>
   <% if remarketing_links? %>

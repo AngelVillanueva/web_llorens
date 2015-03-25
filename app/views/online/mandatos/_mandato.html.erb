@@ -1,0 +1,53 @@
+<tr class="mandato <%= 'new' if mandato.pdf_file_name.nil? %>" data-time="<%= mandato.created_at.to_i %>">
+    <td class="printable" data-titular="Matricula">
+      <%= mandato.matricula_bastidor.upcase %>
+    </td>
+    <td class="printable" data-titular="NIF">
+      <%= mandato.nif_comprador %>
+    </td>
+    <td class="printable" data-titular="Nombre o Razon Social">
+      <%= mandato.nombre_razon_social %>
+    </td>
+     <td class="printable" data-titular="Primer apellido">
+      <%= mandato.primer_apellido %>
+    </td>
+    <td class="printable" data-titular="Segundo apellido">
+      <%= mandato.segundo_apellido %>
+    </td>
+    <td class="printable hidden" data-titular="Municipio">
+      <%= mandato.municipio %>
+    </td>
+    <td class="printable hidden" data-titular="Provincia">
+      <%= mandato.provincia %>
+    </td>
+    <td class="printable hidden" data-titular="Teléfono Móvil">
+      <%= mandato.telefono %>
+    </td>
+    <td class="printable hidden" data-titular="Direccion">
+      <%= mandato.direccion %>
+    </td>
+    <td class="printable hideie8" data-titular="Marca">
+      <%= mandato.marca %>
+    </td>
+    <td class="printable hideie8" data-titular="Modelo">
+      <%= mandato.modelo %>
+    </td>
+    <td class="printable hidden" data-titular="Hora solicitud">
+      <%= l mandato.hora_solicitud, format: "%d/%m %H:%M" unless mandato.hora_solicitud.nil? %>
+    </td>
+    <td class="printable hidden" data-titular="Hora entrega">
+      <%= l mandato.hora_entrega, format: "%d/%m %H:%M" unless mandato.hora_entrega.nil? %>
+    </td>
+    <td class="printable" data-titular="Estado">
+      <%= estado_cell( mandato ) %>
+    </td>
+    <td class="icon">
+      <%= pdf_link_cell_m( mandato ) %>
+    </td>
+    <td class="icon">
+      <%= edit_link_cell_m( mandato ) %>
+    </td>
+    <td>
+      <%= print_link_cell( mandato ) %>
+    </td>
+  </tr>

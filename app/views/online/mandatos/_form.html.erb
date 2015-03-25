@@ -1,0 +1,57 @@
+<div class="control-group imanuevo offset4">
+  <div class="controls checkbox">
+    <label class="control-label" for="imanuevo">
+      <input type="checkbox" name="imanuevo" id="imanuevo" <% if mandato.imanuevo? %> checked <% end %>>
+      <%= t( "Solicitud de Mandato nuevo" ) %>
+    </label>
+  </div>
+</div>
+<div class="control-group imacompany offset4">
+  <div class="controls checkbox">
+    <label class="control-label" for="imacompany">
+      <input type="checkbox" name="imacompany" id="imacompany" <% if mandato.imacompany? %> checked <% end %>>
+      <%= t( "Solicitud de Mandato a nombre de empresa" ) %>
+    </label>
+  </div>
+</div>
+<%= render 'shared/primer_apellido' %>
+<%= render 'shared/representante' %>
+<%= render 'shared/bastidor' %>
+<%= render 'shared/matricula' %>
+
+<%= simple_form_for [:online, mandato], html: { class: 'form-horizontal mandatos', multipart: true } do |f| %>
+  <%= f.error_notification %>
+  <div class="span4">
+    <%= f.input :identificador, :as => :hidden, :input_html => { :value => Time.now.to_i.to_s } %>
+    <%= f.input :imacompany, :as => :hidden, :input_html => { :value => false } %>
+    <%= f.input :imanuevo, :as => :hidden, :input_html => { :value => false } %>
+    <% if mandato.new_record? %>
+      <%= f.association :cliente,
+      collection: current_usuario.clientes, label_method: :nombre,
+      value_method: :id, include_blank: false %>
+    <% else %>
+      <%= f.association :cliente,
+      selected: mandato.cliente_id, label_method: :nombre, value_method: :id, :disabled => true %>
+    <% end %>
+    <%= f.input :nif_comprador, label: t( "NIF Comprador" ) %>
+    <%= f.input :nombre_razon_social, label: t("Nombre o Razon Social") %>
+    <%= f.input :primer_apellido, label: "* Primer apellido" %>
+    <%= f.input :segundo_apellido %>
+    <%= f.input :repre_nombre, label: "* Nombre Representante" %>
+    <%= f.input :repre_apellido_1, label: "* 1º apell. Representante" %>
+    <%= f.input :repre_apellido_2, label: "2º apell. Representante" %>
+    <%= f.input :nif_representante, label: "* NIF Representante" %>
+  </div>
+  <div class="span4">
+    <%= f.input :telefono , label: t( "Telefono Movil" ) %>
+    <%= f.input :provincia %>
+    <%= f.input :municipio %>
+    <%= f.input :direccion, input_html: { rows: "5" } %>
+  </div>
+  <div class="span4">
+    <%= f.input :matricula_bastidor, label: "* Matricula" %>
+    <%= f.input :marca %>
+    <%= f.input :modelo %>
+    <%= f.button :submit, t("Solicitar mandato"), class: 'pull-right btn-primary' %>
+  </div>
+<% end %>

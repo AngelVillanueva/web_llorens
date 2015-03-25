@@ -70,6 +70,21 @@ FactoryGirl.define do
     modelo "serie J"
     cliente
   end
+  factory :mandato do
+    identificador "MD-test"
+    nif_comprador "07567174J"
+    nombre_razon_social "John E."
+    primer_apellido "CessitounMan"
+    segundo_apellido "Dato"
+    provincia "Barcelona"
+    municipio "Molins de Rei"
+    direccion "Rambla Josep Maria Jujol, 15, 4-4"
+    telefono "679514899"
+    matricula_bastidor "ABC123"
+    marca "BMV"
+    modelo "serie MD"
+    cliente
+  end
   factory :informe do
     matricula "Test informe"
     solicitante "Bush C. Oinforme"

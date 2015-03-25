@@ -32,6 +32,35 @@ WebLlorens::Application.routes.draw do
         get 'download'
       end
     end
+    resources :mandatos do
+      member do
+        get 'download'
+      end
+    end
+
+    resources :mandatos do
+      member do
+        get 'view_validator'
+      end
+    end
+
+    resources :mandatos do
+      member do
+        put 'set_code'
+      end
+    end
+
+    resources :mandatos do
+      member do
+        get 'gen_mandato'
+      end
+    end
+
+    resources :mandatos do
+      member do
+        get 'send_sms'
+      end
+    end
 
     resources :expedientes
     resources :matriculaciones, :controller => "expedientes", :type => "Matriculacion" do

@@ -248,6 +248,27 @@ module ApplicationHelper
        end
     end
   end
+  # send sms with code validation of Mandato
+  def sms_link_cell( mandato )
+    if mandato.pending_code
+      link_to '#', title: "SMS" do
+          content_tag( 'i', nil, class: 'icon icon-envelope' )
+       end
+    end
+  end
+
+  # generate the content of the Mandato pdf_link cell if code validation
+  def pdf_link_cell_m( mandato )
+    unless mandato.pending_code
+      link_to gen_mandato_online_mandato_path(mandato, :format => 'pdf'), title: "PDF", target: 'blank' do
+          content_tag( 'i', nil, class: 'icon icon-file' )
+       end
+    else
+      link_to view_validator_online_mandato_path(mandato), title: "CODE", remote: true, data: { toggle: "modal", target: "#code_mandato_modal"} do
+          content_tag( 'i', nil, class: 'icon icon-barcode' )
+       end
+    end
+  end
   # returns the content of the Informes pdf_link cell
   def pdf_link_cell_not_empty( informe )
     unless informe.pdf_file_name.nil?
@@ -262,6 +283,14 @@ module ApplicationHelper
   def edit_link_cell( justificante )
     unless current_usuario.norole?
       link_to edit_online_justificante_path(justificante), title: "Editar" do
+        content_tag( 'i', nil, class: 'icon icon-edit toedit' )
+      end
+    end
+  end
+  # returns the content of the Justificantes edit_link cell
+  def edit_link_cell_m( mandato )
+    unless current_usuario.norole? || !mandato.pending_code
+      link_to edit_online_mandato_path(mandato), title: "Editar" do
         content_tag( 'i', nil, class: 'icon icon-edit toedit' )
       end
     end

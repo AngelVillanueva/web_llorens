@@ -1,0 +1,15 @@
+<% provide :title, t("Crear nuevo Mandato") %>
+
+<div class="about_page">
+  <%= render 'shared/section_wrapper',
+      header_text: t("Nuevo mandato"),
+      index_link: 'mandatos',
+      clock: true,
+      linked_pdf: nil %>
+
+  <div class="row">
+    <div class="span6s offset4s form_new_mandato">
+      <%= render 'form' %>
+    </div>
+  </div>
+</div>

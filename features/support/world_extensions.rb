@@ -40,6 +40,9 @@
   def justificante
     @justificante || FactoryGirl.create( :justificante, cliente: cliente )
   end
+  def mandato
+    @mandato || FactoryGirl.create( :mandato, cliente: cliente )
+  end
   def informe
     @informe || FactoryGirl.create( :informe, cliente: cliente )
   end

@@ -58,6 +58,9 @@ class Usuario < ActiveRecord::Base
   def justificantes
     Justificante.where(cliente_id: clientes)
   end
+  def mandatos
+    Mandato.where(cliente_id: clientes)
+  end
   def informes
     Informe.where(cliente_id: clientes)
   end

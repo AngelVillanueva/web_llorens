@@ -1,0 +1,14 @@
+if ('<%= response %>' == "ok"){
+	$(".codigo_error").hide();
+	$("p.terms_of_service").fadeIn();
+	$("#btn-validar").prop("value", "Aceptar");
+	$("#btn-cerrar").html("Cancelar");
+	$("#code_mandato_modal #mandato_validation_check_code").val('<%= code =%>')
+}
+else if ('<%= response %>' == "close"){
+	$("#code_mandato_modal").modal('hide');
+	window.location.reload();
+}	
+else{
+	$(".codigo_error").html('<%= code =%>').show();
+}

@@ -1,0 +1,69 @@
+<% provide :title, t("Listado de Mandatos") %>
+
+<%= render 'shared/avisos_pulled' %>
+<%= render 'shared/code_mandato' %>
+
+<div class="about_page vista_tabla" data-pulltime="<%= new_avisos_pulltime %>">
+  <%= render 'shared/section_wrapper',
+      header_text: t("Mandatos"),
+      linked_pdf: nil,
+      new_link: 'mandatos',
+      search: 'mandatos',
+      legend: nil %>
+
+  <div class="row">
+    <table id="mandatos" class="row pull-right table table-condensed table-bordered table-striped top_filtered mandatos" data-source="<%= online_mandatos_path(format: "json") %>" data-csv="<%= online_mandatos_path(format: "csv") %>?" data-xls="<%= online_mandatos_path(format: "xls") %>?">
+  <thead>
+    <tr class="filter">
+      <th><%= t("Cliente") %></th>
+      <th><%= t("Bastidor / Matricula") %></th>
+      <th><%= t("NIF Comprador") %></th>
+      <th><%= t("Nombre o razon") %></th>
+      <th><%= t("Primer apellido") %></th>
+      <th><%= t("Segundo apellido") %></th>
+      <th class="hidden"></th>
+      <th class="hidden"></th>
+      <th class="hidden"></th>
+      <th><%= t("Teléfono móvil") %></th>
+      <th class="hideie8"><%= t("Marca") %></th>
+      <th class="hideie8"><%= t("Modelo") %></th>
+      <th class="hidden"><%= t("Hora solicitud") %></th>
+      <th class="hidden"><%= t("Hora entrega") %></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+    <tr class="titles">
+      <th><%= t("Cliente") %></th>
+      <th><%= t("Bastidor / Matricula") %></th>
+      <th><%= t("NIF Comprador") %></th>
+      <th><%= t("Nombre o razon") %></th>
+      <th><%= t("Primer apellido") %></th>
+      <th><%= t("Segundo apellido") %></th>
+      <th class="hidden"><%= t("Municipio") %></th>
+      <th class="hidden"><%= t("Provincia") %></th>
+      <th class="hidden"><%= t("Direccion") %></th>
+      <th><%= t("Teléfono móvil") %></th>
+      <th class="hideie8"><%= t("Marca") %></th>
+      <th class="hideie8"><%= t("Modelo") %></th>
+      <th class="hidden"><%= t("Hora solicitud") %></th>
+      <th class="hidden"><%= t("Hora entrega") %></th>
+      <th><%= t("Estado") %></th>
+      <th colspan="4"><%= t("Acciones") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render mandatos %>
+  </tbody>
+</table>
+  </div>
+</div>
+
+<% # hidden table to serve as a bridge for polled new records to be added to the table %>
+<div class="row hidden">
+  <table id="temp_table">
+    <tbody></tbody>
+  </table>
+</div>

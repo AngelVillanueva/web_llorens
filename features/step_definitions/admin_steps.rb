@@ -216,6 +216,14 @@ Then(/^I should (not )?see the Justificantes menu link$/) do |negation|
   end
 end
 
+Then(/^I should (not )?see the Mandatos menu link$/) do |negation|
+  if negation
+    page.should_not have_css( "li[data-model=mandato] a" )
+  else
+    page.should have_css( "li[data-model=mandato] a" )
+  end
+end
+
 Then(/^I should (not )?see the Informes menu link$/) do |negation|
   if negation
     page.should_not have_css( "li[data-model=informe] a" )

@@ -162,6 +162,7 @@ GEM
       jquery-rails
       railties (>= 3.1.0)
     json (1.8.1)
+    jwt (1.2.1)
     kaminari (0.14.1)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -347,6 +348,10 @@ GEM
       polyglot
       polyglot (>= 0.3.1)
     ttfunk (1.0.3)
+    twilio-ruby (3.15.1)
+      builder (>= 2.1.2)
+      jwt (~> 1.0)
+      multi_json (>= 1.3.0)
     tzinfo (0.3.38)
     uglifier (2.1.1)
       execjs (>= 0.3.0)
@@ -421,6 +426,7 @@ DEPENDENCIES
   simple_form (~> 2.1)
   strong_parameters (~> 0.2.1)
   thin (= 1.5.1)
+  twilio-ruby
   uglifier (~> 2.1.0)
   unicorn
   whenever

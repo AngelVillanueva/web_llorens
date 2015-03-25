@@ -28,11 +28,11 @@ end
     Then I should see the current server Time as H:m
 
 @javascript
-  Scenario: create a new Justificante for a person
+  Scenario: try to create a new Justificante for a person
     Given I am a registered User
     When I submit all the information for a new Justificante for a person but without first name
     Then a new Justificante should not be created
-      And I should be reminded to fulfill the first name field
+      And I should be reminded to fulfill the first name field to create the Justificante
 
 @javascript
   Scenario: create a new Justificante for a person

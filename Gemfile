@@ -42,6 +42,8 @@ gem 'rich' # rich editor based on CKEdit
 gem 'cancan', '~> 1.6.1'
 # New Relic
 gem 'newrelic_rpm'
+# SMS Twilio
+gem 'twilio-ruby'
 ### OTHER
 gem 'jquery-datatables-rails', '1.11.2', git: 'git://github.com/rweng/jquery-datatables-rails.git' # DataTables
 

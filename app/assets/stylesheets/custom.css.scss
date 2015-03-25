@@ -340,7 +340,7 @@ a.DTTT_button_xls {
   }
 }
 
-#expedientes, #justificantes, #informes, #stock_vehicles {
+#expedientes, #justificantes, #informes, #stock_vehicles, #mandatos {
   tr.titles {
     background: #333;
     color: white;
@@ -385,6 +385,23 @@ i.see_more {
 }
 form.justificantes {
   margin-left: -30px;
+}
+
+// Mandato validation modal
+#code_mandato_modal form{
+  margin:0;
+}
+
+p.terms_of_service{
+  font-size: 12px;
+  text-align: justify;
+  padding: 20px;
+}
+
+// Mandatos creation form
+.imanuevo {
+  margin-bottom: 25px;
+  margin-top: -20px;
 }
 
 // Printing row

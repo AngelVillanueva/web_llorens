@@ -220,6 +220,59 @@ $(document).ready ->
     )
     setTimeout(updateJustificantesNewVersion, 5000) # fired polling for new records
   
+  # mandatos
+  if ( $( '#mandatos' ).length )
+    createRemoteMandatosDataTable(
+      'mandatos',
+      [],
+      [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        {"sType": "uniDate"},
+        {"sType": "uniDate"},
+        null,
+        null,
+        null,
+        null,
+        null
+        ],
+      "Mandatos_Llorens",
+      [0,1,2,3,4,5,8,9,10,13], 
+      [
+        { type: "text" },
+        { type: "text" },
+        { type: "text" },
+        { type: "text" },
+        { type: "text" },
+        { type: "text" },
+        null,
+        null,
+        null,
+        { type: "text" },
+        { type: "text" },
+        { type: "text" },
+        { type: "date-range" },
+        { type: "date-range" },
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      []
+    )
+    setTimeout(updateMandatosNewVersion, 5000) # fired polling for new records
+
   # informes
   if ( $( '#informes' ).length )
     createRemoteInformesDataTable(
@@ -285,9 +338,43 @@ $(document).ready ->
   $( document ).on 'change', '#imacompany', ->
     handleNewJustificanteApellidos()
 
+  # representante data hidden default for Mandato (check imacompany)
+  if !($( 'input[name=imacompany]').prop("checked"))
+    $( 'div.mandato_repre_nombre, div.mandato_repre_apellido_1, div.mandato_repre_apellido_2, div.mandato_nif_representante').hide();
+  else
+    $( 'div.mandato_primer_apellido, div.mandato_segundo_apellido').hide();
+
+  # checkbox "acompany?" for new Mandato
+  $( document ).on 'change', '#imacompany', ->
+    cleanNewMandatoFisico()
+    handleNewMandatoApellidos()
+    handleNewMandatoRepresentante()
+    checkImacompanyMandato()
+
+
+  # representante data hidden default for Mandato (check imanuevo)
+  if !($( 'input[name=imanuevo]').prop("checked"))
+    $( 'div.mandato_matricula_bastidor label').html("* Matrícula");
+  else
+    $( 'div.mandato_matricula_bastidor label').hide("* Bastidor");
+
+  # checkbox "anuevo?" for new Mandato
+  $( document ).on 'change', '#imanuevo', ->
+    cleanNewMandatoVehiculoNuevo()
+    handleNewMandatoNewVehicle()
+    checkImanuevoMandato()
+
   # take care of mandatory first name field for new Justificantes via javascript
   $( document ).on 'submit', '#new_justificante', ->
-    handleFirstNameIfNotACompany()
+    handleFirstNameIfNotACompanyJustificante()
+
+  # take care of mandatory first name field for new Mandatos via javascript
+  $( document ).on 'submit', '#new_mandato', ->
+    handleFirstNameIfNotACompanyMandato()
+
+  # take care of mandatory representante data fields for new Mandatos via javascript
+  $( document ).on 'submit', '#new_mandato', ->
+    handleRepresentanteIfACompanyMandato()
 
   # Callback for rendering via JSON (versión remote dataTables, using 'on' to bind also dinamically created links)
   $("#stock_vehicles").on 'ajax:complete', 'a.vehicle[data-type=json]', (event, data, status, xhr) ->

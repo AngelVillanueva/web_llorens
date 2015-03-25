@@ -1,0 +1,14 @@
+  <%= simple_form_for [:online, mandato], :url => set_code_online_mandato_path(mandato), remote: true,  html: { class: 'form-horizontal mandatos', multipart: true } do |f| %>
+  <div class="modal-body">
+    <p><%= t( "Introduzca el codigo de validacion" ) %></p>
+    <%= f.input :id, :as => :hidden, :input_html => { :id => "mandato_identificador" } %>
+    <%= f.input :validation_check_code, :as => :hidden %>
+    <%= f.input :validation_code, label: t("Codigo de validacion") %>
+    <p class="hide terms_of_service"><%= t( "Terminos mandato" ) + mandato.matricula_bastidor %></p>
+    <p class="alert alert-error codigo_error hide"></p>
+  </div>
+  <div class="modal-footer">
+    <button id="btn-cerrar" class="btn" data-dismiss="modal" aria-hidden="true"><%= t("Cerrar") %></button> 
+    <%= f.button :submit, t("Validar mandato"), id: 'btn-validar', class: 'btn-primary' %>
+    <% end %>
+  </div>

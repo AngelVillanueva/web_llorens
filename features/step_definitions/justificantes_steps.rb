@@ -227,6 +227,6 @@ Then(/^I should see the newly created justificante$/) do
   expect( first( '#justificantes tr.justificante' ) ).to have_selector( 'td', text: "Test justificante".upcase )
 end
 
-Then(/^I should be reminded to fulfill the first name field$/) do
+Then(/^I should be reminded to fulfill the first name field to create the Justificante$/) do
   expect( page ).to have_selector( '.modal-body p', text: I18n.t( "Primer apellido obligatorio para personas" ) )
 end

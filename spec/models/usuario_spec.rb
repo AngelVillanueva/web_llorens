@@ -35,6 +35,7 @@ describe Usuario do
     it { should respond_to :password }
     it { should respond_to :expedientes }
     it { should respond_to :justificantes }
+    it { should respond_to :mandatos }
     it { should respond_to :informes }
     it { should respond_to :clientes }
     it { should respond_to :role }

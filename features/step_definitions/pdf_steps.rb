@@ -22,6 +22,15 @@ When(/^I visit the Justificante PDF page for a Justificante of another Cliente$/
   visit j.pdf.url
 end
 
+When(/^I visit the Mandato PDF page for a Mandato of another Cliente$/) do
+  the_pdf = File.new(Rails.root.join('spec', 'fixtures', 'test-MD.pdf'))
+  step "there are also Mandatos from other Clientes"
+  m = Mandato.first
+  m.pdf = the_pdf
+  m.save!
+  visit m.pdf.url
+end
+
 When(/^I visit the Informe PDF page for a Informe of another Cliente$/) do
   the_pdf = File.new(Rails.root.join('spec', 'fixtures', 'test-I.pdf'))
   step "there are also Informes from other Clientes"

@@ -12,17 +12,10 @@ Feature: Mandatos listing
     When I access the Mandatos index page
     Then I should see a list of the Mandatos
 
-  Scenario: Mandatos "matricula" is always uppercase
+  Scenario: Mandatos "matricula_bastidor" is always uppercase
     Given I am a registered User with some Mandatos
     When I access the Mandatos index page
-    Then I should see a list of the Mandatos with matricula in uppercase
-
-  Scenario: the Mandatos are sorted by not having a PDF yet and then by created_at field
-      Given I am a registered User with some Mandatos
-        And one of the mandatos has an attached PDF
-      When I access the Mandatos index page
-      Then I should see a list of the Mandatos
-        And the first Mandato should be the most urgent one
+    Then I should see a list of the Mandatos with matricula_bastidor in uppercase
 
   Scenario: an Usuario can not see Mandatos from other Cliente
       Given I am a registered User with some Mandatos

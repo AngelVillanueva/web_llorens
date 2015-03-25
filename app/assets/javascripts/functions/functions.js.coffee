@@ -326,12 +326,13 @@ root.not_seen_avisos = []
       "sAjaxSource": oTable.data('source'),
       "fnRowCallback": ( nRow, aData, iDisplayIndex ) ->
         $(nRow).addClass('mandato');
-        $(nRow).addClass('new') if aData[15]==null
-        $('td', nRow).slice(0,14).addClass('printable')
-        $('td', nRow).slice(5,13).addClass('hidden')
-        $('td', nRow).slice(8,9).removeClass('hidden')
-        $('td', nRow).slice(9,11).removeClass('hidden').addClass('hideie8')
-        $('td', nRow).slice(14,18).addClass('icon')
+        $(nRow).addClass('new') if aData[15]!=null
+        $('td', nRow).slice(0,15).addClass('printable')
+        $('td', nRow).slice(6,14).addClass('hidden')
+        $('td', nRow).slice(15,16).addClass('hidden')
+        $('td', nRow).slice(9,10).removeClass('hidden')
+        $('td', nRow).slice(10,12).removeClass('hidden').addClass('hideie8')
+        $('td', nRow).slice(16,19).addClass('icon')
         return nRow
       "oLanguage": {
           "sSearch": "Buscar en la tabla",
@@ -457,8 +458,12 @@ root.not_seen_avisos = []
   $( acc_label ).text( acc_new_text )
 
 # clean for new Mandato fisico
-@cleanNewMandatoFisito = ->
+@cleanNewMandatoFisico = ->
   $( 'div.mandato_repre_nombre input, div.mandato_repre_apellido_1 input, div.mandato_repre_apellido_2 input, div.mandato_nif_representante input, div.mandato_primer_apellido input, div.mandato_segundo_apellido').val('')
+
+# clean for new Mandato vehiculo nuevo
+@cleanNewMandatoVehiculoNuevo = ->
+   $( 'div.mandato_matricula input, div.mandato_bastidor input').val('')
 
 # handle Apellidos for new Mandato request
 @handleNewMandatoApellidos = ->
@@ -469,6 +474,24 @@ root.not_seen_avisos = []
 @handleNewMandatoRepresentante= ->
   $( 'div.mandato_repre_nombre, div.mandato_repre_apellido_1, div.mandato_repre_apellido_2, div.mandato_nif_representante' ).toggle()
 
+
+@checkImacompanyMandato = ->
+   inputImacompany = $( 'input#mandato_imacompany' )
+   imacompany = inputImacompany.val();
+   switch imacompany
+      when "true"
+        inputImacompany.val(false);
+      when "false"
+        inputImacompany.val(true);
+
+@checkImanuevoMandato = ->
+   inputImanuevo = $( 'input#mandato_imanuevo' )
+   imanuevo = inputImanuevo.val();
+   switch imanuevo
+      when "true"
+        inputImanuevo.val(false);
+      when "false"
+        inputImanuevo.val(true);
 
 @changeApellidosLabelTextMandato = ->
   label = $( '.mandato_nombre_razon_social label' )
@@ -486,7 +509,14 @@ root.not_seen_avisos = []
 
 # handle Matricula for new Mandato request
 @handleNewMandatoNewVehicle = ->
-  $( 'div.mandato_matricula, div.mandato_bastidor' ).toggle()
+  label = $( '.mandato_matricula_bastidor label' )
+  now = $( label ).text()
+  switch now
+    when "* Matrícula"
+      new_text = "* Bastidor"
+    when "* Bastidor"
+      new_text = "* Matrícula"
+  $( label ).text( new_text )
 
 # take cares of First name as mandatory field just for people (not companies)
 @handleFirstNameIfNotACompanyJustificante = ->
@@ -512,22 +542,6 @@ root.not_seen_avisos = []
   repre_nif = $( '#mandato_nif_representante' ).val()
   if acompany && (!repre_nom || !repre_ap1 || !repre_nif)
     $( '#representante_modal' ).modal( 'show' )
-    return false
-
-# take cares of Bastidor as mandatory field just for new vehicules
-@handleBastidorIfANewMandato = ->
-  anuevo = $( '#imanuevo' ).prop( 'checked' )
-  bastidor = $( '#mandato_bastidor' ).val()
-  if anuevo && !bastidor
-    $( '#bastidor_modal' ).modal( 'show' )
-    return false
-
-# take cares of Matricula as mandatory field just for not new vehicules
-@handleMatriculaIfNotANewMandato = ->
-  anuevo = $( '#imanuevo' ).prop( 'checked' )
-  matricula = $( '#mandato_matricula' ).val()
-  if !anuevo && !matricula
-    $( '#matricula_modal' ).modal( 'show' )
     return false
 
 # returns a date in local formatting (es)

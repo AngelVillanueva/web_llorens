@@ -46,6 +46,12 @@ WebLlorens::Application.routes.draw do
 
     resources :mandatos do
       member do
+        put 'set_code'
+      end
+    end
+
+    resources :mandatos do
+      member do
         get 'gen_mandato'
       end
     end

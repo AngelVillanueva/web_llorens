@@ -16,8 +16,7 @@
 #  municipio           :string(255)
 #  direccion           :text
 #  telefono            :string(255)
-#  matricula           :string(255)
-#  bastidor            :string(255)
+#  matricula_bastidor  :string(255)
 #  marca               :string(255)
 #  modelo              :string(255)
 #  created_at          :datetime         not null
@@ -54,8 +53,7 @@ describe Mandato do
     it { should respond_to :municipio }
     it { should respond_to :direccion }
     it { should respond_to :telefono }
-    it { should respond_to :matricula }
-    it { should respond_to :bastidor }
+    it { should respond_to :matricula_bastidor }
     it { should respond_to :marca }
     it { should respond_to :modelo }
     it { should respond_to :hora_solicitud }
@@ -81,8 +79,7 @@ describe Mandato do
       should validate_presence_of :municipio
       should validate_presence_of :direccion
       should validate_presence_of :telefono
-      should_not validate_presence_of :matricula
-      should_not validate_presence_of :bastidor
+      should validate_presence_of :matricula_bastidor
       should validate_presence_of :marca
       should validate_presence_of :modelo
       should validate_presence_of :hora_solicitud

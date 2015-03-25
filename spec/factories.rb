@@ -80,8 +80,7 @@ FactoryGirl.define do
     municipio "Molins de Rei"
     direccion "Rambla Josep Maria Jujol, 15, 4-4"
     telefono "679514899"
-    matricula "Test mandato"
-    bastidor "ABC123"
+    matricula_bastidor "ABC123"
     marca "BMV"
     modelo "serie MD"
     cliente

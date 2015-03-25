@@ -251,7 +251,7 @@ module ApplicationHelper
   # send sms with code validation of Mandato
   def sms_link_cell( mandato )
     if mandato.pending_code
-      link_to send_sms_online_mandato_path(mandato), title: "SMS", confirm: t("Seguro que quiere enviar el mensaje", telefono: mandato.telefono)  do
+      link_to '#', title: "SMS" do
           content_tag( 'i', nil, class: 'icon icon-envelope' )
        end
     end

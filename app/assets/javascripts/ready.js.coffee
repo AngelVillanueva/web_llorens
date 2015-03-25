@@ -237,6 +237,7 @@ $(document).ready ->
         null,
         null,
         null,
+        null,
         {"sType": "uniDate"},
         {"sType": "uniDate"},
         null,
@@ -246,8 +247,9 @@ $(document).ready ->
         null
         ],
       "Mandatos_Llorens",
-      [0,1,2,3,4,8,9,10,13], 
+      [0,1,2,3,4,5,8,9,10,13], 
       [
+        { type: "text" },
         { type: "text" },
         { type: "text" },
         { type: "text" },
@@ -336,21 +338,31 @@ $(document).ready ->
   $( document ).on 'change', '#imacompany', ->
     handleNewJustificanteApellidos()
 
-  # representante data hidden default for new Mandato
-  $( 'div.mandato_repre_nombre, div.mandato_repre_apellido_1, div.mandato_repre_apellido_2, div.mandato_nif_representante').hide();
+  # representante data hidden default for Mandato (check imacompany)
+  if !($( 'input[name=imacompany]').prop("checked"))
+    $( 'div.mandato_repre_nombre, div.mandato_repre_apellido_1, div.mandato_repre_apellido_2, div.mandato_nif_representante').hide();
+  else
+    $( 'div.mandato_primer_apellido, div.mandato_segundo_apellido').hide();
 
   # checkbox "acompany?" for new Mandato
   $( document ).on 'change', '#imacompany', ->
-    cleanNewMandatoFisito()
+    cleanNewMandatoFisico()
     handleNewMandatoApellidos()
     handleNewMandatoRepresentante()
+    checkImacompanyMandato()
 
-  # matricula hidden default for new Mandato
-  $( 'div.mandato_bastidor').hide();
+
+  # representante data hidden default for Mandato (check imanuevo)
+  if !($( 'input[name=imanuevo]').prop("checked"))
+    $( 'div.mandato_matricula_bastidor label').html("* Matrícula");
+  else
+    $( 'div.mandato_matricula_bastidor label').hide("* Bastidor");
 
   # checkbox "anuevo?" for new Mandato
   $( document ).on 'change', '#imanuevo', ->
+    cleanNewMandatoVehiculoNuevo()
     handleNewMandatoNewVehicle()
+    checkImanuevoMandato()
 
   # take care of mandatory first name field for new Justificantes via javascript
   $( document ).on 'submit', '#new_justificante', ->
@@ -363,14 +375,6 @@ $(document).ready ->
   # take care of mandatory representante data fields for new Mandatos via javascript
   $( document ).on 'submit', '#new_mandato', ->
     handleRepresentanteIfACompanyMandato()
-
-  # take care of mandatory bastidor field for new Mandatos via javascript
-  $( document ).on 'submit', '#new_mandato', ->
-    handleBastidorIfANewMandato()
-
-  # take care of mandatory matricula field for new Mandatos via javascript
-  $( document ).on 'submit', '#new_mandato', ->
-    handleMatriculaIfNotANewMandato()
 
   # Callback for rendering via JSON (versión remote dataTables, using 'on' to bind also dinamically created links)
   $("#stock_vehicles").on 'ajax:complete', 'a.vehicle[data-type=json]', (event, data, status, xhr) ->

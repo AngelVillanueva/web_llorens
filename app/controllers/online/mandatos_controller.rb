@@ -23,8 +23,7 @@ class Online::MandatosController < OnlineController
 
   def create
     if mandato.save
-      flash[:success] = "Nuevo mandato creado correctamente"
-      redirect_to(online_mandatos_path)
+      send_sms
     else
       flash[:error] = "Se ha producido un error creando el mandato"
       render :new
@@ -60,26 +59,45 @@ class Online::MandatosController < OnlineController
       redirect_to online_mandatos_path, notice: I18n.t("Este codigo ya ha sido validado")
     else
       respond_to do |format|
-        format.js { render :layout => false, :locals => { :id => mandato.id } }
+        format.js { render :layout => false, :locals => { :id => mandato.id, :mandato => mandato } }
       end
+    end
+  end
+
+  def set_code
+    if mandato.secure_token == params[:mandato][:validation_check_code]
+      mandato.pending_code = false;
+      mandato.save
+      response = "close"
+      code = ""
+      flash[:success] = I18n.t("Mandato validado")
+    else
+      if mandato.secure_token[0..5] == params[:mandato][:validation_code]
+        response = "ok"
+        code = mandato.secure_token
+      else
+        response = "error"
+        code = I18n.t("El codigo no es correcto")
+      end
+    end
+    respond_to do |format|
+        format.js { render :layout => false, :locals => { :response => response, :code => code } }
     end
   end
 
   def send_sms
     if mandato.pending_code
       # Get your Account Sid and Auth Token from twilio.com/user/account
-      account_sid = 'ACb4d827668632ab7032dde06ec5d4c674'
-      auth_token = '08068717df7c765f3e81ddc0dad5e63c'
+      account_sid = 'AC326570c26fa2d534cc770feba730f9ed'
+      auth_token = '45367cfa65fb0b4814265a3abc1cc463'
       
       begin
         @client = Twilio::REST::Client.new account_sid, auth_token
        
-        message = @client.account.messages.create(:body => I18n.t("Su codigo de validacion es") + mandato.secure_token[0..5],
-            :to => "+34679514899",     # Replace with your phone number
-            :from => "+34986080586")   # Replace with your Twilio number
+        message = @client.account.messages.create(:body => I18n.t("Texto SMS validacion") + mandato.secure_token[0..5],
+            :to => mandato.telefono.strip,     # Replace with your phone number
+            :from => "+34986080567")   # Replace with your Twilio number
         puts message.sid
-        mandato.count_sms = mandato.count_sms + 1
-        mandato.save
         redirect_to online_mandatos_path, notice: I18n.t("Codigo de validacion enviado") + mandato.telefono
 
       rescue Twilio::REST::RequestError => e

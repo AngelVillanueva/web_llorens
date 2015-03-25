@@ -16,8 +16,7 @@
 #  municipio           :string(255)
 #  direccion           :text
 #  telefono            :string(255)
-#  matricula           :string(255)
-#  bastidor            :string(255)
+#  matricula_bastidor  :string(255)
 #  marca               :string(255)
 #  modelo              :string(255)
 #  created_at          :datetime         not null
@@ -34,23 +33,24 @@
 #  pending_code        :boolean
 #  imacompany          :boolean
 #  imanuevo            :boolean
+#  count_sms           :integer
 #
 
 class Mandato < ActiveRecord::Base
   belongs_to :cliente
+  attr_accessor :validation_code
+  attr_accessor :validation_check_code
   has_attached_file :pdf,
     :path => ":rails_root/uploads/:class/:id/:basename.:extension",
-    :url => "/online/mandatos/:id/download"
+    :url => "/online/mandatos/:id/gen_mandato.pdf"
   default_scope includes(:cliente).order('pending_code DESC, updated_at DESC')
 
   before_validation :assign_hora_solicitud, on: :create
   before_validation :assign_secure_token, on: :create
-  # before_validation :gen_mandato, on: :create
-  #before_save :check_pdf!
   before_update :assign_hora_entrega, if: :first_time_pdf?
   after_create :send_email_if_out_of_the_office
 
-  validates :identificador, :nif_comprador, :nombre_razon_social, :provincia, :municipio, :direccion, :telefono, :marca, :modelo, :hora_solicitud, :cliente_id, :secure_token, presence: true
+  validates :identificador, :nif_comprador, :nombre_razon_social, :provincia, :municipio, :direccion, :telefono, :matricula_bastidor, :marca, :modelo, :hora_solicitud, :cliente_id, :secure_token, presence: true
   validates :nif_comprador, nif: true
   validates_format_of :municipio, :with => /^[[:alpha:]\s'"\-_&@!?()\[\]-]*$/u, :on => :create, :message => I18n.t( "Municipio sin numeros" )
 
@@ -64,13 +64,6 @@ class Mandato < ActiveRecord::Base
   def assign_secure_token
     self.secure_token = SecureRandom.hex
   end
-  # def gen_mandato
-    # pdf = Prawn::Document.new
-    # pdf.text("Prawn Rocks")
-    # pdf.render_file("#{Rails.root}/app/assets/pdfs/mandatos/"+self.identificador+".pdf")
-    # pdf_file = File.open("#{Rails.root}/app/assets/pdfs/mandatos/"+self.identificador+".pdf")
-    # self.pdf_file_name = pdf_file
-  # end
   def first_time_pdf?
     pdf_file_name_was.nil? && !pdf_file_name.nil?
   end
@@ -111,7 +104,8 @@ class Mandato < ActiveRecord::Base
       sort_by :pdf_file_name, :hora_solicitud
       field :id
       field :identificador
-      field :matricula do
+      field :matricula_bastidor do
+        label I18n.t("Matricula bastidor")
         pretty_value do
           value.upcase
         end
@@ -135,16 +129,21 @@ class Mandato < ActiveRecord::Base
           I18n.l( value, format: "%d/%m/%Y %H:%M") unless value.nil?
         end
       end
-      field :bastidor
       field :marca
       field :modelo
       field :nif_comprador
       field :nombre_razon_social
       field :primer_apellido
       field :segundo_apellido
-      field :repre_nombre
-      field :repre_apellido_1
-      field :repre_apellido_2
+      field :repre_nombre do
+        label I18n.t("Nombre representante")
+      end
+      field :repre_apellido_1 do
+        label I18n.t("Primer apellido representante")
+      end
+      field :repre_apellido_2 do
+        label I18n.t("Segundo apellido representante")
+      end
       field :nif_representante
       field :direccion
       field :telefono
@@ -152,6 +151,30 @@ class Mandato < ActiveRecord::Base
       field :provincia
       field :cliente
     end
+    show do
+      field :marca
+      field :modelo
+      field :matricula_bastidor
+      field :nif_comprador
+      field :nombre_razon_social
+      field :primer_apellido
+      field :segundo_apellido
+      field :repre_nombre do
+        label I18n.t("Nombre representante")
+      end
+      field :repre_apellido_1 do
+        label I18n.t("Primer apellido representante")
+      end
+      field :repre_apellido_2 do
+        label I18n.t("Segundo apellido representante")
+      end
+      field :nif_representante
+      field :direccion
+      field :telefono
+      field :municipio
+      field :provincia
+      field :cliente
+    end 
     edit do
       group :advanced do
         label I18n.t("Advanced")
@@ -163,21 +186,7 @@ class Mandato < ActiveRecord::Base
           bindings[:controller].current_usuario.role? "employee"
         end
       end
-      field :matricula do
-        read_only do
-          # controller bindings is available here. Example:
-          bindings[:controller].current_usuario.role? "employee"
-        end
-      end
-      field :pdf, :paperclip do
-        label I18n.t("PDF")
-      end
-      field :pdf_file_name do
-        label I18n.t("PDF file name")
-        read_only true
-      end
-      field :bastidor do
-        group :advanced
+      field :matricula_bastidor do
         read_only do
           # controller bindings is available here. Example:
           bindings[:controller].current_usuario.role? "employee"
@@ -226,6 +235,7 @@ class Mandato < ActiveRecord::Base
         end
       end
       field :repre_nombre do
+        label I18n.t("Nombre representante")
         group :advanced
         read_only do
           # controller bindings is available here. Example:
@@ -233,6 +243,7 @@ class Mandato < ActiveRecord::Base
         end
       end
       field :repre_apellido_1 do
+        label I18n.t("Primer apellido representante")
         group :advanced
         read_only do
           # controller bindings is available here. Example:
@@ -240,6 +251,7 @@ class Mandato < ActiveRecord::Base
         end
       end
       field :repre_apellido_2 do
+        label I18n.t("Segundo apellido representante")
         group :advanced
         read_only do
           # controller bindings is available here. Example:

@@ -35,16 +35,11 @@ class MandatosDatatable
     mandatos.map do |mandato|
       [
         mandato.cliente.nombre,
-        mandato.matricula.nil? ? ("bas: " + mandato.bastidor.upcase) : ("mat: " + mandato.matricula.upcase),
+        mandato.matricula_bastidor.upcase,
         mandato.nif_comprador,
-        mandato.nombre_razon_social + " " + mandato.primer_apellido + " " + mandato.segundo_apellido,
-        mandato.repre_nombre + " " + mandato.repre_apellido_1 + " " + mandato.repre_apellido_2 + " (" + mandato.nif_representante + ")",
-        # mandato.primer_apellido,
-        # mandato.segundo_apellido,
-        # mandato.repre_nombre,
-        # mandato.repre_apellido_1,
-        # mandato.repre_apellido_2,
-        # mandato.nif_representante,
+        mandato.nombre_razon_social,
+        mandato.primer_apellido,
+        mandato.segundo_apellido,
         mandato.municipio,
         mandato.provincia,
         mandato.direccion,
@@ -125,11 +120,11 @@ class MandatosDatatable
   end
 
   def columns
-    columns = %w[clientes.nombre matricula bastidor nif_comprador nombre_razon_social primer_apellido segundo_apellido repre_nombre repre_apellido_1 repre_apellido_2 nif_representante municipio provincia direccion telefono marca modelo hora_solicitud hora_entrega pdf_file_name]
+    columns = %w[clientes.nombre matricula_bastidor nif_comprador nombre_razon_social primer_apellido segundo_apellido municipio provincia direccion telefono marca modelo hora_solicitud hora_entrega pdf_file_name]
   end
 
   def global_search_columns
-    columns = %w[clientes.nombre matricula bastidor nif_comprador nombre_razon_social primer_apellido segundo_apellido repre_nombre repre_apellido_1 repre_apellido_2 nif_representante municipio provincia direccion telefono marca modelo]
+    columns = %w[clientes.nombre matricula_bastidor nif_comprador nombre_razon_social primer_apellido segundo_apellido  municipio provincia direccion telefono marca modelo]
   end
 
   def formatted columns

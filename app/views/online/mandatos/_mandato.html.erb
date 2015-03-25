@@ -1,9 +1,6 @@
 <tr class="mandato <%= 'new' if mandato.pdf_file_name.nil? %>" data-time="<%= mandato.created_at.to_i %>">
     <td class="printable" data-titular="Matricula">
-      <%= mandato.matricula.upcase %>
-    </td>
-    <td class="printable" data-titular="Bastidor">
-      <%= mandato.bastidor %>
+      <%= mandato.matricula_bastidor.upcase %>
     </td>
     <td class="printable" data-titular="NIF">
       <%= mandato.nif_comprador %>
@@ -16,18 +13,6 @@
     </td>
     <td class="printable" data-titular="Segundo apellido">
       <%= mandato.segundo_apellido %>
-    </td>
-    <td class="printable" data-titular="Nombre Representante">
-      <%= mandato.repre_nombre %>
-    </td>
-    <td class="printable" data-titular="Primer apellido Rep.">
-      <%= mandato.repre_apellido_1 %>
-    </td>
-    <td class="printable" data-titular="Segundo apellido Rep.">
-      <%= mandato.repre_apellido_2 %>
-    </td>
-    <td class="printable" data-titular="NIF Representante">
-      <%= mandato.nif_representante %>
     </td>
     <td class="printable hidden" data-titular="Municipio">
       <%= mandato.municipio %>

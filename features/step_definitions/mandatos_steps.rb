@@ -6,7 +6,7 @@ end
 Given(/^there are also Mandatos from other Clientes$/) do
   acompany = FactoryGirl.create( :cliente, nombre: "Company",
     identificador: "ORG", cif: "00")
-  external_mandatos = FactoryGirl.create( :mandato, matricula: "Mandato externo",
+  external_mandatos = FactoryGirl.create( :mandato, matricula_bastidor: "Mandato externo",
     cliente: acompany )
 end
 
@@ -14,7 +14,7 @@ Given(/^there are also Mandatos from other Clientes but from my Organizacion$/) 
   o = Usuario.first.organizacion
   acompany = FactoryGirl.create( :cliente, nombre: "Company",
     identificador: "ORG", cif: "00", organizacion: o)
-  external_mandatos = FactoryGirl.create( :mandato, matricula: "Mandato externo",
+  external_mandatos = FactoryGirl.create( :mandato, matricula_bastidor: "Mandato externo",
     cliente: acompany )
 end
 
@@ -34,8 +34,7 @@ When(/^I submit all the information for a new Mandato$/) do
   fill_in "Municipio", with: "AAA"
   fill_in "Direccion", with: "AAA"
   fill_in "mandato_telefono", with: "666555777"
-  fill_in "Matricula", with: "AAA"
-  fill_in "Bastidor", with: "AAA"
+  fill_in "mandato_matricula_bastidor", with: "AAA"
   fill_in "Marca", with: "AAA"
   fill_in "Modelo", with: "AAA"
   select "Sinapse Consulting S.L.", from: "Cliente"
@@ -51,7 +50,7 @@ When(/^I submit all the information for a new Mandato for a person$/) do
   fill_in "Municipio", with: "AAA"
   fill_in "Direccion", with: "AAA"
   fill_in "mandato_telefono", with: "666555777"
-  fill_in "Matricula", with: "AAA"
+  fill_in "mandato_matricula_bastidor", with: "AAA"
   fill_in "Marca", with: "AAA"
   fill_in "Modelo", with: "AAA"
   select "Sinapse Consulting S.L.", from: "Cliente"
@@ -67,7 +66,7 @@ When(/^I submit all the information for a new Mandato for a used vehicle$/) do
   fill_in "Municipio", with: "AAA"
   fill_in "Direccion", with: "AAA"
   fill_in "mandato_telefono", with: "666555777"
-  fill_in "Matricula", with: "AAA"
+  fill_in "mandato_matricula_bastidor", with: "AAA"
   fill_in "Marca", with: "AAA"
   fill_in "Modelo", with: "AAA"
   select "Sinapse Consulting S.L.", from: "Cliente"
@@ -84,7 +83,7 @@ When(/^I submit all the information for a new Mandato for a new vehicle$/) do
   fill_in "Municipio", with: "AAA"
   fill_in "Direccion", with: "AAA"
   fill_in "mandato_telefono", with: "666555777"
-  fill_in "Bastidor", with: "AAA"
+  fill_in "mandato_matricula_bastidor", with: "AAA"
   fill_in "Marca", with: "AAA"
   fill_in "Modelo", with: "AAA"
   select "Sinapse Consulting S.L.", from: "Cliente"
@@ -99,7 +98,7 @@ When(/^I submit all the information for a new Mandato for a person but without f
   fill_in "Municipio", with: "AAA"
   fill_in "Direccion", with: "AAA"
   fill_in "mandato_telefono", with: "666555777"
-  fill_in "Matricula", with: "AAA"
+  fill_in "mandato_matricula_bastidor", with: "AAA"
   fill_in "Marca", with: "AAA"
   fill_in "Modelo", with: "AAA"
   select "Sinapse Consulting S.L.", from: "Cliente"
@@ -149,7 +148,7 @@ When(/^I submit all the information for a new Mandato for a company$/) do
   fill_in "Municipio", with: "AAA"
   fill_in "Direccion", with: "AAA"
   fill_in "mandato_telefono", with: "666555777"
-  fill_in "Matricula", with: "AAA"
+  fill_in "mandato_matricula_bastidor", with: "AAA"
   fill_in "Marca", with: "AAA"
   fill_in "Modelo", with: "AAA"
   select "Sinapse Consulting S.L.", from: "Cliente"
@@ -167,7 +166,7 @@ When(/^I submit all the information for a new Mandato for a company without name
   fill_in "Municipio", with: "AAA"
   fill_in "Direccion", with: "AAA"
   fill_in "mandato_telefono", with: "666555777"
-  fill_in "Matricula", with: "AAA"
+  fill_in "mandato_matricula_bastidor", with: "AAA"
   fill_in "Marca", with: "AAA"
   fill_in "Modelo", with: "AAA"
   select "Sinapse Consulting S.L.", from: "Cliente"
@@ -185,7 +184,7 @@ When(/^I submit all the information for a new Mandato for a company without firs
   fill_in "Municipio", with: "AAA"
   fill_in "Direccion", with: "AAA"
   fill_in "mandato_telefono", with: "666555777"
-  fill_in "Matricula", with: "AAA"
+  fill_in "mandato_matricula_bastidor", with: "AAA"
   fill_in "Marca", with: "AAA"
   fill_in "Modelo", with: "AAA"
   select "Sinapse Consulting S.L.", from: "Cliente"
@@ -203,7 +202,7 @@ When(/^I submit all the information for a new Mandato for a company without nif 
   fill_in "Municipio", with: "AAA"
   fill_in "Direccion", with: "AAA"
   fill_in "mandato_telefono", with: "666555777"
-  fill_in "Matricula", with: "AAA"
+  fill_in "mandato_matricula_bastidor", with: "AAA"
   fill_in "Marca", with: "AAA"
   fill_in "Modelo", with: "AAA"
   select "Sinapse Consulting S.L.", from: "Cliente"
@@ -284,7 +283,7 @@ Then(/^I should see a list of the Mandatos$/) do
   usuario = Usuario.find_by_nombre( "Angel" )
   mandatos = usuario.mandatos
   mandatos.each do |mandato|
-    page.should have_selector( 'td', text: mandato.matricula.upcase )
+    page.should have_selector( 'td', text: mandato.matricula_bastidor.upcase )
   end
   expect( page ).to have_selector( 'tr.mandato', count: 2 )
 end
@@ -294,7 +293,7 @@ Then(/^I should see a list of the Mandatos with matricula in uppercase$/) do
   usuario = Usuario.find_by_nombre( "Angel" )
   mandatos = usuario.mandatos
   mandatos.each do |mandato|
-    page.should have_selector( 'td', text: mandato.matricula.upcase )
+    page.should have_selector( 'td', text: mandato.matricula_bastidor.upcase )
   end
   expect( page ).to have_selector( 'tr.mandato', count: 2 )
 end

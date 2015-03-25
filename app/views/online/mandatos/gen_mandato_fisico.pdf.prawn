@@ -11,7 +11,7 @@ pdf.text "Que confiere <b>MANDATO CON REPRESENTACIÓN</b>, que se regirá por lo
 pdf.move_down 20
 pdf.text  "Que el presente MANDATO se confiere al amparo del art. 32.1 de la Ley 30/1992, de 26 de noviembre, de Régimen Jurídico de las Administraciones Públicas y del Procedimiento Administrativo Común (LRJAP), y del artículo 1 del Estatuto Orgánico de la Profesión de Gestor Administrativo, aprobado por Decreto 424/1963, para que promueva, solicite y realice toda clase de trámites, en relación con el asunto siguiente:"
 pdf.move_down 20
-pdf.text "#{@mandato.matricula} #{@mandato.bastidor}"
+pdf.text "#{@mandato.matricula_bastidor}"
 pdf.move_down 20
 pdf.text "Que el presente MANDATO incluye las actuaciones contenidas en el art. 32.3 de la LRJAP, es decir, formular solicitudes, entablar recursos, desistir de acciones y renunciar a derechos."
 pdf.move_down 20
@@ -36,32 +36,6 @@ pdf.text "EL MANDATARIO", :align => :center
 pdf.move_down 20
 pdf.text "Gestor Administrativo", :align => :center
 pdf.text "Nº de colegiado <b>3191</b>", :inline_format => true, :align => :center 
-
-pdf.start_new_page
-pdf.font_size = 18
-pdf.text "DOCUMENTO DE REPRESENTACIÓN DE PERSONAS JURÍDICAS", :inline_format => true, :align => :center
-pdf.stroke_color "000000"
-pdf.stroke do
- 	# just lower the current y position
- 	pdf.move_down 10
- 	pdf.horizontal_rule
-end
-
-pdf.move_down 40
-pdf.font_size = 12
-pdf.text "En cumplimiento de lo establecido en el Anexo XIII letra A) 3º del Reglamento General de Vehículos (RD 2822/1998, de 23 de Diciembre), y a los efectos de su presentación ante la Jefatura Provincial local de Trafico de BARCELONA, el/los abajo firmantes declara/declaran tener poder suficiente para actuar en nombre y representación de la entidad:"
-pdf.move_down 20
-pdf.text "LLORENS Y ASOCIADOS SL con CIF nº B5935552 ,en la tramitación del expediente de: #{@mandato.nombre_razon_social} #{@mandato.primer_apellido} #{@mandato.segundo_apellido} del vehículo con matrícula/bastidor: #{@mandato.matricula} #{@mandato.bastidor} Y para que así conste y surta los efectos oportunos,"
-pdf.move_down 20
-pdf.text "En                                  a #{@fecha}"
-pdf.move_down 50
-pdf.text "     <u>NOMBRE Y APELLIDOS</u>                                   <u>DNI</u>", :inline_format => true
-pdf.move_down 10
-pdf.text "       Jaime Brugada Casula                                      46130065A"
-pdf.move_down 50
-pdf.font_size = 14
-pdf.text "Firma:"
-
 
 file_path = "#{Rails.root}/app/assets/pdfs/mandatos/mandato_fisico_#{mandato.identificador}.pdf" 
 pdf.render_file file_path

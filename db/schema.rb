@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150220172534) do
+ActiveRecord::Schema.define(:version => 20150310183026) do
 
   create_table "api_keys", :force => true do |t|
     t.string   "access_token"
@@ -163,8 +163,6 @@ ActiveRecord::Schema.define(:version => 20150220172534) do
     t.string   "provincia"
     t.string   "municipio"
     t.text     "direccion"
-    t.string   "matricula"
-    t.string   "bastidor"
     t.string   "marca"
     t.string   "modelo"
     t.string   "pdf_file_name"
@@ -186,6 +184,7 @@ ActiveRecord::Schema.define(:version => 20150220172534) do
     t.boolean  "imacompany",          :default => false
     t.boolean  "imanuevo",            :default => false
     t.integer  "count_sms",           :default => 0
+    t.string   "matricula_bastidor"
   end
 
   create_table "notificaciones", :force => true do |t|

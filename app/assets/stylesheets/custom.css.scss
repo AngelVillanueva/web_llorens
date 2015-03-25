@@ -387,6 +387,17 @@ form.justificantes {
   margin-left: -30px;
 }
 
+// Mandato validation modal
+#code_mandato_modal form{
+  margin:0;
+}
+
+p.terms_of_service{
+  font-size: 12px;
+  text-align: justify;
+  padding: 20px;
+}
+
 // Mandatos creation form
 .imanuevo {
   margin-bottom: 25px;

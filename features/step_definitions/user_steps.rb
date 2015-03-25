@@ -80,7 +80,7 @@ end
 Given(/^I am a registered User with some Mandatos$/) do
   login_as( usuario, :scope => :usuario )
   mandato
-  mandato_2 = FactoryGirl.create( :mandato, matricula: "Otro mandato",
+  mandato_2 = FactoryGirl.create( :mandato, matricula_bastidor: "Otro mandato",
     cliente: cliente )
 end
 

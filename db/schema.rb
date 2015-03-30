@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150310183026) do
+ActiveRecord::Schema.define(:version => 20150330074659) do
 
   create_table "api_keys", :force => true do |t|
     t.string   "access_token"
@@ -201,9 +201,10 @@ ActiveRecord::Schema.define(:version => 20150310183026) do
   create_table "organizaciones", :force => true do |t|
     t.string   "nombre"
     t.string   "identificador"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
     t.string   "cif"
+    t.boolean  "view_mandato",  :default => false
   end
 
   create_table "rails_admin_histories", :force => true do |t|

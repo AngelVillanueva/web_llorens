@@ -52,6 +52,7 @@
       <hr>
       <p class="description">Solicite un Informe de Tráfico y descárguelo en formato PDF</p>
     </li>
+    <% if @view_mandato == true %>
     <li class="span3 teammate new">
       <h5><%= link_to new_online_mandato_path do %>
             <%= content_tag('span', "MD", class: 'MD pie') %>
@@ -62,6 +63,7 @@
       <hr>
       <p class="description">Aceptación Mandato de forma online</p>
     </li>
+    <% end %>
     </ul>
   </div>
   <% if remarketing_links? %>

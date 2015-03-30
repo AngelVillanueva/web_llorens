@@ -8,6 +8,7 @@
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  cif           :string(255)
+#  view_mandato  :boolean
 #
 
 class Organizacion < ActiveRecord::Base
@@ -33,6 +34,9 @@ class Organizacion < ActiveRecord::Base
       end
       field :clientes do
         group :advanced
+      end
+      field :view_mandato do
+        label I18n.t("Acceso a mandatos")
       end
     end
   end

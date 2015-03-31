@@ -401,6 +401,8 @@ es:
   Primer apellido obligatorio para personas: "El campo PRIMER APELLIDO es obligatorio a menos que se trate de una empresa."
   Matricula obligatoria en vehiculos matriculados: "El campo MATRICULA es obligatorio para vehículos matriculados."
   Bastidor obligatorio en vehiculos sin matricular: "El campo BASTIDOR es obligatorio para vehículos nuevos."
+  Longitud campo Bastidor: "El campo BASTIDOR no es correcto"
+  El número de Bastidor debe tener 17 dígitos: "El número de BASTIDOR debe tener 17 dígitos."
   Representante obligatorio para empresas: "Datos de REPRESENTANTE obligatorios para empresas."
   No ha introducido el codigo de validacion: "No ha introducido el código de validación."
   El codigo de validacion se ha introducido correctamente: "El código de validación es correcto."

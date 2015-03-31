@@ -544,6 +544,14 @@ root.not_seen_avisos = []
     $( '#representante_modal' ).modal( 'show' )
     return false
 
+# take cares of Bastidor length field just for new vehicules
+@handleBastidorIfANewVehicleMandato = ->
+  anuevo = $( '#imanuevo' ).prop( 'checked' )
+  bastidor_length = $( '#mandato_matricula_bastidor' ).val().length
+  if anuevo && (bastidor_length != 17)
+    $( '#bastidor_length_modal' ).modal( 'show' )
+    return false
+
 # returns a date in local formatting (es)
 @fechaLocal = (fecha) ->
   if fecha

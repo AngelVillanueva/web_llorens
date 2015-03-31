@@ -376,6 +376,10 @@ $(document).ready ->
   $( document ).on 'submit', '#new_mandato', ->
     handleRepresentanteIfACompanyMandato()
 
+  # take care of mandatory bastidor length field for new Mandatos via javascript
+  $( document ).on 'submit', '#new_mandato', ->
+    handleBastidorIfANewVehicleMandato()
+
   # Callback for rendering via JSON (versión remote dataTables, using 'on' to bind also dinamically created links)
   $("#stock_vehicles").on 'ajax:complete', 'a.vehicle[data-type=json]', (event, data, status, xhr) ->
     $( '#modalVehicle .modal-header h3' ).html( "Vehículo matrícula" + " " + data.responseJSON.matricula )

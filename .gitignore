@@ -42,6 +42,8 @@ doc/
 /app/assets/pdfs/expedientes/
 /app/assets/pdfs/justificantes/*.*
 /app/assets/pdfs/informes/*.*
+/app/assets/pdfs/mandatos/
+/app/assets/pdfs/mandatos/*.*
 
 
 public/system/informe_traficos/pdfs/000/000/001/original/provisión_fondos.pdf

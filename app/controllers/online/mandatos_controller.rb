@@ -115,12 +115,14 @@ class Online::MandatosController < OnlineController
     else
       if mandato.imacompany == true
           mandato.pdf_file_name = "mandato_sociedades_"+mandato.identificador+".pdf"
+          mandato.hora_entrega = Time.now
           mandato.save
           respond_to do |format|
             format.pdf { render :layout => false, :template => 'online/mandatos/gen_mandato_sociedades.pdf.prawn' } 
           end
       else
           mandato.pdf_file_name = "mandato_fisico_"+mandato.identificador+".pdf"
+          mandato.hora_entrega = Time.now
           mandato.save
           respond_to do |format|
             format.pdf { render :layout => false, :template => 'online/mandatos/gen_mandato_fisico.pdf.prawn' }

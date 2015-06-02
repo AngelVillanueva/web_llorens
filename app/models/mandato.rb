@@ -47,7 +47,7 @@ class Mandato < ActiveRecord::Base
 
   before_validation :assign_hora_solicitud, on: :create
   before_validation :assign_secure_token, on: :create
-  before_update :assign_hora_entrega, if: :first_time_pdf?
+  # before_update :assign_hora_entrega, if: :first_time_pdf?
   after_create :send_email_if_out_of_the_office
 
   validates :identificador, :nif_comprador, :nombre_razon_social, :provincia, :municipio, :direccion, :telefono, :matricula_bastidor, :marca, :modelo, :hora_solicitud, :cliente_id, :secure_token, presence: true
@@ -58,9 +58,9 @@ class Mandato < ActiveRecord::Base
   def assign_hora_solicitud
     self.hora_solicitud = Time.now
   end
-  def assign_hora_entrega
-    self.hora_entrega = Time.now
-  end
+  # def assign_hora_entrega
+  #   self.hora_entrega = Time.now
+  # end
   def assign_secure_token
     self.secure_token = SecureRandom.hex
   end

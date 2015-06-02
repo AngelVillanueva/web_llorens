@@ -77,8 +77,14 @@ $(document).ready ->
   $( 'a.printLink').click ->
     printRow( $( this ).parent('td').parent('tr') )
 
+  $( 'a.printLinkM').click ->
+    printRowM( $( this ).parent('td').parent('tr') )
+
   $('body').on 'click','a.printLink', ->
     printRow( $( this ).parent('td').parent('tr') )
+
+  $('body').on 'click','a.printLinkM', ->
+    printRowM( $( this ).parent('td').parent('tr'), $( this ) )
 
   # prepare the content if a table
   if ( $( 'table' ).length )

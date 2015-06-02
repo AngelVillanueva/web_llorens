@@ -434,6 +434,22 @@ root.not_seen_avisos = []
   $( '#toPrint' ).printThis()
   $( '#toPrint' ).remove()
 
+# print a table row mandato
+@printRowM = (row, link) ->
+  tipo = $( 'h2.section_header span:eq(0)' ).text().split(" ")[0].toUpperCase()
+  $( '<div id="toPrint" class="printable" />' ).appendTo( 'body' )
+  $( '<h3>Verificación mandato</h3><hr/><h4>' + tipo + '</h4>' ).appendTo( '#toPrint' )
+  $( '<ul id="printList" />' ).appendTo( '#toPrint' )
+  $( row ).children('td.printable').each (i) ->
+    #titular = $( this ).attr( 'data-titular' )
+    titular = $( "#"+ tipo.toLowerCase() + " tr.titles th:eq(" + i + ")").text()
+    contenido = $( this ).html()
+    if (titular == 'Estado')
+      $( '<li><span class="titular">Código Verificación:</span><span class="contenido">' + link.find('#scod').val() + '</span></li>').appendTo( '#printList' )
+    $( '<li><span class="titular">' + titular + ':</span><span class="contenido">' + contenido + '</span></li>').appendTo( '#printList' )
+  $( '#toPrint' ).printThis()
+  $( '#toPrint' ).remove()
+
 # force page reload
 @updateScreen = ->
   location.reload(true)

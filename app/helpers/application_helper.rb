@@ -295,6 +295,14 @@ module ApplicationHelper
       end
     end
   end
+  # returns the content of the Mandatos print_link cell
+  def print_link_cell_m( mandato )
+    unless mandato.pending_code
+      link_to '#', class: "printLinkM" do
+        content_tag( 'i', hidden_field_tag( 'scod', mandato.secure_token[0..5] ), class: 'icon icon-print' )
+      end
+    end
+  end
   # returns the content of the Informes edit_link cell
   def edit_link_cell_i( informe )
     unless current_usuario.norole?

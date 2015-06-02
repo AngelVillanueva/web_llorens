@@ -1,5 +1,5 @@
 class MandatosDatatable
-  delegate :params, :h, :link_to, :estado_cell, :sms_link_cell, :pdf_link_cell_m, :edit_link_cell_m, :print_link_cell, to: :@view
+  delegate :params, :h, :link_to, :estado_cell, :sms_link_cell, :pdf_link_cell_m, :edit_link_cell_m, :print_link_cell_m, to: :@view
 
   def initialize(view, current_ability)
     @view = view
@@ -46,13 +46,13 @@ class MandatosDatatable
         mandato.telefono,
         mandato.marca,
         mandato.modelo,
-        mandato.hora_solicitud.nil? ? "" : I18n.l( mandato.hora_solicitud, format: "%d/%m/%Y %H:%m" ),
-        mandato.hora_entrega.nil? ? "" : I18n.l( mandato.hora_entrega, format: "%d/%m/%Y %H:%m" ),
+        mandato.hora_solicitud.nil? ? "" : I18n.l( mandato.hora_solicitud, format: "%d/%m/%Y %H:%M" ),
+        mandato.hora_entrega.nil? ? "" : I18n.l( mandato.hora_entrega, format: "%d/%m/%Y %H:%M" ),
         estado_cell( mandato ),
         sms_link_cell( mandato),
         pdf_link_cell_m( mandato ),
         edit_link_cell_m( mandato ),
-        print_link_cell( mandato)
+        print_link_cell_m( mandato)
       ]
     end
   end

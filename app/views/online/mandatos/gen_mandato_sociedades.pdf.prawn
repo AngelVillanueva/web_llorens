@@ -51,11 +51,11 @@ pdf.move_down 40
 pdf.font_size = 12
 pdf.text "En cumplimiento de lo establecido en el Anexo XIII letra A) 3º del Reglamento General de Vehículos (RD 2822/1998, de 23 de Diciembre), y a los efectos de su presentación ante la Jefatura Provincial local de Trafico de BARCELONA, el/los abajo firmantes declara/declaran tener poder suficiente para actuar en nombre y representación de la entidad:"
 pdf.move_down 20
-pdf.text "...................................................................................................................................."
+pdf.text " #{@mandato.nombre_razon_social}"
 pdf.move_down 10
-pdf.text "con CIF nº ................................, para la tramitación del expediente del vehículo"
+pdf.text "con CIF nº #{@mandato.nif_comprador}, para la tramitación del expediente del vehículo"
 pdf.move_down 10
-pdf.text "con matrícula/bastidor: ............................."
+pdf.text "con matrícula/bastidor: #{@mandato.matricula_bastidor}"
 pdf.move_down 20
 pdf.text "Y para que así conste y surta los efectos oportunos,"
 pdf.move_down 20

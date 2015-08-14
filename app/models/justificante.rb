@@ -72,7 +72,7 @@ class Justificante < ActiveRecord::Base
     elsif created_at.to_date.wday == 5 && created_at.hour >= 17
       true
     # else send if monday-thursday from 7 pm
-    elsif (1..4).include?( created_at.to_date.wday ) && created_at.hour >= 19
+    elsif (1..4).include?( created_at.to_date.wday ) && created_at.hour >= 17
       true
     # otherwise do not send the email
     else

@@ -1,0 +1,29 @@
+<tr class="driver <%= 'new' if driver.pdf_file_name.nil? %>" data-time="<%= driver.created_at.to_i %>">
+    <td class="printable" data-titular="Matricula">
+      <%= driver.matricula.upcase %>
+    </td>
+    <td class="printable" data-titular="Bastidor">
+      <%= driver.bastidor.upcase %>
+    </td>
+    <td class="printable" data-titular="Fecha Matriculacion">
+      <%= l driver.fecha_matriculacion, format: "%d/%m %H:%M" unless driver.fecha_matriculacion.nil? %>
+    </td>
+    <td class="printable" data-titular="Envio">
+      <%= driver.envio_ok %>
+    </td>
+    <td class="printable" data-titular="Fecha Envio">
+      <%= l driver.fecha_envio, format: "%d/%m %H:%M" unless driver.fecha_envio.nil? %>
+    </td>
+    <td class="printable" data-titular="Concesionario_cliente">
+      <%= driver.concesionario_cliente %>
+    </td>
+    <td class="printable" data-titular="Direccion driver">
+      <%= driver.direccion %>
+    </td>
+    <td class="printable" data-titular="Persona contacto">
+      <%= driver.persona_contacto %>
+    </td>
+    <td class="printable" data-titular="Mensajeria">
+      <%= driver.pdf_file_name %>
+    </td>
+  </tr>

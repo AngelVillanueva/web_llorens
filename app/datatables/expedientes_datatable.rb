@@ -45,6 +45,7 @@ class ExpedientesDatatable
         [
           expediente.cliente.nombre,
           matricula_cell_whole( expediente ),
+          expediente.pdf_updated_at.nil? ? "" : I18n.l(expediente.pdf_updated_at, :format => :date),
           expediente.bastidor,
           expediente.comprador,
           expediente.modelo,
@@ -157,7 +158,7 @@ class ExpedientesDatatable
   def type_columns
     case @type.to_s
     when "Matriculacion"
-      columns = %w[clientes.nombre matricula bastidor comprador modelo fecha_alta fecha_facturacion ivtm has_documentos]
+      columns = %w[clientes.nombre matricula pdf_updated_at bastidor comprador modelo fecha_alta fecha_facturacion ivtm has_documentos]
     when "Transferencia"
       columns = %w[clientes.nombre matricula comprador vendedor marca fecha_alta fecha_facturacion fecha_resolucion_incidencia has_documentos]
     end

@@ -6,6 +6,10 @@ a.pie, a.pie:hover {
   cursor: pointer;
 }
 
+span.REM.pie, span.DOC.pie, span.DRI.pie {
+  font-size: 62px;
+}
+
 .table-wrapper {
   padding: 10px;
 background: white;
@@ -415,6 +419,24 @@ p.terms_of_service{
     display:none;
     visibility: hidden;
   }
+}
+
+// Documentos
+
+.circle-red{
+  color: red;
+}
+
+.circle-green{
+  color: green;
+}
+
+.align-med {
+  margin-left: 180px;
+}
+
+.driver-title {
+  margin-bottom:30px;
 }
 
 // Miscellaneous

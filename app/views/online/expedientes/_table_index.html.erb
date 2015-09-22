@@ -4,6 +4,9 @@
       <th><%= t("Cliente") %></th>
       <th><%= t("Matricula") %></th>
       <% if expediente_type? expediente, 'matriculacion' %>
+        <th><%= t("Fecha matriculacion") %></th>
+      <% end %>
+      <% if expediente_type? expediente, 'matriculacion' %>
         <th><%= t("Bastidor") %></th>
       <% end %>
       <th><%= t("Comprador") %></th>
@@ -27,6 +30,9 @@
     <tr class="titles">
       <th><%= t("Cliente") %></th>
       <th class="thmatricula"><%= t("Matricula") %></th>
+      <% if expediente_type? expediente, 'matriculacion' %>
+        <th><%= t("Fecha matriculacion") %></th>
+      <% end %>
       <% if expediente_type? expediente, 'matriculacion' %>
         <th><%= t("Bastidor") %></th>
       <% end %>
@@ -66,6 +72,11 @@
             <i title='<%= t("Documentacion correcta") %>' class="noincidencia icon icon-circle"></i>
           <% end %>
         </td>
+        <% if expediente_type? expediente, 'matriculacion' %>
+          <td>
+            <%= expediente.pdf_updated_at %>
+          </td>
+        <% end %>
         <% if expediente_type? expediente, 'matriculacion' %>
           <td>
             <%= expediente.bastidor %>

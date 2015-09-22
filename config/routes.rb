@@ -32,6 +32,24 @@ WebLlorens::Application.routes.draw do
         get 'download'
       end
     end
+    resources :documentos do
+      member do
+        get 'download'
+      end
+    end
+
+    resources :documentos do
+      member do
+        get 'downdoc'
+      end
+    end
+
+    resources :drivers do
+      member do
+        get 'download'
+      end
+    end
+
     resources :mandatos do
       member do
         get 'download'

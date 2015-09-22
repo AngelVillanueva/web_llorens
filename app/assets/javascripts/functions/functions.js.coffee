@@ -76,6 +76,30 @@ root.not_seen_avisos = []
   if( $('tr.informe').length )
     setInterval(updateScreen, 240000)
 
+# polling Documentos table data
+# @updateDocumentos = ->
+#     if( $('tr.documento').length )
+#       after = $('tr.documento:eq(0)').attr('data-time')
+#       $.getScript('/online/documentos.js?after=' + after)
+#       setTimeout(updateDocumentos, 10000)
+#       setInterval(updateScreen, 15000)
+
+@updateDocumentosNewVersion = ->
+  if( $('tr.documento').length )
+    setInterval(updateScreen, 240000)
+
+# polling Drivers table data
+# @updateDrivers = ->
+#     if( $('tr.driver').length )
+#       after = $('tr.driver:eq(0)').attr('data-time')
+#       $.getScript('/online/drivers.js?after=' + after)
+#       setTimeout(updateDrivers, 10000)
+#       setInterval(updateScreen, 15000)
+
+@updateDriversNewVersion = ->
+  if( $('tr.driver').length )
+    setInterval(updateScreen, 240000)
+
 # datepicker localization (es)
 @configureDatePicker = ->
   $.datepicker.regional['es'] = {
@@ -406,6 +430,94 @@ root.not_seen_avisos = []
       aoColumns: filtercolumns
     })
 
+# create remote DataTable for Documentos
+@createRemoteDocumentosDataTable = ( selector, sortcolumn, columntypes, excelname, exportcolumns, filtercolumns, datecolumns=[] ) ->
+  oTable = $( '#' + selector )
+  if ( oTable.length )
+    oTable.dataTable({
+      "sDom": "<'row'<'span6'T><'span6 pull-right'>r>t<'row-fluid'<'span6'i><'span6'p>>",
+      "sPaginationType": "bootstrap",
+      "aaSorting": sortcolumn,
+      "aoColumns": columntypes,
+      "bProcessing": true,
+      "bServerSide": true,
+      "sAjaxSource": oTable.data('source'),
+      "fnRowCallback": ( nRow, aData, iDisplayIndex ) ->
+        $(nRow).addClass('documento');
+        $('td', nRow).slice(0,7).addClass('printable')
+        $('td', nRow).slice(9,10).addClass('icon')
+        return nRow
+      "oLanguage": {
+          "sSearch": "Buscar en la tabla",
+          "sLengthMenu": "Mostrar _MENU_ entradas por página",
+          "sZeroRecords": "Lo siento, no hay resultados",
+          "sInfo": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
+          "sInfoEmpty": "Mostrando 0 a 0 de 0 entradas",
+          "sInfoFiltered": "(filtrado de _MAX_ total entradas)"
+      },
+      "oTableTools": {
+        "aButtons": [ 
+          {
+            "sExtends": "download",
+            "sButtonText": "Download CSV",
+            "sUrl": oTable.data('xls'), # use 'csv' to export in CSV instead of XLS
+            "sInputName": selector,
+            "sExtraData": datecolumns,
+            "sCharSet": "utf16le"
+          }
+
+        ]
+      }
+    }).columnFilter({
+      sPlaceHolder: "head:before",
+      sRangeFormat: "De {from} a {to}",
+      aoColumns: filtercolumns
+    })
+
+# create remote DataTable for Drivers
+@createRemoteDriversDataTable = ( selector, sortcolumn, columntypes, excelname, exportcolumns, filtercolumns, datecolumns=[] ) ->
+  oTable = $( '#' + selector )
+  if ( oTable.length )
+    oTable.dataTable({
+      "sDom": "<'row'<'span6'T><'span6 pull-right'>r>t<'row-fluid'<'span6'i><'span6'p>>",
+      "sPaginationType": "bootstrap",
+      "aaSorting": sortcolumn,
+      "aoColumns": columntypes,
+      "bProcessing": true,
+      "bServerSide": true,
+      "sAjaxSource": oTable.data('source'),
+      "fnRowCallback": ( nRow, aData, iDisplayIndex ) ->
+        $(nRow).addClass('driver');
+        $('td', nRow).slice(0,8).addClass('printable')
+        $('td', nRow).slice(8,10).addClass('icon')
+        return nRow
+      "oLanguage": {
+          "sSearch": "Buscar en la tabla",
+          "sLengthMenu": "Mostrar _MENU_ entradas por página",
+          "sZeroRecords": "Lo siento, no hay resultados",
+          "sInfo": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
+          "sInfoEmpty": "Mostrando 0 a 0 de 0 entradas",
+          "sInfoFiltered": "(filtrado de _MAX_ total entradas)"
+      },
+      "oTableTools": {
+        "aButtons": [ 
+          {
+            "sExtends": "download",
+            "sButtonText": "Download CSV",
+            "sUrl": oTable.data('xls'), # use 'csv' to export in CSV instead of XLS
+            "sInputName": selector,
+            "sExtraData": datecolumns,
+            "sCharSet": "utf16le"
+          }
+
+        ]
+      }
+    }).columnFilter({
+      sPlaceHolder: "head:before",
+      sRangeFormat: "De {from} a {to}",
+      aoColumns: filtercolumns
+    })
+
 # move Export to Excel/CSV Button to Tools div
 @moveExportButton = ->
   #$button = $('a.DTTT_button_xls')
@@ -565,6 +677,13 @@ root.not_seen_avisos = []
   anuevo = $( '#imanuevo' ).prop( 'checked' )
   bastidor_length = $( '#mandato_matricula_bastidor' ).val().length
   if anuevo && (bastidor_length != 17)
+    $( '#bastidor_length_modal' ).modal( 'show' )
+    return false
+
+# take cares of Bastidor length field just for new Documento
+@handleBastidorIfANewDocumento = ->
+  bastidor_length = $( '#documento_bastidor' ).val().length
+  if (bastidor_length != 17)
     $( '#bastidor_length_modal' ).modal( 'show' )
     return false
 

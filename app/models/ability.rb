@@ -15,7 +15,7 @@ class Ability
         can :manage, Informe
         can :manage, Cliente
         can :manage, StockVehicle
-    elsif usuario.role? "remarketing"
+    elsif usuario.has_cli_remarketing?
         can :manage, Documento
         can :manage, Driver
     # Common users

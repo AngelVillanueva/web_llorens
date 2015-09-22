@@ -65,6 +65,11 @@ class Usuario < ActiveRecord::Base
     Informe.where(cliente_id: clientes)
   end
 
+  def has_cli_remarketing?
+    clientes = self.norole? && self.organizacion.clientes || Cliente.all
+    clientes.map(&:has_remarketing?).include? true
+  end
+
   # delete all notificaciones already expired after successful login
   def after_database_authentication
     self.avisos.caducados.each do |aviso_caducado|

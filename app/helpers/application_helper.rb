@@ -225,6 +225,27 @@ module ApplicationHelper
       end
     end
   end
+  # return the content of the Documento Pdf cell
+  def documento_cell_pdf( documento )
+    content_tag( 'div' ) do
+      if documento.upload_pdf == true
+        link_to downdoc_online_documento_path(documento), title: "PDF", target: '_blank', class: 'download_doc' do
+          concat content_tag( 'span', t( "Descargar Orden" ) )
+          concat content_tag( 'i', hidden_field_tag( 'docid', documento.id ), class: 'icon icon-file' )
+       end
+      end
+    end
+  end
+  # return the content of the Driver Pdf cell
+  def driver_cell_pdf( driver )
+    content_tag( 'div' ) do
+      unless driver.pdf_file_name.nil?
+          link_to driver.pdf.url, title: "PDF", target: '_blank', class: 'icon' do
+          content_tag( 'i', nil, class: 'icon icon-file' )
+       end
+      end
+    end
+  end
   # returns the content of the Expedientes Documentos cell
   def documentos_cell( expediente )
     if expediente.has_documentos
@@ -313,6 +334,22 @@ module ApplicationHelper
       end
     end
   end
+  # returns the content of the Documento edit_link cell
+  def edit_link_cell_d( documento )
+    unless current_usuario.norole?
+      link_to edit_online_documento_path(documento), title: "Editar" do
+        content_tag( 'i', nil, class: 'icon icon-edit toedit' )
+      end
+    end
+  end
+  # returns the content of the Driver edit_link cell
+  def edit_link_cell_dr( driver )
+    if current_usuario.role == 'employee' || current_usuario.role == 'admin'
+      link_to edit_online_driver_path(driver), title: "Editar" do
+        content_tag( 'i', nil, class: 'icon icon-edit toedit' )
+      end
+    end
+  end
   # returns the content of the Justificantes print_link cell
   def print_link_cell( justificante )
     link_to '#', class: "printLink" do
@@ -372,6 +409,22 @@ module ApplicationHelper
       end
     end
     nil
+  end
+
+  # returns a simple (first) link to the Remarketing page for any Cliente (current_ability) that has_remarketing
+  def remarketing_link_first
+    cliente = current_usuario.norole? && current_usuario.organizacion.clientes.where("has_remarketing = true").first || Cliente.where("has_remarketing = true").first
+    if cliente.has_remarketing?
+      online_cliente_stock_vehicles_path( cliente ) 
+    end
+  end
+
+   # returns a simple (first) title link to the Remarketing page for any Cliente (current_ability) that has_remarketing
+  def remarketing_link_title
+    cliente = current_usuario.norole? && current_usuario.organizacion.clientes.where("has_remarketing = true").first || Cliente.where("has_remarketing = true").first
+    if cliente.has_remarketing?
+      link_to( cliente.nombre, online_cliente_stock_vehicles_path( cliente ) )
+    end
   end
 
   # helpers for Remarketing cells

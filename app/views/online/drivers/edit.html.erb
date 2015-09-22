@@ -1,0 +1,14 @@
+<% provide :title, t("Editar Driver") %>
+
+<div class="about_page">
+  <%= render 'shared/section_wrapper',
+      header_text: t("Editar driver"),
+      index_link: 'drivers',
+      linked_pdf: driver.pdf_file_name && driver || nil %>
+
+  <div class="row">
+    <div class="span6s offset4s">
+      <%= render 'form' %>
+    </div>
+  </div>
+</div>

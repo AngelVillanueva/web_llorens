@@ -1,0 +1,35 @@
+<%= render 'shared/bastidor' %>
+<%= render 'shared/bastidor_length' %>
+
+<%= simple_form_for [:online, documento], html: { class: 'form-horizontal documentos', multipart: true } do |f| %>
+  <%= f.error_notification %>
+  <div class="span3">
+  </div>
+  <div class="span4">    
+
+    <% if current_usuario.role == 'employee' || current_usuario.role == 'admin' %>
+
+      <%= f.input :identificador, :as => :hidden, :input_html => { :value => Time.now.to_i.to_s } %>
+      <%= f.input :bastidor, label: t( "Bastidor" ) %>
+      <%= f.input :ficha_tecnica, label: t( "Ficha electronica" ) %>
+      <%= f.input :concesionario, label: t("Concesionario") %>
+    
+    <% end %>
+   
+    <%= f.input :observaciones, label: t("Observaciones"), :input_html => {style: 'width:300px', cols: 22, rows: 5} %>
+
+    <% if current_usuario.role == 'remarketing' %>
+ 
+      <div class="form-inputs align-med">
+        <%= t("PDF actual_html", pdf: documento.pdf_file_name) unless documento.pdf_file_name.nil? %>
+        <%= f.file_field :pdf %>
+      </div>
+
+    <% end %>
+
+    <%= f.button :submit, t("Solicitar documento"), class: 'pull-right btn-primary' %>
+  </div>
+  
+  <div class="span5">
+  </div>
+<% end %>

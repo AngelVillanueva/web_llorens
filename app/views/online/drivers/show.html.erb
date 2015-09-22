@@ -1,0 +1,28 @@
+<% provide :title, t( "Driver para", n: driver.matricula ) %>
+
+<div class="about_page">
+  <%= render 'shared/section_wrapper',
+    header_text: t("Mandato profesional para", n: driver.matricula),
+    index_link: 'mandatos',
+    print_element: 'table#driver',
+    linked_pdf: !driver.pdf.url.nil? && driver || nil %>
+
+  <div class="row with_pdf">
+    <table id="driver" class="table-condensed table-hover table-bordered">
+      <tbody>
+        <tr><td>Matrícula</td><td><%= driver.matricula %></td></tr>
+        <tr><td>Bastidor</td><td><%= driver.bastidor %></td></tr>
+        <tr><td>Fecha matriculación</td><td><%= driver.fecha_matriculacion %></td></tr>
+        <tr><td>Envio</td><td><%= driver.envio_ok %></td></tr>
+        <tr><td>Fecha envío</td><td><%= driver.fecha_envio %></td></tr>
+        <tr><td>Concesionario cliente</td><td><%= driver.concesionario_cliente %></td></tr>
+        <tr><td>Dirección</td><td><%= driver.direccion %></td></tr>
+        <tr><td>Persona contacto</td><td><%= driver.persona_contacto %></td></tr>
+        <tr><td>PDF</td><td><%= link_to t("Ampliar PDF"), driver.pdf.url %></td></tr>
+      </tbody>
+    </table>
+
+    <iframe class="pdf" src="<%= driver.pdf.url %>"></iframe>
+  </div>
+
+</div>

@@ -1,0 +1,29 @@
+<tr class="documento <%= 'new' if documento.pdf_file_name.nil? %>" data-time="<%= documento.created_at.to_i %>">
+    <td class="printable" data-titular="Bastidor">
+      <%= documento.bastidor.upcase %>
+    </td>
+    <td class="printable" data-titular="Ficha tecnica">
+      <%= documento.ficha_tecnica %>
+    </td>
+    <td class="printable" data-titular="Concesionario">
+      <%= documento.concesionario %>
+    </td>
+    <td class="printable" data-titular="Fecha Recepcion">
+      <%= l documento.fecha_recepcion, format: "%d/%m %H:%M" unless documento.fecha_recepcion.nil? %>
+    </td>
+    <td class="printable" data-titular="Orden Matriculacion">
+      <%= documento.pdf_file_name %>
+    </td>
+    <td class="printable hidden" data-titular="Fecha carga">
+      <%= l documento.pdf_updated_at, format: "%d/%m %H:%M" unless documento.pdf_updated_at.nil? %>
+    </td>
+    <td class="printable" data-titular="Observaciones">
+      <%= documento.observaciones %>
+    </td>   
+    <td class="printable" data-titular="Pending">
+      <%= documento.upload_pdf %>
+    </td>
+    <td class="printable" data-titular="Download">
+      <%= documento.download_pdf %>
+    </td>
+  </tr>

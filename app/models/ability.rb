@@ -9,10 +9,15 @@ class Ability
     elsif usuario.role? "employee"
         can :manage, Expediente
         can :manage, Justificante
+        can :manage, Documento
+        can :manage, Driver
         can :manage, Mandato
         can :manage, Informe
         can :manage, Cliente
         can :manage, StockVehicle
+    elsif usuario.role? "remarketing"
+        can :manage, Documento
+        can :manage, Driver
     # Common users
     elsif usuario
         can :manage, Expediente, cliente_id: usuario.cliente_ids

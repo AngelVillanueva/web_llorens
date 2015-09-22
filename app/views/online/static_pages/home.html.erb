@@ -64,9 +64,41 @@
       <p class="description">Aceptación Mandato de forma online</p>
     </li>
     <% end %>
+    <% if remarketing_links? %>
+    <li class="span3 teammate new">
+      <h5><%= link_to remarketing_link_first do %>
+            <%= content_tag('span', "REM", class: 'REM pie') %>
+            <%= t("Acceso Remarketing") %>
+          <% end %>
+      </h5>
+      <p>Área de remarketing: <%= remarketing_link_title %></p>
+      <hr>
+      <p class="description">Remarketing online</p>
+    </li>
+    <li class="span3 teammate new">
+      <h5><%= link_to new_online_documento_path do %>
+            <%= content_tag('span', "DOC", class: 'DOC pie') %>
+            <%= t("Solicitud Documentos") %>
+          <% end %>
+      </h5>
+      <p>O bien <%= link_to "consulte", online_documentos_path %> sus Documentos</p>
+      <hr>
+      <p class="description">Solicite un Documento de Matriculación y descárguelo en formato PDF</p>
+    </li>
+    <li class="span3 teammate new">
+      <h5><%= link_to online_drivers_path do %>
+            <%= content_tag('span', "DRI", class: 'DRI pie') %>
+            <%= t("Listado de Drivers") %>
+          <% end %>
+      </h5>
+      <p>O bien <%= link_to "consulte", online_drivers_path %> sus Drivers</p>
+      <hr>
+      <p class="description">Consulte los Drivers de Matriculación y descárguelos en formato PDF</p>
+    </li>
+    <% end %>
     </ul>
   </div>
-  <% if remarketing_links? %>
+  <% if remarketing_links? && current_usuario.role == 'admin'%>
     <div class="row>">
       <ul class="remarketing">O acceda a las áreas de Remarketing que tiene disponibles:
         <%= remarketing_link_list %>

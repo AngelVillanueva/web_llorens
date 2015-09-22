@@ -1,0 +1,26 @@
+<%= simple_form_for [:online, driver], html: { class: 'form-horizontal drivers', multipart: true } do |f| %>
+  <%= f.error_notification %>
+  <div class="span3">
+  </div>
+  <div class="span5">
+
+  <div class="driver-title align-med">
+    <h3>Vehículo Matrícula <%= driver.matricula %></h3>
+  </div>
+    <%= f.input :identificador, :as => :hidden, :input_html => { :value => Time.now.to_i.to_s } %>
+    <%= f.input :concesionario_cliente, label: t( "Concesionario driver" ) %>
+    <%= f.input :direccion, label: t( "Direccion driver" ) %>
+    <%= f.input :persona_contacto, label: t( "Persona contacto" ) %>
+    <%= f.input :envio_ok, label: t( "Aceptar Envío" ) %>
+
+    <div class="form-inputs align-med">
+      <%= t("PDF actual_html", pdf: driver.pdf_file_name) unless driver.pdf_file_name.nil? %>
+      <%= f.file_field :pdf %>
+    </div>
+
+    <%= f.button :submit, t("Guardar"), class: 'align-med btn-primary' %>
+  </div>
+  
+  <div class="span4">
+  </div>
+<% end %>

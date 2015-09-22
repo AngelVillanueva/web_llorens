@@ -1,0 +1,53 @@
+<% provide :title, t("Listado de Drivers") %>
+
+<%= render 'shared/avisos_pulled' %>
+
+<div class="about_page vista_tabla" data-pulltime="<%= new_avisos_pulltime %>">
+  <%= render 'shared/section_wrapper',
+      header_text: t("Drivers"),
+      linked_pdf: nil,
+      search: 'drivers',
+      legend: nil %>
+
+  <div class="row">
+    <table id="drivers" class="row pull-right table table-condensed table-bordered table-striped top_filtered drivers" data-source="<%= online_drivers_path(format: "json") %>" data-csv="<%= online_drivers_path(format: "csv") %>?" data-xls="<%= online_drivers_path(format: "xls") %>?">
+  <thead>
+    <tr class="filter">
+      <th><%= t("Matricula") %></th>
+      <th><%= t("Bastidor") %></th>
+      <th><%= t("Fecha matriculacion") %></th>
+      <th><%= t("Envio") %></th>
+      <th><%= t("Fecha envio") %></th>
+      <th><%= t("Tipo") %></th>
+      <th><%= t("Direccion driver") %></th>
+      <th><%= t("Persona contacto") %></th>
+      <th><%= t("Mensajeria") %></th>
+      <th></th>
+      <th></th>
+    </tr>
+    <tr class="titles">
+      <th><%= t("Matricula") %></th>
+      <th><%= t("Bastidor") %></th>
+      <th><%= t("Fecha matriculacion") %></th>
+      <th><%= t("Envio") %></th>
+      <th><%= t("Fecha envio") %></th>
+      <th><%= t("Tipo") %></th>
+      <th><%= t("Direccion driver") %></th>
+      <th><%= t("Persona contacto") %></th>
+      <th><%= t("Mensajeria") %></th>
+      <th colspan="4"><%= t("Acciones") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render drivers %>
+  </tbody>
+</table>
+  </div>
+</div>
+
+<% # hidden table to serve as a bridge for polled new records to be added to the table %>
+<div class="row hidden">
+  <table id="temp_table">
+    <tbody></tbody>
+  </table>
+</div>

@@ -1,0 +1,54 @@
+<% provide :title, t("Listado de Documentos") %>
+
+<%= render 'shared/avisos_pulled' %>
+
+<div class="about_page vista_tabla" data-pulltime="<%= new_avisos_pulltime %>">
+  <%= render 'shared/section_wrapper',
+      header_text: t("Documentos"),
+      linked_pdf: nil,
+      new_link: 'documentos',
+      search: 'documentos',
+      legend: nil %>
+
+  <div class="row">
+    <table id="documentos" class="row pull-right table table-condensed table-bordered table-striped top_filtered documentos" data-source="<%= online_documentos_path(format: "json") %>" data-csv="<%= online_documentos_path(format: "csv") %>?" data-xls="<%= online_documentos_path(format: "xls") %>?">
+  <thead>
+    <tr class="filter">
+      <th><%= t("Bastidor") %></th>
+      <th><%= t("Ficha tecnica") %></th>
+      <th><%= t("Concesionario") %></th>
+      <th><%= t("Fecha recepcion") %></th>
+      <th><%= t("Orden Matriculacion") %></th>
+      <th><%= t("Fecha carga") %></th>
+      <th><%= t("Observaciones") %></th>
+      <th><%= t("PDF Subido") %></th>
+      <th><%= t("PDF Descargado") %></th>
+      <th></th>
+      <th></th>
+    </tr>
+    <tr class="titles">
+      <th><%= t("Bastidor") %></th>
+      <th><%= t("Ficha tecnica") %></th>
+      <th><%= t("Concesionario") %></th>
+      <th><%= t("Fecha recepcion") %></th>
+      <th><%= t("Orden Matriculacion") %></th>
+      <th><%= t("Fecha carga") %></th>
+      <th><%= t("Observaciones") %></th>
+      <th><%= t("PDF Subido") %></th>
+      <th><%= t("PDF Descargado") %></th>
+      <th colspan="4"><%= t("Acciones") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render documentos %>
+  </tbody>
+</table>
+  </div>
+</div>
+
+<% # hidden table to serve as a bridge for polled new records to be added to the table %>
+<div class="row hidden">
+  <table id="temp_table">
+    <tbody></tbody>
+  </table>
+</div>

@@ -119,6 +119,7 @@ $(document).ready ->
       [
         null,
         null,
+        {"sType": "uniDate"},
         null,
         null,
         null,
@@ -128,10 +129,11 @@ $(document).ready ->
         null
         ],
       "Matriculaciones_Llorens",
-      [0,1,2,3,4,5,6,7,8], 
+      [0,1,2,3,4,5,6,7,8,9], 
       [
         { type: "text" },
         { type: "text" },
+        { type: "date-range" },
         { type: "text" },
         { type: "text" },
         { type: "text" },
@@ -140,7 +142,7 @@ $(document).ready ->
         { type: "text" },
         { type: "select", values: [ 'PDF Pendiente', 'Ver PDF' ] }
       ],
-      [5,6]
+      [2,6,7]
     )
 
   # transferencias
@@ -310,6 +312,76 @@ $(document).ready ->
     )
     setTimeout(updateInformesNewVersion, 5000) # fired polling for new records
 
+  # documentos
+  if ( $( '#documentos' ).length )
+    createRemoteDocumentosDataTable(
+      'documentos',
+      [],
+      [
+        null,
+        null,
+        null,
+        {"sType": "uniDate"},
+        null,
+        {"sType": "uniDate"},
+        null,
+        null,
+        null,
+        null
+        ],
+      "Documentos_Llorens",
+      [0,1,2,3,4,5,6,7,8,9], 
+      [
+        { type: "text" },
+        { type: "text" },
+        { type: "text" },
+        { type: "date-range" },
+        null,
+        { type: "date-range" },
+        null,
+        null,
+        null,
+        null
+      ],
+      [3,5]
+    )
+    setTimeout(updateDocumentosNewVersion, 5000) # fired polling for new records
+
+  # drivers
+  if ( $( '#drivers' ).length )
+    createRemoteDriversDataTable(
+      'drivers',
+      [],
+      [
+        null,
+        null,
+        {"sType": "uniDate"},
+        null,
+        {"sType": "uniDate"},
+        null,
+        null,
+        null,
+        null,
+        null
+        ],
+      "Drivers_Llorens",
+      [0,1,2,3,4,5,6,7,8], 
+      [
+        { type: "text" },
+        { type: "text" },
+        { type: "date-range" },
+        { type: "text" },
+        { type: "date-range" },
+        { type: "text" },
+        { type: "text" },
+        { type: "text" },
+        { type: "text" },
+        null
+      ],
+      [2,4]
+    )
+    setTimeout(updateDriversNewVersion, 5000) # fired polling for new records
+
   # stock_vehicles (remote version)
   if ( $( '#stock_vehicles' ).length )
     createRemoteVehiclesDataTable(
@@ -373,6 +445,11 @@ $(document).ready ->
   # take care of mandatory first name field for new Justificantes via javascript
   $( document ).on 'submit', '#new_justificante', ->
     handleFirstNameIfNotACompanyJustificante()
+
+
+  # take care of mandatory first name field for new Documento via javascript
+  $( document ).on 'submit', '.documentos', ->
+    handleBastidorIfANewDocumento()
 
   # take care of mandatory first name field for new Mandatos via javascript
   $( document ).on 'submit', '#new_mandato', ->

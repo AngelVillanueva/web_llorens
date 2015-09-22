@@ -1,0 +1,15 @@
+<% provide :title, t("Crear nuevo Driver") %>
+
+<div class="about_page">
+  <%= render 'shared/section_wrapper',
+      header_text: t("Nuevo driver"),
+      index_link: 'drivers',
+      clock: true,
+      linked_pdf: nil %>
+
+  <div class="row">
+    <div class="span6s offset4s form_new_driver">
+      <%= render 'form' %>
+    </div>
+  </div>
+</div>

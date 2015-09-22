@@ -105,7 +105,7 @@ class DocumentosDatatable
       if params[p].present?
         searched = params[p]
         column = @columns[i]
-        if column.include? "fecha"
+        if column.include? "fecha" or column.include? "pdf_updated_at"
           lapse = searched.split("~")
           unless lapse[1].nil?
             f1 = lapse[0].to_date

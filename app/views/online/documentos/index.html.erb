@@ -3,12 +3,21 @@
 <%= render 'shared/avisos_pulled' %>
 
 <div class="about_page vista_tabla" data-pulltime="<%= new_avisos_pulltime %>">
-  <%= render 'shared/section_wrapper',
-      header_text: t("Documentos"),
-      linked_pdf: nil,
-      new_link: 'documentos',
-      search: 'documentos',
-      legend: nil %>
+    
+  <% if current_usuario.role == 'employee' || current_usuario.role == 'admin' %>
+    <%= render 'shared/section_wrapper',
+        header_text: t("Documentos"),
+        linked_pdf: nil,
+        new_link: 'documentos',
+        search: 'documentos',
+        legend: nil %>
+  <% else %> 
+    <%= render 'shared/section_wrapper',
+        header_text: t("Documentos"),
+        linked_pdf: nil,
+        search: 'documentos',
+        legend: nil %>
+  <% end %>
 
   <div class="row">
     <table id="documentos" class="row pull-right table table-condensed table-bordered table-striped top_filtered documentos" data-source="<%= online_documentos_path(format: "json") %>" data-csv="<%= online_documentos_path(format: "csv") %>?" data-xls="<%= online_documentos_path(format: "xls") %>?">

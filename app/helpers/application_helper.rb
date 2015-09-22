@@ -336,7 +336,7 @@ module ApplicationHelper
   end
   # returns the content of the Documento edit_link cell
   def edit_link_cell_d( documento )
-    unless current_usuario.norole?
+    if current_usuario.has_cli_remarketing?
       link_to edit_online_documento_path(documento), title: "Editar" do
         content_tag( 'i', nil, class: 'icon icon-edit toedit' )
       end

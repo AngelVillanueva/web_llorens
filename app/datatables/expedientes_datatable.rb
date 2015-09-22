@@ -140,7 +140,7 @@ class ExpedientesDatatable
         elsif column == "ivtm"
           filter = searched.gsub(",", ".").to_f
           expedientes = expedientes.where("#{column} = ?", filter)
-        elsif column.include? "fecha"
+        elsif column.include? "fecha" or column.include? "pdf_updated_at"
           lapse = searched.split("~")
           unless lapse[1].nil?
             f1 = lapse[0].to_date

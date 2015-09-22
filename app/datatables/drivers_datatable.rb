@@ -99,13 +99,42 @@ class DriversDatatable
     drivers = drivers.where(searching, search: "%#{searched}%" )
   end
 
+  # def column_search drivers
+  #   for i in 0..@columns.count
+  #     p = ("sSearch_" + i.to_s ).to_sym
+  #     if params[p].present?
+  #       searched = params[p]
+  #       column = @columns[i]
+  #       if column.include? "fecha"
+  #         lapse = searched.split("~")
+  #         unless lapse[1].nil?
+  #           f1 = lapse[0].to_date.beginning_of_day
+  #           f2 = lapse[1].to_date.end_of_day
+  #           drivers = drivers.where( "#{column} between :f1 and :f2", f1: f1, f2:f2 ) unless (searched.empty? || searched == "~")
+  #         end
+  #       else
+  #         drivers = drivers.where("#{column} ilike :search", search: "%#{searched}%" ) unless (searched.empty? || searched == "~")
+  #     end
+  #   end
+  #   drivers
+  # end
+
   def column_search drivers
     for i in 0..@columns.count
       p = ("sSearch_" + i.to_s ).to_sym
       if params[p].present?
         searched = params[p]
         column = @columns[i]
-        drivers = drivers.where("#{column} ilike :search", search: "%#{searched}%" ) unless (searched.empty? || searched == "~")
+        if column.include? "fecha"
+          lapse = searched.split("~")
+          unless lapse[1].nil?
+            f1 = lapse[0].to_date.beginning_of_day
+            f2 = lapse[1].to_date.end_of_day
+            drivers = drivers.where( "#{column} between :f1 and :f2", f1: f1, f2:f2 ) unless (searched.empty? || searched == "~")
+          end
+        else
+          drivers = drivers.where("#{column} ilike :search", search: "%#{searched}%" ) unless (searched.empty? || searched == "~")
+        end
       end
     end
     drivers

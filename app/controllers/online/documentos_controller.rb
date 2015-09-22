@@ -55,7 +55,7 @@ class Online::DocumentosController < OnlineController
   end
 
   def downdoc
-    unless current_usuario.role?("remarketing")
+    unless current_usuario.has_cli_remarketing?
       documento.download_pdf = true;
       documento.save!
     end
@@ -71,7 +71,7 @@ class Online::DocumentosController < OnlineController
     end
   end
   def authorize_edition
-    unless current_usuario.role?("employee") || current_usuario.role?("admin") || current_usuario.role?("remarketing")
+    unless current_usuario.role?("employee") || current_usuario.role?("admin") || current_usuario.has_cli_remarketing?
       redirect_to root_path, flash: { :alert => "No autorizado" }
     end
   end

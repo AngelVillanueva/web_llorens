@@ -16,6 +16,12 @@ class Ability
         can :manage, Cliente
         can :manage, StockVehicle
     elsif usuario.has_cli_remarketing?
+        can :manage, Expediente, cliente_id: usuario.cliente_ids
+        can :manage, Justificante, cliente_id: usuario.cliente_ids
+        can :manage, Mandato, cliente_id: usuario.cliente_ids
+        can :manage, Informe, cliente_id: usuario.cliente_ids
+        can :manage, Cliente, id: usuario.cliente_ids
+        can :manage, StockVehicle, cliente: { :id => usuario.cliente_ids }
         can :manage, Documento
         can :manage, Driver
     # Common users

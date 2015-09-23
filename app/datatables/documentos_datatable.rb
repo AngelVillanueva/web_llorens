@@ -105,13 +105,20 @@ class DocumentosDatatable
       if params[p].present?
         searched = params[p]
         column = @columns[i]
-        if column.include? "fecha" or column.include? "pdf_updated_at"
+        if column.include? "fecha"
           lapse = searched.split("~")
           unless lapse[1].nil?
             f1 = lapse[0].to_date
             f2 = lapse[1].to_date
             documentos = documentos.where( "#{column} between :f1 and :f2", f1: f1, f2:f2 ) unless (searched.empty? || searched == "~")
           end
+        elsif column.include? "pdf_updated_at"
+          lapse = searched.split("~")
+          unless lapse[1].nil?
+            f1 = lapse[0].to_datetime
+            f2 = lapse[1].to_datetime
+            documentos = documentos.where( "#{column} between :f1 and :f2", f1: f1, f2:f2 ) unless (searched.empty? || searched == "~")
+          end 
         else
           documentos = documentos.where("#{column} ilike :search", search: "%#{searched}%" ) unless (searched.empty? || searched == "~")
         end

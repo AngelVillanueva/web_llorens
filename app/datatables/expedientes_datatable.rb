@@ -140,11 +140,18 @@ class ExpedientesDatatable
         elsif column == "ivtm"
           filter = searched.gsub(",", ".").to_f
           expedientes = expedientes.where("#{column} = ?", filter)
-        elsif column.include? "fecha" or column.include? "pdf_updated_at"
+        elsif column.include? "fecha"
           lapse = searched.split("~")
           unless lapse[1].nil?
             f1 = lapse[0].to_date
             f2 = lapse[1].to_date
+            expedientes = expedientes.where( "#{column} between :f1 and :f2", f1: f1, f2:f2 ) unless (searched.empty? || searched == "~")
+          end
+        elsif column.include? "pdf_updated_at"
+          lapse = searched.split("~")
+          unless lapse[1].nil?
+            f1 = lapse[0].to_datetime
+            f2 = lapse[1].to_datetime
             expedientes = expedientes.where( "#{column} between :f1 and :f2", f1: f1, f2:f2 ) unless (searched.empty? || searched == "~")
           end
         else

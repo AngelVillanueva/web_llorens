@@ -55,7 +55,7 @@ class Online::DocumentosController < OnlineController
   end
 
   def downdoc
-    unless current_usuario.has_cli_remarketing?
+    if current_usuario.role?("employee") || current_usuario.role?("admin")
       documento.download_pdf = true;
       documento.save!
     end

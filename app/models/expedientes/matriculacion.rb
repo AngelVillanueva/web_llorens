@@ -47,7 +47,7 @@ class Matriculacion < Expediente
   end
 
   def assign_driver
-    if self.cliente_id = 108 #Cliente Athlon
+    if self.cliente_id == 108 #Cliente Athlon
       unless Driver.exists?(:bastidor => self.bastidor)
         driver = Driver.new(identificador: self.matricula, matricula: self.matricula, bastidor: self.bastidor, fecha_matriculacion: self.pdf_updated_at)
         driver.save!

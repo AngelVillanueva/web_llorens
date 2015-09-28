@@ -36,9 +36,18 @@ class Online::ExpedientesController < OnlineController
   def update
     if expediente.update_attributes!(expediente_params_pdf)
       flash[:success] = I18n.t( "PDF editado correctamente" )
-      driver = Driver.new(identificador: expediente.matricula, matricula: expediente.matricula, bastidor: expediente.bastidor, fecha_matriculacion: expediente.pdf_updated_at)
-      driver.save!
-      redirect_to(online_matriculaciones_path)
+        
+      if Driver.exists?(:bastidor => expediente.bastidor)
+        redirect_to(online_matriculaciones_path)
+      else
+        driver = Driver.new(identificador: expediente.matricula, matricula: expediente.matricula, bastidor: expediente.bastidor, fecha_matriculacion: expediente.pdf_updated_at)
+        if driver.save!
+          redirect_to(online_matriculaciones_path)
+        else
+          flash[:error] = I18n.t( "El driver no ha podido crearse" )
+          redirect_to(online_matriculaciones_path)
+        end
+      end
     else
       flash[:error] = I18n.t( "Error editando matriculacion" )
       render :edit

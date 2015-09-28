@@ -29,6 +29,7 @@ class Driver < ActiveRecord::Base
   # after_create :send_email_if_out_of_the_office
 
   validates :identificador, :matricula, :bastidor, :fecha_matriculacion, presence: true
+  validates :bastidor, uniqueness: true
 
   #protected
   def envio_to_ok?

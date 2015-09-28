@@ -36,6 +36,7 @@ class Matriculacion < Expediente
   default_scope includes(:cliente).order('created_at DESC')
 
   before_create :assign_driver, if: :pdf_uploaded?
+  before_update :assign_driver, if: :pdf_uploaded?
 
   def self.matriculable_pdf_date
     if Rails.env.development?

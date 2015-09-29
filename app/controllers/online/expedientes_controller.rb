@@ -40,11 +40,15 @@ class Online::ExpedientesController < OnlineController
       if Driver.exists?(:bastidor => expediente.bastidor)
         redirect_to(online_matriculaciones_path)
       else
-        driver = Driver.new(identificador: expediente.matricula, matricula: expediente.matricula, bastidor: expediente.bastidor, fecha_matriculacion: expediente.pdf_updated_at)
-        if driver.save!
-          redirect_to(online_matriculaciones_path)
+        if expediente.cliente_id == 108 #Athlon
+          driver = Driver.new(identificador: expediente.matricula, matricula: expediente.matricula, bastidor: expediente.bastidor, fecha_matriculacion: expediente.pdf_updated_at)
+          if driver.save!
+            redirect_to(online_matriculaciones_path)
+          else
+            flash[:error] = I18n.t( "El driver no ha podido crearse" )
+            redirect_to(online_matriculaciones_path)
+          end
         else
-          flash[:error] = I18n.t( "El driver no ha podido crearse" )
           redirect_to(online_matriculaciones_path)
         end
       end

@@ -55,7 +55,7 @@ class Online::ExpedientesController < OnlineController
     # else
     #   flash[:error] = I18n.t( "Error editando matriculacion" )
     #   render :edit
-    # end
+   end
   end
 
   def matricula

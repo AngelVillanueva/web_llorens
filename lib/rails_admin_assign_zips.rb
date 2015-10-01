@@ -31,7 +31,14 @@ module RailsAdmin
                   file.extract(file.to_s) unless File.exist? file.to_s
                   pdf = File.open(file.to_s, "r")
                   e.pdf = pdf
-                  e.save!
+                  if e.save!
+                    if e.cliente_id = 108 #Ahtlon
+                      unless Driver.exists?(:bastidor => e.bastidor)
+                        driver = Driver.new(identificador: e.matricula, matricula: e.matricula, bastidor: e.bastidor, fecha_matriculacion: e.pdf_updated_at)
+                        driver.save!
+                      end
+                    end
+                  end
                   File.delete(file.to_s)
                   found = found + 1
                 else

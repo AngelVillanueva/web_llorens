@@ -35,27 +35,12 @@ class Matriculacion < Expediente
     :url => "/online/matriculaciones/:id/matricula"
   default_scope includes(:cliente).order('created_at DESC')
 
-  # before_create :assign_driver, if: :pdf_uploaded?
-  # before_update :assign_driver, if: :pdf_uploaded?
-
   def self.matriculable_pdf_date
     if Rails.env.development?
       Date.parse('14-11-2013')
     else
       Date.parse('19-11-2013')
     end
-  end
-
-  def assign_driver
-    if self.cliente_id == 108 #Cliente Athlon
-      unless Driver.exists?(:bastidor => self.bastidor)
-        driver = Driver.new(identificador: self.matricula, matricula: self.matricula, bastidor: self.bastidor, fecha_matriculacion: self.pdf_updated_at)
-        driver.save!
-      end
-    end
-  end
-  def pdf_uploaded?
-    !pdf_file_name.nil?
   end
 
   rails_admin do

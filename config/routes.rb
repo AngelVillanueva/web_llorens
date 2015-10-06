@@ -44,6 +44,18 @@ WebLlorens::Application.routes.draw do
       end
     end
 
+    resources :documentos do
+      member do
+        get 'view_observaciones'
+      end
+    end
+
+    resources :drivers do
+      member do
+        get 'view_observaciones'
+      end
+    end
+
     resources :drivers do
       member do
         get 'download'

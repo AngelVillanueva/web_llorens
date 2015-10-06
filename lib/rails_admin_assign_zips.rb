@@ -34,7 +34,7 @@ module RailsAdmin
                   if e.save!
                     if e.cliente_id == 108 #Ahtlon
                       unless Driver.exists?(:bastidor => e.bastidor)
-                        driver = Driver.new(identificador: e.matricula, matricula: e.matricula, bastidor: e.bastidor, fecha_matriculacion: e.pdf_updated_at)
+                        driver = Driver.new(identificador: e.matricula, matricula: e.matricula, bastidor: e.bastidor, fecha_matriculacion: e.pdf_updated_at, envio_ok: false)
                         driver.save!
                       end
                     end

@@ -7,16 +7,29 @@
   <div class="driver-title align-med">
     <h3>Vehículo Matrícula <%= driver.matricula %></h3>
   </div>
+
+  <% if current_usuario.role == 'employee' || current_usuario.role == 'admin' %>
+
     <%= f.input :identificador, :as => :hidden, :input_html => { :value => Time.now.to_i.to_s } %>
     <%= f.input :concesionario_cliente, label: t( "Concesionario driver" ) %>
     <%= f.input :direccion, label: t( "Direccion driver" ) %>
     <%= f.input :persona_contacto, label: t( "Persona contacto" ) %>
     <%= f.input :envio_ok, label: t( "Aceptar Envío" ) %>
 
+    <%= f.input :observaciones, label: t("Observaciones"), :input_html => {style: 'width:300px', cols: 22, rows: 5} %>
+
     <div class="form-inputs align-med">
       <%= t("PDF actual_html", pdf: driver.pdf_file_name) unless driver.pdf_file_name.nil? %>
       <%= f.file_field :pdf %>
     </div>
+
+  <% end %>
+
+  <% if current_usuario.role != 'employee' && current_usuario.role != 'admin' && current_usuario.has_cli_remarketing? %>
+ 
+      <%= f.input :observaciones_cliente, label: t("Observaciones"), :input_html => {style: 'width:300px', cols: 22, rows: 5} %>
+
+  <% end %> 
 
     <%= f.button :submit, t("Guardar"), class: 'align-med btn-primary' %>
   </div>

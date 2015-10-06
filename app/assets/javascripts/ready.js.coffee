@@ -327,10 +327,11 @@ $(document).ready ->
         null,
         null,
         null,
+        null,
         null
         ],
       "Documentos_Llorens",
-      [0,1,2,3,4,5,6,7,8,9], 
+      [0,1,2,3,4,5,6,7,8,9,10], 
       [
         { type: "text" },
         { type: "text" },
@@ -338,6 +339,7 @@ $(document).ready ->
         { type: "date-range" },
         null,
         { type: "date-range" },
+        null,
         null,
         null,
         null,
@@ -362,20 +364,22 @@ $(document).ready ->
         null,
         null,
         null,
+        null,
         null
         ],
       "Drivers_Llorens",
-      [0,1,2,3,4,5,6,7,8], 
+      [0,1,2,3,4,5,6,7,8,9], 
       [
         { type: "text" },
         { type: "text" },
         { type: "date-range" },
-        { type: "text" },
+        { type: "select", values: [ 'Si', 'No' ] },
         { type: "date-range" },
         { type: "text" },
         { type: "text" },
         { type: "text" },
         { type: "text" },
+        null,
         null
       ],
       [2,4]

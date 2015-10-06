@@ -1,6 +1,7 @@
 <% provide :title, t("Listado de Documentos") %>
 
 <%= render 'shared/avisos_pulled' %>
+<%= render 'shared/observaciones' %>
 
 <div class="about_page vista_tabla" data-pulltime="<%= new_avisos_pulltime %>">
     
@@ -29,7 +30,7 @@
       <th><%= t("Fecha recepcion") %></th>
       <th><%= t("Orden Matriculacion") %></th>
       <th><%= t("Fecha carga") %></th>
-      <th><%= t("Observaciones") %></th>
+      <th class="hidden"></th>
       <th><%= t("PDF Subido") %></th>
       <th><%= t("PDF Descargado") %></th>
       <th></th>
@@ -42,7 +43,7 @@
       <th><%= t("Fecha recepcion") %></th>
       <th><%= t("Orden Matriculacion") %></th>
       <th><%= t("Fecha carga") %></th>
-      <th><%= t("Observaciones") %></th>
+      <th class="hidden"></th>
       <th><%= t("PDF Subido") %></th>
       <th><%= t("PDF Descargado") %></th>
       <th colspan="4"><%= t("Acciones") %></th>

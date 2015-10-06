@@ -269,6 +269,28 @@ module ApplicationHelper
        end
     end
   end
+  # view observaciones field documento
+  def observaciones_link_cell_d( documento )
+    link_to view_observaciones_online_documento_path(documento), title: "Observaciones", remote: true, data: { toggle: "modal", target: "#observaciones_modal"} do
+        if (documento.observaciones and documento.observaciones != "") or (documento.observaciones_cliente and documento.observaciones_cliente != "")
+          content_tag( 'i', nil, class: 'icon icon-comment' )
+        else
+          content_tag( 'i', nil, class: 'icon icon-comment-alt' )
+        end
+    end
+  end
+
+  # view observaciones field driver
+  def observaciones_link_cell_dr( driver )
+    link_to view_observaciones_online_driver_path(driver), title: "Observaciones", remote: true, data: { toggle: "modal", target: "#observaciones_modal"} do
+        if (driver.observaciones and driver.observaciones != "") or (driver.observaciones_cliente and driver.observaciones_cliente != "")
+          content_tag( 'i', nil, class: 'icon icon-comment' )
+        else
+          content_tag( 'i', nil, class: 'icon icon-comment-alt' )
+        end
+    end
+  end
+
   # send sms with code validation of Mandato
   def sms_link_cell( mandato )
     if mandato.pending_code
@@ -344,7 +366,7 @@ module ApplicationHelper
   end
   # returns the content of the Driver edit_link cell
   def edit_link_cell_dr( driver )
-    if current_usuario.role == 'employee' || current_usuario.role == 'admin'
+    if current_usuario.has_cli_remarketing?
       link_to edit_online_driver_path(driver), title: "Editar" do
         content_tag( 'i', nil, class: 'icon icon-edit toedit' )
       end

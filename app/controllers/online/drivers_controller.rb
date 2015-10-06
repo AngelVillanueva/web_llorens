@@ -54,6 +54,12 @@ class Online::DriversController < OnlineController
     send_file driver.pdf.path, :type => driver.pdf_content_type, :disposition => 'inline'
   end
 
+  def view_observaciones
+    respond_to do |format|
+      format.js { render :layout => false, :locals => { :id => driver.id, :documento => driver } }
+    end
+  end
+
   private
   def driver_params
     if current_usuario
@@ -63,7 +69,7 @@ class Online::DriversController < OnlineController
     end
   end
   def authorize_edition
-    unless current_usuario.role?("employee") || current_usuario.role?("admin")
+    unless current_usuario.role?("employee") || current_usuario.role?("admin") || current_usuario.has_cli_remarketing?
       redirect_to root_path, flash: { :alert => "No autorizado" }
     end
   end

@@ -13,13 +13,17 @@
       <%= f.input :bastidor, label: t( "Bastidor" ) %>
       <%= f.input :ficha_tecnica, label: t( "Ficha electronica" ) %>
       <%= f.input :concesionario, label: t("Concesionario") %>
+
+      <%= f.input :observaciones, label: t("Observaciones"), :input_html => {style: 'width:300px', cols: 22, rows: 5} %>
     
     <% end %>
    
-    <%= f.input :observaciones, label: t("Observaciones"), :input_html => {style: 'width:300px', cols: 22, rows: 5} %>
+    
 
     <% if current_usuario.role != 'employee' && current_usuario.role != 'admin' && current_usuario.has_cli_remarketing? %>
  
+      <%= f.input :observaciones_cliente, label: t("Observaciones"), :input_html => {style: 'width:300px', cols: 22, rows: 5} %>
+
       <div class="form-inputs align-med">
         <%= t("PDF actual_html", pdf: documento.pdf_file_name) unless documento.pdf_file_name.nil? %>
         <%= f.file_field :pdf %>

@@ -1,5 +1,5 @@
 class DocumentosDatatable
-  delegate :params, :h, :link_to, :documento_cell_pdf, :edit_link_cell_d, :print_link_cell, to: :@view
+  delegate :params, :h, :link_to, :documento_cell_pdf, :observaciones_link_cell_d, :edit_link_cell_d, :print_link_cell, to: :@view
 
   def initialize(view, current_ability)
     @view = view
@@ -43,6 +43,7 @@ class DocumentosDatatable
         documento.observaciones,
         documento.upload_pdf.nil? ? '<i class="icon icon-circle circle-red"></i>' : '<i class="icon icon-circle circle-green"></i>',
         documento.download_pdf.nil? ? '<i class="icon icon-circle circle-red"></i>' : '<i class="icon icon-circle circle-green"></i>',
+        observaciones_link_cell_d( documento ),
         edit_link_cell_d( documento ),
         print_link_cell( documento)
       ]

@@ -62,6 +62,12 @@ class Online::DocumentosController < OnlineController
     send_file documento.pdf.path, :type => documento.pdf_content_type, :disposition => 'inline'
   end
 
+  def view_observaciones
+    respond_to do |format|
+      format.js { render :layout => false, :locals => { :id => documento.id, :documento => documento } }
+    end
+  end
+
   private
   def documento_params
     if current_usuario

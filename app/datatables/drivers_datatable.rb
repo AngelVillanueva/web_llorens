@@ -1,5 +1,5 @@
 class DriversDatatable
-  delegate :params, :h, :link_to, :driver_cell_pdf, :edit_link_cell_dr, :print_link_cell, to: :@view
+  delegate :params, :h, :link_to, :driver_cell_pdf, :observaciones_link_cell_dr, :edit_link_cell_dr, :print_link_cell, to: :@view
 
   def initialize(view, current_ability)
     @view = view
@@ -43,6 +43,7 @@ class DriversDatatable
         driver.direccion,
         driver.persona_contacto,
         driver_cell_pdf( driver ),
+        observaciones_link_cell_dr( driver ),
         edit_link_cell_dr( driver ),
         print_link_cell( driver)
       ]
@@ -125,7 +126,10 @@ class DriversDatatable
       if params[p].present?
         searched = params[p]
         column = @columns[i]
-        if column.include? "fecha"
+        if column == "envio_ok"
+          filter = searched == "Si" ? "TRUE" : "FALSE"
+          drivers = drivers.where("#{column} IS #{filter}")
+        elsif column.include? "fecha"
           lapse = searched.split("~")
           unless lapse[1].nil?
             f1 = lapse[0].to_date.beginning_of_day

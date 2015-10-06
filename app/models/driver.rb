@@ -33,7 +33,7 @@ class Driver < ActiveRecord::Base
 
   #protected
   def envio_to_ok?
-    !envio_ok.nil?
+    self.envio_ok?
   end
   def assign_fecha_envio
     self.fecha_envio = Time.now

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150910153055) do
+ActiveRecord::Schema.define(:version => 20151006182451) do
 
   create_table "api_keys", :force => true do |t|
     t.string   "access_token"
@@ -84,8 +84,9 @@ ActiveRecord::Schema.define(:version => 20150910153055) do
     t.boolean  "upload_pdf"
     t.boolean  "download_pdf"
     t.text     "observaciones"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+    t.text     "observaciones_cliente"
   end
 
   create_table "drivers", :force => true do |t|
@@ -104,6 +105,8 @@ ActiveRecord::Schema.define(:version => 20150910153055) do
     t.datetime "pdf_updated_at"
     t.datetime "created_at",            :null => false
     t.datetime "updated_at",            :null => false
+    t.text     "observaciones"
+    t.text     "observaciones_cliente"
   end
 
   create_table "expedientes", :force => true do |t|

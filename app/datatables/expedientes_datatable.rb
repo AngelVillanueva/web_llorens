@@ -20,7 +20,11 @@ class ExpedientesDatatable
 
   def to_csv(options = {})
     CSV.generate(options) do |csv|
-      csv << formatted( @columns )
+      if @type.to_s == "Matriculacion"
+        csv << ["Cliente", "Matricula", "Fecha_matriculacion", "Bastidor", "Comprador", "Modelo", "Fecha_alta", "Fecha_facturacion", "Ivtm"] ## Header values of CSV
+      else
+        csv << formatted( @columns )
+      end
       expedientes("csv").each do |expediente|
         campos = expediente.attributes.values_at(*@columns)
         campos[0] = expediente.cliente.nombre
@@ -29,9 +33,16 @@ class ExpedientesDatatable
           campos[8] = "" unless campos[7].nil?
           # substitute fecha_resolucion_incidencia value for dias_tramite calculation
           campos[6].nil? ? campos[7] = "" : campos[7] = (campos[6] - campos[5]).to_i
+          campos[5] = I18n.l( campos[5], format: "%d/%m/%Y")
+          campos[6].nil? ? campos[6] = "" : campos[6] = I18n.l( campos[6], format: "%d/%m/%Y")
         end
-        campos[5] = I18n.l( campos[5], format: "%d/%m/%Y")
-        campos[6].nil? ? campos[6] = "" : campos[6] = I18n.l( campos[6], format: "%d/%m/%Y")
+        
+        if @type.to_s == "Matriculacion"
+          campos[2] = I18n.l( campos[2], format: "%d/%m/%Y")
+          campos[6] = I18n.l( campos[6], format: "%d/%m/%Y")
+          campos[7].nil? ? campos[7] = "" : campos[7] = I18n.l( campos[7], format: "%d/%m/%Y")
+        end
+
         csv << campos.take( campos.size - 1 )
       end
     end

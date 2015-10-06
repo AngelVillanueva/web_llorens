@@ -136,6 +136,13 @@ class DriversDatatable
             f2 = lapse[1].to_date.end_of_day
             drivers = drivers.where( "#{column} between :f1 and :f2", f1: f1, f2:f2 ) unless (searched.empty? || searched == "~")
           end
+        elsif column.include? "pdf_updated_at"
+          lapse = searched.split("~")
+          unless lapse[1].nil?
+            f1 = lapse[0].to_datetime.beginning_of_day
+            f2 = lapse[1].to_datetime.end_of_day
+            documentos = documentos.where( "#{column} between :f1 and :f2", f1: f1, f2:f2 ) unless (searched.empty? || searched == "~")
+          end 
         else
           drivers = drivers.where("#{column} ilike :search", search: "%#{searched}%" ) unless (searched.empty? || searched == "~")
         end

@@ -476,8 +476,8 @@ root.not_seen_avisos = []
       "sAjaxSource": oTable.data('source'),
       "fnRowCallback": ( nRow, aData, iDisplayIndex ) ->
         $(nRow).addClass('driver');
-        $('td', nRow).slice(0,8).addClass('printable')
-        $('td', nRow).slice(8,11).addClass('icon')
+        $('td', nRow).slice(0,9).addClass('printable')
+        $('td', nRow).slice(9,11).addClass('icon')
         return nRow
       "oLanguage": {
           "sSearch": "Buscar en la tabla",

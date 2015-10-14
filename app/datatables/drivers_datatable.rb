@@ -42,6 +42,7 @@ class DriversDatatable
         driver.concesionario_cliente == true ? I18n.t( "Concesionario" ) : I18n.t( "Cliente" ),
         driver.direccion,
         driver.persona_contacto,
+        driver.entrega ? '<i class="icon icon-circle circle-green"></i>' : '<i class="icon icon-circle circle-red"></i>',
         driver_cell_pdf( driver ),
         observaciones_link_cell_dr( driver ),
         edit_link_cell_dr( driver ),
@@ -126,7 +127,7 @@ class DriversDatatable
       if params[p].present?
         searched = params[p]
         column = @columns[i]
-        if column == "envio_ok"
+        if column == "envio_ok" || column == "entrega"
           filter = searched == "Si" ? "TRUE" : "FALSE"
           drivers = drivers.where("#{column} IS #{filter}")
         elsif column.include? "fecha"
@@ -152,7 +153,7 @@ class DriversDatatable
   end
 
   def columns
-    columns = %w[matricula bastidor fecha_matriculacion envio_ok fecha_envio concesionario_cliente direccion persona_contacto pdf_file_name]
+    columns = %w[matricula bastidor fecha_matriculacion envio_ok fecha_envio concesionario_cliente direccion persona_contacto entrega pdf_file_name]
   end
 
   def global_search_columns

@@ -23,7 +23,7 @@ class Driver < ActiveRecord::Base
   has_attached_file :pdf,
     :path => ":rails_root/uploads/:class/:id/:basename.:extension",
     :url => "/online/drivers/:id/download"
-  default_scope includes(:cliente).order('envio_ok DESC, updated_at DESC')
+  default_scope includes(:cliente).order('envio_ok ASC,entrega ASC, updated_at DESC')
 
   before_update :assign_fecha_envio, if: :envio_to_ok?
   # after_create :send_email_if_out_of_the_office

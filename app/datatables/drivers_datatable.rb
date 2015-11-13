@@ -133,8 +133,8 @@ class DriversDatatable
         elsif column.include? "fecha"
           lapse = searched.split("~")
           unless lapse[1].nil?
-            f1 = lapse[0].to_date.beginning_of_day
-            f2 = lapse[1].to_date.end_of_day
+            f1 = lapse[0].to_date
+            f2 = lapse[1].to_date
             drivers = drivers.where( "#{column} between :f1 and :f2", f1: f1, f2:f2 ) unless (searched.empty? || searched == "~")
           end
         elsif column.include? "pdf_updated_at"

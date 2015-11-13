@@ -340,8 +340,8 @@ $(document).ready ->
         null,
         { type: "date-range" },
         null,
-        null,
-        null,
+        { type: "select", values: [ 'Si', 'No' ] },
+        { type: "select", values: [ 'Si', 'No' ] },
         null,
         null
       ],

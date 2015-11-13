@@ -22,7 +22,7 @@ class Documento < ActiveRecord::Base
   has_attached_file :pdf,
     :path => ":rails_root/uploads/:class/:id/:basename.:extension",
     :url => "/online/documentos/:id/downdoc/"
-  default_scope includes(:cliente).order('upload_pdf DESC, download_pdf DESC, updated_at DESC')
+  default_scope includes(:cliente).order('upload_pdf ASC, download_pdf ASC, updated_at DESC')
 
   before_validation :assign_fecha_recepcion, on: :create
   before_create :assign_pdf_subido, if: :pdf_uploaded?

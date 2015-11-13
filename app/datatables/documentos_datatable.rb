@@ -41,8 +41,8 @@ class DocumentosDatatable
         documento_cell_pdf( documento ),
         documento.pdf_updated_at.nil? ? "" : I18n.l( documento.pdf_updated_at, format: "%d/%m/%Y" ),
         documento.observaciones,
-        documento.upload_pdf.nil? ? '<i class="icon icon-circle circle-red"></i>' : '<i class="icon icon-circle circle-green"></i>',
-        documento.download_pdf.nil? ? '<i class="icon icon-circle circle-red"></i>' : '<i class="icon icon-circle circle-green"></i>',
+        documento.upload_pdf ? '<i class="icon icon-circle circle-green"></i>' : '<i class="icon icon-circle circle-red"></i>',
+        documento.download_pdf ? '<i class="icon icon-circle circle-green"></i>' : '<i class="icon icon-circle circle-red"></i>',
         observaciones_link_cell_d( documento ),
         edit_link_cell_d( documento ),
         print_link_cell( documento)
@@ -106,7 +106,10 @@ class DocumentosDatatable
       if params[p].present?
         searched = params[p]
         column = @columns[i]
-        if column.include? "fecha"
+        if column == "download_pdf" || column == "upload_pdf"
+          filter = searched == "Si" ? "TRUE" : "FALSE"
+          documentos = documentos.where("#{column} IS #{filter}")
+        elsif column.include? "fecha"
           lapse = searched.split("~")
           unless lapse[1].nil?
             f1 = lapse[0].to_date

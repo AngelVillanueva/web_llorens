@@ -8,6 +8,9 @@
     <td class="printable" data-titular="Concesionario">
       <%= documento.concesionario %>
     </td>
+    <td class="printable" data-titular="Contrato">
+      <%= documento.contrato %>
+    </td>
     <td class="printable" data-titular="Fecha Recepcion">
       <%= l documento.fecha_recepcion, format: "%d/%m %H:%M" unless documento.fecha_recepcion.nil? %>
     </td>

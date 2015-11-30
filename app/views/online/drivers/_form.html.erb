@@ -12,6 +12,7 @@
 
     <%= f.input :identificador, :as => :hidden, :input_html => { :value => Time.now.to_i.to_s } %>
     <%= f.input :concesionario_cliente, label: t( "Concesionario driver" ) %>
+    <%= f.input :contrato, label: t( "Contrato" ) %>
     <%= f.input :direccion, label: t( "Direccion driver" ) %>
     <%= f.input :persona_contacto, label: t( "Persona contacto" ) %>
     <%= f.input :envio_ok, label: t( "Aceptar Envío" ) %>

@@ -37,6 +37,7 @@ class DocumentosDatatable
         documento.bastidor,
         documento.ficha_tecnica == true ? I18n.t( "Electronica" ) : I18n.t( "Normal" ),
         documento.concesionario,
+        documento.contrato,
         documento.fecha_recepcion.nil? ? "" : I18n.l( documento.fecha_recepcion, format: "%d/%m/%Y" ),
         documento_cell_pdf( documento ),
         documento.pdf_updated_at.nil? ? "" : I18n.l( documento.pdf_updated_at, format: "%d/%m/%Y" ),
@@ -132,11 +133,11 @@ class DocumentosDatatable
   end
 
   def columns
-    columns = %w[bastidor ficha_tecnica concesionario fecha_recepcion pdf_file_name pdf_updated_at observaciones upload_pdf download_pdf]
+    columns = %w[bastidor ficha_tecnica concesionario contrato fecha_recepcion pdf_file_name pdf_updated_at observaciones upload_pdf download_pdf]
   end
 
   def global_search_columns
-    columns = %w[bastidor ficha_tecnica concesionario]
+    columns = %w[bastidor ficha_tecnica concesionario contrato]
   end
 
   def clean(string_search, chars="~")

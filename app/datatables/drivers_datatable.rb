@@ -36,6 +36,7 @@ class DriversDatatable
       [
         driver.matricula,
         driver.bastidor,
+        driver.contrato,
         driver.fecha_matriculacion.nil? ? "" : I18n.l( driver.fecha_matriculacion, format: "%d/%m/%Y" ),
         driver.envio_ok ? '<i class="icon icon-circle circle-green"></i>' : '<i class="icon icon-circle circle-red"></i>',
         driver.fecha_envio.nil? ? "" : I18n.l( driver.fecha_envio, format: "%d/%m/%Y" ),
@@ -153,11 +154,11 @@ class DriversDatatable
   end
 
   def columns
-    columns = %w[matricula bastidor fecha_matriculacion envio_ok fecha_envio concesionario_cliente direccion persona_contacto entrega pdf_file_name]
+    columns = %w[matricula bastidor contrato fecha_matriculacion envio_ok fecha_envio concesionario_cliente direccion persona_contacto entrega pdf_file_name]
   end
 
   def global_search_columns
-    columns = %w[matricula bastidor]
+    columns = %w[matricula bastidor contrato]
   end
 
   def clean(string_search, chars="~")

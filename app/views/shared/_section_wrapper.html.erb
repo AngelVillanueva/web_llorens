@@ -9,6 +9,8 @@
         <% end %>
         <li><%= tool_link_to_home %></li>
         <% if defined? reload %><li><%= tool_link_to_reload reload %></li><% end %>
+        <% if defined? reloadoc %><li><%= tool_link_to_reloadoc reloadoc %></li><% end %>
+        <% if defined? reloadri %><li><%= tool_link_to_reloadri reloadri %></li><% end %>
         <% if defined? index_link %><li><%= tool_link_to_table index_link %></li><% end %>
         <% if defined? print_element %><li><%= tool_link_to_print print_element %></li><% end %>
         <% unless linked_pdf.nil? %><li><%= tool_link_to_pdf linked_pdf %></li><% end %>

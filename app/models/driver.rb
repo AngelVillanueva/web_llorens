@@ -26,6 +26,7 @@ class Driver < ActiveRecord::Base
   default_scope includes(:cliente).order('envio_ok ASC,entrega ASC, updated_at DESC')
 
   before_update :assign_fecha_envio, if: :envio_to_ok?
+   before_update :remove_fecha_envio, if: :no_envio_to_ok?
   # after_create :send_email_if_out_of_the_office
 
   validates :identificador, :matricula, :bastidor, :fecha_matriculacion, presence: true
@@ -33,10 +34,16 @@ class Driver < ActiveRecord::Base
 
   #protected
   def envio_to_ok?
-    self.envio_ok?
+    self.envio_ok? && self.fecha_envio.nil?
+  end
+  def no_envio_to_ok?
+    !self.envio_ok?
   end
   def assign_fecha_envio
     self.fecha_envio = Time.now
+  end
+   def remove_fecha_envio
+    self.fecha_envio = nil
   end
 
   def configuration_check? option

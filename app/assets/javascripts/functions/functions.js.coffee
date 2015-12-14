@@ -444,8 +444,8 @@ root.not_seen_avisos = []
       "sAjaxSource": oTable.data('source'),
       "fnRowCallback": ( nRow, aData, iDisplayIndex ) ->
         $(nRow).addClass('documento');
-        $('td', nRow).slice(0,9).addClass('printable')
-        $('td', nRow).slice(6,7).addClass('hidden')
+        $('td', nRow).slice(0,8).addClass('printable')
+        $('td', nRow).slice(7,8).addClass('hidden')
         $('td', nRow).slice(9,11).addClass('icon')
         return nRow
       "oLanguage": {

@@ -155,6 +155,16 @@ module ApplicationHelper
       content_tag( 'i', nil, class: 'icon icon-2x icon-undo' )
     end
   end
+  def tool_link_to_reloadoc model
+    link_to online_documentos_path(), class: 'update pie', 'rel' => 'tooltip', 'data-original-title' => I18n.t("Actualizar") do
+      content_tag( 'i', nil, class: 'icon icon-2x icon-undo' )
+    end
+  end
+   def tool_link_to_reloadri model
+    link_to online_drivers_path(), class: 'update pie', 'rel' => 'tooltip', 'data-original-title' => I18n.t("Actualizar") do
+      content_tag( 'i', nil, class: 'icon icon-2x icon-undo' )
+    end
+  end
 
   def edit_pdf_label item
     if item.pdf_file_name.nil?

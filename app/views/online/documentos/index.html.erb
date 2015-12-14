@@ -11,12 +11,14 @@
         linked_pdf: nil,
         new_link: 'documentos',
         search: 'documentos',
+        reloadoc: 'documentos',
         legend: nil %>
   <% else %> 
     <%= render 'shared/section_wrapper',
         header_text: t("Documentos"),
         linked_pdf: nil,
         search: 'documentos',
+        reloadoc: 'documentos',
         legend: nil %>
   <% end %>
 
@@ -27,6 +29,7 @@
       <th><%= t("Bastidor") %></th>
       <th><%= t("Ficha tecnica") %></th>
       <th><%= t("Concesionario") %></th>
+      <th><%= t("Contrato") %></th>
       <th><%= t("Fecha recepcion") %></th>
       <th><%= t("Orden Matriculacion") %></th>
       <th><%= t("Fecha carga") %></th>
@@ -40,6 +43,7 @@
       <th><%= t("Bastidor") %></th>
       <th><%= t("Ficha tecnica") %></th>
       <th><%= t("Concesionario") %></th>
+      <th><%= t("Contrato") %></th>
       <th><%= t("Fecha recepcion") %></th>
       <th><%= t("Orden Matriculacion") %></th>
       <th><%= t("Fecha carga") %></th>

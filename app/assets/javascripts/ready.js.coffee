@@ -321,6 +321,7 @@ $(document).ready ->
         null,
         null,
         null,
+        null,
         {"sType": "uniDate"},
         null,
         {"sType": "uniDate"},
@@ -331,8 +332,9 @@ $(document).ready ->
         null
         ],
       "Documentos_Llorens",
-      [0,1,2,3,4,5,6,7,8,9,10], 
+      [0,1,2,3,4,5,6,7,8,9,10,11], 
       [
+        { type: "text" },
         { type: "text" },
         { type: "text" },
         { type: "text" },
@@ -345,7 +347,7 @@ $(document).ready ->
         null,
         null
       ],
-      [3,5]
+      [4,6]
     )
     setTimeout(updateDocumentosNewVersion, 5000) # fired polling for new records
 
@@ -355,6 +357,7 @@ $(document).ready ->
       'drivers',
       [],
       [
+        null,
         null,
         null,
         {"sType": "uniDate"},
@@ -369,8 +372,9 @@ $(document).ready ->
         null
         ],
       "Drivers_Llorens",
-      [0,1,2,3,4,5,6,7,8,9,10], 
+      [0,1,2,3,4,5,6,7,8,9,10,11], 
       [
+        { type: "text" },
         { type: "text" },
         { type: "text" },
         { type: "date-range" },
@@ -384,7 +388,7 @@ $(document).ready ->
         null,
         null
       ],
-      [2,4]
+      [3,5]
     )
     setTimeout(updateDriversNewVersion, 5000) # fired polling for new records
 

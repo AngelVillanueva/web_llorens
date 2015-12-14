@@ -19,14 +19,14 @@ class DocumentosDatatable
 
   def to_csv(options = {})
     CSV.generate(options) do |csv|
-      csv << ["Bastidor", "Ficha Tecnica", "Concesionario", "Fecha Recepcion", "Orden Matriculacion", "Fecha Carga", "Observaciones", "Doc Cargado", "Doc Descargado"] ## Header values of CSV
+      csv << ["Bastidor", "Ficha Tecnica", "Concesionario", "Contrato", "Fecha Recepcion", "Orden Matriculacion", "Fecha Carga", "Observaciones", "Doc Cargado", "Doc Descargado"] ## Header values of CSV
       documentos("csv").each do |documento|
         campos = documento.attributes.values_at(*@columns)
         campos[1] = campos[1] ? "Normal" : "Electronica"
-        campos[5] = campos[5].nil? ? "" : I18n.l( campos[5], format: "%d/%m/%Y %H:%m")
-        campos[7] = campos[7] ? "Si" : "No"
+        campos[6] = campos[6].nil? ? "" : I18n.l( campos[6], format: "%d/%m/%Y %H:%m")
         campos[8] = campos[8] ? "Si" : "No"
-        campos[9] = ""
+        campos[9] = campos[9] ? "Si" : "No"
+        campos[10] = ""
         csv << campos.take( campos.size - 1 )
       end
     end

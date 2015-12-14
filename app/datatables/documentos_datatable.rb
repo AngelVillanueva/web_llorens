@@ -19,12 +19,14 @@ class DocumentosDatatable
 
   def to_csv(options = {})
     CSV.generate(options) do |csv|
-      csv << formatted( @columns )
+      csv << ["Bastidor", "Ficha Tecnica", "Concesionario", "Fecha Recepcion", "Orden Matriculacion", "Fecha Carga", "Observaciones", "Doc Cargado", "Doc Descargado"] ## Header values of CSV
       documentos("csv").each do |documento|
         campos = documento.attributes.values_at(*@columns)
-        campos[0] = documento.cliente.nombre
-        campos[12] = I18n.l( campos[12], format: "%d/%m/%Y %H:%m")
-        campos[13].nil? ? campos[13] = I18n.t( "Pendiente" ) : campos[13] = I18n.l( campos[13], format: "%d/%m/%Y %H:%m")
+        campos[1] = campos[1] ? "Normal" : "Electronica"
+        campos[5] = campos[5].nil? ? "" : I18n.l( campos[5], format: "%d/%m/%Y %H:%m")
+        campos[7] = campos[7] ? "Si" : "No"
+        campos[8] = campos[8] ? "Si" : "No"
+        campos[9] = ""
         csv << campos.take( campos.size - 1 )
       end
     end
@@ -138,6 +140,10 @@ class DocumentosDatatable
 
   def global_search_columns
     columns = %w[bastidor ficha_tecnica concesionario contrato]
+  end
+
+  def formatted columns
+    columns
   end
 
   def clean(string_search, chars="~")

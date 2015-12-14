@@ -444,7 +444,7 @@ root.not_seen_avisos = []
       "sAjaxSource": oTable.data('source'),
       "fnRowCallback": ( nRow, aData, iDisplayIndex ) ->
         $(nRow).addClass('documento');
-        $('td', nRow).slice(0,7).addClass('printable')
+        $('td', nRow).slice(0,9).addClass('printable')
         $('td', nRow).slice(6,7).addClass('hidden')
         $('td', nRow).slice(9,11).addClass('icon')
         return nRow
@@ -455,6 +455,19 @@ root.not_seen_avisos = []
           "sInfo": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
           "sInfoEmpty": "Mostrando 0 a 0 de 0 entradas",
           "sInfoFiltered": "(filtrado de _MAX_ total entradas)"
+      },
+      "oTableTools": {
+        "aButtons": [ 
+          {
+            "sExtends": "download",
+            "sButtonText": "Download CSV",
+            "sUrl": oTable.data('xls'), # use 'csv' to export in CSV instead of XLS
+            "sInputName": selector,
+            "sExtraData": datecolumns,
+            "sCharSet": "utf16le"
+          }
+
+        ]
       }
     }).columnFilter({
       sPlaceHolder: "head:before",

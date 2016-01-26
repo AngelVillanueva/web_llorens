@@ -304,10 +304,10 @@ root.not_seen_avisos = []
       "fnRowCallback": ( nRow, aData, iDisplayIndex ) ->
         $(nRow).addClass('justificante');
         $(nRow).addClass('new') if aData[15]==null
-        $('td', nRow).slice(0,15).addClass('printable')
-        $('td', nRow).slice(7,14).addClass('hidden')
-        $('td', nRow).slice(10,12).removeClass('hidden').addClass('hideie8')
-        $('td', nRow).slice(15,17).addClass('icon')
+        $('td', nRow).slice(0,16).addClass('printable')
+        $('td', nRow).slice(7,15).addClass('hidden')
+        $('td', nRow).slice(11,13).removeClass('hidden').addClass('hideie8')
+        $('td', nRow).slice(16,18).addClass('icon')
         return nRow
       "oLanguage": {
           "sSearch": "Buscar en la tabla",

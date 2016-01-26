@@ -23,8 +23,8 @@ class JustificantesDatatable
       justificantes("csv").each do |justificante|
         campos = justificante.attributes.values_at(*@columns)
         campos[0] = justificante.cliente.nombre
-        campos[12] = I18n.l( campos[12], format: "%d/%m/%Y %H:%m")
-        campos[13].nil? ? campos[13] = I18n.t( "Pendiente" ) : campos[13] = I18n.l( campos[13], format: "%d/%m/%Y %H:%m")
+        campos[13] = I18n.l( campos[13], format: "%d/%m/%Y %H:%m")
+        campos[14].nil? ? campos[14] = I18n.t( "Pendiente" ) : campos[14] = I18n.l( campos[14], format: "%d/%m/%Y %H:%m")
         csv << campos.take( campos.size - 1 )
       end
     end
@@ -42,6 +42,7 @@ class JustificantesDatatable
         justificante.primer_apellido,
         justificante.segundo_apellido,
         justificante.municipio,
+        justificante.codpostal,
         justificante.provincia,
         justificante.direccion,
         justificante.marca,
@@ -119,11 +120,11 @@ class JustificantesDatatable
   end
 
   def columns
-    columns = %w[clientes.nombre matricula bastidor nif_comprador nombre_razon_social primer_apellido segundo_apellido municipio provincia direccion marca modelo hora_solicitud hora_entrega pdf_file_name]
+    columns = %w[clientes.nombre matricula bastidor nif_comprador nombre_razon_social primer_apellido segundo_apellido municipio codpostal provincia direccion marca modelo hora_solicitud hora_entrega pdf_file_name]
   end
 
   def global_search_columns
-    columns = %w[clientes.nombre matricula bastidor nif_comprador nombre_razon_social primer_apellido segundo_apellido municipio provincia direccion marca modelo]
+    columns = %w[clientes.nombre matricula bastidor nif_comprador nombre_razon_social primer_apellido segundo_apellido municipio codpostal provincia direccion marca modelo]
   end
 
   def formatted columns

@@ -195,6 +195,7 @@ $(document).ready ->
         null,
         null,
         null,
+        null,
         {"sType": "uniDate"},
         {"sType": "uniDate"},
         null,
@@ -203,7 +204,7 @@ $(document).ready ->
         null
         ],
       "Justificantes_Llorens",
-      [0,1,2,3,4,5,6,10,11,12], 
+      [0,1,2,3,4,5,6,11,12,13], 
       [
         { type: "text" },
         { type: "text" },
@@ -212,6 +213,7 @@ $(document).ready ->
         { type: "text" },
         { type: "text" },
         { type: "text" },
+        null,
         null,
         null,
         null,

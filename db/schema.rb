@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20151127085926) do
+ActiveRecord::Schema.define(:version => 20160122123632) do
 
   create_table "api_keys", :force => true do |t|
     t.string   "access_token"
@@ -191,6 +191,7 @@ ActiveRecord::Schema.define(:version => 20151127085926) do
     t.datetime "hora_entrega"
     t.integer  "cliente_id"
     t.boolean  "pending_pdf",         :default => true
+    t.string   "codpostal"
   end
 
   add_index "justificantes", ["cliente_id"], :name => "index_justificantes_on_cliente_id"

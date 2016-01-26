@@ -17,6 +17,7 @@ prawn_document do |pdf|
         pdf.text "Apellidos: " + objeto.primer_apellido.to_s + ' ' + objeto.segundo_apellido.to_s
       end
       pdf.text "Municipio: " + objeto.municipio.to_s
+      pdf.text "Codigo Postal: " + objeto.codpostal.to_s
       pdf.text "Provincia: " + objeto.provincia.to_s
       pdf.text "Direccion: " + objeto.direccion.to_s
       pdf.text "Marca: " + objeto.marca.to_s

@@ -10,6 +10,7 @@
 #  segundo_apellido    :string(255)
 #  provincia           :string(255)
 #  municipio           :string(255)
+#  codpostal           :string(255)
 #  direccion           :text
 #  matricula           :string(255)
 #  bastidor            :string(255)
@@ -39,7 +40,7 @@ class Justificante < ActiveRecord::Base
   before_update :assign_hora_entrega, if: :first_time_pdf?
   after_create :send_email_if_out_of_the_office
 
-  validates :identificador, :nif_comprador, :nombre_razon_social, :provincia, :municipio, :direccion, :matricula, :bastidor, :marca, :modelo, :hora_solicitud, :cliente_id, presence: true
+  validates :identificador, :nif_comprador, :nombre_razon_social, :provincia, :municipio, :codpostal, :direccion, :matricula, :bastidor, :marca, :modelo, :hora_solicitud, :cliente_id, presence: true
   validates :nif_comprador, nif: true
   validates_format_of :municipio, :with => /^[[:alpha:]\s'"\-_&@!?()\[\]-]*$/u, :on => :create, :message => I18n.t( "Municipio sin numeros" )
 
@@ -128,6 +129,7 @@ class Justificante < ActiveRecord::Base
       field :segundo_apellido
       field :direccion
       field :municipio
+      field :codpostal
       field :provincia
       field :cliente
     end
@@ -212,6 +214,13 @@ class Justificante < ActiveRecord::Base
         end
       end
       field :municipio do
+        group :advanced
+        read_only do
+          # controller bindings is available here. Example:
+          bindings[:controller].current_usuario.role? "employee"
+        end
+      end
+      field :codpostal do
         group :advanced
         read_only do
           # controller bindings is available here. Example:

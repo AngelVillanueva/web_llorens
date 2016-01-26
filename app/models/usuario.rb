@@ -38,7 +38,7 @@ class Usuario < ActiveRecord::Base
   has_many :avisos, through: :notificaciones
 
   validates :nombre, :apellidos, :organizacion_id, presence: true
-  validate :clientes_from_same_organizacion
+  # validate :clientes_from_same_organizacion
 
   def role_enum
     %w[admin employee remarketing]

@@ -216,6 +216,7 @@ RailsAdmin.config do |config|
   #     configure :segundo_apellido, :string 
   #     configure :provincia, :string 
   #     configure :municipio, :string 
+  #     configure :codpostal, :string 
   #     configure :direccion, :text 
   #     configure :matricula, :string 
   #     configure :bastidor, :string 

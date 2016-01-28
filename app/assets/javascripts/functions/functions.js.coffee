@@ -303,7 +303,7 @@ root.not_seen_avisos = []
       "sAjaxSource": oTable.data('source'),
       "fnRowCallback": ( nRow, aData, iDisplayIndex ) ->
         $(nRow).addClass('justificante');
-        $(nRow).addClass('new') if aData[15]==null
+        $(nRow).addClass('new') if aData[16]==null
         $('td', nRow).slice(0,16).addClass('printable')
         $('td', nRow).slice(7,15).addClass('hidden')
         $('td', nRow).slice(11,13).removeClass('hidden').addClass('hideie8')

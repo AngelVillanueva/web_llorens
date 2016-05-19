@@ -12,57 +12,67 @@
   </h2>
   <div id="opciones" class="row">
     <ul>
-    <li class="span3 teammate">
-      <h5><%= link_to online_matriculaciones_path do %>
-            <%= content_tag('span', "M", class: 'pie') %>
-            <%= t("Matriculacion(VN)") %>
-          <% end %>
-      </h5>
-      <p>Vehículo nuevo</p>
-      <hr>
-      <p class="description">Consulte los expedientes de Matriculación de Vehículos Nuevos</p>
-    </li>
-    <li class="span3 teammate">
-      <h5><%= link_to online_transferencias_path do %>
-            <%= content_tag('span', "T", class: 'pie') %>
-            <%= t("Transferencia(VO)") %>
-          <% end %>
-      </h5>
-      <p>Vehículo de Ocasión</p>
-      <hr>
-      <p class="description">Consulte los expedientes de Vehículos de Ocasión</p>
-    </li>
-    <li class="span3 teammate new">
-      <h5><%= link_to new_online_justificante_path do %>
-            <%= content_tag('span', "J", class: 'J pie') %>
-            <%= t("Solicitud Justificantes") %>
-          <% end %>
-      </h5>
-      <p>O bien <%= link_to "consulte", online_justificantes_path %> sus Justificantes</p>
-      <hr>
-      <p class="description">Solicite un Justificante y descárguelo en formato PDF</p>
-    </li>
-    <li class="span3 teammate new">
-      <h5><%= link_to new_online_informe_path do %>
-            <%= content_tag('span', "I", class: 'I pie') %>
-            <%= t("Solicitud Informes") %>
-          <% end %>
-      </h5>
-      <p>O bien <%= link_to "consulte", online_informes_path %> sus Informes</p>
-      <hr>
-      <p class="description">Solicite un Informe de Tráfico y descárguelo en formato PDF</p>
-    </li>
-    <% if @view_mandato == true %>
-    <li class="span3 teammate new">
-      <h5><%= link_to new_online_mandato_path do %>
-            <%= content_tag('span', "MD", class: 'MD pie') %>
-            <%= t("Solicitud Mandatos") %>
-          <% end %>
-      </h5>
-      <p>O bien <%= link_to "consulte", online_mandatos_path %> sus Mandatos</p>
-      <hr>
-      <p class="description">Aceptación Mandato de forma online</p>
-    </li>
+    <% if permiso_matriculas? %>
+      <li class="span3 teammate">
+        <h5><%= link_to online_matriculaciones_path do %>
+              <%= content_tag('span', "M", class: 'pie') %>
+              <%= t("Matriculacion(VN)") %>
+            <% end %>
+        </h5>
+        <p>Vehículo nuevo</p>
+        <hr>
+        <p class="description">Consulte los expedientes de Matriculación de Vehículos Nuevos</p>
+      </li>
+    <% end %>
+    <% if permiso_transferencias? %>
+      <li class="span3 teammate">
+        <h5><%= link_to online_transferencias_path do %>
+              <%= content_tag('span', "T", class: 'pie') %>
+              <%= t("Transferencia(VO)") %>
+            <% end %>
+        </h5>
+        <p>Vehículo de Ocasión</p>
+        <hr>
+        <p class="description">Consulte los expedientes de Vehículos de Ocasión</p>
+      </li>
+    <% end %>
+    <% if permiso_justificantes? %>
+      <li class="span3 teammate new">
+        <h5><%= link_to new_online_justificante_path do %>
+              <%= content_tag('span', "J", class: 'J pie') %>
+              <%= t("Solicitud Justificantes") %>
+            <% end %>
+        </h5>
+        <p>O bien <%= link_to "consulte", online_justificantes_path %> sus Justificantes</p>
+        <hr>
+        <p class="description">Solicite un Justificante y descárguelo en formato PDF</p>
+      </li>
+    <% end %>
+    <% if permiso_informes? %>
+      <li class="span3 teammate new">
+        <h5><%= link_to new_online_informe_path do %>
+              <%= content_tag('span', "I", class: 'I pie') %>
+              <%= t("Solicitud Informes") %>
+            <% end %>
+        </h5>
+        <p>O bien <%= link_to "consulte", online_informes_path %> sus Informes</p>
+        <hr>
+        <p class="description">Solicite un Informe de Tráfico y descárguelo en formato PDF</p>
+      </li>
+    <% end %>
+    <% if permiso_mandatos? %>
+      <% if @view_mandato == true %>
+      <li class="span3 teammate new">
+        <h5><%= link_to new_online_mandato_path do %>
+              <%= content_tag('span', "MD", class: 'MD pie') %>
+              <%= t("Solicitud Mandatos") %>
+            <% end %>
+        </h5>
+        <p>O bien <%= link_to "consulte", online_mandatos_path %> sus Mandatos</p>
+        <hr>
+        <p class="description">Aceptación Mandato de forma online</p>
+      </li>
+      <% end %>
     <% end %>
     <% if remarketing_links? %>
     <li class="span3 teammate new">

@@ -16,20 +16,24 @@ class Ability
         can :manage, Cliente
         can :manage, StockVehicle
     elsif usuario.has_cli_remarketing?
-        can :manage, Expediente, cliente_id: usuario.cliente_ids
-        can :manage, Justificante, cliente_id: usuario.cliente_ids
-        can :manage, Mandato, cliente_id: usuario.cliente_ids
-        can :manage, Informe, cliente_id: usuario.cliente_ids
+        can :manage, Expediente, cliente_id: 0
+        can :manage, Matriculacion, cliente_id: (usuario.check_permisos) ? usuario.permisos_matriculas : usuario.clientes
+        can :manage, Transferencia, cliente_id: (usuario.check_permisos) ? usuario.permisos_transferencias : usuario.clientes
+        can :manage, Justificante, cliente_id: (usuario.check_permisos) ? usuario.permisos_justificantes : usuario.clientes
+        can :manage, Mandato, cliente_id: (usuario.check_permisos) ? usuario.permisos_mandatos : usuario.clientes
+        can :manage, Informe, cliente_id: (usuario.check_permisos) ? usuario.permisos_informes : usuario.clientes
         can :manage, Cliente, id: usuario.cliente_ids
         can :manage, StockVehicle, cliente: { :id => usuario.cliente_ids }
         can :manage, Documento
         can :manage, Driver
     # Common users
     elsif usuario
-        can :manage, Expediente, cliente_id: usuario.cliente_ids
-        can :manage, Justificante, cliente_id: usuario.cliente_ids
-        can :manage, Mandato, cliente_id: usuario.cliente_ids
-        can :manage, Informe, cliente_id: usuario.cliente_ids
+        can :manage, Expediente, cliente_id: 0
+        can :manage, Matriculacion, cliente_id: (usuario.check_permisos) ? usuario.permisos_matriculas : usuario.clientes
+        can :manage, Transferencia, cliente_id: (usuario.check_permisos) ? usuario.permisos_transferencias : usuario.clientes
+        can :manage, Justificante, cliente_id: (usuario.check_permisos) ? usuario.permisos_justificantes : usuario.clientes
+        can :manage, Mandato, cliente_id: (usuario.check_permisos) ? usuario.permisos_mandatos : usuario.clientes
+        can :manage, Informe, cliente_id: (usuario.check_permisos) ? usuario.permisos_informes : usuario.clientes
         can :manage, Cliente, id: usuario.cliente_ids
         can :manage, StockVehicle, cliente: { :id => usuario.cliente_ids }
     end

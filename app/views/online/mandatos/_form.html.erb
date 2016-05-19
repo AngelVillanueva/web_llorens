@@ -28,7 +28,7 @@
     <%= f.input :imanuevo, :as => :hidden, :input_html => { :value => false } %>
     <% if mandato.new_record? %>
       <%= f.association :cliente,
-      collection: current_usuario.clientes, label_method: :nombre,
+      collection: (current_usuario.check_permisos) ? current_usuario.permisos_mandatos : current_usuario.clientes, label_method: :nombre,
       value_method: :id, include_blank: false %>
     <% else %>
       <%= f.association :cliente,

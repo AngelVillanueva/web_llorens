@@ -16,7 +16,7 @@
   <div class="span4">
     <%= f.input :identificador, :as => :hidden, :input_html => { :value => Time.now.to_i.to_s } %>
     <%= f.association :cliente,
-      collection: current_usuario.clientes, label_method: :nombre,
+      collection: (current_usuario.check_permisos) ? current_usuario.permisos_justificantes : current_usuario.clientes , label_method: :nombre,
       value_method: :id, include_blank: false %>
     <%= f.input :nif_comprador, label: t( "NIF Comprador" ) %>
     <%= f.input :nombre_razon_social, label: t("Nombre o Razon Social") %>

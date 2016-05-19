@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20160122123632) do
+ActiveRecord::Schema.define(:version => 20160517183830) do
 
   create_table "api_keys", :force => true do |t|
     t.string   "access_token"
@@ -42,6 +42,48 @@ ActiveRecord::Schema.define(:version => 20160122123632) do
 
   add_index "clientes", ["has_remarketing"], :name => "index_clientes_on_has_remarketing"
   add_index "clientes", ["llorens_cliente_id"], :name => "index_clientes_on_llorens_cliente_id"
+
+  create_table "clientes_perm_expedientes", :id => false, :force => true do |t|
+    t.integer "usuario_id"
+    t.integer "cliente_id"
+  end
+
+  add_index "clientes_perm_expedientes", ["usuario_id", "cliente_id"], :name => "index_clientes_perm_expedientes_on_usuario_id_and_cliente_id"
+
+  create_table "clientes_perm_informes", :id => false, :force => true do |t|
+    t.integer "usuario_id"
+    t.integer "cliente_id"
+  end
+
+  add_index "clientes_perm_informes", ["usuario_id", "cliente_id"], :name => "index_clientes_permisos_informes_on_usuario_id_and_cliente_id"
+
+  create_table "clientes_perm_justificantes", :id => false, :force => true do |t|
+    t.integer "usuario_id"
+    t.integer "cliente_id"
+  end
+
+  add_index "clientes_perm_justificantes", ["usuario_id", "cliente_id"], :name => "index_clientes_perm_justificantes_on_usuario_id_and_cliente_id"
+
+  create_table "clientes_perm_mandatos", :id => false, :force => true do |t|
+    t.integer "usuario_id"
+    t.integer "cliente_id"
+  end
+
+  add_index "clientes_perm_mandatos", ["usuario_id", "cliente_id"], :name => "index_clientes_perm_mandatos_on_usuario_id_and_cliente_id"
+
+  create_table "clientes_perm_matriculas", :id => false, :force => true do |t|
+    t.integer "usuario_id"
+    t.integer "cliente_id"
+  end
+
+  add_index "clientes_perm_matriculas", ["usuario_id", "cliente_id"], :name => "index_clientes_perm_matriculas_on_usuario_id_and_cliente_id"
+
+  create_table "clientes_perm_transferencias", :id => false, :force => true do |t|
+    t.integer "usuario_id"
+    t.integer "cliente_id"
+  end
+
+  add_index "clientes_perm_transferencias", ["usuario_id", "cliente_id"], :name => "index_clientes_perm_transferencias_on_usuario_id_and_cliente_id"
 
   create_table "clientes_usuarios", :id => false, :force => true do |t|
     t.integer "cliente_id"
@@ -311,8 +353,8 @@ ActiveRecord::Schema.define(:version => 20160122123632) do
   add_index "stock_vehicles", ["matricula"], :name => "index_stock_vehicles_on_matricula", :unique => true
 
   create_table "usuarios", :force => true do |t|
-    t.string   "email",                  :default => "", :null => false
-    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "email",                  :default => "",    :null => false
+    t.string   "encrypted_password",     :default => "",    :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -321,13 +363,14 @@ ActiveRecord::Schema.define(:version => 20160122123632) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
     t.string   "nombre"
     t.string   "apellidos"
     t.integer  "organizacion_id"
     t.string   "role"
     t.datetime "password_changed_at"
+    t.boolean  "check_permisos",         :default => false
   end
 
   add_index "usuarios", ["email"], :name => "index_usuarios_on_email", :unique => true

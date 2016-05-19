@@ -6,7 +6,7 @@
       <%= f.input :matricula %>
       <%= f.input :solicitante %>
       <%= f.association :cliente,
-      collection: current_usuario.clientes, label_method: :nombre,
+      collection: (current_usuario.check_permisos) ? current_usuario.permisos_informes : current_usuario.clientes, label_method: :nombre,
       value_method: :id, include_blank: false %>
     <% end %>
     <%= t("PDF actual_html", pdf: informe.pdf_file_name) unless informe.pdf_file_name.nil? %>

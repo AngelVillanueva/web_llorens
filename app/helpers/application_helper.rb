@@ -426,6 +426,32 @@ module ApplicationHelper
   def detail_cell( stock_vehicle )
     link_to( I18n.t( "Ver detalle" ), root_path, class: 'vehicle', 'data-remote' => true, 'data-type' => 'json' )
   end
+
+  def permiso_informes?
+    permisos = current_usuario.permisos_informes.all
+    @permiso_informes = permisos.length > 0 || !current_usuario.norole? || !current_usuario.check_permisos?
+  end
+
+  def permiso_matriculas?
+    permisos = current_usuario.permisos_matriculas.all
+    @permiso_matriculas = permisos.length > 0 || !current_usuario.norole? || !current_usuario.check_permisos?
+  end
+
+  def permiso_transferencias?
+    permisos = current_usuario.permisos_transferencias.all
+    @permiso_transferencias = permisos.length > 0 || !current_usuario.norole? || !current_usuario.check_permisos?
+  end
+
+  def permiso_justificantes?
+    permisos = current_usuario.permisos_justificantes.all
+    @permiso_justificantes = permisos.length > 0 || !current_usuario.norole? || !current_usuario.check_permisos?
+  end
+
+  def permiso_mandatos?
+    permisos = current_usuario.permisos_mandatos.all
+    @permiso_mandatos = permisos.length > 0 || !current_usuario.norole? || !current_usuario.check_permisos?
+  end
+
   # returns true if at least one Cliente (current_ability) has_remarketing?
   def remarketing_links?
     clientes = current_usuario.norole? && current_usuario.organizacion.clientes || Cliente.all

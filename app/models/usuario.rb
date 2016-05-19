@@ -34,6 +34,15 @@ class Usuario < ActiveRecord::Base
   # attr_accessible :title, :body
   belongs_to :organizacion
   has_and_belongs_to_many :clientes
+  has_and_belongs_to_many :permisos_informes, :class_name => "Cliente", :join_table => :clientes_perm_informes
+  #has_and_belongs_to_many :permisos_expedientes, :class_name => "Cliente", :join_table => :clientes_perm_expedientes
+    
+  has_and_belongs_to_many :permisos_matriculas, :class_name => "Cliente", :join_table => :clientes_perm_matriculas
+  has_and_belongs_to_many :permisos_transferencias, :class_name => "Cliente", :join_table => :clientes_perm_transferencias
+
+  has_and_belongs_to_many :permisos_justificantes, :class_name => "Cliente", :join_table => :clientes_perm_justificantes
+  has_and_belongs_to_many :permisos_mandatos, :class_name => "Cliente", :join_table => :clientes_perm_mandatos
+
   has_many :notificaciones
   has_many :avisos, through: :notificaciones
 
@@ -127,6 +136,14 @@ class Usuario < ActiveRecord::Base
       end
       field :organizacion
       field :clientes
+      field :check_permisos do
+        label I18n.t("Check permisos usuario")
+      end
+      field :permisos_informes
+      field :permisos_matriculas
+      field :permisos_transferencias
+      field :permisos_justificantes
+      field :permisos_mandatos
       field :role do
         label I18n.t("Role")
         group :advanced

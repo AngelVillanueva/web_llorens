@@ -27,11 +27,13 @@ WebLlorens::Application.routes.draw do
         get 'download'
       end
     end
+    
     resources :justificantes do
       member do
         get 'download'
       end
     end
+
     resources :documentos do
       member do
         get 'download'
@@ -111,6 +113,8 @@ WebLlorens::Application.routes.draw do
       resources :expedientes
       match '/batch' => 'expedientes#create_batch'
       match '/single' => 'expedientes#create_or_update_single'
+      resources :documentos
+      resources :drivers
     end
   end
   # The priority is based upon order of creation:

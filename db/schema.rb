@@ -11,12 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20160517183830) do
+ActiveRecord::Schema.define(:version => 20161011141840) do
 
   create_table "api_keys", :force => true do |t|
     t.string   "access_token"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+    t.integer  "cliente_id"
   end
 
   create_table "avisos", :force => true do |t|
@@ -130,6 +131,7 @@ ActiveRecord::Schema.define(:version => 20160517183830) do
     t.datetime "updated_at",                               :null => false
     t.text     "observaciones_cliente"
     t.string   "contrato"
+    t.string   "direccion"
   end
 
   create_table "drivers", :force => true do |t|

@@ -19,12 +19,16 @@ class DriversDatatable
 
   def to_csv(options = {})
     CSV.generate(options) do |csv|
-      csv << formatted( @columns )
+      csv << ["Matricula", "Bastidor", "Contrato", "Fecha Matricula", "Envio", "Fecha Envio", "Tipo", "Direccion", "Persona Contacto", "Entrega"] ## Header values of CSV
       drivers("csv").each do |driver|
         campos = driver.attributes.values_at(*@columns)
-        campos[0] = driver.cliente.nombre
-        campos[12] = I18n.l( campos[12], format: "%d/%m/%Y %H:%m")
-        campos[13].nil? ? campos[13] = I18n.t( "Pendiente" ) : campos[13] = I18n.l( campos[13], format: "%d/%m/%Y %H:%m")
+        campos[3] = campos[3].nil? ? "" : I18n.l( campos[3], format: "%d/%m/%Y %H:%m")
+        campos[4] = campos[4] ? "Si" : "No"
+        campos[5] = campos[5].nil? ? "" : I18n.l( campos[5], format: "%d/%m/%Y %H:%m")
+        campos[9] = campos[9] ? "Si" : "No"
+        # campos[0] = driver.cliente.nombre
+        # campos[12] = I18n.l( campos[12], format: "%d/%m/%Y %H:%m")
+        # campos[13].nil? ? campos[13] = I18n.t( "Pendiente" ) : campos[13] = I18n.l( campos[13], format: "%d/%m/%Y %H:%m")
         csv << campos.take( campos.size - 1 )
       end
     end

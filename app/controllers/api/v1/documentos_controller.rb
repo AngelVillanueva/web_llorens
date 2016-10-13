@@ -30,11 +30,11 @@ class Api::V1::DocumentosController < ApplicationController
   	if Documento.exists?(params[:id])
 	  	@doc = Documento.find(params[:id])
 	  	respond_to do |format|
-	  		format.json { render :json => @doc, :only => [:id,:bastidor,:concesionario,:ficha_tecnica,:contrato,:fecha_recepcion,:observaciones]}
+	  		format.json { render :json => @doc, :only => [:id,:bastidor,:concesionario,:ficha_tecnica,:contrato,:fecha_recepcion,:observaciones,:upload_pdf]}
 	  	end
   	else
 		respond_to do |format|
-       	format.json { render :json => {:message => "Documento not found"}}
+       		format.json { render :json => {:message => "Documento not found"}}
 		end
 	end
   end

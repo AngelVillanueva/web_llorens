@@ -30,7 +30,7 @@ class Api::V1::DriversController < ApplicationController
     if Driver.exists?(params[:id])
       @driver = Driver.find(params[:id])
       respond_to do |format|
-        format.json { render :json => @driver, :only => [:id,:identificador,:bastidor,:matricula,:fecha_matriculacion]}
+        format.json { render :json => @driver, :only => [:id,:identificador,:bastidor,:matricula,:fecha_matriculacion,:entrega]}
       end
     else
       respond_to do |format|

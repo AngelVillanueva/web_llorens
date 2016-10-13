@@ -49,8 +49,6 @@ class Online::ExpedientesController < OnlineController
     redirect_to(online_matriculaciones_path)
   end
 
-  
-
   private
   def expediente_params
     # params

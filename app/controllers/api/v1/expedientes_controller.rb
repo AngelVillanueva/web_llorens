@@ -109,6 +109,38 @@ class Api::V1::ExpedientesController < ApplicationController
     end
   end
 
+  #api athlon
+  def index
+    authenticate_or_request_with_http_token do |token, options|
+      @apikey = ApiKey.find_by_access_token(token);
+    end
+    #athlon
+    cliente_id = @apikey.cliente_id
+    @matriculas = Expediente.where("cliente_id = #{cliente_id} and type = 'Matriculacion' and has_documentos = false and pdf_updated_at is not null").order("fecha_alta DESC");
+    respond_to do |format|
+      format.json { render :file => "/api/matriculas.json.erb", content_type: "application/json" , :locals => {:path =>  "#{::Rails.root}/uploads/matriculaciones/"}, :only => [:id,:bastidor,:matricula,:pdf_updated_at,:pdf_file_name,:ivtm]}
+    end
+  end
+
+  #api athlon
+  def show
+    authenticate_or_request_with_http_token do |token, options|
+      @apikey = ApiKey.find_by_access_token(token);
+    end
+    #athlon
+    cliente_id = @apikey.cliente_id
+    if Documento.exists?(params[:id])
+      @matricula = Expediente.where("cliente_id = #{cliente_id} and type = 'Matriculacion' and id = #{params[:id]}").order("fecha_alta DESC");
+      respond_to do |format|
+      format.json { render :json => @matricula, :only => [:id,:bastidor,:matricula,:ivtm]}
+    end
+    else
+      respond_to do |format|
+        format.json { render :json => {:message => "Matricula not found"}}
+      end
+    end
+  end
+
   private
   def expediente_params previous_fecha_alta=nil
     params[:expediente].delete :type # to avoid Mass Assignment Error [:type is reserved]

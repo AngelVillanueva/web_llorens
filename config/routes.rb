@@ -113,8 +113,14 @@ WebLlorens::Application.routes.draw do
       resources :expedientes
       match '/batch' => 'expedientes#create_batch'
       match '/single' => 'expedientes#create_or_update_single'
+      resources :matriculaciones, :controller => "expedientes", :type => "Matriculacion"
+       
+     # match '/matriculas' => 'expedientes#matriculaciones'
+      #match '/matricula' => 'expedientes#matricula'
       resources :documentos
       resources :drivers
+      #resource :expediente
+      #match '/matriculas' => 'expedientes#matriculas'
     end
   end
   # The priority is based upon order of creation:

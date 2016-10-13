@@ -1,0 +1,15 @@
+[
+<% @matriculas.each_with_index do |matricula,index| %>
+    {
+      "id": <%= matricula.id %>,
+      "bastidor": "<%= matricula.bastidor %>",
+      "matricula": "<%= matricula.matricula %>",
+      "fecha_matriculacion": "<%= l matricula.pdf_updated_at, format: '%Y-%m-%d' %>",
+      "ivtm": "<%= matricula.ivtm %>",
+      "doc": "<%= Base64.encode64(File.open( path + matricula.id.to_s + '/' + matricula.pdf_file_name, "rb").read) %>"
+    }
+	<% unless index == @matriculas.count - 1 %>
+    ,
+    <% end %>
+<% end %>
+]

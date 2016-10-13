@@ -152,6 +152,10 @@ class Usuario < ActiveRecord::Base
         label I18n.t("Password changed at")
         group :advanced
       end
+      field :incidencias do
+        label I18n.t("Check mail incidencias")
+        group :advanced
+      end
     end
   end
 

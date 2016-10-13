@@ -11,6 +11,13 @@ set :output, "/home/angel/logs/webllorens/cron_log.log"
 every 30.minutes do
   rake "pdfer:match_empty"
 end
+
+every 1.minutes do
+	runner "IncidenciasMailer.listado"
+end
+
+set :output, {:error => '~/Escritorio/z.error.log', :standard => '~/Escritorio/z.standard.log'}
+
 #
 # every 2.hours do
 #   command "/usr/bin/some_great_command"

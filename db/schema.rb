@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20161011141840) do
+ActiveRecord::Schema.define(:version => 20161013144751) do
 
   create_table "api_keys", :force => true do |t|
     t.string   "access_token"
@@ -373,6 +373,7 @@ ActiveRecord::Schema.define(:version => 20161011141840) do
     t.string   "role"
     t.datetime "password_changed_at"
     t.boolean  "check_permisos",         :default => false
+    t.boolean  "incidencias",            :default => false
   end
 
   add_index "usuarios", ["email"], :name => "index_usuarios_on_email", :unique => true

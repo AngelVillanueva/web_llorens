@@ -129,7 +129,7 @@ class Api::V1::ExpedientesController < ApplicationController
     end
     #athlon
     cliente_id = @apikey.cliente_id
-    if Documento.exists?(params[:id])
+    if Expediente.exists?(params[:id])
       @matricula = Expediente.where("cliente_id = #{cliente_id} and type = 'Matriculacion' and id = #{params[:id]}").order("fecha_alta DESC");
       respond_to do |format|
       format.json { render :json => @matricula, :only => [:id,:bastidor,:matricula,:ivtm]}

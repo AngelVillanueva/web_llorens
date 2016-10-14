@@ -50,9 +50,6 @@ class Api::V1::DocumentosController < ApplicationController
 			 	end
 			  	@doc.pdf = pdf
 			end
-		  	if params[:doc][:direccion]
-		  		@doc.direccion = params[:doc][:direccion]
-		  	end
 		  	if params[:doc][:comentarios]
 		  		@doc.observaciones_cliente = params[:doc][:comentarios]
 		  	end

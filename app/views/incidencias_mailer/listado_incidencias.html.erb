@@ -12,7 +12,7 @@
   	</thead>	
   	<tbody>
     <%= @incidencias.each do |incidencia| %>
-    		<td><%= incidencia.cliente %></td>
+    		<td class='cli'><%= incidencia.cliente.nombre%></td>
 	    	<td><%= incidencia.matricula %></td>
 	    	<td><%= incidencia.comprador %></td>
 	    	<td><%= incidencia.vendedor %></td>

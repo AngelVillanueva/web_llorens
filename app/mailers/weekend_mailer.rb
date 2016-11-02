@@ -1,4 +1,4 @@
-class WeekendMailer < ActionMailer::Base
+@class WeekendMailer < ActionMailer::Base
   recipients = Guardia.all.map(&:email)
   default to: Proc.new { recipients },
     from: "gestoriallorens@gestoriallorens.com"

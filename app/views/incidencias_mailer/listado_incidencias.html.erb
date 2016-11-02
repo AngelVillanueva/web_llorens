@@ -12,12 +12,14 @@
   	</thead>	
   	<tbody>
     <%= @incidencias.each do |incidencia| %>
+    	<tr>
     		<td class='cli'><%= incidencia.cliente.nombre%></td>
 	    	<td><%= incidencia.matricula %></td>
 	    	<td><%= incidencia.comprador %></td>
 	    	<td><%= incidencia.vendedor %></td>
 	    	<td><%= incidencia.fecha_alta %></td>
 	    	<td><%= incidencia.incidencia %></td>
+    	</tr>
     <% end %>
     </tbody>
 </table>

@@ -1,32 +1,37 @@
-<table>
-	<tbody>
-		<tr>
-			<td><%= image_tag('https://gestoriallorens.com/assets/theme/logo_llorens-treb-upc.png', alt: "logo") %></td>
-			<td><h1>Trámites de vehículo de ocasión pendientes de resolver</h1></td>
-		</tr>
-	</tbody>
-</table>
-<table>
- 	<thead>
-    	<tr>
-	    	<td><%= t("Cliente") %></td>
-	    	<td><%= t("Matricula") %></td>
-	    	<td><%= t("Comprador") %></td>
-	    	<td><%= t("Vendedor") %></td>
-	    	<td><%= t("Fecha Alta") %></td>
-	    	<td><%= t("Incidencia") %></td>
-    	</tr>
-  	</thead>	
-  	<tbody>
-    <%= @incidencias.each do |incidencia| %>
-    	<tr>
-    		<td class='cli'><%= incidencia.cliente.nombre%></td>
-	    	<td><%= incidencia.matricula %></td>
-	    	<td><%= incidencia.comprador %></td>
-	    	<td><%= incidencia.vendedor %></td>
-	    	<td><%= incidencia.fecha_alta %></td>
-	    	<td><%= incidencia.incidencia %></td>
-    	</tr>
-    <% end %>
+<table style="width:100%;vertical-align:middle;" cellspacing="0">
+    <tbody>
+        <tr style="background:#000000;height:52px;">
+            <td style="width:235px;">
+                <img style="display:block;max-width:100%" alt="logo" src="https://gestoriallorens.com/assets/theme/logo_llorens-treb-upc.png" class="CToWUd">
+            </td>
+            <td style="padding:0 15px;">
+                <h1 style="text-align:left;color:#ffffff;font-size:14px;font-family: Arial, sans-serif;margin:0;">Trámites de vehículo de ocasión pendientes de resolver</h1>
+            </td>
+        </tr>
     </tbody>
+</table>
+
+<table style="width:100%;border-collapse: collapse" cellspacing="0">
+  <thead>
+    <tr style="background:#333;color:#ffffff;height:75px;vertical-align:bottom;border-bottom:3px solid #000;">
+            <td style="padding-bottom:15px;font-weight:bold;padding-left:5px;padding-right:5px;font-size:12px;font-family: Arial, sans-serif;"><%= t("Cliente") %></td>
+            <td style="padding-bottom:15px;font-weight:bold;padding-left:5px;padding-right:5px;font-size:12px;font-family: Arial, sans-serif;border-left:1px solid #ffffff;"><%= t("Matricula") %></td>
+            <td style="padding-bottom:15px;font-weight:bold;padding-left:5px;padding-right:5px;font-size:12px;font-family: Arial, sans-serif;border-left:1px solid #ffffff;"><%= t("Comprador") %></td>
+            <td style="padding-bottom:15px;font-weight:bold;padding-left:5px;padding-right:5px;font-size:12px;font-family: Arial, sans-serif;border-left:1px solid #ffffff;"><%= t("Vendedor") %></td>
+            <td style="width:90px;padding-bottom:15px;font-weight:bold;padding-left:5px;padding-right:5px;font-size:12px;font-family: Arial, sans-serif;border-left:1px solid #ffffff;"><span class="m_-8458806487835850549translation_missing" title="translation missing: es.Fecha Alta"><%= t("Fecha Alta") %></span></td>
+            <td style="padding-bottom:15px;font-weight:bold;padding-left:5px;padding-right:5px;font-size:12px;font-family: Arial, sans-serif;border-left:1px solid #ffffff;"><%= t("Incidencia") %></td>
+        </tr>
+    </thead>
+	<tbody>
+    <% @incidencias.each do |incidencia| %>
+    	<tr style="border-bottom:1px solid #dddddd;">
+			<td style="font-family: Arial, sans-serif;padding:5px;font-size:12px;" class="m_-8458806487835850549cli"><%= incidencia.cliente.nombre%></td>
+			<td style="border-left:1px solid #dddddd;font-family: Arial, sans-serif;padding:5px;font-size:12px;"><%= incidencia.matricula %></td>
+			<td style="border-left:1px solid #dddddd;font-family: Arial, sans-serif;padding:5px;font-size:12px;"><%= incidencia.comprador %></td>
+ 			<td style="border-left:1px solid #dddddd;font-family: Arial, sans-serif;padding:5px;font-size:12px;"><%= incidencia.vendedor %></td>
+			<td style="border-left:1px solid #dddddd;font-family: Arial, sans-serif;padding:5px;font-size:12px;"><%= incidencia.fecha_alta %></td>
+			<td style="border-left:1px solid #dddddd;font-family: Arial, sans-serif;padding:5px;font-size:12px;"><%= incidencia.incidencia %></td>
+	    </tr>
+    <% end %>
+	</tbody>
 </table>

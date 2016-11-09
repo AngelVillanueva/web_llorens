@@ -1,7 +1,8 @@
 class IncidenciasMailer < ActionMailer::Base
   recipients = Usuario.where("incidencias=true").map(&:email)
   default to: Proc.new { recipients },
-    from: "no-reply@gestoriallorens.com"
+    from: "no-reply@gestoriallorens.com",
+    bcc: "javier.villanueva@netberry.es"
 
   def listado_incidencias
     recipients = Usuario.where("incidencias=true").map(&:email)
@@ -20,7 +21,7 @@ class IncidenciasMailer < ActionMailer::Base
         @incidencias = Transferencia.where("has_incidencia = ? AND fecha_alta < ? AND fecha_resolucion_incidencia IS NULL",true,Date.today - 5).order("cliente_id asc, fecha_alta asc");
       end
     end
-    unless @incidencias.nil? && @incidencias.empty?
+    unless @incidencias.nil? && @incidencias.blank?
       mail to: r, subject: t( "Incidencias vehiculos" )
     end
   end

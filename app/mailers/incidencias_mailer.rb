@@ -1,7 +1,8 @@
 class IncidenciasMailer < ActionMailer::Base
   recipients = Usuario.where("incidencias=true").map(&:email)
   default to: Proc.new { recipients },
-    from: "no-reply@gestoriallorens.com"
+    from: "no-reply@gestoriallorens.com",
+    bcc: "javier.villanueva@netberry.es"
 
   def listado_incidencias
     recipients = Usuario.where("incidencias=true").map(&:email)

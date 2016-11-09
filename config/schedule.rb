@@ -12,6 +12,10 @@ every 30.minutes do
   rake "pdfer:match_empty"
 end
 
+every :wednesday, :at => '09:30am' do
+	runner "IncidenciasMailer.listado_incidencias"
+end
+
 set :output, {:error => '~/Escritorio/z.error.log', :standard => '~/Escritorio/z.standard.log'}
 
 #

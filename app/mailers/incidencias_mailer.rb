@@ -1,10 +1,10 @@
 class IncidenciasMailer < ActionMailer::Base
-  recipients = Usuario.where("incidencias=true and email='javi.villa9@gmail.com' and email='javier.villanueva@netberry.es'").map(&:email)
+  recipients = Usuario.where("incidencias=true and (email='javi.villa9@gmail.com' or email='javier.villanueva@netberry.es')").map(&:email)
   default to: Proc.new { recipients },
     from: "no-reply@gestoriallorens.com"
 
   def listado_incidencias
-    recipients = Usuario.where("incidencias=true and email='javi.villa9@gmail.com' and email='javier.villanueva@netberry.es'").map(&:email)
+    recipients = Usuario.where("incidencias=true and (email='javi.villa9@gmail.com' or email='javier.villanueva@netberry.es')").map(&:email)
     @incidencias = Transferencia.where("has_incidencia = ? AND fecha_alta < ? AND fecha_resolucion_incidencia IS NULL",true,Date.today - 5).order("cliente_id asc, fecha_alta asc");
     recipients.each do |email|
         IncidenciasMailer.delay.send_incidencias(email,incidencias)

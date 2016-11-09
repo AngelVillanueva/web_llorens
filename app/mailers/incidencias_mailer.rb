@@ -6,7 +6,7 @@ class IncidenciasMailer < ActionMailer::Base
   def listado_incidencias
     recipients = Usuario.where("incidencias=true and (email='javi.villa9@gmail.com' or email='javier.villanueva@netberry.es')").map(&:email)
     recipients.each do |email|
-        IncidenciasMailer.send_incidencias(email)
+        IncidenciasMailer.delay.send_incidencias(email)
     end
   end
 
@@ -14,10 +14,10 @@ class IncidenciasMailer < ActionMailer::Base
     if Usuario.exists?(:email => r)
       usuario = Usuario.find_by_email(r);
       unless usuario.role?("employee") || usuario.role?("admin")
-        clientes = usuario.norole? && usuario.organizacion.clientes || Cliente.all
+        clientes = usuario.norole? && usuario.organizacion.clientes.pluck(:id) || Cliente.pluck(:id)
         @incidencias = Transferencia.where("cliente_id IN (?) AND has_incidencia = ? AND fecha_alta < ? AND fecha_resolucion_incidencia IS NULL",clientes,true,Date.today - 5).order("cliente_id asc, fecha_alta asc");
       else
-         @incidencias = Transferencia.where("has_incidencia = ? AND fecha_alta < ? AND fecha_resolucion_incidencia IS NULL",true,Date.today - 5).order("cliente_id asc, fecha_alta asc");
+        @incidencias = Transferencia.where("has_incidencia = ? AND fecha_alta < ? AND fecha_resolucion_incidencia IS NULL",true,Date.today - 5).order("cliente_id asc, fecha_alta asc");
       end
     end
     unless @incidecias.nil?

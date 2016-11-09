@@ -21,7 +21,7 @@ class IncidenciasMailer < ActionMailer::Base
         @incidencias = Transferencia.where("has_incidencia = ? AND fecha_alta < ? AND fecha_resolucion_incidencia IS NULL",true,Date.today - 5).order("cliente_id asc, fecha_alta asc");
       end
     end
-    unless @incidenrailscias.nil?
+    unless @incidencias.nil?
       mail to: r, subject: t( "Incidencias vehiculos" )
     end
   end

@@ -20,7 +20,7 @@ class Api::V1::DriversController < ApplicationController
   end
 
   def index
-    @drivers = Driver.where("envio_ok=true and entrega=false").order("fecha_matriculacion DESC");
+    @drivers = Driver.where("entrega=false").order("fecha_matriculacion DESC");
     respond_to do |format|
       format.json { render :json => @drivers, :only => [:id,:identificador,:bastidor,:matricula,:fecha_matriculacion]}
     end

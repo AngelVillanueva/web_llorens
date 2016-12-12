@@ -11,7 +11,6 @@ class Api::V1::DriversController < ApplicationController
       authenticate_or_request_with_http_token do |token, options|
         if ApiKey.exists?(access_token: token)
           @apikey = ApiKey.find_by_access_token(token);
-          #athlon
           @cli = Cliente.find(@apikey.cliente_id)
           @cli.has_remarketing?
         end

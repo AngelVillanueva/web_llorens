@@ -130,10 +130,11 @@ class Api::V1::ExpedientesController < ApplicationController
     #athlon
     cliente_id = @apikey.cliente_id
     if Expediente.exists?(params[:id])
-      @matricula = Expediente.where("cliente_id = #{cliente_id} and type = 'Matriculacion' and id = #{params[:id]}").order("fecha_alta DESC");
+      @matriculas = Expediente.where("cliente_id = #{cliente_id} and type = 'Matriculacion' and id = #{params[:id]}").order("fecha_alta DESC");
+      @matricula = @matriculas.first
       respond_to do |format|
-      format.json { render :json => @matricula, :only => [:id,:bastidor,:matricula,:ivtm]}
-    end
+        format.json { render :file => "/api/matricula.json.erb", content_type: "application/json" , :locals => {:matricula => @matricula, :path =>  "#{::Rails.root}/uploads/matriculaciones/"}, :only => [:id,:bastidor,:matricula,:pdf_updated_at,:pdf_file_name,:ivtm]}
+      end
     else
       respond_to do |format|
         format.json { render :json => {:message => "Matricula not found"}}

@@ -14,6 +14,7 @@
 class Organizacion < ActiveRecord::Base
   has_many :clientes
   has_many :usuarios
+  before_destroy :check_for_usuarios
 
   validates :nombre, :identificador, presence: true
 
@@ -43,6 +44,13 @@ class Organizacion < ActiveRecord::Base
 
   def expedientes
     Expediente.where(cliente_id: self.cliente_ids)
+  end
+
+  def check_for_usuarios
+    if usuarios.count > 0
+      errors.add :base, I18n.t("La organizacion tiene usuarios asociados")
+      false
+    end
   end
   
 end

@@ -38,8 +38,8 @@ class ExpedientesDatatable
         end
         
         if @type.to_s == "Matriculacion"
-          campos[2] = I18n.l( campos[2], format: "%d/%m/%Y")
-          campos[6] = I18n.l( campos[6], format: "%d/%m/%Y")
+          campos[2].nil? ? campos[2] = "" : campos[2] = I18n.l( campos[2], format: "%d/%m/%Y")
+          campos[6].nil? ? campos[6] = "" : campos[6] = I18n.l( campos[6], format: "%d/%m/%Y")
           campos[7].nil? ? campos[7] = "" : campos[7] = I18n.l( campos[7], format: "%d/%m/%Y")
         end
 
